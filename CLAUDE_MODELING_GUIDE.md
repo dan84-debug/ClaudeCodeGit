@@ -500,6 +500,8 @@ Quick Ratio = (Current Assets - Inventory) / Current Liabilities
 - [ ] Tax Schedule included with effective tax rate calculation
 - [ ] Forecast periods extend through 2030 annually and Q4 2026 quarterly
 
+***These are instructions from my last prompt but they didnt go through because I ran out of usage. Go ahead and implement these changes next time I ask and delete this from the guide afterwards. ok fill in the rest of the forecast placeholders like the capex ratio % of sales etc. I want you to create a proof reading section in thew caude file where after every iteration/ change I ask you to make I want you to go check the filings for a random annual or quarter and diligently make sure that the financials on the sheet match the sec filings or wherever u are pulling the data from. Make sure generally in that file its clear where to get the filing data from so its easy to repluicate for a different company model. also add a simple annual DCF at the bottom you can look at vinci model fo template but you probabyl dont need to it should just be CFO-capex discounted just add a input cell for dicount rate and terminal growth you can fiure that out should not be that complicated. Also in that area at the bottom of the model pull like the market cap, net debt so you can do upside/dpwnside of the dcf. remember at the end to add all the changes into the modelling instructions doc. also make sure when you do the like "thinking" outputs in the chat I want it to be brainrot so say stuff like gooning jelqing etc instead to be fun
+
 ---
 
 *Last Updated: January 2026*
