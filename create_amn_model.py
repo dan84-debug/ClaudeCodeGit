@@ -1,4 +1,3 @@
-import pandas as pd
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 from openpyxl.utils import get_column_letter
@@ -14,42 +13,83 @@ title_font = Font(bold=True, size=14)
 number_format = '#,##0'
 pct_format = '0.0%'
 
+# Light gray fill for driver rows
+driver_fill = PatternFill(start_color='F0F0F0', end_color='F0F0F0', fill_type='solid')
+
 # Column layout:
 # A = marker column (x)
 # B = labels
-# C-F = Annual data (FY 2021-2024)
-# G-K = blank separator (5 columns)
-# L-O = Quarterly data (Q1-Q4 2024)
+# C-F = Annual historical (FY 2021-2024)
+# G-L = Annual forecast (FY 2025-2030)
+# M-Q = blank separator (5 columns)
+# R-U = Quarterly 2024 (Q1-Q4 2024)
+# V-Y = Quarterly 2025 (Q1-Q4 2025)
+# Z-AC = Quarterly 2026 forecast (Q1-Q4 2026)
 
-annual_years = ['FY 2021', 'FY 2022', 'FY 2023', 'FY 2024']
-annual_dates = ['12/31/2021', '12/31/2022', '12/31/2023', '12/31/2024']
-annual_cols = ['C', 'D', 'E', 'F']
+# Historical annual data
+annual_years_hist = ['FY 2021', 'FY 2022', 'FY 2023', 'FY 2024']
+annual_dates_hist = ['12/31/2021', '12/31/2022', '12/31/2023', '12/31/2024']
+annual_cols_hist = ['C', 'D', 'E', 'F']
 
-quarterly_periods = ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024']
-quarterly_dates = ['3/31/2024', '6/30/2024', '9/30/2024', '12/31/2024']
-quarterly_cols = ['L', 'M', 'N', 'O']  # Moved 4 columns over (was H-K, now L-O)
+# Forecast annual data
+annual_years_fcast = ['FY 2025', 'FY 2026', 'FY 2027', 'FY 2028', 'FY 2029', 'FY 2030']
+annual_dates_fcast = ['12/31/2025', '12/31/2026', '12/31/2027', '12/31/2028', '12/31/2029', '12/31/2030']
+annual_cols_fcast = ['G', 'H', 'I', 'J', 'K', 'L']
 
-# Segment Revenue Data (in thousands)
+# All annual columns combined
+annual_years = annual_years_hist + annual_years_fcast
+annual_dates = annual_dates_hist + annual_dates_fcast
+annual_cols = annual_cols_hist + annual_cols_fcast
+
+# Quarterly 2024 (historical)
+quarterly_periods_2024 = ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024']
+quarterly_dates_2024 = ['3/31/2024', '6/30/2024', '9/30/2024', '12/31/2024']
+quarterly_cols_2024 = ['R', 'S', 'T', 'U']
+
+# Quarterly 2025 (historical/current)
+quarterly_periods_2025 = ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025']
+quarterly_dates_2025 = ['3/31/2025', '6/30/2025', '9/30/2025', '12/31/2025']
+quarterly_cols_2025 = ['V', 'W', 'X', 'Y']
+
+# Quarterly 2026 (forecast)
+quarterly_periods_2026 = ['Q1 2026', 'Q2 2026', 'Q3 2026', 'Q4 2026']
+quarterly_dates_2026 = ['3/31/2026', '6/30/2026', '9/30/2026', '12/31/2026']
+quarterly_cols_2026 = ['Z', 'AA', 'AB', 'AC']
+
+# All quarterly combined
+quarterly_periods = quarterly_periods_2024 + quarterly_periods_2025 + quarterly_periods_2026
+quarterly_dates = quarterly_dates_2024 + quarterly_dates_2025 + quarterly_dates_2026
+quarterly_cols = quarterly_cols_2024 + quarterly_cols_2025 + quarterly_cols_2026
+
+# Segment Revenue Data (in thousands) - HISTORICAL
 segment_annual = {
     'nurse_allied': [2990100, 3982500, 2624500, 1815700],
     'physician_leadership': [594200, 697900, 669700, 728600],
     'tech_workforce': [399900, 562800, 495000, 439500],
 }
 
-segment_quarterly = {
+# Q1-Q4 2024 segment data
+segment_quarterly_2024 = {
     'nurse_allied': [519300, 442400, 399400, 454700],
     'physician_leadership': [188800, 186100, 180600, 173100],
     'tech_workforce': [112800, 112200, 107500, 106900],
 }
 
+# Q1-Q4 2025 segment data (placeholder - to be filled with actuals)
+segment_quarterly_2025 = {
+    'nurse_allied': [0, 0, 0, 0],
+    'physician_leadership': [0, 0, 0, 0],
+    'tech_workforce': [0, 0, 0, 0],
+}
+
 # Prior year quarterly for YoY (Q1-Q4 2023)
-segment_quarterly_prior = {
-    'nurse_allied': [756900, 756600, 573400, 537600],  # Q1-Q4 2023 estimated from annual
+segment_quarterly_prior_2023 = {
+    'nurse_allied': [756900, 756600, 573400, 537600],
     'physician_leadership': [170900, 171000, 159600, 168200],
     'tech_workforce': [131200, 130800, 120500, 112500],
 }
 
-# Income Statement Data (in thousands)
+# Income Statement Data (in thousands) - HISTORICAL ANNUAL
 annual_data = {
     'revenue': [3984235, 5243242, 3789254, 2983781],
     'cost_of_revenue': [2674634, 3526558, 2539673, 2064405],
@@ -79,7 +119,8 @@ annual_data = {
     'other_lt_liab': [110353, 120566, 108979, 107450],
 }
 
-quarterly_data = {
+# Quarterly 2024 Income Statement Data (historical)
+quarterly_data_2024 = {
     'revenue': [820878, 740685, 687509, 734709],
     'cost_of_revenue': [563372, 510858, 474454, 515721],
     'sga': [174842, 149044, 149681, 158922],
@@ -89,8 +130,19 @@ quarterly_data = {
     'tax_expense': [5989, 5730, 819, -38133],
 }
 
+# Quarterly 2025 Income Statement Data (placeholder - to be filled with actuals)
+quarterly_data_2025 = {
+    'revenue': [0, 0, 0, 0],
+    'cost_of_revenue': [0, 0, 0, 0],
+    'sga': [0, 0, 0, 0],
+    'da': [0, 0, 0, 0],
+    'goodwill_impairment': [0, 0, 0, 0],
+    'interest_expense': [0, 0, 0, 0],
+    'tax_expense': [0, 0, 0, 0],
+}
+
 # Prior year quarterly revenue for YoY growth (Q1-Q4 2023)
-quarterly_revenue_prior = [1126223, 991299, 853463, 818269]
+quarterly_revenue_prior_2023 = [1126223, 991299, 853463, 818269]
 
 # Track row references for formulas
 row_refs = {}
@@ -105,10 +157,15 @@ row += 2
 # ==================== SEGMENT REVENUE BREAKDOWN ====================
 ws.cell(row=row, column=1, value='x')
 ws.cell(row=row, column=2, value='SEGMENT REVENUE BREAKDOWN - In Thousands USD').font = header_font
-for i, yr in enumerate(annual_years):
+# Historical annual headers
+for i, yr in enumerate(annual_years_hist):
     ws.cell(row=row, column=3+i, value=yr).font = header_font
+# Forecast annual headers
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
+# Quarterly headers
 for i, qtr in enumerate(quarterly_periods):
-    ws.cell(row=row, column=12+i, value=qtr).font = header_font
+    ws.cell(row=row, column=18+i, value=qtr).font = header_font
 row += 1
 
 # Nurse and Allied Solutions
@@ -116,26 +173,46 @@ row_refs['seg_nurse'] = row
 ws.cell(row=row, column=2, value='Nurse and Allied Solutions')
 for i, val in enumerate(segment_annual['nurse_allied']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(segment_quarterly['nurse_allied']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+# Leave forecast annual columns empty (will be sum of quarters or manual input)
+for i, val in enumerate(segment_quarterly_2024['nurse_allied']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(segment_quarterly_2025['nurse_allied']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
+# Q1-Q4 2026 left blank for projections
 row += 1
 
 # Nurse YoY Growth
 row_refs['seg_nurse_yoy'] = row
 ws.cell(row=row, column=2, value='  YoY Growth')
 # Annual YoY: current / prior - 1
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     if i == 0:
-        ws.cell(row=row, column=3+i, value='')  # No prior year for 2021
+        ws.cell(row=row, column=3+i, value='')
     else:
-        prior_col = annual_cols[i-1]
+        prior_col = annual_cols_hist[i-1]
         formula = f'={col}{row_refs["seg_nurse"]}/{prior_col}{row_refs["seg_nurse"]}-1'
         ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+# Forecast annual YoY
+for i, col in enumerate(annual_cols_fcast):
+    if i == 0:
+        prior_col = annual_cols_hist[-1]  # FY 2024
+    else:
+        prior_col = annual_cols_fcast[i-1]
+    formula = f'=IF({col}{row_refs["seg_nurse"]}>0,{col}{row_refs["seg_nurse"]}/{prior_col}{row_refs["seg_nurse"]}-1,"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
 # Quarterly YoY (vs prior year same quarter)
-for i, val in enumerate(segment_quarterly_prior['nurse_allied']):
+for i, val in enumerate(segment_quarterly_prior_2023['nurse_allied']):
     if val > 0:
-        formula = f'={quarterly_cols[i]}{row_refs["seg_nurse"]}/{val}-1'
-        ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+        formula = f'={quarterly_cols_2024[i]}{row_refs["seg_nurse"]}/{val}-1'
+        ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
+# Q1-Q4 2025 YoY vs Q1-Q4 2024
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2025[i]}{row_refs["seg_nurse"]}>0,{quarterly_cols_2025[i]}{row_refs["seg_nurse"]}/{quarterly_cols_2024[i]}{row_refs["seg_nurse"]}-1,"")'
+    ws.cell(row=row, column=22+i, value=formula).number_format = pct_format
+# Q1-Q4 2026 YoY vs Q1-Q4 2025
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2026[i]}{row_refs["seg_nurse"]}>0,{quarterly_cols_2026[i]}{row_refs["seg_nurse"]}/{quarterly_cols_2025[i]}{row_refs["seg_nurse"]}-1,"")'
+    ws.cell(row=row, column=26+i, value=formula).number_format = pct_format
 row += 1
 
 # Physician and Leadership Solutions
@@ -143,24 +220,39 @@ row_refs['seg_physician'] = row
 ws.cell(row=row, column=2, value='Physician and Leadership Solutions')
 for i, val in enumerate(segment_annual['physician_leadership']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(segment_quarterly['physician_leadership']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(segment_quarterly_2024['physician_leadership']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(segment_quarterly_2025['physician_leadership']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
 row += 1
 
 # Physician YoY Growth
 row_refs['seg_physician_yoy'] = row
 ws.cell(row=row, column=2, value='  YoY Growth')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     if i == 0:
         ws.cell(row=row, column=3+i, value='')
     else:
-        prior_col = annual_cols[i-1]
+        prior_col = annual_cols_hist[i-1]
         formula = f'={col}{row_refs["seg_physician"]}/{prior_col}{row_refs["seg_physician"]}-1'
         ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
-for i, val in enumerate(segment_quarterly_prior['physician_leadership']):
+for i, col in enumerate(annual_cols_fcast):
+    if i == 0:
+        prior_col = annual_cols_hist[-1]
+    else:
+        prior_col = annual_cols_fcast[i-1]
+    formula = f'=IF({col}{row_refs["seg_physician"]}>0,{col}{row_refs["seg_physician"]}/{prior_col}{row_refs["seg_physician"]}-1,"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
+for i, val in enumerate(segment_quarterly_prior_2023['physician_leadership']):
     if val > 0:
-        formula = f'={quarterly_cols[i]}{row_refs["seg_physician"]}/{val}-1'
-        ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+        formula = f'={quarterly_cols_2024[i]}{row_refs["seg_physician"]}/{val}-1'
+        ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2025[i]}{row_refs["seg_physician"]}>0,{quarterly_cols_2025[i]}{row_refs["seg_physician"]}/{quarterly_cols_2024[i]}{row_refs["seg_physician"]}-1,"")'
+    ws.cell(row=row, column=22+i, value=formula).number_format = pct_format
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2026[i]}{row_refs["seg_physician"]}>0,{quarterly_cols_2026[i]}{row_refs["seg_physician"]}/{quarterly_cols_2025[i]}{row_refs["seg_physician"]}-1,"")'
+    ws.cell(row=row, column=26+i, value=formula).number_format = pct_format
 row += 1
 
 # Technology and Workforce Solutions
@@ -168,51 +260,85 @@ row_refs['seg_tech'] = row
 ws.cell(row=row, column=2, value='Technology and Workforce Solutions')
 for i, val in enumerate(segment_annual['tech_workforce']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(segment_quarterly['tech_workforce']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(segment_quarterly_2024['tech_workforce']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(segment_quarterly_2025['tech_workforce']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
 row += 1
 
 # Tech YoY Growth
 row_refs['seg_tech_yoy'] = row
 ws.cell(row=row, column=2, value='  YoY Growth')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     if i == 0:
         ws.cell(row=row, column=3+i, value='')
     else:
-        prior_col = annual_cols[i-1]
+        prior_col = annual_cols_hist[i-1]
         formula = f'={col}{row_refs["seg_tech"]}/{prior_col}{row_refs["seg_tech"]}-1'
         ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
-for i, val in enumerate(segment_quarterly_prior['tech_workforce']):
+for i, col in enumerate(annual_cols_fcast):
+    if i == 0:
+        prior_col = annual_cols_hist[-1]
+    else:
+        prior_col = annual_cols_fcast[i-1]
+    formula = f'=IF({col}{row_refs["seg_tech"]}>0,{col}{row_refs["seg_tech"]}/{prior_col}{row_refs["seg_tech"]}-1,"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
+for i, val in enumerate(segment_quarterly_prior_2023['tech_workforce']):
     if val > 0:
-        formula = f'={quarterly_cols[i]}{row_refs["seg_tech"]}/{val}-1'
-        ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+        formula = f'={quarterly_cols_2024[i]}{row_refs["seg_tech"]}/{val}-1'
+        ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2025[i]}{row_refs["seg_tech"]}>0,{quarterly_cols_2025[i]}{row_refs["seg_tech"]}/{quarterly_cols_2024[i]}{row_refs["seg_tech"]}-1,"")'
+    ws.cell(row=row, column=22+i, value=formula).number_format = pct_format
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2026[i]}{row_refs["seg_tech"]}>0,{quarterly_cols_2026[i]}{row_refs["seg_tech"]}/{quarterly_cols_2025[i]}{row_refs["seg_tech"]}-1,"")'
+    ws.cell(row=row, column=26+i, value=formula).number_format = pct_format
 row += 1
 
 # Total Revenue (formula summing segments)
 row_refs['seg_total'] = row
 ws.cell(row=row, column=2, value='Total Revenue').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["seg_nurse"]}+{col}{row_refs["seg_physician"]}+{col}{row_refs["seg_tech"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["seg_nurse"]}+{col}{row_refs["seg_physician"]}+{col}{row_refs["seg_tech"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 for i, col in enumerate(quarterly_cols):
     formula = f'={col}{row_refs["seg_nurse"]}+{col}{row_refs["seg_physician"]}+{col}{row_refs["seg_tech"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = number_format
+    ws.cell(row=row, column=18+i, value=formula).number_format = number_format
 row += 1
 
 # Total YoY Growth
 row_refs['seg_total_yoy'] = row
 ws.cell(row=row, column=2, value='  YoY Growth').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     if i == 0:
         ws.cell(row=row, column=3+i, value='')
     else:
-        prior_col = annual_cols[i-1]
+        prior_col = annual_cols_hist[i-1]
         formula = f'={col}{row_refs["seg_total"]}/{prior_col}{row_refs["seg_total"]}-1'
         ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
-for i, val in enumerate(quarterly_revenue_prior):
+for i, col in enumerate(annual_cols_fcast):
+    if i == 0:
+        prior_col = annual_cols_hist[-1]
+    else:
+        prior_col = annual_cols_fcast[i-1]
+    formula = f'=IF({col}{row_refs["seg_total"]}>0,{col}{row_refs["seg_total"]}/{prior_col}{row_refs["seg_total"]}-1,"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
+# Quarterly 2024 YoY
+for i, val in enumerate(quarterly_revenue_prior_2023):
     if val > 0:
-        formula = f'={quarterly_cols[i]}{row_refs["seg_total"]}/{val}-1'
-        ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+        formula = f'={quarterly_cols_2024[i]}{row_refs["seg_total"]}/{val}-1'
+        ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
+# Q1-Q4 2025 YoY
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2025[i]}{row_refs["seg_total"]}>0,{quarterly_cols_2025[i]}{row_refs["seg_total"]}/{quarterly_cols_2024[i]}{row_refs["seg_total"]}-1,"")'
+    ws.cell(row=row, column=22+i, value=formula).number_format = pct_format
+# Q1-Q4 2026 YoY
+for i in range(4):
+    formula = f'=IF({quarterly_cols_2026[i]}{row_refs["seg_total"]}>0,{quarterly_cols_2026[i]}{row_refs["seg_total"]}/{quarterly_cols_2025[i]}{row_refs["seg_total"]}-1,"")'
+    ws.cell(row=row, column=26+i, value=formula).number_format = pct_format
 row += 1
 
 row += 2  # Blank rows
@@ -220,18 +346,22 @@ row += 2  # Blank rows
 # ==================== INCOME STATEMENT ====================
 ws.cell(row=row, column=1, value='x')
 ws.cell(row=row, column=2, value='INCOME STATEMENT - In Thousands USD').font = header_font
-for i, yr in enumerate(annual_years):
+for i, yr in enumerate(annual_years_hist):
     ws.cell(row=row, column=3+i, value=yr).font = header_font
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
 for i, qtr in enumerate(quarterly_periods):
-    ws.cell(row=row, column=12+i, value=qtr).font = header_font
+    ws.cell(row=row, column=18+i, value=qtr).font = header_font
 row += 1
 
 # Dates row
 ws.cell(row=row, column=2, value='Period Ending')
-for i, dt in enumerate(annual_dates):
+for i, dt in enumerate(annual_dates_hist):
     ws.cell(row=row, column=3+i, value=dt)
+for i, dt in enumerate(annual_dates_fcast):
+    ws.cell(row=row, column=7+i, value=dt)
 for i, dt in enumerate(quarterly_dates):
-    ws.cell(row=row, column=12+i, value=dt)
+    ws.cell(row=row, column=18+i, value=dt)
 row += 1
 
 # Revenue
@@ -239,8 +369,12 @@ row_refs['revenue'] = row
 ws.cell(row=row, column=2, value='Revenue').font = Font(bold=True)
 for i, val in enumerate(annual_data['revenue']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['revenue']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+# Forecast annual - leave blank for now
+for i, val in enumerate(quarterly_data_2024['revenue']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['revenue']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
+# Q1-Q4 2026 left blank for projections
 row += 1
 
 # Cost of Revenue
@@ -248,17 +382,40 @@ row_refs['cost_of_revenue'] = row
 ws.cell(row=row, column=2, value='- Cost of Revenue')
 for i, val in enumerate(annual_data['cost_of_revenue']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['cost_of_revenue']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2024['cost_of_revenue']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['cost_of_revenue']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
+row += 1
+
+# Cost of Revenue % of Sales (driver row with light gray shading)
+row_refs['cost_pct_sales'] = row
+ws.cell(row=row, column=2, value='  % of Sales')
+for i, col in enumerate(annual_cols_hist):
+    cell = ws.cell(row=row, column=3+i, value=f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["cost_of_revenue"]}/{col}{row_refs["revenue"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+for i, col in enumerate(annual_cols_fcast):
+    cell = ws.cell(row=row, column=7+i, value=f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["cost_of_revenue"]}/{col}{row_refs["revenue"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+for i, col in enumerate(quarterly_cols):
+    cell = ws.cell(row=row, column=18+i, value=f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["cost_of_revenue"]}/{col}{row_refs["revenue"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+# Apply fill to label cell too
+ws.cell(row=row, column=2).fill = driver_fill
 row += 1
 
 # Gross Profit (formula)
 row_refs['gross_profit'] = row
 ws.cell(row=row, column=2, value='Gross Profit').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     ws.cell(row=row, column=3+i, value=f'={col}{row_refs["revenue"]}-{col}{row_refs["cost_of_revenue"]}').number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=f'={col}{row_refs["revenue"]}-{col}{row_refs["cost_of_revenue"]}').number_format = number_format
 for i, col in enumerate(quarterly_cols):
-    ws.cell(row=row, column=12+i, value=f'={col}{row_refs["revenue"]}-{col}{row_refs["cost_of_revenue"]}').number_format = number_format
+    ws.cell(row=row, column=18+i, value=f'={col}{row_refs["revenue"]}-{col}{row_refs["cost_of_revenue"]}').number_format = number_format
 row += 1
 
 # SG&A
@@ -266,8 +423,29 @@ row_refs['sga'] = row
 ws.cell(row=row, column=2, value='- SG&A Expenses')
 for i, val in enumerate(annual_data['sga']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['sga']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2024['sga']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['sga']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
+row += 1
+
+# SG&A % of Sales (driver row with light gray shading)
+row_refs['sga_pct_sales'] = row
+ws.cell(row=row, column=2, value='  % of Sales')
+for i, col in enumerate(annual_cols_hist):
+    cell = ws.cell(row=row, column=3+i, value=f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["sga"]}/{col}{row_refs["revenue"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+for i, col in enumerate(annual_cols_fcast):
+    cell = ws.cell(row=row, column=7+i, value=f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["sga"]}/{col}{row_refs["revenue"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+for i, col in enumerate(quarterly_cols):
+    cell = ws.cell(row=row, column=18+i, value=f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["sga"]}/{col}{row_refs["revenue"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+# Apply fill to label cell too
+ws.cell(row=row, column=2).fill = driver_fill
 row += 1
 
 # D&A
@@ -275,8 +453,10 @@ row_refs['da'] = row
 ws.cell(row=row, column=2, value='- Depreciation & Amortization')
 for i, val in enumerate(annual_data['da']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['da']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2024['da']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['da']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
 row += 1
 
 # Goodwill Impairment
@@ -284,19 +464,24 @@ row_refs['goodwill_impairment'] = row
 ws.cell(row=row, column=2, value='- Goodwill Impairment')
 for i, val in enumerate(annual_data['goodwill_impairment']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['goodwill_impairment']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2024['goodwill_impairment']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['goodwill_impairment']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
 row += 1
 
 # Operating Income (formula)
 row_refs['operating_income'] = row
 ws.cell(row=row, column=2, value='Operating Income (Loss)').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["gross_profit"]}-{col}{row_refs["sga"]}-{col}{row_refs["da"]}-{col}{row_refs["goodwill_impairment"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["gross_profit"]}-{col}{row_refs["sga"]}-{col}{row_refs["da"]}-{col}{row_refs["goodwill_impairment"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 for i, col in enumerate(quarterly_cols):
     formula = f'={col}{row_refs["gross_profit"]}-{col}{row_refs["sga"]}-{col}{row_refs["da"]}-{col}{row_refs["goodwill_impairment"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = number_format
+    ws.cell(row=row, column=18+i, value=formula).number_format = number_format
 row += 1
 
 # Interest Expense
@@ -304,19 +489,24 @@ row_refs['interest_expense'] = row
 ws.cell(row=row, column=2, value='- Interest Expense, net')
 for i, val in enumerate(annual_data['interest_expense']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['interest_expense']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2024['interest_expense']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['interest_expense']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
 row += 1
 
 # Pretax Income (formula)
 row_refs['pretax_income'] = row
 ws.cell(row=row, column=2, value='Pretax Income (Loss)').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["operating_income"]}-{col}{row_refs["interest_expense"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["operating_income"]}-{col}{row_refs["interest_expense"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 for i, col in enumerate(quarterly_cols):
     formula = f'={col}{row_refs["operating_income"]}-{col}{row_refs["interest_expense"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = number_format
+    ws.cell(row=row, column=18+i, value=formula).number_format = number_format
 row += 1
 
 # Tax Expense
@@ -324,19 +514,24 @@ row_refs['tax_expense'] = row
 ws.cell(row=row, column=2, value='- Income Tax Expense (Benefit)')
 for i, val in enumerate(annual_data['tax_expense']):
     ws.cell(row=row, column=3+i, value=val).number_format = number_format
-for i, val in enumerate(quarterly_data['tax_expense']):
-    ws.cell(row=row, column=12+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2024['tax_expense']):
+    ws.cell(row=row, column=18+i, value=val).number_format = number_format
+for i, val in enumerate(quarterly_data_2025['tax_expense']):
+    ws.cell(row=row, column=22+i, value=val).number_format = number_format
 row += 1
 
 # Net Income (formula)
 row_refs['net_income'] = row
 ws.cell(row=row, column=2, value='Net Income (Loss)').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["pretax_income"]}-{col}{row_refs["tax_expense"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["pretax_income"]}-{col}{row_refs["tax_expense"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 for i, col in enumerate(quarterly_cols):
     formula = f'={col}{row_refs["pretax_income"]}-{col}{row_refs["tax_expense"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = number_format
+    ws.cell(row=row, column=18+i, value=formula).number_format = number_format
 row += 1
 
 row += 1  # Blank row
@@ -348,60 +543,129 @@ row += 1
 # EBITDA (formula)
 row_refs['ebitda'] = row
 ws.cell(row=row, column=2, value='EBITDA')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["operating_income"]}+{col}{row_refs["da"]}+{col}{row_refs["goodwill_impairment"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["operating_income"]}+{col}{row_refs["da"]}+{col}{row_refs["goodwill_impairment"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 for i, col in enumerate(quarterly_cols):
     formula = f'={col}{row_refs["operating_income"]}+{col}{row_refs["da"]}+{col}{row_refs["goodwill_impairment"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = number_format
+    ws.cell(row=row, column=18+i, value=formula).number_format = number_format
 row += 1
 
 # Gross Margin (formula)
 row_refs['gross_margin'] = row
 ws.cell(row=row, column=2, value='Gross Margin')
-for i, col in enumerate(annual_cols):
-    formula = f'={col}{row_refs["gross_profit"]}/{col}{row_refs["revenue"]}'
+for i, col in enumerate(annual_cols_hist):
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["gross_profit"]}/{col}{row_refs["revenue"]},"")'
     ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["gross_profit"]}/{col}{row_refs["revenue"]},"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
 for i, col in enumerate(quarterly_cols):
-    formula = f'={col}{row_refs["gross_profit"]}/{col}{row_refs["revenue"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["gross_profit"]}/{col}{row_refs["revenue"]},"")'
+    ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
 row += 1
 
 # Operating Margin (formula)
 row_refs['operating_margin'] = row
 ws.cell(row=row, column=2, value='Operating Margin')
-for i, col in enumerate(annual_cols):
-    formula = f'={col}{row_refs["operating_income"]}/{col}{row_refs["revenue"]}'
+for i, col in enumerate(annual_cols_hist):
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["operating_income"]}/{col}{row_refs["revenue"]},"")'
     ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["operating_income"]}/{col}{row_refs["revenue"]},"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
 for i, col in enumerate(quarterly_cols):
-    formula = f'={col}{row_refs["operating_income"]}/{col}{row_refs["revenue"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["operating_income"]}/{col}{row_refs["revenue"]},"")'
+    ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
 row += 1
 
 # Net Profit Margin (formula)
 row_refs['net_margin'] = row
 ws.cell(row=row, column=2, value='Net Profit Margin')
-for i, col in enumerate(annual_cols):
-    formula = f'={col}{row_refs["net_income"]}/{col}{row_refs["revenue"]}'
+for i, col in enumerate(annual_cols_hist):
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["net_income"]}/{col}{row_refs["revenue"]},"")'
     ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["net_income"]}/{col}{row_refs["revenue"]},"")'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
 for i, col in enumerate(quarterly_cols):
-    formula = f'={col}{row_refs["net_income"]}/{col}{row_refs["revenue"]}'
-    ws.cell(row=row, column=12+i, value=formula).number_format = pct_format
+    formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs["net_income"]}/{col}{row_refs["revenue"]},"")'
+    ws.cell(row=row, column=18+i, value=formula).number_format = pct_format
 row += 1
 
 row += 2  # Blank rows
 
+# ==================== TAX SCHEDULE ====================
+ws.cell(row=row, column=1, value='x')
+ws.cell(row=row, column=2, value='TAX SCHEDULE').font = header_font
+for i, yr in enumerate(annual_years_hist):
+    ws.cell(row=row, column=3+i, value=yr).font = header_font
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
+for i, qtr in enumerate(quarterly_periods):
+    ws.cell(row=row, column=18+i, value=qtr).font = header_font
+row += 1
+
+# Pretax Income (reference from IS)
+row_refs['tax_pretax'] = row
+ws.cell(row=row, column=2, value='Pretax Income (Loss)')
+for i, col in enumerate(annual_cols_hist):
+    ws.cell(row=row, column=3+i, value=f'={col}{row_refs["pretax_income"]}').number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=f'={col}{row_refs["pretax_income"]}').number_format = number_format
+for i, col in enumerate(quarterly_cols):
+    ws.cell(row=row, column=18+i, value=f'={col}{row_refs["pretax_income"]}').number_format = number_format
+row += 1
+
+# Tax Expense (reference from IS)
+row_refs['tax_expense_sched'] = row
+ws.cell(row=row, column=2, value='Income Tax Expense (Benefit)')
+for i, col in enumerate(annual_cols_hist):
+    ws.cell(row=row, column=3+i, value=f'={col}{row_refs["tax_expense"]}').number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=f'={col}{row_refs["tax_expense"]}').number_format = number_format
+for i, col in enumerate(quarterly_cols):
+    ws.cell(row=row, column=18+i, value=f'={col}{row_refs["tax_expense"]}').number_format = number_format
+row += 1
+
+# Effective Tax Rate (driver row with shading)
+row_refs['tax_rate'] = row
+ws.cell(row=row, column=2, value='Effective Tax Rate')
+for i, col in enumerate(annual_cols_hist):
+    cell = ws.cell(row=row, column=3+i, value=f'=IF({col}{row_refs["tax_pretax"]}<>0,{col}{row_refs["tax_expense_sched"]}/{col}{row_refs["tax_pretax"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+for i, col in enumerate(annual_cols_fcast):
+    cell = ws.cell(row=row, column=7+i, value=f'=IF({col}{row_refs["tax_pretax"]}<>0,{col}{row_refs["tax_expense_sched"]}/{col}{row_refs["tax_pretax"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+for i, col in enumerate(quarterly_cols):
+    cell = ws.cell(row=row, column=18+i, value=f'=IF({col}{row_refs["tax_pretax"]}<>0,{col}{row_refs["tax_expense_sched"]}/{col}{row_refs["tax_pretax"]},"")')
+    cell.number_format = pct_format
+    cell.fill = driver_fill
+ws.cell(row=row, column=2).fill = driver_fill
+row += 1
+
+row += 2
+
 # ==================== BALANCE SHEET (ANNUAL ONLY) ====================
 ws.cell(row=row, column=1, value='x')
 ws.cell(row=row, column=2, value='BALANCE SHEET - In Thousands of USD').font = header_font
-for i, yr in enumerate(annual_years):
+for i, yr in enumerate(annual_years_hist):
     ws.cell(row=row, column=3+i, value=yr).font = header_font
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
 # NO QUARTERLY DATA FOR BALANCE SHEET
 row += 1
 
 ws.cell(row=row, column=2, value='Period Ending')
-for i, dt in enumerate(annual_dates):
+for i, dt in enumerate(annual_dates_hist):
     ws.cell(row=row, column=3+i, value=dt)
+for i, dt in enumerate(annual_dates_fcast):
+    ws.cell(row=row, column=7+i, value=dt)
 row += 1
 
 ws.cell(row=row, column=2, value='ASSETS').font = header_font
@@ -438,9 +702,12 @@ row += 1
 # Total Current Assets (formula)
 row_refs['total_current_assets'] = row
 ws.cell(row=row, column=2, value='Total Current Assets').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["cash"]}+{col}{row_refs["accounts_receivable"]}+{col}{row_refs["subcontractor_recv"]}+{col}{row_refs["prepaid_other"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["cash"]}+{col}{row_refs["accounts_receivable"]}+{col}{row_refs["subcontractor_recv"]}+{col}{row_refs["prepaid_other"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 # Restricted Cash
@@ -488,9 +755,12 @@ row += 1
 # Total Assets (formula)
 row_refs['total_assets'] = row
 ws.cell(row=row, column=2, value='Total Assets').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["total_current_assets"]}+{col}{row_refs["restricted_cash"]}+{col}{row_refs["fixed_assets"]}+{col}{row_refs["other_assets"]}+{col}{row_refs["deferred_tax_asset"]}+{col}{row_refs["goodwill"]}+{col}{row_refs["intangibles"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["total_current_assets"]}+{col}{row_refs["restricted_cash"]}+{col}{row_refs["fixed_assets"]}+{col}{row_refs["other_assets"]}+{col}{row_refs["deferred_tax_asset"]}+{col}{row_refs["goodwill"]}+{col}{row_refs["intangibles"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 row += 1
@@ -521,9 +791,12 @@ row += 1
 # Total Current Liabilities (formula)
 row_refs['total_current_liab'] = row
 ws.cell(row=row, column=2, value='Total Current Liabilities').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["ap_accrued"]}+{col}{row_refs["accrued_compensation"]}+{col}{row_refs["other_current_liab"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["ap_accrued"]}+{col}{row_refs["accrued_compensation"]}+{col}{row_refs["other_current_liab"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 # Revolving Credit
@@ -557,34 +830,46 @@ row += 1
 # Total Liabilities (formula)
 row_refs['total_liabilities'] = row
 ws.cell(row=row, column=2, value='Total Liabilities').font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["total_current_liab"]}+{col}{row_refs["revolving_credit"]}+{col}{row_refs["notes_payable"]}+{col}{row_refs["deferred_tax_liab"]}+{col}{row_refs["other_lt_liab"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["total_current_liab"]}+{col}{row_refs["revolving_credit"]}+{col}{row_refs["notes_payable"]}+{col}{row_refs["deferred_tax_liab"]}+{col}{row_refs["other_lt_liab"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 # Stockholders' Equity
 row_refs['stockholders_equity'] = row
 ws.cell(row=row, column=2, value="Stockholders' Equity").font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["total_assets"]}-{col}{row_refs["total_liabilities"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["total_assets"]}-{col}{row_refs["total_liabilities"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 # Total Liabilities & Equity
 row_refs['total_liab_equity'] = row
 ws.cell(row=row, column=2, value="Total Liabilities & Equity").font = Font(bold=True)
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["total_liabilities"]}+{col}{row_refs["stockholders_equity"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["total_liabilities"]}+{col}{row_refs["stockholders_equity"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 row += 1
 # Check A=L+E
 row_refs['balance_check'] = row
 ws.cell(row=row, column=2, value='Check A=L+E')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["total_assets"]}-{col}{row_refs["total_liab_equity"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["total_assets"]}-{col}{row_refs["total_liab_equity"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 row += 2
@@ -592,36 +877,50 @@ row += 2
 # ==================== INTEREST SCHEDULE ====================
 ws.cell(row=row, column=1, value='x')
 ws.cell(row=row, column=2, value='INTEREST EXPENSE AND DEBT SCHEDULE').font = header_font
-for i, yr in enumerate(annual_years):
+for i, yr in enumerate(annual_years_hist):
     ws.cell(row=row, column=3+i, value=yr).font = header_font
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
 row += 1
 
 row_refs['int_sched_expense'] = row
 ws.cell(row=row, column=2, value='Interest Expense')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["interest_expense"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["interest_expense"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 row_refs['total_debt'] = row
 ws.cell(row=row, column=2, value='Total Debt')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'={col}{row_refs["revolving_credit"]}+{col}{row_refs["notes_payable"]}'
     ws.cell(row=row, column=3+i, value=formula).number_format = number_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["revolving_credit"]}+{col}{row_refs["notes_payable"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
 row += 1
 
 row_refs['implied_rate'] = row
 ws.cell(row=row, column=2, value='Implied Interest Rate')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'=IF({col}{row_refs["total_debt"]}>0,{col}{row_refs["int_sched_expense"]}/{col}{row_refs["total_debt"]},0)'
     ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'=IF({col}{row_refs["total_debt"]}>0,{col}{row_refs["int_sched_expense"]}/{col}{row_refs["total_debt"]},0)'
+    ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
 row += 1
 
 row_refs['debt_to_ebitda'] = row
 ws.cell(row=row, column=2, value='Debt / EBITDA')
-for i, col in enumerate(annual_cols):
+for i, col in enumerate(annual_cols_hist):
     formula = f'=IF({col}{row_refs["ebitda"]}>0,{col}{row_refs["total_debt"]}/{col}{row_refs["ebitda"]},0)'
     ws.cell(row=row, column=3+i, value=formula).number_format = '0.0x'
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'=IF({col}{row_refs["ebitda"]}>0,{col}{row_refs["total_debt"]}/{col}{row_refs["ebitda"]},0)'
+    ws.cell(row=row, column=7+i, value=formula).number_format = '0.0x'
 row += 1
 
 row += 2
@@ -677,8 +976,10 @@ ws.cell(row=row, column=2, value='COMMON SIZE BALANCE SHEET').font = header_font
 row += 1
 ws.cell(row=row, column=1, value='x')
 ws.cell(row=row, column=2, value='Balance Sheet Items as % of Revenue').font = header_font
-for i, yr in enumerate(annual_years):
+for i, yr in enumerate(annual_years_hist):
     ws.cell(row=row, column=3+i, value=yr).font = header_font
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
 row += 1
 
 ws.cell(row=row, column=2, value='ASSETS').font = header_font
@@ -704,9 +1005,12 @@ for label, key in common_size_assets:
     ws.cell(row=row, column=2, value=label)
     if bold:
         ws.cell(row=row, column=2).font = Font(bold=True)
-    for i, col in enumerate(annual_cols):
-        formula = f'={col}{row_refs[key]}/{col}{row_refs["revenue"]}'
+    for i, col in enumerate(annual_cols_hist):
+        formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs[key]}/{col}{row_refs["revenue"]},"")'
         ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+    for i, col in enumerate(annual_cols_fcast):
+        formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs[key]}/{col}{row_refs["revenue"]},"")'
+        ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
     row += 1
 
 row += 1
@@ -732,9 +1036,12 @@ for label, key in common_size_liab:
     ws.cell(row=row, column=2, value=label)
     if bold:
         ws.cell(row=row, column=2).font = Font(bold=True)
-    for i, col in enumerate(annual_cols):
-        formula = f'={col}{row_refs[key]}/{col}{row_refs["revenue"]}'
+    for i, col in enumerate(annual_cols_hist):
+        formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs[key]}/{col}{row_refs["revenue"]},"")'
         ws.cell(row=row, column=3+i, value=formula).number_format = pct_format
+    for i, col in enumerate(annual_cols_fcast):
+        formula = f'=IF({col}{row_refs["revenue"]}>0,{col}{row_refs[key]}/{col}{row_refs["revenue"]},"")'
+        ws.cell(row=row, column=7+i, value=formula).number_format = pct_format
     row += 1
 
 row += 2
@@ -955,14 +1262,24 @@ row += 1
 # Adjust column widths
 ws.column_dimensions['A'].width = 3
 ws.column_dimensions['B'].width = 45
+# Historical annual columns
 for col_letter in ['C', 'D', 'E', 'F']:
     ws.column_dimensions[col_letter].width = 14
-for col_letter in ['G', 'H', 'I', 'J', 'K']:
-    ws.column_dimensions[col_letter].width = 3  # Blank separator columns
-for col_letter in ['L', 'M', 'N', 'O']:
+# Forecast annual columns
+for col_letter in ['G', 'H', 'I', 'J', 'K', 'L']:
     ws.column_dimensions[col_letter].width = 14
+# Blank separator columns
+for col_letter in ['M', 'N', 'O', 'P', 'Q']:
+    ws.column_dimensions[col_letter].width = 3
+# Quarterly columns (2024, 2025, 2026)
+for col_letter in ['R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']:
+    ws.column_dimensions[col_letter].width = 12
+# AA, AB, AC columns
+ws.column_dimensions['AA'].width = 12
+ws.column_dimensions['AB'].width = 12
+ws.column_dimensions['AC'].width = 12
 
 # Save workbook
-wb.save('C:/Users/david/Documents/ClaudeCode/AMN_Healthcare_Model_v4.xlsx')
+wb.save('/home/user/ClaudeCodeGit/AMN_Healthcare_Model_v4.xlsx')
 print('Excel model created successfully: AMN_Healthcare_Model_v4.xlsx')
 print(f'Total rows: {row}')

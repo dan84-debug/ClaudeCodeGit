@@ -9,12 +9,13 @@ This document outlines the best practices for building financial models, based o
 1. [Model Structure Overview](#model-structure-overview)
 2. [Segment Revenue Build](#segment-revenue-build)
 3. [Income Statement](#income-statement)
-4. [Balance Sheet](#balance-sheet)
-5. [Supporting Schedules](#supporting-schedules)
-6. [Common Size Analysis](#common-size-analysis)
-7. [Cash Flow Statement](#cash-flow-statement)
-8. [Formula and Reference Best Practices](#formula-and-reference-best-practices)
-9. [Formatting Standards](#formatting-standards)
+4. [Tax Schedule](#tax-schedule)
+5. [Balance Sheet](#balance-sheet)
+6. [Supporting Schedules](#supporting-schedules)
+7. [Common Size Analysis](#common-size-analysis)
+8. [Cash Flow Statement](#cash-flow-statement)
+9. [Formula and Reference Best Practices](#formula-and-reference-best-practices)
+10. [Formatting Standards](#formatting-standards)
 
 ---
 
@@ -22,26 +23,36 @@ This document outlines the best practices for building financial models, based o
 
 ### Column Layout
 
-A well-organized model uses a consistent column structure:
+A well-organized model uses a consistent column structure that separates historical data from forecast periods:
 
 | Column | Purpose |
 |--------|---------|
 | A | Marker column (`x` for section headers) |
 | B | Row labels/descriptions |
-| C-F | Annual data (4 fiscal years) |
-| G-J | Blank separator columns |
-| K-N | Quarterly data (4 quarters) |
+| C-F | Annual historical data (FY 2021-2024) |
+| G-L | Annual forecast data (FY 2025-2030) |
+| M-Q | Blank separator columns (5 columns) |
+| R-U | Quarterly 2024 (Q1-Q4 2024, historical) |
+| V-Y | Quarterly 2025 (Q1-Q4 2025, current year) |
+| Z-AC | Quarterly 2026 (Q1-Q4 2026, forecast) |
+
+**Key Layout Principles:**
+- Historical and forecast periods should be clearly distinguished
+- Forecast annual columns (2025-2030) allow for both quarterly roll-ups and long-term projections
+- Quarterly data extends through EOY 2026 for near-term detailed forecasting
+- Annual projections extend to 2030 for DCF and long-term valuation
 
 ### Section Order
 
 Models should flow in this logical order:
 
 1. **Segment Revenue Breakdown** - Top of model
-2. **Income Statement** - Core financial performance
-3. **Balance Sheet** - Financial position (annual only)
-4. **Supporting Schedules** - Interest, CapEx, Equity
-5. **Common Size Analysis** - Ratio analysis
-6. **Cash Flow Statement** - Derived from B/S changes
+2. **Income Statement** - Core financial performance (with driver rows)
+3. **Tax Schedule** - Effective tax rate calculation
+4. **Balance Sheet** - Financial position (annual only)
+5. **Supporting Schedules** - Interest, CapEx, Equity
+6. **Common Size Analysis** - Ratio analysis
+7. **Cash Flow Statement** - Derived from B/S changes
 
 ---
 
@@ -96,8 +107,10 @@ INCOME STATEMENT - In Thousands USD
                                     Annual Columns    Quarterly Columns
 Revenue                             [hardcoded]       [hardcoded]
 - Cost of Revenue                   [hardcoded]       [hardcoded]
+  % of Sales                        [=COGS/Revenue]   [=COGS/Revenue]      <- DRIVER ROW (light gray)
 Gross Profit                        [=Revenue-COGS]   [=Revenue-COGS]
 - SG&A Expenses                     [hardcoded]       [hardcoded]
+  % of Sales                        [=SG&A/Revenue]   [=SG&A/Revenue]      <- DRIVER ROW (light gray)
 - Depreciation & Amortization       [hardcoded]       [hardcoded]
 - Goodwill Impairment              [hardcoded]       [hardcoded]
 Operating Income (Loss)             [formula]         [formula]
@@ -106,6 +119,23 @@ Pretax Income (Loss)               [formula]         [formula]
 - Income Tax Expense (Benefit)      [hardcoded]       [hardcoded]
 Net Income (Loss)                   [formula]         [formula]
 ```
+
+### Driver Rows for Forecasting
+
+Driver rows are key metrics expressed as a percentage of revenue that help project future values. They should be:
+
+1. **Placed directly below the line item** they relate to
+2. **Formatted with light gray shading** (`#F0F0F0`) to distinguish them from actual data rows
+3. **Labeled with "% of Sales"** and indented with two spaces
+4. **Include IF statements** to handle cases where revenue is zero:
+   ```
+   =IF(Revenue>0, LineItem/Revenue, "")
+   ```
+
+**Key Driver Rows:**
+- **Cost of Sales % of Sales**: Indicates gross margin trends
+- **SG&A % of Sales**: Shows operating leverage
+- **Effective Tax Rate**: From Tax Schedule (see below)
 
 ### Reference Items Section
 
@@ -125,6 +155,46 @@ Pretax Income:      =C26-C27 (Operating Income minus Interest)
 Net Income:         =C28-C29 (Pretax minus Tax)
 EBITDA:            =C26+C24+C25 (Op Income + D&A + Impairment)
 ```
+
+---
+
+## Tax Schedule
+
+### Purpose
+
+The Tax Schedule calculates the effective tax rate by comparing income tax expense to pretax income. This is essential for forecasting as it allows you to project tax expense based on projected pretax income.
+
+### Structure
+
+```
+TAX SCHEDULE
+                                    Annual Columns    Quarterly Columns
+Pretax Income (Loss)                [=link to I/S]    [=link to I/S]
+Income Tax Expense (Benefit)        [=link to I/S]    [=link to I/S]
+Effective Tax Rate                  [formula]         [formula]           <- DRIVER ROW (light gray)
+```
+
+### Effective Tax Rate Formula
+
+```
+=IF(Pretax Income <> 0, Tax Expense / Pretax Income, "")
+```
+
+**Important Notes:**
+- Use `<> 0` instead of `> 0` because pretax income can be negative (loss)
+- The effective tax rate can be negative when there's a tax benefit on a pretax loss
+- The Effective Tax Rate row should have light gray shading to indicate it's a driver row
+- Historical effective tax rates help inform projected tax rates for forecast periods
+
+### Using Tax Rate for Forecasting
+
+In forecast periods:
+1. Project Pretax Income using revenue growth and margin assumptions
+2. Apply the projected Effective Tax Rate to calculate Tax Expense:
+   ```
+   Tax Expense = Pretax Income × Effective Tax Rate
+   ```
+3. Calculate Net Income = Pretax Income - Tax Expense
 
 ---
 
@@ -359,6 +429,7 @@ Use IF statements to prevent division by zero errors:
 2. **Subtotals**: Bold
 3. **Regular line items**: Normal weight
 4. **Growth rates/margins**: Indented with two spaces
+5. **Driver rows (% of Sales, Tax Rate)**: Light gray fill (`#F0F0F0`), indented with two spaces
 
 ### Column Widths
 
@@ -366,14 +437,16 @@ Use IF statements to prevent division by zero errors:
 |-------------|-------------------|
 | Marker (A) | 3 |
 | Labels (B) | 40-45 |
-| Data columns | 12-14 |
-| Separator columns | 3 |
+| Annual data columns (C-L) | 14 |
+| Separator columns (M-Q) | 3 |
+| Quarterly data columns (R-AC) | 12 |
 
 ### Marker Column Convention
 
 Use `x` in column A to mark major section headers:
 - `x` for SEGMENT REVENUE BREAKDOWN
 - `x` for INCOME STATEMENT
+- `x` for TAX SCHEDULE
 - `x` for BALANCE SHEET
 - `x` for each supporting schedule
 
@@ -423,6 +496,9 @@ Quick Ratio = (Current Assets - Inventory) / Current Liabilities
 - [ ] Error handling in place for division operations
 - [ ] Column widths set for readability
 - [ ] Quarterly data separated from annual by blank columns
+- [ ] Driver rows (% of Sales, Tax Rate) have light gray shading
+- [ ] Tax Schedule included with effective tax rate calculation
+- [ ] Forecast periods extend through 2030 annually and Q4 2026 quarterly
 
 ---
 
