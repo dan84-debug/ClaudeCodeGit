@@ -948,9 +948,16 @@ row += 1
 
 row_refs['capex_pct'] = row
 ws.cell(row=row, column=2, value='CapEx as % of Revenue')
-ws.cell(row=row, column=4, value=f'=D{row_refs["capex"]}/D{row_refs["ppe_revenue"]}').number_format = pct_format
-ws.cell(row=row, column=5, value=f'=E{row_refs["capex"]}/E{row_refs["ppe_revenue"]}').number_format = pct_format
-ws.cell(row=row, column=6, value=f'=F{row_refs["capex"]}/F{row_refs["ppe_revenue"]}').number_format = pct_format
+cell = ws.cell(row=row, column=4, value=f'=D{row_refs["capex"]}/D{row_refs["ppe_revenue"]}')
+cell.number_format = pct_format
+cell.fill = driver_fill
+cell = ws.cell(row=row, column=5, value=f'=E{row_refs["capex"]}/E{row_refs["ppe_revenue"]}')
+cell.number_format = pct_format
+cell.fill = driver_fill
+cell = ws.cell(row=row, column=6, value=f'=F{row_refs["capex"]}/F{row_refs["ppe_revenue"]}')
+cell.number_format = pct_format
+cell.fill = driver_fill
+ws.cell(row=row, column=2).fill = driver_fill
 row += 1
 
 row += 1
@@ -964,9 +971,16 @@ row += 1
 
 row_refs['da_pct'] = row
 ws.cell(row=row, column=2, value='D&A as % of Revenue')
-ws.cell(row=row, column=4, value=f'=D{row_refs["ppe_da"]}/D{row_refs["ppe_revenue"]}').number_format = pct_format
-ws.cell(row=row, column=5, value=f'=E{row_refs["ppe_da"]}/E{row_refs["ppe_revenue"]}').number_format = pct_format
-ws.cell(row=row, column=6, value=f'=F{row_refs["ppe_da"]}/F{row_refs["ppe_revenue"]}').number_format = pct_format
+cell = ws.cell(row=row, column=4, value=f'=D{row_refs["ppe_da"]}/D{row_refs["ppe_revenue"]}')
+cell.number_format = pct_format
+cell.fill = driver_fill
+cell = ws.cell(row=row, column=5, value=f'=E{row_refs["ppe_da"]}/E{row_refs["ppe_revenue"]}')
+cell.number_format = pct_format
+cell.fill = driver_fill
+cell = ws.cell(row=row, column=6, value=f'=F{row_refs["ppe_da"]}/F{row_refs["ppe_revenue"]}')
+cell.number_format = pct_format
+cell.fill = driver_fill
+ws.cell(row=row, column=2).fill = driver_fill
 row += 1
 
 row += 2
@@ -1257,6 +1271,237 @@ ws.cell(row=row, column=2, value='Difference (Check)')
 ws.cell(row=row, column=4, value=f'=D{row_refs["total_cf"]}-D{row_refs["actual_cf"]}').number_format = number_format
 ws.cell(row=row, column=5, value=f'=E{row_refs["total_cf"]}-E{row_refs["actual_cf"]}').number_format = number_format
 ws.cell(row=row, column=6, value=f'=F{row_refs["total_cf"]}-F{row_refs["actual_cf"]}').number_format = number_format
+row += 1
+
+row += 2
+
+# ==================== DCF VALUATION ====================
+# Define input fill color (light blue for inputs)
+input_fill = PatternFill(start_color='E6F3FF', end_color='E6F3FF', fill_type='solid')
+
+ws.cell(row=row, column=1, value='x')
+ws.cell(row=row, column=2, value='DCF VALUATION - Annual (in Thousands USD)').font = header_font
+for i, yr in enumerate(annual_years_fcast):
+    ws.cell(row=row, column=7+i, value=yr).font = header_font
+row += 1
+
+# DCF Inputs Section
+ws.cell(row=row, column=2, value='INPUTS').font = header_font
+row += 1
+
+row_refs['discount_rate'] = row
+ws.cell(row=row, column=2, value='Discount Rate (WACC)')
+cell = ws.cell(row=row, column=7, value=0.10)  # Default 10%
+cell.number_format = pct_format
+cell.fill = input_fill
+ws.cell(row=row, column=2).fill = input_fill
+row += 1
+
+row_refs['terminal_growth'] = row
+ws.cell(row=row, column=2, value='Terminal Growth Rate')
+cell = ws.cell(row=row, column=7, value=0.02)  # Default 2%
+cell.number_format = pct_format
+cell.fill = input_fill
+ws.cell(row=row, column=2).fill = input_fill
+row += 1
+
+row += 1
+
+# Free Cash Flow Section
+ws.cell(row=row, column=2, value='FREE CASH FLOW').font = header_font
+row += 1
+
+row_refs['dcf_ebitda'] = row
+ws.cell(row=row, column=2, value='EBITDA')
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=f'={col}{row_refs["ebitda"]}').number_format = number_format
+row += 1
+
+row_refs['dcf_da'] = row
+ws.cell(row=row, column=2, value='- D&A (add back already in EBITDA)')
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=0).number_format = number_format
+row += 1
+
+row_refs['dcf_capex'] = row
+ws.cell(row=row, column=2, value='- CapEx (as % of Revenue)')
+# Use FY2024 CapEx % as assumption for forecast years
+for i, col in enumerate(annual_cols_fcast):
+    # CapEx = Revenue * CapEx% (use F column ratio from PPE schedule)
+    ws.cell(row=row, column=7+i, value=f'=-{col}{row_refs["revenue"]}*F{row_refs["capex_pct"]}').number_format = number_format
+row += 1
+
+row_refs['dcf_chg_nwc'] = row
+ws.cell(row=row, column=2, value='- Change in NWC (assumed 0)')
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=0).number_format = number_format
+row += 1
+
+row_refs['dcf_taxes'] = row
+ws.cell(row=row, column=2, value='- Cash Taxes')
+for i, col in enumerate(annual_cols_fcast):
+    ws.cell(row=row, column=7+i, value=f'=-{col}{row_refs["tax_expense"]}').number_format = number_format
+row += 1
+
+row_refs['fcf'] = row
+ws.cell(row=row, column=2, value='Free Cash Flow').font = Font(bold=True)
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["dcf_ebitda"]}+{col}{row_refs["dcf_capex"]}+{col}{row_refs["dcf_chg_nwc"]}+{col}{row_refs["dcf_taxes"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
+row += 1
+
+row += 1
+
+# Present Value Section
+ws.cell(row=row, column=2, value='PRESENT VALUE').font = header_font
+row += 1
+
+row_refs['discount_factor'] = row
+ws.cell(row=row, column=2, value='Discount Factor')
+for i in range(len(annual_cols_fcast)):
+    year_num = i + 1
+    formula = f'=1/(1+$G${row_refs["discount_rate"]})^{year_num}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = '0.000'
+row += 1
+
+row_refs['pv_fcf'] = row
+ws.cell(row=row, column=2, value='PV of FCF')
+for i, col in enumerate(annual_cols_fcast):
+    formula = f'={col}{row_refs["fcf"]}*{col}{row_refs["discount_factor"]}'
+    ws.cell(row=row, column=7+i, value=formula).number_format = number_format
+row += 1
+
+row += 1
+
+# Terminal Value and Enterprise Value
+ws.cell(row=row, column=2, value='VALUATION SUMMARY').font = header_font
+row += 1
+
+row_refs['sum_pv_fcf'] = row
+ws.cell(row=row, column=2, value='Sum of PV of FCFs')
+# Sum all forecast year PV FCFs
+pv_sum_formula = '+'.join([f'{col}{row_refs["pv_fcf"]}' for col in annual_cols_fcast])
+ws.cell(row=row, column=7, value=f'={pv_sum_formula}').number_format = number_format
+row += 1
+
+row_refs['terminal_fcf'] = row
+ws.cell(row=row, column=2, value='Terminal Year FCF')
+ws.cell(row=row, column=7, value=f'=L{row_refs["fcf"]}').number_format = number_format  # FY2030 FCF
+row += 1
+
+row_refs['terminal_value'] = row
+ws.cell(row=row, column=2, value='Terminal Value (Gordon Growth)')
+# TV = FCF * (1+g) / (r - g)
+ws.cell(row=row, column=7, value=f'=G{row_refs["terminal_fcf"]}*(1+$G${row_refs["terminal_growth"]})/($G${row_refs["discount_rate"]}-$G${row_refs["terminal_growth"]})').number_format = number_format
+row += 1
+
+row_refs['pv_terminal'] = row
+ws.cell(row=row, column=2, value='PV of Terminal Value')
+# Discount TV back 6 years
+ws.cell(row=row, column=7, value=f'=G{row_refs["terminal_value"]}*L{row_refs["discount_factor"]}').number_format = number_format
+row += 1
+
+row_refs['enterprise_value'] = row
+ws.cell(row=row, column=2, value='Enterprise Value').font = Font(bold=True)
+ws.cell(row=row, column=7, value=f'=G{row_refs["sum_pv_fcf"]}+G{row_refs["pv_terminal"]}').number_format = number_format
+row += 1
+
+row += 2
+
+# ==================== MARKET DATA & UPSIDE/DOWNSIDE ====================
+ws.cell(row=row, column=1, value='x')
+ws.cell(row=row, column=2, value='MARKET DATA & VALUATION COMPARISON').font = header_font
+row += 1
+
+ws.cell(row=row, column=2, value='MARKET INPUTS (Update Manually)').font = header_font
+row += 1
+
+row_refs['shares_out'] = row
+ws.cell(row=row, column=2, value='Shares Outstanding (millions)')
+cell = ws.cell(row=row, column=7, value=37.5)  # Approx AMN shares
+cell.number_format = '0.0'
+cell.fill = input_fill
+ws.cell(row=row, column=2).fill = input_fill
+row += 1
+
+row_refs['stock_price'] = row
+ws.cell(row=row, column=2, value='Current Stock Price ($)')
+cell = ws.cell(row=row, column=7, value=25.00)  # Placeholder
+cell.number_format = '$#,##0.00'
+cell.fill = input_fill
+ws.cell(row=row, column=2).fill = input_fill
+row += 1
+
+row_refs['market_cap'] = row
+ws.cell(row=row, column=2, value='Market Cap (thousands)')
+ws.cell(row=row, column=7, value=f'=G{row_refs["shares_out"]}*G{row_refs["stock_price"]}*1000').number_format = number_format
+row += 1
+
+row_refs['total_debt_val'] = row
+ws.cell(row=row, column=2, value='Total Debt (FY2024)')
+ws.cell(row=row, column=7, value=f'=F{row_refs["total_debt"]}').number_format = number_format
+row += 1
+
+row_refs['cash_val'] = row
+ws.cell(row=row, column=2, value='Cash (FY2024)')
+ws.cell(row=row, column=7, value=f'=F{row_refs["cash"]}').number_format = number_format
+row += 1
+
+row_refs['net_debt'] = row
+ws.cell(row=row, column=2, value='Net Debt').font = Font(bold=True)
+ws.cell(row=row, column=7, value=f'=G{row_refs["total_debt_val"]}-G{row_refs["cash_val"]}').number_format = number_format
+row += 1
+
+row_refs['current_ev'] = row
+ws.cell(row=row, column=2, value='Current Enterprise Value').font = Font(bold=True)
+ws.cell(row=row, column=7, value=f'=G{row_refs["market_cap"]}+G{row_refs["net_debt"]}').number_format = number_format
+row += 1
+
+row += 1
+
+ws.cell(row=row, column=2, value='VALUATION COMPARISON').font = header_font
+row += 1
+
+row_refs['dcf_ev'] = row
+ws.cell(row=row, column=2, value='DCF Enterprise Value')
+ws.cell(row=row, column=7, value=f'=G{row_refs["enterprise_value"]}').number_format = number_format
+row += 1
+
+row_refs['implied_equity'] = row
+ws.cell(row=row, column=2, value='Implied Equity Value')
+ws.cell(row=row, column=7, value=f'=G{row_refs["dcf_ev"]}-G{row_refs["net_debt"]}').number_format = number_format
+row += 1
+
+row_refs['implied_price'] = row
+ws.cell(row=row, column=2, value='Implied Share Price ($)').font = Font(bold=True)
+ws.cell(row=row, column=7, value=f'=G{row_refs["implied_equity"]}/G{row_refs["shares_out"]}/1000').number_format = '$#,##0.00'
+row += 1
+
+row_refs['upside_downside'] = row
+ws.cell(row=row, column=2, value='Upside / (Downside) %').font = Font(bold=True)
+cell = ws.cell(row=row, column=7, value=f'=G{row_refs["implied_price"]}/G{row_refs["stock_price"]}-1')
+cell.number_format = pct_format
+cell.font = Font(bold=True)
+row += 1
+
+row += 2
+
+# ==================== DATA SOURCE REFERENCE ====================
+ws.cell(row=row, column=1, value='x')
+ws.cell(row=row, column=2, value='DATA SOURCES & FILING REFERENCES').font = header_font
+row += 1
+
+ws.cell(row=row, column=2, value='SEC EDGAR: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001142750')
+row += 1
+ws.cell(row=row, column=2, value='Company: AMN Healthcare Services Inc (NYSE: AMN)')
+row += 1
+ws.cell(row=row, column=2, value='10-K (Annual): Revenue, all IS items, all BS items')
+row += 1
+ws.cell(row=row, column=2, value='10-Q (Quarterly): Quarterly IS data, segment revenue')
+row += 1
+ws.cell(row=row, column=2, value='Source File: Annual data from 10-K filings; Quarterly from 10-Q filings')
+row += 1
+
 row += 1
 
 # Adjust column widths

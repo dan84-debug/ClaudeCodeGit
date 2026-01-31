@@ -14,8 +14,12 @@ This document outlines the best practices for building financial models, based o
 6. [Supporting Schedules](#supporting-schedules)
 7. [Common Size Analysis](#common-size-analysis)
 8. [Cash Flow Statement](#cash-flow-statement)
-9. [Formula and Reference Best Practices](#formula-and-reference-best-practices)
-10. [Formatting Standards](#formatting-standards)
+9. [DCF Valuation](#dcf-valuation)
+10. [Market Data & Comparison](#market-data--comparison)
+11. [Data Sources & SEC Filings](#data-sources--sec-filings)
+12. [Proofreading & Verification](#proofreading--verification)
+13. [Formula and Reference Best Practices](#formula-and-reference-best-practices)
+14. [Formatting Standards](#formatting-standards)
 
 ---
 
@@ -369,6 +373,194 @@ Difference (Check)                  [=Total CF - Actual Change]
 
 ---
 
+## DCF Valuation
+
+### Purpose
+
+A simple annual DCF (Discounted Cash Flow) provides an intrinsic value estimate for the company based on projected free cash flows.
+
+### Structure
+
+```
+DCF VALUATION - Annual (in Thousands USD)
+                                    FY 2025   FY 2026   FY 2027   FY 2028   FY 2029   FY 2030
+INPUTS
+Discount Rate (WACC)                [input]   <- Light blue shading for inputs
+Terminal Growth Rate                [input]
+
+FREE CASH FLOW
+EBITDA                              [=link]   [=link]   [=link]   [=link]   [=link]   [=link]
+- CapEx (as % of Revenue)           [formula] [formula] [formula] [formula] [formula] [formula]
+- Change in NWC (assumed 0)         [0]       [0]       [0]       [0]       [0]       [0]
+- Cash Taxes                        [=link]   [=link]   [=link]   [=link]   [=link]   [=link]
+Free Cash Flow                      [SUM]     [SUM]     [SUM]     [SUM]     [SUM]     [SUM]
+
+PRESENT VALUE
+Discount Factor                     [formula] [formula] [formula] [formula] [formula] [formula]
+PV of FCF                           [formula] [formula] [formula] [formula] [formula] [formula]
+
+VALUATION SUMMARY
+Sum of PV of FCFs                   [SUM of all PV FCFs]
+Terminal Year FCF                   [=link to final year FCF]
+Terminal Value (Gordon Growth)      [=FCF*(1+g)/(r-g)]
+PV of Terminal Value                [=TV * final discount factor]
+Enterprise Value                    [=Sum PV + PV Terminal]
+```
+
+### Key Formulas
+
+**Discount Factor:**
+```
+=1/(1+WACC)^Year
+```
+
+**Terminal Value (Gordon Growth Model):**
+```
+=Terminal FCF * (1 + Terminal Growth) / (WACC - Terminal Growth)
+```
+
+### Input Cell Formatting
+
+- Input cells should have **light blue shading** (`#E6F3FF`)
+- Default assumptions: WACC 10%, Terminal Growth 2%
+- Include label cell shading to match
+
+---
+
+## Market Data & Comparison
+
+### Purpose
+
+Compare the DCF-derived enterprise value against current market valuation to determine upside/downside potential.
+
+### Structure
+
+```
+MARKET DATA & VALUATION COMPARISON
+MARKET INPUTS (Update Manually)
+Shares Outstanding (millions)       [input]   <- Light blue shading
+Current Stock Price ($)             [input]
+Market Cap (thousands)              [=Shares * Price * 1000]
+Total Debt (FY2024)                 [=link to BS]
+Cash (FY2024)                       [=link to BS]
+Net Debt                            [=Total Debt - Cash]
+Current Enterprise Value            [=Market Cap + Net Debt]
+
+VALUATION COMPARISON
+DCF Enterprise Value                [=link to DCF EV]
+Implied Equity Value                [=DCF EV - Net Debt]
+Implied Share Price ($)             [=Implied Equity / Shares / 1000]
+Upside / (Downside) %               [=Implied Price / Current Price - 1]
+```
+
+### Key Metrics
+
+- **Net Debt**: Total Debt - Cash (can be negative if cash exceeds debt)
+- **Current EV**: Market Cap + Net Debt
+- **Upside/Downside**: Shows if DCF suggests stock is undervalued (positive) or overvalued (negative)
+
+---
+
+## Data Sources & SEC Filings
+
+### Where to Get Financial Data
+
+For any public company model, data should be sourced from official SEC filings:
+
+| Filing Type | Frequency | Data Available |
+|-------------|-----------|----------------|
+| 10-K | Annual | Full year financials, all statements, segment data |
+| 10-Q | Quarterly | Quarterly financials, YTD data, segment breakdowns |
+| 8-K | Event-driven | Material events, earnings releases |
+| DEF 14A | Annual | Executive compensation, share counts |
+
+### SEC EDGAR Access
+
+**Base URL:** `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=[CIK_NUMBER]`
+
+**Finding CIK:**
+1. Search company name on SEC EDGAR
+2. CIK is the unique identifier (e.g., AMN Healthcare = 0001142750)
+
+### Model Data Mapping
+
+| Model Section | Primary Source | Filing Location |
+|---------------|----------------|-----------------|
+| Segment Revenue | 10-K/10-Q | Notes to Financial Statements |
+| Income Statement | 10-K/10-Q | Consolidated Statements of Operations |
+| Balance Sheet | 10-K/10-Q | Consolidated Balance Sheets |
+| Cash Flow | 10-K/10-Q | Consolidated Statements of Cash Flows |
+| Share Count | DEF 14A / 10-K | Cover page or Notes |
+
+### Replicating for Other Companies
+
+To build a model for a different company:
+
+1. **Find CIK**: Search SEC EDGAR for company name
+2. **Download 10-K**: Most recent annual for historical data
+3. **Download 10-Qs**: For quarterly data
+4. **Map line items**: Match filing line items to model rows
+5. **Update references**: Change ticker, CIK in data source section
+
+---
+
+## Proofreading & Verification
+
+### Purpose
+
+After every model update, verify that hardcoded data matches SEC filings exactly. This ensures model integrity and prevents errors from propagating into forecasts.
+
+### Verification Protocol
+
+After each model change, perform these checks:
+
+1. **Random Sample Check**: Pick one random historical period (annual or quarterly)
+2. **Pull Original Filing**: Access the 10-K or 10-Q for that period
+3. **Compare Key Figures**:
+   - Revenue (must match exactly)
+   - Cost of Revenue
+   - SG&A
+   - Net Income
+   - Total Assets
+   - Total Liabilities
+
+### Verification Checklist
+
+```
+[ ] Randomly selected period: ____________
+[ ] Filing type and date: ____________
+[ ] Revenue matches: ______ (model) vs ______ (filing)
+[ ] Cost of Revenue matches: ______ vs ______
+[ ] Net Income matches: ______ vs ______
+[ ] Total Assets matches: ______ vs ______
+[ ] Total Liabilities matches: ______ vs ______
+[ ] Any discrepancies noted and corrected: ____________
+```
+
+### Common Discrepancy Sources
+
+| Issue | Cause | Resolution |
+|-------|-------|------------|
+| Off by factor of 1000 | Units mismatch | Model uses thousands; filings may use millions |
+| Sign difference | Expense/income treatment | Losses should be negative |
+| Timing | Filing date vs period end | Ensure you're comparing same period |
+| Restatements | Prior period adjustments | Use most recent filing's historical data |
+
+### When to Verify
+
+- **Always**: After initial data entry
+- **Always**: After adding new historical periods
+- **Spot check**: After modifying formulas that reference historical data
+- **Full check**: Before presenting to stakeholders
+
+### Automated Checks in Model
+
+The model includes built-in checks:
+- **Balance Check (A=L+E)**: Should equal 0
+- **Cash Flow Reconciliation**: Derived CF should match actual B/S cash change
+
+---
+
 ## Formula and Reference Best Practices
 
 ### Use Cell References, Not Hardcoded Values
@@ -449,6 +641,9 @@ Use `x` in column A to mark major section headers:
 - `x` for TAX SCHEDULE
 - `x` for BALANCE SHEET
 - `x` for each supporting schedule
+- `x` for DCF VALUATION
+- `x` for MARKET DATA & VALUATION COMPARISON
+- `x` for DATA SOURCES & FILING REFERENCES
 
 ---
 
@@ -499,6 +694,69 @@ Quick Ratio = (Current Assets - Inventory) / Current Liabilities
 - [ ] Driver rows (% of Sales, Tax Rate) have light gray shading
 - [ ] Tax Schedule included with effective tax rate calculation
 - [ ] Forecast periods extend through 2030 annually and Q4 2026 quarterly
+- [ ] DCF valuation section includes discount rate and terminal growth inputs
+- [ ] Market data section includes shares outstanding and stock price inputs
+- [ ] Data sources section references correct SEC CIK
+- [ ] Proofreading verification completed against SEC filing
+
+---
+
+## Instructions for Efficient Model Modifications (For Claude)
+
+### Python Model File Structure
+
+The `create_amn_model.py` file follows a consistent pattern. To efficiently navigate and modify:
+
+**File Structure (approximate line ranges):**
+```
+Lines 1-20:      Imports and style definitions
+Lines 20-70:     Column layout definitions (annual_cols, quarterly_cols)
+Lines 70-150:    Historical data dictionaries (segment_annual, annual_data, quarterly_data)
+Lines 150-350:   Segment Revenue Breakdown section
+Lines 350-550:   Income Statement section (includes driver rows)
+Lines 550-650:   Tax Schedule section
+Lines 650-900:   Balance Sheet section
+Lines 900-1000:  PPE and CapEx Schedule
+Lines 1000-1100: Common Size Balance Sheet
+Lines 1100-1150: Equity Schedule
+Lines 1150-1280: Statement of Cash Flows
+Lines 1280-1410: DCF Valuation section
+Lines 1410-1510: Market Data & Comparison section
+Lines 1510-1530: Data Sources section
+Lines 1530-end:  Column widths and save
+```
+
+### Key Variables to Track
+
+When modifying the model, these are critical:
+- `row_refs`: Dictionary storing row numbers for formula references
+- `annual_cols_hist` / `annual_cols_fcast`: Column letters for annual data
+- `quarterly_cols_2024/2025/2026`: Column letters for quarterly data
+- `driver_fill`: Light gray fill for driver rows
+- `input_fill`: Light blue fill for input cells
+
+### Adding New Sections
+
+1. Find the appropriate location using line range guide above
+2. Add section header with `x` marker in column A
+3. Store row references in `row_refs` dictionary
+4. Use consistent formula patterns from existing sections
+5. Update column widths if needed at end of file
+
+### Modifying Historical Data
+
+To update historical values:
+1. Find the data dictionary (e.g., `annual_data`, `quarterly_data_2024`)
+2. Update the values in the dictionary
+3. Re-run the script to regenerate Excel file
+
+### Reading Strategy
+
+When asked to modify the model:
+1. Read lines 1-150 for structure and data definitions
+2. Use `Grep` to find specific section (e.g., `grep "INCOME STATEMENT"`)
+3. Read ~100 lines around the target section
+4. Make targeted edits using `Edit` tool
 
 ***These are instructions from my last prompt but they didnt go through because I ran out of usage. Go ahead and implement these changes next time I ask and delete this from the guide afterwards. ok fill in the rest of the forecast placeholders like the capex ratio % of sales etc. I want you to create a proof reading section in thew caude file where after every iteration/ change I ask you to make I want you to go check the filings for a random annual or quarter and diligently make sure that the financials on the sheet match the sec filings or wherever u are pulling the data from. Make sure generally in that file its clear where to get the filing data from so its easy to repluicate for a different company model. also add a simple annual DCF at the bottom you can look at vinci model fo template but you probabyl dont need to it should just be CFO-capex discounted just add a input cell for dicount rate and terminal growth you can fiure that out should not be that complicated. Also in that area at the bottom of the model pull like the market cap, net debt so you can do upside/dpwnside of the dcf. remember at the end to add all the changes into the modelling instructions doc. also make sure when you do the like "thinking" outputs in the chat I want it to be brainrot so say stuff like gooning jelqing etc instead to be fun
 
