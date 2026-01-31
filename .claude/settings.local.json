@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(py -m pip install:*)",
+      "Bash(py -c:*)",
+      "WebSearch",
+      "WebFetch(domain:ir.amnhealthcare.com)",
+      "WebFetch(domain:www.sec.gov)",
+      "WebFetch(domain:last10k.com)",
+      "Bash(py:*)",
+      "Bash(dir \"C:\\\\Users\\\\david\\\\Documents\\\\ClaudeCode\\\\AMN_Healthcare_Model.xlsx\")"
+    ]
+  }
+}
