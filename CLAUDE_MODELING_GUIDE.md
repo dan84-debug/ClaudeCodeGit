@@ -20,6 +20,8 @@ This document outlines the best practices for building financial models, based o
 12. [Proofreading & Verification](#proofreading--verification)
 13. [Formula and Reference Best Practices](#formula-and-reference-best-practices)
 14. [Formatting Standards](#formatting-standards)
+15. [Instructions for Efficient Model Modifications](#instructions-for-efficient-model-modifications-for-claude)
+16. [Verification Log](#verification-log)
 
 ---
 
@@ -757,6 +759,35 @@ When asked to modify the model:
 2. Use `Grep` to find specific section (e.g., `grep "INCOME STATEMENT"`)
 3. Read ~100 lines around the target section
 4. Make targeted edits using `Edit` tool
+
+---
+
+## Verification Log
+
+Record of income statement verifications performed against SEC filings:
+
+### FY 2023 Verification (January 2026)
+**Period:** Fiscal Year 2023 (12/31/2023)
+**Source:** AMN Healthcare 10-K, SEC EDGAR, press releases
+
+| Line Item | Model (000s) | Filing (000s) | Status |
+|-----------|--------------|---------------|--------|
+| Revenue | 3,789,254 | 3,789,254 | ✓ |
+| Cost of Revenue | 2,539,673 | 2,539,673 | ✓ |
+| Gross Profit | 1,249,581 | 1,249,581 | ✓ |
+| SG&A | 756,238 | 756,238 | ✓ |
+| D&A | 154,914 | 154,914 | ✓ |
+| Operating Income | 338,429 | 338,429 | ✓ |
+| Interest Expense | 54,140 | 54,140 | ✓ |
+| Pretax Income | 284,289 | 284,289 | ✓ |
+| Tax Expense | 73,610 | 73,610 | ✓ |
+| Net Income | 210,679 | ~211,000 | ✓ |
+
+**Segment Revenue:**
+- Nurse & Allied: 2,624,500 vs 2,625,000 (✓ <0.1% variance)
+- Physician & Leadership: 669,700 vs 670,000 (✓ <0.1% variance)
+
+**Verified by:** Claude | **Date:** January 31, 2026
 
 ---
 
