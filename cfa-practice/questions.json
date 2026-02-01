@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Credit Migration Expected Return",
       "topic": "Fixed Income",
-      "question": "A bond has YTM of 1.0% and modified duration of 4.5. Using the transition matrix and expected spread changes, calculate the expected 1-year total return under credit migration.",
+      "question": "Mark Jackson holds an A-rated bond with YTM of 1.0% and modified duration of 4.5. Using a credit transition matrix, the probability-weighted expected spread change results in an expected price return of -0.14%. What is the expected 1-year total return?",
       "choices": [
         {"letter": "A", "text": "-0.14%"},
         {"letter": "B", "text": "0.86%"},
@@ -12,29 +12,29 @@
         {"letter": "D", "text": "4.50%"}
       ],
       "correctAnswer": "B",
-      "explanation": "Expected total return = YTM + Expected Price Return\n\nYou correctly calculated the expected price return of -0.14%, but forgot to add the YTM.\n\n• Expected price return: -0.14%\n• YTM: +1.00%\n• Total return: 0.86%",
-      "keyFormulas": ["Expected Total Return = YTM + Σ(Probability × -Duration × Spread Change)"],
+      "explanation": "Expected total return = YTM + Expected Price Return\n\nYou correctly calculated the expected price return of -0.14%, but forgot to add the YTM.\n\n• Expected price return: -0.14%\n• YTM: +1.00%\n• Total return: 0.86%\n\nChoice A is the trap answer for people who forget total return includes both yield AND price change.",
+      "keyFormulas": ["Expected Total Return = YTM + Σ(Probability × -Duration × Spread Change)", "Use ROW of current rating from transition matrix for probabilities"],
       "yourMistake": "Only calculated expected price return, forgot to add YTM"
     },
     {
       "id": 2,
       "title": "ABS Credit Analysis Approaches",
       "topic": "Fixed Income",
-      "question": "A commercial ABS is collateralized by short-term loans to small US retailers. The loan pool is granular and homogeneous. Which credit analysis approach is most suitable?",
+      "question": "Jackson analyzes a commercial ABS collateralized by short-term loans to small US retailers. The loan pool is granular (many small loans) and homogeneous (similar characteristics). Which credit analysis approach is most suitable?",
       "choices": [
         {"letter": "A", "text": "Loan-by-loan approach"},
         {"letter": "B", "text": "Portfolio-based approach"},
         {"letter": "C", "text": "Statistics-based approach"}
       ],
       "correctAnswer": "C",
-      "explanation": "Pool Characteristics → Approach:\n\n• Small + Heterogeneous → Loan-by-loan\n• Medium-term + Dynamic → Portfolio-based\n• Short-term + Granular + Homogeneous → Statistics-based\n\nThe key triggers were 'short-term,' 'granular,' and 'homogeneous' — all pointing to statistics-based.",
-      "yourMistake": "Chose portfolio-based instead of statistics-based"
+      "explanation": "Pool Characteristics → Approach:\n\n• Small + Heterogeneous → Loan-by-loan (few unique loans worth individual analysis)\n• Medium-term + Dynamic → Portfolio-based (pool composition changes over time)\n• Short-term + Granular + Homogeneous → Statistics-based (aggregate stats suffice)\n\nThe key triggers were 'short-term,' 'granular,' and 'homogeneous' — all pointing to statistics-based.",
+      "yourMistake": "Chose portfolio-based (for dynamic pools) instead of statistics-based (for static, homogeneous pools)"
     },
     {
       "id": 3,
       "title": "CDS Cheapest-to-Deliver",
       "topic": "Fixed Income",
-      "question": "Jackson holds $20M Bond X and bought $20M notional CDS protection. Upon default, Bond X trades at 40% and Bond Y trades at 35%. What are total proceeds?",
+      "question": "Jackson owns $20M face value of Bond X and bought $20M notional CDS protection. Upon default, Bond X trades at 40% of par and Bond Y (also deliverable) trades at 35% of par. What are Jackson's total proceeds from both positions?",
       "choices": [
         {"letter": "A", "text": "$8 million"},
         {"letter": "B", "text": "$20 million"},
@@ -42,31 +42,31 @@
         {"letter": "D", "text": "$13 million"}
       ],
       "correctAnswer": "C",
-      "explanation": "• Bond X value: $20M × 40% = $8M\n• CDS payoff uses cheapest-to-deliver (Bond Y at 35%)\n• CDS payoff: $20M × (1 - 35%) = $20M × 65% = $13M\n• Total: $8M + $13M = $21M\n\nCTD = bond with LOWEST market value. Protection buyer benefits from delivering the cheapest bond.",
-      "keyFormulas": ["CDS Payoff = Notional × (1 - Recovery Rate of CTD)"],
-      "yourMistake": "Forgot to use cheapest-to-deliver bond for CDS payoff calculation"
+      "explanation": "• Bond X value: $20M × 40% = $8M\n• CDS payoff uses cheapest-to-deliver (Bond Y at 35% = lower price = higher loss)\n• CDS payoff: $20M × (1 - 35%) = $20M × 65% = $13M\n• Total: $8M + $13M = $21M\n\nCTD = bond with LOWEST market value. Protection buyer benefits from referencing the cheapest bond even if they own a different one.",
+      "keyFormulas": ["CDS Payoff = Notional × (1 - Recovery Rate of CTD)", "CTD = bond with lowest market value (highest loss)"],
+      "yourMistake": "Used Bond X's recovery rate (40%) instead of CTD Bond Y's rate (35%)"
     },
     {
       "id": 4,
       "title": "Rolling Down the Yield Curve",
       "topic": "Fixed Income",
-      "question": "Given Eng's expectation for unchanged spot rates, what is the first-year return on a 3-year zero-coupon bond if f(2,1) = 1.95% and the 1-year spot rate = 0.75%?",
+      "question": "Michael Eng expects spot rates to remain unchanged. He holds a 3-year zero-coupon bond. Given: 1-year spot = 0.75%, 2-year spot = 1.20%, 3-year spot = 1.45%, and the implied forward rate f(2,1) = 1.95%. What is the first-year return on the 3-year bond?",
       "choices": [
         {"letter": "A", "text": "0.75%"},
-        {"letter": "B", "text": "1.35%"},
+        {"letter": "B", "text": "1.45%"},
         {"letter": "C", "text": "1.95%"},
         {"letter": "D", "text": "2.70%"}
       ],
       "correctAnswer": "C",
-      "explanation": "If spot curve is unchanged, the bond 'rolls down' to a shorter maturity. The return equals the forward rate for that period, not the spot rate.\n\n3-year bond held for 1 year earns f(2,1) = 1.95%",
-      "keyFormulas": ["Rolling yield = forward rate for the period, not the current spot rate"],
-      "yourMistake": "Used 1-year spot rate (0.75%) instead of forward rate"
+      "explanation": "If spot curve is unchanged, the 3-year bond 'rolls down' to become a 2-year bond after one year.\n\nThe return equals the forward rate for that period: f(2,1) = 1.95%\n\nMathematically: P₀ = 1/(1.0145)³, P₁ = 1/(1.0120)², Return = P₁/P₀ - 1 = 1.95%",
+      "keyFormulas": ["Rolling yield = forward rate for the period", "3-year bond held 1 year earns f(2,1)"],
+      "yourMistake": "Used 1-year spot rate (0.75%) instead of the forward rate"
     },
     {
       "id": 5,
       "title": "Yield Curve Theories",
       "topic": "Fixed Income",
-      "question": "Client 1's restriction (buy only bonds ≤3 years and cannot deviate regardless of returns) is most consistent with which theory?",
+      "question": "Client 1 restricts Eng to buy only bonds ≤3 years. Even though Eng expects 5-year bonds to have superior returns, he cannot deviate from this restriction. This is most consistent with which theory?",
       "choices": [
         {"letter": "A", "text": "Pure expectations theory"},
         {"letter": "B", "text": "Preferred habitat theory"},
@@ -74,14 +74,15 @@
         {"letter": "D", "text": "Liquidity preference theory"}
       ],
       "correctAnswer": "C",
-      "explanation": "Theory comparison:\n\n• Segmented Markets: Investors CANNOT/WILL NOT leave their maturity segment regardless of returns\n• Preferred Habitat: Investors WILL leave for sufficient premium\n\nClient is restricted and cannot deviate — that's segmented markets, not preferred habitat.",
+      "explanation": "Theory comparison:\n\n• Segmented Markets: Investors CANNOT/WILL NOT leave their maturity segment regardless of returns\n• Preferred Habitat: Investors WILL leave for sufficient premium\n\nClient has a hard restriction — Eng CANNOT buy 5-year bonds even with superior expected returns. This absolute inability to deviate = segmented markets.",
+      "keyFormulas": ["Preferred Habitat: 'I'll leave for enough premium'", "Segmented Markets: 'I can ONLY invest here, period'"],
       "yourMistake": "Confused preferred habitat (will leave for premium) with segmented markets (cannot leave)"
     },
     {
       "id": 6,
       "title": "Net Stable Funding Ratio",
       "topic": "Fixed Income",
-      "question": "Which change would INCREASE a bank's Net Stable Funding Ratio (NSFR)?",
+      "question": "An analyst evaluates a bank's liquidity using the Net Stable Funding Ratio (NSFR = Available Stable Funding / Required Stable Funding). Which change would INCREASE the bank's NSFR?",
       "choices": [
         {"letter": "A", "text": "Increase in short-term wholesale funding"},
         {"letter": "B", "text": "Increase in long-term debt"},
@@ -89,14 +90,14 @@
         {"letter": "D", "text": "Decrease in capital"}
       ],
       "correctAnswer": "B",
-      "explanation": "NSFR = Available Stable Funding / Required Stable Funding\n\n• Numerator (Available): Capital, long-term debt, stable deposits\n• Denominator (Required): Loans, illiquid assets\n\nIncrease in long-term debt → higher numerator → higher NSFR\nIncrease in loans → higher denominator → lower NSFR",
-      "keyFormulas": ["NSFR = Available Stable Funding / Required Stable Funding"]
+      "explanation": "NSFR = Available Stable Funding / Required Stable Funding\n\n• Numerator (ASF): Capital, long-term debt (>1yr), stable deposits\n• Denominator (RSF): Loans, illiquid assets\n\nIncrease in long-term debt → higher ASF → higher NSFR\nIncrease in loans → higher RSF → lower NSFR",
+      "keyFormulas": ["NSFR = Available Stable Funding / Required Stable Funding", "Higher ASF or Lower RSF → Higher NSFR"]
     },
     {
       "id": 7,
       "title": "Current Rate Method Translation",
       "topic": "FSA",
-      "question": "Salto's revenue was USD 120M and COGS was USD 65M. Average rate = 43.26, historical inventory rate = 42.81. What is translated gross profit using current rate method?",
+      "question": "Celeste (IFRS) translates US subsidiary Salto using the current rate method. Salto's revenue = USD 120M, COGS = USD 65M. Average rate = 43.26 UYU/USD, historical inventory rate = 42.81. What is translated gross profit in UYU?",
       "choices": [
         {"letter": "A", "text": "2,379"},
         {"letter": "B", "text": "2,409"},
@@ -105,14 +106,14 @@
       ],
       "correctAnswer": "A",
       "explanation": "Under current rate method, BOTH revenue and COGS use the average rate:\n\nGross Profit = (120M - 65M) × 43.26 = 55M × 43.26 = 2,379\n\nMethod comparison:\n• Current Rate: Revenue = Average, COGS = Average\n• Temporal: Revenue = Average, COGS = Historical",
-      "keyFormulas": ["Current Rate: All IS items at average rate", "Temporal: Monetary at current, non-monetary at historical"],
+      "keyFormulas": ["Current Rate: All I/S items at average rate", "Temporal: Monetary at current, non-monetary at historical"],
       "yourMistake": "Used temporal method logic (historical rate for COGS) when question specified current rate method"
     },
     {
       "id": 8,
       "title": "Hyperinflation Translation IFRS",
       "topic": "FSA",
-      "question": "Under IFRS, how should Celeste translate the hyperinflationary subsidiary's income statement?",
+      "question": "Under IFRS, Celeste acquired a subsidiary in a hyperinflationary economy. After restating for inflation per IAS 29, how should the income statement be translated?",
       "choices": [
         {"letter": "A", "text": "Use average exchange rate"},
         {"letter": "B", "text": "Use historical exchange rate"},
@@ -120,14 +121,15 @@
         {"letter": "D", "text": "Use beginning-of-period exchange rate"}
       ],
       "correctAnswer": "C",
-      "explanation": "IFRS Hyperinflation (Two-Step):\n1. Restate for inflation (IAS 29)\n2. Translate ALL items at current end-of-period rate\n\nAfter restatement, everything — BS and IS — uses current rate, NOT average.",
-      "yourMistake": "Thought average rate applies to income statement under hyperinflation"
+      "explanation": "IFRS Hyperinflation (Two-Step):\n1. Restate for inflation (IAS 29)\n2. Translate ALL items at current end-of-period rate\n\nAfter restatement, everything — BS and IS — uses current rate, NOT average.\n\nContrast with US GAAP: Just use temporal method for hyperinflationary subsidiaries.",
+      "keyFormulas": ["IFRS Hyperinflation: Restate → Translate all at current rate", "US GAAP Hyperinflation: Use temporal method"],
+      "yourMistake": "Thought average rate applies to I/S under hyperinflation"
     },
     {
       "id": 9,
       "title": "SBC Excess Tax Benefit",
       "topic": "FSA",
-      "question": "What is the impact of excess tax benefit from stock-based compensation on tax expense when market price at vest exceeds grant price?",
+      "question": "A company's stock price at vest date ($70) exceeds the grant-date price ($50) used for book expense. The tax deduction is based on vest-date value. What is the impact on tax expense?",
       "choices": [
         {"letter": "A", "text": "Increases tax expense"},
         {"letter": "B", "text": "Decreases tax expense"},
@@ -135,29 +137,29 @@
         {"letter": "D", "text": "Increases deferred tax liability"}
       ],
       "correctAnswer": "B",
-      "explanation": "If market price at vest > grant price:\n• Tax deduction > Book expense\n• Excess tax benefit → Decreases tax expense\n\nIf market price at vest < grant price:\n• Tax deduction < Book expense\n• Tax shortfall → Increases tax expense"
+      "explanation": "If market price at vest > grant price:\n• Tax deduction ($70) > Book expense ($50)\n• Excess tax benefit → Decreases tax expense (windfall)\n\nIf market price at vest < grant price:\n• Tax deduction < Book expense\n• Tax shortfall → Increases tax expense"
     },
     {
       "id": 10,
       "title": "DB Pension Expense US GAAP",
       "topic": "FSA",
-      "question": "Under US GAAP, pension expense calculation uses which return on plan assets?",
+      "question": "Given: Service cost = $200, Interest cost = $2,940, Expected return on assets = $3,120, Actual return = $2,700. Under US GAAP, what return figure is used in pension expense?",
       "choices": [
-        {"letter": "A", "text": "Actual return on plan assets"},
-        {"letter": "B", "text": "Expected return on plan assets"},
+        {"letter": "A", "text": "Actual return ($2,700)"},
+        {"letter": "B", "text": "Expected return ($3,120)"},
         {"letter": "C", "text": "Risk-free rate"},
-        {"letter": "D", "text": "Discount rate applied to PBO"}
+        {"letter": "D", "text": "Discount rate on obligation"}
       ],
       "correctAnswer": "B",
-      "explanation": "US GAAP Pension Expense:\nCurrent Service Cost + Interest Cost - Expected Return + Amortizations\n\nIFRS Pension Expense:\nService Cost + Net Interest (uses same discount rate for both)\n\nKey difference: US GAAP uses management's expected return (can differ from discount rate), not actual return. Actual vs expected difference goes to OCI.",
-      "keyFormulas": ["US GAAP: Service + Interest - Expected Return ± Amortizations", "IFRS: Service + Net Interest"],
+      "explanation": "US GAAP Pension Expense = Service + Interest - Expected Return ± Amortizations\n= $200 + $2,940 - $3,120 = $20\n\nIFRS uses Net Interest (same discount rate for both sides).\n\nUS GAAP uses management's expected return. Actual vs expected difference goes to OCI.",
+      "keyFormulas": ["US GAAP: Service + Interest - Expected Return", "IFRS: Service + Net Interest"],
       "yourMistake": "Used actual return instead of expected return"
     },
     {
       "id": 11,
       "title": "Full vs Partial Goodwill",
       "topic": "FSA",
-      "question": "Apex (US GAAP) acquires 80% of Beast for $24M. FV of Beast's net assets = $25M, FV of entire Beast = $30M. How much goodwill?",
+      "question": "Apex (US GAAP) acquires 80% of Beast for $24M. FV of Beast's identifiable net assets = $25M, FV of entire Beast = $30M. How much goodwill should Apex recognize?",
       "choices": [
         {"letter": "A", "text": "$4 million"},
         {"letter": "B", "text": "$5 million"},
@@ -165,15 +167,15 @@
         {"letter": "D", "text": "$0 million"}
       ],
       "correctAnswer": "B",
-      "explanation": "Standard requirements:\n• US GAAP: Full goodwill only\n• IFRS: Choice of full or partial\n\nFull Goodwill: $30M - $25M = $5M\nPartial Goodwill: $24M - (80% × $25M) = $4M ← Not allowed under US GAAP",
-      "keyFormulas": ["Full Goodwill = FV of entire entity - FV of net assets", "Partial Goodwill = Purchase price - % acquired × FV net assets"],
+      "explanation": "US GAAP requires FULL GOODWILL method:\n\nFull Goodwill = FV of Entity - FV of Net Assets = $30M - $25M = $5M\n\nPartial Goodwill (IFRS option only) = $24M - (80% × $25M) = $4M\n\nUS GAAP: Full only. IFRS: Choice of full or partial.",
+      "keyFormulas": ["Full Goodwill = FV of entity - FV of net assets", "US GAAP = Full only; IFRS = Choice"],
       "yourMistake": "Calculated partial goodwill ($4M) but US GAAP requires full goodwill"
     },
     {
       "id": 12,
       "title": "Forward vs Trailing P/E",
       "topic": "Equity",
-      "question": "If a stock's forward P/E is lower than its trailing P/E, what does this indicate about expected earnings?",
+      "question": "An analyst observes that a stock's forward P/E is lower than its trailing P/E. What does this indicate about expected earnings?",
       "choices": [
         {"letter": "A", "text": "Earnings are expected to fall"},
         {"letter": "B", "text": "Earnings are expected to rise"},
@@ -181,13 +183,13 @@
         {"letter": "D", "text": "The stock is overvalued"}
       ],
       "correctAnswer": "B",
-      "explanation": "• Forward P/E < Trailing P/E → Earnings are RISING\n• Forward P/E > Trailing P/E → Earnings are FALLING\n\nLogic: Forward uses next year's (higher) expected earnings in denominator → lower ratio."
+      "explanation": "P/E = Price / EPS\n\n• Forward P/E uses next year's expected EPS\n• Trailing P/E uses past 12 months EPS\n\nIf Forward P/E < Trailing P/E → Forward EPS (denominator) is higher → Earnings RISING\n\nMemory trick: Lower forward P/E = Higher expected earnings = Good news"
     },
     {
       "id": 13,
       "title": "Residual Income Persistence",
       "topic": "Equity",
-      "question": "Relative to industry, what does a low persistence factor (ω approaching 0) indicate?",
+      "question": "A company's residual income persistence factor (ω = 0.12) is one-quarter of industry average (0.48). This low persistence is most consistent with:",
       "choices": [
         {"letter": "A", "text": "Lower levels of accounting returns"},
         {"letter": "B", "text": "Higher levels of accounting accruals"},
@@ -195,28 +197,28 @@
         {"letter": "D", "text": "More stable competitive position"}
       ],
       "correctAnswer": "B",
-      "explanation": "Lower persistence (ω → 0) caused by:\n• High dividend payout\n• EXTREME levels of ROE (not low)\n• HIGH accounting accruals\n\nHigher persistence (ω → 1) caused by:\n• Low dividend payout\n• Normal/moderate ROE\n• Low accruals",
-      "yourMistake": "Confused persistence factors - thought low persistence meant lower returns"
+      "explanation": "Lower persistence (ω → 0) caused by:\n• High dividend payout\n• EXTREME levels of ROE (very high or very low)\n• HIGH accounting accruals (lower earnings quality)\n\nHigher persistence (ω → 1) = low dividends, moderate ROE, low accruals\n\nHigh accruals suggest lower earnings quality → less sustainable RI → lower persistence.",
+      "yourMistake": "Thought low persistence meant lower returns, but it's EXTREME ROE and high accruals"
     },
     {
       "id": 14,
       "title": "Finite-Horizon Residual Income",
       "topic": "Equity",
-      "question": "When calculating intrinsic value using finite-horizon RI model, what discount rate should be used for the terminal premium?",
+      "question": "Using finite-horizon RI model: B₀ = €18.50, PV(RI Year 1) = €2.25, PV(RI Year 2) = €2.00, Terminal premium = €2.75 at Year 2. Cost of equity = 12.8%, WACC = 6.5%. What discount rate for the terminal premium?",
       "choices": [
-        {"letter": "A", "text": "WACC"},
-        {"letter": "B", "text": "Cost of equity"},
+        {"letter": "A", "text": "WACC (6.5%)"},
+        {"letter": "B", "text": "Cost of equity (12.8%)"},
         {"letter": "C", "text": "Cost of debt"},
         {"letter": "D", "text": "Risk-free rate"}
       ],
       "correctAnswer": "B",
-      "explanation": "V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T\n\n• Use cost of equity, NOT WACC\n• Terminal premium = Market price - Book value at horizon\n• Discount at cost of equity because RI is an equity valuation model",
-      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + Terminal Premium/(1+r)^T"],
+      "explanation": "V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T\n\nUse cost of equity (12.8%), NOT WACC, because RI is an equity valuation model.\n\nCorrect: €2.75 / (1.128)² = €2.16 → Total = €24.91\nWrong (WACC): €2.75 / (1.065)² = €2.42 → Total = €25.17",
+      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + Terminal Premium/(1+r)^T", "Equity models → Discount at cost of equity"],
       "yourMistake": "Used WACC to discount terminal premium instead of cost of equity"
     },
     {
       "id": 15,
-      "title": "Two-Stage FCFE Valuation",
+      "title": "FCFE vs FCFF Discount Rate",
       "topic": "Equity",
       "question": "When using FCFE model for equity valuation, what discount rate should be used?",
       "choices": [
@@ -226,29 +228,30 @@
         {"letter": "D", "text": "Unlevered cost of capital"}
       ],
       "correctAnswer": "B",
-      "explanation": "FCFE models discount at cost of equity (NOT WACC):\n\n• FCFE = cash flow to equity holders → discount at cost of equity\n• FCFF = cash flow to all capital providers → discount at WACC\n\nTerminal Value calculated at END of high growth period, then discount back to today.",
+      "explanation": "Match cash flow to discount rate:\n\n• FCFE = cash flow to equity holders → discount at cost of equity\n• FCFF = cash flow to all capital providers → discount at WACC\n\nTerminal Value calculated at END of high growth period, then discount back to today.",
       "keyFormulas": ["FCFE → Cost of Equity", "FCFF → WACC"]
     },
     {
       "id": 16,
-      "title": "Putable Bond Binomial Valuation",
+      "title": "American Put Option - Binomial",
       "topic": "Derivatives",
-      "question": "When valuing an American put option using a binomial model, at each node you should:",
+      "question": "Julie Wu values an American put (X=$98) using a 2-period binomial model. At T=1 down node (S=$80): continuation value = $13.33, exercise value = $18. What value should be used at this node?",
       "choices": [
-        {"letter": "A", "text": "Always use continuation value"},
-        {"letter": "B", "text": "Compare continuation value to exercise value and use the higher"},
-        {"letter": "C", "text": "Always use exercise value"},
-        {"letter": "D", "text": "Average continuation and exercise values"}
+        {"letter": "A", "text": "$13.33 (continuation value)"},
+        {"letter": "B", "text": "$18 (exercise value)"},
+        {"letter": "C", "text": "$15.67 (average)"},
+        {"letter": "D", "text": "$0 (out of the money)"}
       ],
       "correctAnswer": "B",
-      "explanation": "At each node, compare:\n• Continuation value (PV of expected future values)\n• Exercise value (X - S for put)\n\nIf exercise value > continuation value → exercise early\n\nExample: At T=1 when S = $80:\n• Continuation value = $13.33\n• Exercise value = $98 - $80 = $18\n• $18 > $13.33 → Exercise!",
-      "yourMistake": "Calculated European put value instead of American (didn't check for early exercise)"
+      "explanation": "For American options, at EACH node compare:\n• Continuation value (PV of expected future values)\n• Exercise value (X - S for put)\n\nTake the HIGHER value.\n\nAt S = $80: Exercise ($98 - $80 = $18) > Continuation ($13.33) → Exercise early!\n\nEuropean put value = $5.19 (ignores early exercise)\nAmerican put value = $6.85 (includes early exercise benefit)",
+      "keyFormulas": ["American option: max(continuation, exercise) at each node", "European: only exercise at expiration"],
+      "yourMistake": "Calculated European put value instead of American (didn't check early exercise)"
     },
     {
       "id": 17,
       "title": "Covered Interest Rate Parity",
       "topic": "Derivatives",
-      "question": "Calculate 6-month forward USD/NZD rate. Spot = 0.6808, US 6-month rate = 0.50% annual, NZ 6-month rate = 1.00% annual.",
+      "question": "Calculate 6-month forward USD/NZD. Spot = 0.6808, US 6-month rate = 0.50% annual, NZ 6-month rate = 1.00% annual. What is the forward rate?",
       "choices": [
         {"letter": "A", "text": "0.6774"},
         {"letter": "B", "text": "0.6791"},
@@ -256,15 +259,15 @@
         {"letter": "D", "text": "0.6825"}
       ],
       "correctAnswer": "B",
-      "explanation": "F = S × (1 + r_price × days/360) / (1 + r_base × days/360)\n\nFor 6-month forward, divide annual rates by 2:\nF = 0.6808 × (1 + 0.0025) / (1 + 0.005) = 0.6791",
-      "keyFormulas": ["F = S × (1 + r_price × t) / (1 + r_base × t)"],
+      "explanation": "F = S × (1 + r_price × period) / (1 + r_base × period)\n\nCritical: Adjust annual rates to 6-month rates!\n• 6-month US rate = 0.50% / 2 = 0.25%\n• 6-month NZ rate = 1.00% / 2 = 0.50%\n\nF = 0.6808 × (1.0025) / (1.005) = 0.6791",
+      "keyFormulas": ["F = S × (1 + r_price × t) / (1 + r_base × t)", "Always match rate period to forward period!"],
       "yourMistake": "Used annual rates without adjusting for 6-month period"
     },
     {
       "id": 18,
       "title": "Forward Contract Value at Time t",
       "topic": "Derivatives",
-      "question": "When valuing a forward contract with 3 months remaining on an original 9-month contract, you should discount for:",
+      "question": "A 9-month forward contract now has 3 months remaining. When calculating the current value, you should discount for:",
       "choices": [
         {"letter": "A", "text": "9 months (original term)"},
         {"letter": "B", "text": "6 months (time elapsed)"},
@@ -272,15 +275,15 @@
         {"letter": "D", "text": "12 months (annualized)"}
       ],
       "correctAnswer": "C",
-      "explanation": "V_t = S_t - F₀/(1+r)^(T-t)\n\nUse TIME REMAINING (T-t), not time elapsed.\nIf 3 months remain on 9-month forward, discount for 0.25 years.",
-      "keyFormulas": ["V_t = S_t - F₀/(1+r)^(T-t)", "T-t = time remaining"],
+      "explanation": "V_t = S_t - F₀/(1+r)^(T-t)\n\nUse TIME REMAINING (T-t), not time elapsed.\n\nIf 3 months remain, discount for 0.25 years.",
+      "keyFormulas": ["V_t = S_t - F₀/(1+r)^(T-t)", "(T-t) = time remaining, not elapsed"],
       "yourMistake": "Used wrong time period for discounting"
     },
     {
       "id": 19,
-      "title": "Incremental VaR",
+      "title": "VaR Types",
       "topic": "Portfolio Management",
-      "question": "Which type of VaR measures the change in portfolio VaR from changing a position size?",
+      "question": "A risk manager wants to know how total portfolio VaR would change if she increases a position. Which VaR type measures this?",
       "choices": [
         {"letter": "A", "text": "Marginal VaR"},
         {"letter": "B", "text": "Component VaR"},
@@ -288,13 +291,13 @@
         {"letter": "D", "text": "Conditional VaR"}
       ],
       "correctAnswer": "C",
-      "explanation": "VaR Types:\n\n• Incremental VaR: Change in VaR from changing position size\n• Marginal VaR: Per-unit change in VaR for small position change\n• Component VaR: Contribution of a position to total portfolio VaR\n• Conditional VaR: Expected loss given that loss exceeds VaR"
+      "explanation": "VaR Types:\n\n• Incremental VaR: Change in VaR from adding/changing a position\n• Marginal VaR: Per-unit change in VaR for small position change\n• Component VaR: Contribution of a position to total portfolio VaR\n• Conditional VaR (CVaR): Expected loss given VaR is exceeded\n\nMemory: Incremental = 'What if I INCREMENT this position?'"
     },
     {
       "id": 20,
       "title": "Information Coefficient and Active Weights",
       "topic": "Portfolio Management",
-      "question": "Which combination would result in smaller optimal active weights?",
+      "question": "Souza wants SMALLER optimal active weights. Which combination achieves this?",
       "choices": [
         {"letter": "A", "text": "Decrease in both IC and target active risk"},
         {"letter": "B", "text": "Increase in IC and decrease in target active risk"},
@@ -302,14 +305,14 @@
         {"letter": "D", "text": "Decrease in IC and increase in target active risk"}
       ],
       "correctAnswer": "B",
-      "explanation": "Effect on Optimal Active Weights:\n\n• Higher IC → Smaller weights (more confident forecasts need less extreme bets)\n• Higher target active risk → Larger weights\n• Lower target active risk → Smaller weights\n\nBoth higher IC AND lower target active risk → smallest weights",
-      "yourMistake": "Thought decrease in IC would reduce weights, but higher IC actually reduces optimal weights"
+      "explanation": "Effect on Optimal Active Weights:\n\n• Higher IC → Smaller weights (better forecasts need less extreme bets)\n• Lower target active risk → Smaller weights\n\nFor SMALLER weights: Higher IC AND Lower target risk (Answer B)\n\nCounterintuitive: Higher skill means you don't need to bet as big!",
+      "yourMistake": "Thought lower IC reduces weights, but higher IC actually does"
     },
     {
       "id": 21,
       "title": "Transfer Coefficient",
       "topic": "Portfolio Management",
-      "question": "What is the effect of portfolio guidelines restricting maximum over/underweights?",
+      "question": "A prospective client's guidelines restrict maximum sector over/underweights. What is the most likely effect on the fundamental law components?",
       "choices": [
         {"letter": "A", "text": "Reduces breadth"},
         {"letter": "B", "text": "Reduces transfer coefficient"},
@@ -317,14 +320,14 @@
         {"letter": "D", "text": "Increases active risk"}
       ],
       "correctAnswer": "B",
-      "explanation": "• Breadth = number of independent decisions (not affected by weight limits)\n• Transfer coefficient = how well forecasts translate into actual portfolio weights\n\nConstraints on weights reduce your ability to implement forecasts → lower TC.",
+      "explanation": "• IC = forecasting skill (not affected by constraints)\n• Breadth = number of independent decisions (not affected)\n• TC = ability to implement forecasts (REDUCED by weight limits)\n\nConstraints don't change how many bets you make or your skill — they limit how much you can act on each forecast → lower TC.",
       "yourMistake": "Thought constraints reduced breadth, but they reduce transfer coefficient"
     },
     {
       "id": 22,
       "title": "Neoclassical Steady-State Growth",
       "topic": "Economics",
-      "question": "Calculate steady-state growth rate. TFP growth = 2.1%, labor share = 55.2%, labor force growth = 0.9%.",
+      "question": "Country A data: TFP growth = 2.1%, Labor share = 55.2%, Labor force growth = 0.9%. Calculate steady-state growth rate.",
       "choices": [
         {"letter": "A", "text": "3.0%"},
         {"letter": "B", "text": "3.8%"},
@@ -332,30 +335,30 @@
         {"letter": "D", "text": "5.6%"}
       ],
       "correctAnswer": "C",
-      "explanation": "ΔY/Y = θ/(1-α) + n\n\nCalculation:\n2.1% / 0.552 + 0.9% = 3.8% + 0.9% = 4.7%\n\nCommon mistakes:\n• Adding directly (θ + n = 3.0%) ❌\n• Dividing by capital share ❌\n• Forgetting to add labor force growth (= 3.8%) ❌",
-      "keyFormulas": ["Steady-state growth = θ/(1-α) + n", "where θ = TFP growth, α = capital share, n = labor growth"],
-      "yourMistake": "Divided by capital share instead of labor share"
+      "explanation": "ΔY/Y = θ/(1-α) + n\n\nwhere θ = TFP growth, (1-α) = Labor share, n = Labor growth\n\n= 2.1% / 0.552 + 0.9%\n= 3.8% + 0.9% = 4.7%\n\nCommon mistakes:\n• θ + n directly = 3.0% ❌\n• Divide by capital share = 5.6% ❌\n• Forget to add n = 3.8% ❌",
+      "keyFormulas": ["Steady-state = θ/(1-α) + n", "Divide TFP by LABOR share, then ADD labor growth"],
+      "yourMistake": "Divided by capital share (0.448) instead of labor share (0.552)"
     },
     {
       "id": 23,
       "title": "Currency Crisis Warning Signs",
       "topic": "Economics",
-      "question": "Which condition is most likely a warning sign of currency crisis?",
+      "question": "Bernard evaluates Country B for currency crisis risk. Which is a warning sign?\n\n1. Slight decline in foreign equity investment\n2. Broad money growth with declining M2/bank reserves ratio\n3. Sizable decline in FX reserves relative to daily turnover",
       "choices": [
-        {"letter": "A", "text": "Slight decline in foreign equity investment"},
-        {"letter": "B", "text": "Declining M2/bank reserves ratio"},
-        {"letter": "C", "text": "Sizable decline in FX reserves relative to daily turnover"},
-        {"letter": "D", "text": "Stable current account balance"}
+        {"letter": "A", "text": "Condition 1"},
+        {"letter": "B", "text": "Condition 2"},
+        {"letter": "C", "text": "Condition 3"},
+        {"letter": "D", "text": "None of the above"}
       ],
       "correctAnswer": "C",
-      "explanation": "Warning Signs:\n• Declining FX reserves ✓\n• Large capital INFLOWS (not outflows) preceding crisis\n• RISING M2/bank reserves ratio\n\nNOT Warning Signs:\n• Slight decline in foreign equity investment\n• Declining M2/reserves ratio",
+      "explanation": "Currency Crisis Warning Signs:\n• Declining FX reserves ✓ (burning through reserves to defend currency)\n• Large capital INFLOWS (not outflows) preceding crisis\n• RISING M2/bank reserves ratio (not declining)\n\nCondition 2 is wrong because studies show M2/reserves ratio RISES before crisis, not declines.",
       "yourMistake": "Confused declining M2/reserves ratio (not a warning) with rising ratio (warning sign)"
     },
     {
       "id": 24,
       "title": "Cointegration Testing",
       "topic": "Quant",
-      "question": "For two time series to be cointegrated, which null hypotheses must be rejected? H1: Series 1 has unit root. H2: Series 2 has unit root. H3: Residuals have unit root.",
+      "question": "Silva tests cointegration between two series. H1: Series 1 has unit root. H2: Series 2 has unit root. H3: Regression residuals have unit root. For cointegration, which results are needed?",
       "choices": [
         {"letter": "A", "text": "Reject all three"},
         {"letter": "B", "text": "Reject H1 and H2, fail to reject H3"},
@@ -363,30 +366,31 @@
         {"letter": "D", "text": "Reject only H1"}
       ],
       "correctAnswer": "C",
-      "explanation": "Cointegration Requirements:\n1. FAIL to reject H1: Series 1 has unit root (it does have one)\n2. FAIL to reject H2: Series 2 has unit root (it does have one)\n3. REJECT H3: Residuals have unit root (residuals ARE stationary)\n\nBoth series non-stationary + their combination is stationary = cointegrated",
-      "yourMistake": "Thought all three should be rejected, but only H3 (residuals) should be rejected"
+      "explanation": "Cointegration = Two non-stationary series whose combination IS stationary\n\n• H1: Fail to reject (Series 1 IS non-stationary)\n• H2: Fail to reject (Series 2 IS non-stationary)\n• H3: REJECT (Residuals ARE stationary - no unit root)\n\nBoth series wander randomly, but their linear combination is stable.",
+      "keyFormulas": ["Cointegration: Both series have unit roots, residuals don't"],
+      "yourMistake": "Thought all three should be rejected/failed"
     },
     {
       "id": 25,
       "title": "ARCH Testing",
       "topic": "Quant",
-      "question": "In testing for ARCH effects, you regress squared residuals on lagged squared residuals. If the coefficient is statistically significant, what does this indicate?",
+      "question": "Silva runs an AR(1) model and tests residuals:\n• Regression 1 (ε on lagged ε): t-stat = 0.70\n• Regression 2 (ε² on lagged ε²): t-stat = 2.94\nCritical value = 1.97. Is the model misspecified?",
       "choices": [
-        {"letter": "A", "text": "No model issues"},
-        {"letter": "B", "text": "Serial correlation in residuals"},
-        {"letter": "C", "text": "Conditional heteroskedasticity (ARCH)"},
-        {"letter": "D", "text": "Multicollinearity"}
+        {"letter": "A", "text": "No, model is fine"},
+        {"letter": "B", "text": "Yes, due to serial correlation"},
+        {"letter": "C", "text": "Yes, due to ARCH (conditional heteroskedasticity)"},
+        {"letter": "D", "text": "Yes, due to multicollinearity"}
       ],
       "correctAnswer": "C",
-      "explanation": "ARCH Test:\nRegress squared residuals on lagged squared residuals:\nε²_t = a₀ + a₁ε²_{t-1} + u_t\n\nIf a₁ is significant → model has ARCH (conditional heteroskedasticity)\n\nNote: Regression of regular residuals tests serial correlation, which is different.",
-      "keyFormulas": ["ARCH test: ε²_t = a₀ + a₁ε²_{t-1}"],
-      "yourMistake": "Confused ARCH test (squared residuals) with serial correlation test (regular residuals)"
+      "explanation": "Two Different Tests:\n\n• Regression 1 (ε on lagged ε) → Tests serial correlation → 0.70 < 1.97 = NOT significant\n• Regression 2 (ε² on lagged ε²) → Tests ARCH → 2.94 > 1.97 = SIGNIFICANT\n\nARCH present = variance of errors is not constant = model misspecified",
+      "keyFormulas": ["ARCH test: Regress squared residuals on lagged squared residuals", "Serial correlation test: Regular residuals"],
+      "yourMistake": "Only looked at Regression 1 (serial correlation), missed Regression 2 (ARCH)"
     },
     {
       "id": 26,
-      "title": "Mutual Information Feature Selection",
+      "title": "ML Feature Selection",
       "topic": "Quant",
-      "question": "For text classification, which tokens should be selected as features?",
+      "question": "Silva builds a text classifier. For feature selection, which tokens should be KEPT?",
       "choices": [
         {"letter": "A", "text": "Highest term frequency (TF)"},
         {"letter": "B", "text": "Highest document frequency (DF)"},
@@ -394,14 +398,14 @@
         {"letter": "D", "text": "Lowest inverse document frequency (IDF)"}
       ],
       "correctAnswer": "C",
-      "explanation": "Feature Selection:\n\n• High TF: Remove — noise/stop words\n• High DF: Remove — appears everywhere, no discriminating power\n• High MI: KEEP — discriminates between classes\n\nMI measures how much a token contributes to classifying text. High MI = token appears mostly in one class.",
-      "yourMistake": "Chose document frequency instead of mutual information"
+      "explanation": "Feature Selection:\n\n• High TF: REMOVE — likely stop words ('the', 'and')\n• High DF: REMOVE — appears everywhere, no discriminating power\n• High MI: KEEP — strongly associated with one class\n\nMutual Information measures how much a token helps classify. High MI = token appears mostly in one specific class = valuable feature.",
+      "yourMistake": "Chose high DF (appears everywhere = useless) instead of high MI (discriminates classes)"
     },
     {
       "id": 27,
       "title": "Commodity Futures Total Return",
       "topic": "Alternatives",
-      "question": "Total return on a commodity futures position includes which components?",
+      "question": "An analyst calculates commodity futures return. The market is in backwardation (near price > far price). Total return includes which components?",
       "choices": [
         {"letter": "A", "text": "Price return only"},
         {"letter": "B", "text": "Price return + roll return"},
@@ -409,73 +413,73 @@
         {"letter": "D", "text": "Price return + convenience yield"}
       ],
       "correctAnswer": "C",
-      "explanation": "Total Return = Price Return + Roll Return + Collateral Return\n\n• Price Return: Change in spot price\n• Roll Return: Gain/loss from rolling = (Near - Far) / Near\n• Collateral Return: Interest on margin = Rf × (period/12)\n\nRoll return is positive in backwardation (near > far), negative in contango.",
-      "keyFormulas": ["Total Return = Price + Roll + Collateral", "Roll Return = (Near - Far) / Near"]
+      "explanation": "Total Return = Price Return + Roll Return + Collateral Return\n\n• Price Return: Change in spot price\n• Roll Return: (Near - Far)/Near → POSITIVE in backwardation\n• Collateral Return: Interest earned on margin = Rf × (period/12)\n\nBackwardation = near > far = positive roll return (you sell high, buy low when rolling)",
+      "keyFormulas": ["Total = Price + Roll + Collateral", "Backwardation → Positive roll; Contango → Negative roll"]
     },
     {
       "id": 28,
-      "title": "Terminated Accounts Disclosure",
+      "title": "Performance Presentation - Terminated Accounts",
       "topic": "Ethics",
-      "question": "What must be disclosed when including terminated accounts in composite performance?",
+      "question": "Diana Brown (CFA) is preparing composite performance that includes accounts terminated during the year. What is REQUIRED for compliance with Standard III(D)?",
       "choices": [
         {"letter": "A", "text": "Nothing additional required"},
-        {"letter": "B", "text": "Termination dates"},
-        {"letter": "C", "text": "Reason for termination"},
+        {"letter": "B", "text": "Disclose the termination dates"},
+        {"letter": "C", "text": "Disclose reason for termination"},
         {"letter": "D", "text": "Terminated accounts cannot be included"}
       ],
       "correctAnswer": "B",
-      "explanation": "Terminated accounts MAY be included in composite performance, but firm MUST disclose the termination dates.\n\nOmitting dates = violation even if returns are included."
+      "explanation": "Standard III(D) Performance Presentation:\n\nTerminated accounts CAN be included, but you MUST disclose the termination DATES.\n\nOmitting dates = VIOLATION (even if returns are included). Dates matter because viewers need to understand when/why accounts left the composite."
     },
     {
       "id": 29,
-      "title": "Fair Dealing / IPO Allocation",
+      "title": "Fair Dealing - IPO Allocation",
       "topic": "Ethics",
-      "question": "How should IPO shares be allocated across accounts?",
+      "question": "Brown's firm receives a hot IPO allocation. To comply with Standard III(B) Fair Dealing, shares should be allocated to:",
       "choices": [
-        {"letter": "A", "text": "Only to discretionary accounts"},
-        {"letter": "B", "text": "Only to non-family accounts"},
-        {"letter": "C", "text": "Pro-rata to all suitable accounts"},
+        {"letter": "A", "text": "Only discretionary accounts"},
+        {"letter": "B", "text": "Only non-family accounts"},
+        {"letter": "C", "text": "Pro-rata to ALL suitable accounts"},
         {"letter": "D", "text": "Based on account size only"}
       ],
       "correctAnswer": "C",
-      "explanation": "Allocate pro-rata to ALL suitable accounts:\n• Discretionary accounts ✓\n• Non-discretionary accounts ✓\n• Family accounts ✓\n• Non-family accounts ✓\n\nExcluding non-discretionary or family accounts = violation of Standard III(B) Fair Dealing.",
+      "explanation": "Standard III(B) Fair Dealing — IPO Allocation:\n\nMust allocate pro-rata to ALL suitable accounts:\n✓ Discretionary accounts\n✓ Non-discretionary accounts (if prior interest indicated)\n✓ Family accounts\n✓ Non-family accounts\n\nExcluding any category = VIOLATION. 'Non-discretionary' doesn't mean 'exclude from fair treatment.'",
       "yourMistake": "Thought certain account types could be excluded"
     },
     {
       "id": 30,
       "title": "Priority of Transactions",
       "topic": "Ethics",
-      "question": "Denton buys Bio13 in his personal account immediately. His client Hunter asked to delay purchase for 30 days. Did Denton violate Standard VI(B)?",
+      "question": "Denton (CFA) recommends Bio13 to client Hunter. Hunter asks Denton to delay purchasing shares for 30 days until his bonus arrives. Denton immediately buys Bio13 in his personal account, causing a temporary price increase. Did Denton violate Standard VI(B)?",
       "choices": [
         {"letter": "A", "text": "Yes, violated priority of transactions"},
-        {"letter": "B", "text": "Yes, violated suitability"},
+        {"letter": "B", "text": "Yes, violated market manipulation"},
         {"letter": "C", "text": "No violation"},
         {"letter": "D", "text": "Yes, violated fair dealing"}
       ],
       "correctAnswer": "C",
-      "explanation": "Standard VI(B) Priority of Transactions requires client trades have priority over personal trades. However:\n\n• Hunter explicitly requested the delay\n• Denton's purchase caused only temporary price impact\n• Hunter was not disadvantaged — 30 days later, price determined by market factors\n\nNo front-running occurred because the client voluntarily delayed.",
+      "explanation": "NO violation because:\n\n1. Hunter EXPLICITLY requested the delay — no pending client order existed\n2. Front-running requires trading ahead of a pending order — Hunter voluntarily chose not to trade\n3. No client disadvantage — 30 days later, price determined by market factors\n4. Bio13 not suitable for other clients\n\nKey: Client voluntarily delayed. Denton didn't 'trade ahead' because there was no order to trade ahead of.",
       "yourMistake": "Thought any personal purchase before client = violation, but client explicitly requested delay"
     },
     {
       "id": 31,
       "title": "Target Payout Adjustment Model",
       "topic": "Equity",
-      "question": "In the target payout adjustment model, the adjustment factor equals:",
+      "question": "In the target payout adjustment model, if a company adjusts dividends over 4 years, the adjustment factor equals:",
       "choices": [
         {"letter": "A", "text": "Target payout ratio"},
-        {"letter": "B", "text": "1 / Number of years to adjust"},
+        {"letter": "B", "text": "1/4 = 0.25"},
         {"letter": "C", "text": "Expected EPS growth rate"},
         {"letter": "D", "text": "Previous dividend / Expected EPS"}
       ],
       "correctAnswer": "B",
-      "explanation": "Expected Div Increase = (Expected EPS × Target Payout - Previous Div) × Adjustment Factor\n\nAdjustment Factor = 1 / Number of years to adjust\n\nCalculate year by year iteratively.",
-      "keyFormulas": ["ΔDiv = (EPS × Target Payout - Prev Div) × (1/n)"]
+      "explanation": "Expected Div Increase = (Expected EPS × Target Payout - Previous Div) × Adjustment Factor\n\nAdjustment Factor = 1 / Number of years to adjust = 1/4 = 0.25\n\nCompanies don't jump to target immediately — they adjust gradually over multiple years.",
+      "keyFormulas": ["ΔDiv = (EPS × Target - Prev Div) × (1/n)", "Adjustment Factor = 1/years to adjust"]
     },
     {
       "id": 32,
       "title": "Currency Swap Fixed Rate",
       "topic": "Derivatives",
-      "question": "The fixed rate on a currency swap at initiation is calculated as:",
+      "question": "The fixed rate on a currency swap at initiation is calculated using PV factors. The formula uses which PV factor in the numerator?",
       "choices": [
         {"letter": "A", "text": "(1 - PV of final payment) / Sum of all PV factors"},
         {"letter": "B", "text": "Sum of all PV factors / (1 - PV of final payment)"},
