@@ -26,7 +26,27 @@
                 </div>
             </div>
 
-            <div class="quiz-options">
+            <!-- Mode Selection -->
+            <div class="mode-buttons">
+                <button id="quiz-mode-btn" class="btn btn-mode btn-mode-active">
+                    <span class="mode-icon">📝</span>
+                    <span class="mode-name">Quiz</span>
+                    <span class="mode-desc">Test yourself</span>
+                </button>
+                <button id="learn-mode-btn" class="btn btn-mode">
+                    <span class="mode-icon">🧠</span>
+                    <span class="mode-name">Learn</span>
+                    <span class="mode-desc">Master all</span>
+                </button>
+                <button id="qbank-mode-btn" class="btn btn-mode">
+                    <span class="mode-icon">📚</span>
+                    <span class="mode-name">Qbank</span>
+                    <span class="mode-desc">Review all</span>
+                </button>
+            </div>
+
+            <!-- Quiz Options (shown for Quiz mode) -->
+            <div id="quiz-options" class="quiz-options">
                 <label for="num-questions">Questions per quiz:</label>
                 <select id="num-questions">
                     <option value="5">5 questions</option>
@@ -50,6 +70,26 @@
                     <input type="checkbox" id="shuffle-choices" checked>
                     Shuffle answer choices
                 </label>
+            </div>
+
+            <!-- Learn Options (shown for Learn mode) -->
+            <div id="learn-options" class="quiz-options hidden">
+                <label for="learn-topic-filter">Filter by topic:</label>
+                <select id="learn-topic-filter">
+                    <option value="all">All Topics</option>
+                </select>
+
+                <p class="mode-info">Answer each question correctly once to master it. Wrong answers stay in the pool until you get them right.</p>
+            </div>
+
+            <!-- Qbank Options (shown for Qbank mode) -->
+            <div id="qbank-options" class="quiz-options hidden">
+                <label for="qbank-topic-filter">Filter by topic:</label>
+                <select id="qbank-topic-filter">
+                    <option value="all">All Topics</option>
+                </select>
+
+                <p class="mode-info">Browse all questions with answers and explanations.</p>
             </div>
 
             <button id="start-btn" class="btn btn-primary">Start Quiz</button>
@@ -102,6 +142,83 @@
                 </div>
 
                 <button id="next-btn" class="btn btn-primary">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Learn Screen -->
+        <div id="learn-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="learn-counter">Remaining: 32</span>
+                    <span id="learn-mastered">Mastered: 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="learn-progress-fill"></div>
+                </div>
+                <div class="topic-badge" id="learn-topic-badge">Fixed Income</div>
+            </div>
+
+            <div class="question-card">
+                <h2 class="question-title" id="learn-question-title">Question Title</h2>
+                <p class="question-text" id="learn-question-text">Question text goes here...</p>
+
+                <div class="choices" id="learn-choices-container">
+                    <!-- Choices will be dynamically inserted -->
+                </div>
+
+                <button id="learn-submit-btn" class="btn btn-primary" disabled>Submit Answer</button>
+            </div>
+
+            <!-- Learn Explanation Panel -->
+            <div id="learn-explanation-panel" class="explanation-panel hidden">
+                <div class="result-header" id="learn-result-header">
+                    <span class="result-icon" id="learn-result-icon"></span>
+                    <span class="result-text" id="learn-result-text"></span>
+                </div>
+
+                <div class="explanation-content">
+                    <h3>Explanation</h3>
+                    <div id="learn-explanation-text" class="explanation-text"></div>
+
+                    <div id="learn-key-formulas" class="key-formulas hidden">
+                        <h4>Key Formulas</h4>
+                        <ul id="learn-formulas-list"></ul>
+                    </div>
+                </div>
+
+                <button id="learn-next-btn" class="btn btn-primary">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Learn Complete Screen -->
+        <div id="learn-complete-screen" class="screen">
+            <h1>All Mastered!</h1>
+            <div class="final-score">
+                <div class="score-circle score-circle-success">
+                    <span class="score-percent">100%</span>
+                </div>
+                <p class="score-detail">You've mastered all questions!</p>
+            </div>
+            <div class="results-actions">
+                <button id="learn-again-btn" class="btn btn-secondary">Learn Again</button>
+                <button id="learn-home-btn" class="btn btn-primary">Home</button>
+            </div>
+        </div>
+
+        <!-- Qbank Screen -->
+        <div id="qbank-screen" class="screen">
+            <div class="qbank-header">
+                <button id="qbank-back-btn" class="btn btn-secondary btn-small">← Back</button>
+                <span id="qbank-counter">Question 1 of 32</span>
+            </div>
+
+            <div id="qbank-content">
+                <!-- Questions will be rendered here -->
+            </div>
+
+            <div class="qbank-nav">
+                <button id="qbank-prev-btn" class="btn btn-secondary">← Previous</button>
+                <button id="qbank-next-btn" class="btn btn-secondary">Next →</button>
             </div>
         </div>
 
