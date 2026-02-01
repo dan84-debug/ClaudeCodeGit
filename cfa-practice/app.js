@@ -87,8 +87,6 @@ class CFAPracticeTester {
 
         // Qbank screen
         document.getElementById('qbank-back-btn').addEventListener('click', () => this.showScreen('start-screen'));
-        document.getElementById('qbank-prev-btn').addEventListener('click', () => this.qbankNav(-1));
-        document.getElementById('qbank-next-btn').addEventListener('click', () => this.qbankNav(1));
 
         // Options
         document.getElementById('shuffle-questions').addEventListener('change', (e) => {
@@ -512,67 +510,64 @@ class CFAPracticeTester {
             return;
         }
 
-        this.qbankIndex = 0;
         this.showScreen('qbank-screen');
-        this.displayQbankQuestion();
+        this.displayAllQbankQuestions();
     }
 
-    displayQbankQuestion() {
-        const question = this.qbankQuestions[this.qbankIndex];
-
+    displayAllQbankQuestions() {
         document.getElementById('qbank-counter').textContent =
-            `Question ${this.qbankIndex + 1} of ${this.qbankQuestions.length}`;
+            `${this.qbankQuestions.length} Questions`;
 
         const container = document.getElementById('qbank-content');
+        container.innerHTML = '';
 
-        let formulasHtml = '';
-        if (question.keyFormulas && question.keyFormulas.length > 0) {
-            formulasHtml = `
-                <div class="qbank-formulas">
-                    <h5>Key Formulas</h5>
-                    <ul>
-                        ${question.keyFormulas.map(f => `<li>${f}</li>`).join('')}
-                    </ul>
+        this.qbankQuestions.forEach((question, index) => {
+            let formulasHtml = '';
+            if (question.keyFormulas && question.keyFormulas.length > 0) {
+                formulasHtml = `
+                    <div class="qbank-formulas">
+                        <h5>Key Formulas</h5>
+                        <ul>
+                            ${question.keyFormulas.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            const questionHtml = `
+                <div class="qbank-item" id="qbank-q-${index}">
+                    <div class="qbank-question">
+                        <div class="qbank-question-header">
+                            <span class="qbank-number">#${index + 1}</span>
+                            <div class="topic-badge">${question.topic}</div>
+                        </div>
+                        <h3>${question.title}</h3>
+                        <p>${question.question}</p>
+                    </div>
+                    <div class="qbank-choices">
+                        ${question.choices.map(c => `
+                            <div class="qbank-choice ${c.letter === question.correctAnswer ? 'correct' : ''}">
+                                <strong>${c.letter}.</strong> ${c.text}
+                                ${c.letter === question.correctAnswer ? ' ✓' : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="qbank-answer">
+                        <h4>Correct Answer: ${question.correctAnswer}</h4>
+                    </div>
+                    <div class="qbank-explanation">
+                        <h4>Explanation</h4>
+                        <p>${question.explanation || 'No explanation provided.'}</p>
+                        ${formulasHtml}
+                    </div>
                 </div>
             `;
-        }
 
-        container.innerHTML = `
-            <div class="qbank-item">
-                <div class="qbank-question">
-                    <div class="topic-badge" style="margin-bottom: 12px;">${question.topic}</div>
-                    <h3>${question.title}</h3>
-                    <p>${question.question}</p>
-                </div>
-                <div class="qbank-choices">
-                    ${question.choices.map(c => `
-                        <div class="qbank-choice ${c.letter === question.correctAnswer ? 'correct' : ''}">
-                            <strong>${c.letter}.</strong> ${c.text}
-                            ${c.letter === question.correctAnswer ? ' ✓' : ''}
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="qbank-answer">
-                    <h4>Correct Answer: ${question.correctAnswer}</h4>
-                </div>
-                <div class="qbank-explanation">
-                    <h4>Explanation</h4>
-                    <p>${question.explanation || 'No explanation provided.'}</p>
-                    ${formulasHtml}
-                </div>
-            </div>
-        `;
+            container.innerHTML += questionHtml;
+        });
 
-        // Update nav buttons
-        document.getElementById('qbank-prev-btn').disabled = this.qbankIndex === 0;
-        document.getElementById('qbank-next-btn').disabled = this.qbankIndex >= this.qbankQuestions.length - 1;
-    }
-
-    qbankNav(direction) {
-        this.qbankIndex += direction;
-        if (this.qbankIndex < 0) this.qbankIndex = 0;
-        if (this.qbankIndex >= this.qbankQuestions.length) this.qbankIndex = this.qbankQuestions.length - 1;
-        this.displayQbankQuestion();
+        // Hide nav buttons since we show all questions now
+        document.querySelector('.qbank-nav').style.display = 'none';
     }
 
     // ==================== UTILS ====================

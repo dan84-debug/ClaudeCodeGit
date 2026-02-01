@@ -664,6 +664,22 @@ body {
     border-bottom: 1px solid var(--gray-200);
 }
 
+.qbank-question-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.qbank-number {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: #eff6ff;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
 .qbank-question h3 {
     font-size: 1.1rem;
     color: var(--gray-900);
