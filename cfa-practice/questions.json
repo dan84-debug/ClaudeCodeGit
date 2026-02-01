@@ -204,17 +204,17 @@
       "id": 14,
       "title": "Finite-Horizon Residual Income",
       "topic": "Equity",
-      "question": "Using finite-horizon RI model: B₀ = €18.50, PV(RI Year 1) = €2.25, PV(RI Year 2) = €2.00, Terminal premium = €2.75 at Year 2. Cost of equity = 12.8%, WACC = 6.5%. What discount rate for the terminal premium?",
+      "question": "Using the finite-horizon RI model to value PrimaNet:\n\n• Current book value (B₀): €18.50\n• PV of residual income Year 1: €2.25\n• PV of residual income Year 2: €2.00\n• Forecasted book value at end of Year 2: €23.75\n• Forecasted market price at end of Year 2: €26.50\n• Cost of equity: 12.8%\n• WACC: 6.5%\n\nPrimaNet's intrinsic value per share is closest to:",
       "choices": [
-        {"letter": "A", "text": "WACC (6.5%)"},
-        {"letter": "B", "text": "Cost of equity (12.8%)"},
-        {"letter": "C", "text": "Cost of debt"},
-        {"letter": "D", "text": "Risk-free rate"}
+        {"letter": "A", "text": "€24.91"},
+        {"letter": "B", "text": "€25.17"},
+        {"letter": "C", "text": "€25.50"},
+        {"letter": "D", "text": "€22.75"}
       ],
-      "correctAnswer": "B",
-      "explanation": "V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T\n\nUse cost of equity (12.8%), NOT WACC, because RI is an equity valuation model.\n\nCorrect: €2.75 / (1.128)² = €2.16 → Total = €24.91\nWrong (WACC): €2.75 / (1.065)² = €2.42 → Total = €25.17",
-      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + Terminal Premium/(1+r)^T", "Equity models → Discount at cost of equity"],
-      "yourMistake": "Used WACC to discount terminal premium instead of cost of equity"
+      "correctAnswer": "A",
+      "explanation": "V₀ = B₀ + Σ PV(RI) + PV(Terminal Premium)\n\nStep 1: Terminal Premium = Market Price - Book Value\n= €26.50 - €23.75 = €2.75\n\nStep 2: Discount premium at COST OF EQUITY (not WACC!)\nPV = €2.75 / (1.128)² = €2.75 / 1.272 = €2.16\n\nStep 3: Add it all up\nV₀ = €18.50 + €2.25 + €2.00 + €2.16 = €24.91\n\nTrap answer B (€25.17) uses WACC to discount: €2.75 / (1.065)² = €2.42",
+      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T", "Equity models → Discount at cost of equity, NOT WACC"],
+      "yourMistake": "Used WACC (6.5%) to discount terminal premium instead of cost of equity (12.8%)"
     },
     {
       "id": 15,
