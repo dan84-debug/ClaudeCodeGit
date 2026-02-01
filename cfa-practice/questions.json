@@ -1,54 +1,20 @@
 {
-  "examTitle": "CFA Practice - Missed Questions Review",
-  "description": "Practice problems from mock exams you got wrong",
-  "settings": {
-    "questionsPerQuiz": 10,
-    "shuffleQuestions": true,
-    "shuffleChoices": true,
-    "showExplanationAfterEach": true
-  },
   "questions": [
     {
       "id": 1,
-      "title": "Credit Migration Expected Return (Part 1)",
+      "title": "Credit Migration Expected Return",
       "topic": "Fixed Income",
-      "subtopic": "Credit Analysis",
       "question": "A bond has YTM of 1.0% and modified duration of 4.5. Using the transition matrix and expected spread changes, calculate the expected 1-year total return under credit migration.",
       "choices": [
-        { "letter": "A", "text": "-0.14% (expected price return only)" },
-        { "letter": "B", "text": "0.86%" },
-        { "letter": "C", "text": "1.00%" },
-        { "letter": "D", "text": "4.36%" }
+        {"letter": "A", "text": "-0.14% (expected price return only)"},
+        {"letter": "B", "text": "0.86%"},
+        {"letter": "C", "text": "1.00%"},
+        {"letter": "D", "text": "4.36%"}
       ],
       "correctAnswer": "B",
-      "yourOriginalAnswer": "A",
-      "yourMistake": "Only calculated expected price return, forgot to add the YTM",
-      "explanation": "Expected total return = YTM + Expected Price Return\n\nYou correctly calculated the expected price return of -0.14%, but forgot to add the YTM.\n\n- Expected price return: -0.14%\n- YTM: +1.00%\n- Total return: 0.86%",
-      "keyFormulas": [
-        "Expected Total Return = YTM + Expected Price Return",
-        "Price Return = -Modified Duration x Change in Spread"
-      ],
-      "difficulty": "medium",
-      "source": "Mock Exam 1"
-    },
-    {
-      "id": 2,
-      "title": "Sample Question 2 - Duration",
-      "topic": "Fixed Income",
-      "subtopic": "Duration",
-      "question": "This is a placeholder question. Replace with your actual questions from Claude.",
-      "choices": [
-        { "letter": "A", "text": "Answer option A" },
-        { "letter": "B", "text": "Answer option B" },
-        { "letter": "C", "text": "Answer option C" }
-      ],
-      "correctAnswer": "B",
-      "yourOriginalAnswer": "A",
-      "yourMistake": "Describe what you did wrong here",
-      "explanation": "Detailed explanation of the correct approach...",
-      "keyFormulas": [],
-      "difficulty": "medium",
-      "source": "Mock Exam 1"
+      "explanation": "Expected total return = YTM + Expected Price Return\n\nYou correctly calculated the expected price return of -0.14%, but forgot to add the YTM.\n\n• Expected price return: -0.14%\n• YTM: +1.00%\n• Total return: 0.86%",
+      "keyFormulas": ["Total Return = YTM + Price Return", "Price Return = -Duration × Spread Change"],
+      "yourMistake": "Only calculated expected price return, forgot to add YTM"
     }
   ]
 }
