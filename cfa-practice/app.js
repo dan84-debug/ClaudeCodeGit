@@ -29,7 +29,18 @@ class CFAPracticeTester {
         try {
             const response = await fetch('questions.json');
             const data = await response.json();
-            this.questions = data.questions || [];
+            // Normalize questions - add defaults for optional fields
+            this.questions = (data.questions || []).map((q, index) => ({
+                id: q.id || index + 1,
+                title: q.title || `Question ${index + 1}`,
+                topic: q.topic || 'General',
+                question: q.question || '',
+                choices: q.choices || [],
+                correctAnswer: q.correctAnswer || 'A',
+                explanation: q.explanation || '',
+                keyFormulas: q.keyFormulas || [],
+                yourMistake: q.yourMistake || ''
+            }));
             this.examTitle = data.examTitle || 'CFA Practice Tester';
             if (data.settings) {
                 this.settings = { ...this.settings, ...data.settings };

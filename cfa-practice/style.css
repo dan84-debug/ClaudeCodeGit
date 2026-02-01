@@ -61,8 +61,11 @@ body {
     border: none;
     border-radius: var(--radius);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
     text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .btn:disabled {
@@ -77,6 +80,11 @@ body {
 
 .btn-primary:hover:not(:disabled) {
     background: var(--primary-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+    background: #1e40af;
+    transform: scale(0.98);
 }
 
 .btn-secondary {
@@ -254,12 +262,19 @@ body {
     border: 2px solid var(--gray-200);
     border-radius: var(--radius);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .choice:hover {
     border-color: var(--gray-300);
     background: var(--gray-50);
+}
+
+.choice:active:not(.disabled) {
+    transform: scale(0.99);
 }
 
 .choice.selected {
@@ -554,14 +569,23 @@ body {
     flex: 1;
 }
 
-/* Responsive */
+/* Responsive - Mobile First */
 @media (max-width: 600px) {
     .container {
         padding: 12px;
+        padding-bottom: env(safe-area-inset-bottom, 12px);
+    }
+
+    #start-screen {
+        padding: 24px 12px;
     }
 
     #start-screen h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
     }
 
     .stats-preview {
@@ -569,16 +593,133 @@ body {
     }
 
     .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .quiz-options {
+        padding: 16px;
+    }
+
+    .quiz-options select {
+        padding: 14px 12px;
+        font-size: 16px; /* Prevents iOS zoom */
+    }
+
+    .checkbox-label {
+        padding: 8px 0;
+    }
+
+    .checkbox-label input {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Question card mobile */
+    .question-card {
+        padding: 16px;
+    }
+
+    .question-title {
+        font-size: 1.1rem;
+    }
+
+    .question-text {
+        font-size: 1rem;
+    }
+
+    /* Larger tap targets for choices */
+    .choice {
+        padding: 18px 14px;
+        min-height: 60px;
+    }
+
+    .choice-letter {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+
+    .choice-text {
+        font-size: 0.95rem;
+        padding-top: 2px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 16px 24px;
+        font-size: 17px;
+        min-height: 54px;
+    }
+
+    #start-btn {
+        padding: 18px;
+        font-size: 18px;
+    }
+
+    /* Explanation panel */
+    .explanation-panel {
+        padding: 16px;
+    }
+
+    .explanation-text {
+        font-size: 0.95rem;
+        padding: 14px;
+    }
+
+    .key-formulas li {
+        font-size: 0.85rem;
+        word-break: break-word;
+    }
+
+    /* Results */
+    .score-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .score-percent {
         font-size: 2rem;
     }
 
-    .question-card,
-    .explanation-panel,
-    .quiz-options {
+    .results-breakdown,
+    .results-review {
         padding: 16px;
     }
 
     .results-actions {
         flex-direction: column;
+    }
+
+    .results-actions .btn {
+        width: 100%;
+    }
+
+    /* Progress bar thicker for visibility */
+    .progress-bar {
+        height: 6px;
+    }
+
+    .progress-info {
+        font-size: 0.85rem;
+    }
+
+    .topic-badge {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+    #start-screen h1 {
+        font-size: 1.4rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .choice {
+        padding: 14px 12px;
     }
 }
