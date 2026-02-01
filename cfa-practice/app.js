@@ -16,6 +16,18 @@ class CFAPracticeTester {
             shuffleChoices: true
         };
 
+        // Mode state
+        this.currentMode = 'quiz'; // 'quiz', 'learn', 'qbank'
+
+        // Learn mode state
+        this.learnPool = [];
+        this.learnMastered = [];
+        this.learnTotal = 0;
+
+        // Qbank state
+        this.qbankQuestions = [];
+        this.qbankIndex = 0;
+
         this.init();
     }
 
@@ -29,7 +41,6 @@ class CFAPracticeTester {
         try {
             const response = await fetch('questions.json');
             const data = await response.json();
-            // Normalize questions - add defaults for optional fields
             this.questions = (data.questions || []).map((q, index) => ({
                 id: q.id || index + 1,
                 title: q.title || `Question ${index + 1}`,
@@ -52,8 +63,13 @@ class CFAPracticeTester {
     }
 
     bindEvents() {
-        // Start screen
-        document.getElementById('start-btn').addEventListener('click', () => this.startQuiz());
+        // Mode buttons
+        document.getElementById('quiz-mode-btn').addEventListener('click', () => this.selectMode('quiz'));
+        document.getElementById('learn-mode-btn').addEventListener('click', () => this.selectMode('learn'));
+        document.getElementById('qbank-mode-btn').addEventListener('click', () => this.selectMode('qbank'));
+
+        // Start button
+        document.getElementById('start-btn').addEventListener('click', () => this.startCurrentMode());
 
         // Quiz screen
         document.getElementById('submit-btn').addEventListener('click', () => this.submitAnswer());
@@ -62,6 +78,17 @@ class CFAPracticeTester {
         // Results screen
         document.getElementById('new-quiz-btn').addEventListener('click', () => this.showScreen('start-screen'));
         document.getElementById('retry-wrong-btn').addEventListener('click', () => this.retryWrongAnswers());
+
+        // Learn screen
+        document.getElementById('learn-submit-btn').addEventListener('click', () => this.submitLearnAnswer());
+        document.getElementById('learn-next-btn').addEventListener('click', () => this.nextLearnQuestion());
+        document.getElementById('learn-again-btn').addEventListener('click', () => this.startLearn());
+        document.getElementById('learn-home-btn').addEventListener('click', () => this.showScreen('start-screen'));
+
+        // Qbank screen
+        document.getElementById('qbank-back-btn').addEventListener('click', () => this.showScreen('start-screen'));
+        document.getElementById('qbank-prev-btn').addEventListener('click', () => this.qbankNav(-1));
+        document.getElementById('qbank-next-btn').addEventListener('click', () => this.qbankNav(1));
 
         // Options
         document.getElementById('shuffle-questions').addEventListener('change', (e) => {
@@ -72,24 +99,51 @@ class CFAPracticeTester {
         });
     }
 
+    selectMode(mode) {
+        this.currentMode = mode;
+
+        // Update button states
+        document.querySelectorAll('.btn-mode').forEach(btn => btn.classList.remove('btn-mode-active'));
+        document.getElementById(`${mode}-mode-btn`).classList.add('btn-mode-active');
+
+        // Show/hide option panels
+        document.getElementById('quiz-options').classList.toggle('hidden', mode !== 'quiz');
+        document.getElementById('learn-options').classList.toggle('hidden', mode !== 'learn');
+        document.getElementById('qbank-options').classList.toggle('hidden', mode !== 'qbank');
+
+        // Update start button text
+        const startBtn = document.getElementById('start-btn');
+        if (mode === 'quiz') startBtn.textContent = 'Start Quiz';
+        else if (mode === 'learn') startBtn.textContent = 'Start Learning';
+        else if (mode === 'qbank') startBtn.textContent = 'Open Qbank';
+    }
+
+    startCurrentMode() {
+        if (this.currentMode === 'quiz') this.startQuiz();
+        else if (this.currentMode === 'learn') this.startLearn();
+        else if (this.currentMode === 'qbank') this.startQbank();
+    }
+
     updateStartScreen() {
         document.getElementById('total-questions').textContent = this.questions.length;
 
-        // Get unique topics
         const topics = [...new Set(this.questions.map(q => q.topic))];
         document.getElementById('total-topics').textContent = topics.length;
 
-        // Populate topic filter
-        const topicSelect = document.getElementById('topic-filter');
-        topicSelect.innerHTML = '<option value="all">All Topics</option>';
-        topics.forEach(topic => {
-            const option = document.createElement('option');
-            option.value = topic;
-            option.textContent = topic;
-            topicSelect.appendChild(option);
+        // Populate all topic filters
+        ['topic-filter', 'learn-topic-filter', 'qbank-topic-filter'].forEach(id => {
+            const select = document.getElementById(id);
+            if (select) {
+                select.innerHTML = '<option value="all">All Topics</option>';
+                topics.forEach(topic => {
+                    const option = document.createElement('option');
+                    option.value = topic;
+                    option.textContent = topic;
+                    select.appendChild(option);
+                });
+            }
         });
 
-        // Update number of questions options based on available questions
         const numSelect = document.getElementById('num-questions');
         const maxQuestions = this.questions.length;
         Array.from(numSelect.options).forEach(option => {
@@ -99,12 +153,12 @@ class CFAPracticeTester {
         });
     }
 
+    // ==================== QUIZ MODE ====================
+
     startQuiz() {
-        // Get settings from UI
         const numQuestions = document.getElementById('num-questions').value;
         const topicFilter = document.getElementById('topic-filter').value;
 
-        // Filter questions by topic
         let availableQuestions = topicFilter === 'all'
             ? [...this.questions]
             : this.questions.filter(q => q.topic === topicFilter);
@@ -114,12 +168,10 @@ class CFAPracticeTester {
             return;
         }
 
-        // Shuffle if enabled
         if (this.settings.shuffleQuestions) {
             availableQuestions = this.shuffle(availableQuestions);
         }
 
-        // Select number of questions
         const count = numQuestions === 'all'
             ? availableQuestions.length
             : Math.min(parseInt(numQuestions), availableQuestions.length);
@@ -137,7 +189,6 @@ class CFAPracticeTester {
         const question = this.currentQuiz[this.currentIndex];
         this.selectedAnswer = null;
 
-        // Update progress
         document.getElementById('question-counter').textContent =
             `Question ${this.currentIndex + 1} of ${this.currentQuiz.length}`;
         document.getElementById('score-display').textContent =
@@ -145,14 +196,10 @@ class CFAPracticeTester {
         document.getElementById('progress-fill').style.width =
             `${((this.currentIndex) / this.currentQuiz.length) * 100}%`;
 
-        // Update topic badge
         document.getElementById('topic-badge').textContent = question.topic || 'General';
-
-        // Display question
         document.getElementById('question-title').textContent = question.title || `Question ${question.id}`;
         document.getElementById('question-text').textContent = question.question;
 
-        // Display choices
         let choices = [...question.choices];
         if (this.settings.shuffleChoices) {
             choices = this.shuffle(choices);
@@ -161,7 +208,7 @@ class CFAPracticeTester {
         const container = document.getElementById('choices-container');
         container.innerHTML = '';
 
-        choices.forEach((choice, index) => {
+        choices.forEach((choice) => {
             const choiceEl = document.createElement('div');
             choiceEl.className = 'choice';
             choiceEl.dataset.letter = choice.letter;
@@ -173,20 +220,14 @@ class CFAPracticeTester {
             container.appendChild(choiceEl);
         });
 
-        // Reset UI
         document.getElementById('submit-btn').disabled = true;
         document.getElementById('explanation-panel').classList.add('hidden');
     }
 
     selectChoice(element, letter) {
-        // Remove previous selection
-        document.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
-
-        // Select new choice
+        document.querySelectorAll('#choices-container .choice').forEach(c => c.classList.remove('selected'));
         element.classList.add('selected');
         this.selectedAnswer = letter;
-
-        // Enable submit button
         document.getElementById('submit-btn').disabled = false;
     }
 
@@ -196,22 +237,17 @@ class CFAPracticeTester {
         const question = this.currentQuiz[this.currentIndex];
         const isCorrect = this.selectedAnswer === question.correctAnswer;
 
-        if (isCorrect) {
-            this.score++;
-        }
+        if (isCorrect) this.score++;
 
-        // Store result
         this.results.push({
             question: question,
             userAnswer: this.selectedAnswer,
             correct: isCorrect
         });
 
-        // Update choices UI
-        document.querySelectorAll('.choice').forEach(choice => {
+        document.querySelectorAll('#choices-container .choice').forEach(choice => {
             choice.classList.add('disabled');
             const letter = choice.dataset.letter;
-
             if (letter === question.correctAnswer) {
                 choice.classList.add('correct');
             } else if (letter === this.selectedAnswer && !isCorrect) {
@@ -219,10 +255,7 @@ class CFAPracticeTester {
             }
         });
 
-        // Show explanation
         this.showExplanation(question, isCorrect);
-
-        // Hide submit button
         document.getElementById('submit-btn').style.display = 'none';
     }
 
@@ -230,16 +263,13 @@ class CFAPracticeTester {
         const panel = document.getElementById('explanation-panel');
         panel.classList.remove('hidden');
 
-        // Result header
         const header = document.getElementById('result-header');
         header.className = `result-header ${isCorrect ? 'correct' : 'incorrect'}`;
         document.getElementById('result-icon').textContent = isCorrect ? '✓' : '✗';
         document.getElementById('result-text').textContent = isCorrect ? 'Correct!' : 'Incorrect';
 
-        // Explanation text
         document.getElementById('explanation-text').textContent = question.explanation || 'No explanation provided.';
 
-        // Key formulas
         const formulasSection = document.getElementById('key-formulas');
         if (question.keyFormulas && question.keyFormulas.length > 0) {
             formulasSection.classList.remove('hidden');
@@ -254,7 +284,6 @@ class CFAPracticeTester {
             formulasSection.classList.add('hidden');
         }
 
-        // Your original mistake (only show if they got it wrong and mistake info exists)
         const mistakeSection = document.getElementById('your-mistake');
         if (!isCorrect && question.yourMistake) {
             mistakeSection.classList.remove('hidden');
@@ -263,16 +292,12 @@ class CFAPracticeTester {
             mistakeSection.classList.add('hidden');
         }
 
-        // Update next button text
         const nextBtn = document.getElementById('next-btn');
-        nextBtn.textContent = this.currentIndex < this.currentQuiz.length - 1
-            ? 'Next Question'
-            : 'See Results';
+        nextBtn.textContent = this.currentIndex < this.currentQuiz.length - 1 ? 'Next Question' : 'See Results';
     }
 
     nextQuestion() {
         this.currentIndex++;
-
         if (this.currentIndex >= this.currentQuiz.length) {
             this.showResults();
         } else {
@@ -284,39 +309,32 @@ class CFAPracticeTester {
     showResults() {
         this.showScreen('results-screen');
 
-        // Final score
         const percent = Math.round((this.score / this.currentQuiz.length) * 100);
         document.getElementById('final-percent').textContent = `${percent}%`;
         document.getElementById('final-score-detail').textContent =
             `${this.score} out of ${this.currentQuiz.length} correct`;
 
-        // Topic breakdown
         const topicStats = {};
         this.results.forEach(result => {
             const topic = result.question.topic || 'General';
-            if (!topicStats[topic]) {
-                topicStats[topic] = { correct: 0, total: 0 };
-            }
+            if (!topicStats[topic]) topicStats[topic] = { correct: 0, total: 0 };
             topicStats[topic].total++;
-            if (result.correct) {
-                topicStats[topic].correct++;
-            }
+            if (result.correct) topicStats[topic].correct++;
         });
 
         const breakdownContainer = document.getElementById('topic-breakdown');
         breakdownContainer.innerHTML = '';
         Object.entries(topicStats).forEach(([topic, stats]) => {
-            const percent = Math.round((stats.correct / stats.total) * 100);
+            const pct = Math.round((stats.correct / stats.total) * 100);
             const div = document.createElement('div');
             div.className = 'topic-result';
             div.innerHTML = `
                 <span class="topic-name">${topic}</span>
-                <span class="topic-score ${percent >= 70 ? 'good' : 'bad'}">${stats.correct}/${stats.total} (${percent}%)</span>
+                <span class="topic-score ${pct >= 70 ? 'good' : 'bad'}">${stats.correct}/${stats.total} (${pct}%)</span>
             `;
             breakdownContainer.appendChild(div);
         });
 
-        // Question review
         const reviewContainer = document.getElementById('question-review');
         reviewContainer.innerHTML = '';
         this.results.forEach((result, index) => {
@@ -329,23 +347,18 @@ class CFAPracticeTester {
             reviewContainer.appendChild(div);
         });
 
-        // Show/hide retry wrong button
         const wrongAnswers = this.results.filter(r => !r.correct);
-        document.getElementById('retry-wrong-btn').style.display =
-            wrongAnswers.length > 0 ? 'block' : 'none';
+        document.getElementById('retry-wrong-btn').style.display = wrongAnswers.length > 0 ? 'block' : 'none';
     }
 
     retryWrongAnswers() {
         const wrongQuestions = this.results.filter(r => !r.correct).map(r => r.question);
-
         if (wrongQuestions.length === 0) {
             alert('You got all questions correct!');
             return;
         }
 
-        this.currentQuiz = this.settings.shuffleQuestions
-            ? this.shuffle(wrongQuestions)
-            : wrongQuestions;
+        this.currentQuiz = this.settings.shuffleQuestions ? this.shuffle(wrongQuestions) : wrongQuestions;
         this.currentIndex = 0;
         this.score = 0;
         this.results = [];
@@ -354,15 +367,227 @@ class CFAPracticeTester {
         this.displayQuestion();
     }
 
+    // ==================== LEARN MODE ====================
+
+    startLearn() {
+        const topicFilter = document.getElementById('learn-topic-filter').value;
+
+        let availableQuestions = topicFilter === 'all'
+            ? [...this.questions]
+            : this.questions.filter(q => q.topic === topicFilter);
+
+        if (availableQuestions.length === 0) {
+            alert('No questions available for the selected topic.');
+            return;
+        }
+
+        this.learnPool = this.shuffle([...availableQuestions]);
+        this.learnMastered = [];
+        this.learnTotal = availableQuestions.length;
+
+        this.showScreen('learn-screen');
+        this.displayLearnQuestion();
+    }
+
+    displayLearnQuestion() {
+        if (this.learnPool.length === 0) {
+            this.showScreen('learn-complete-screen');
+            return;
+        }
+
+        const question = this.learnPool[0];
+        this.selectedAnswer = null;
+
+        // Update progress
+        document.getElementById('learn-counter').textContent = `Remaining: ${this.learnPool.length}`;
+        document.getElementById('learn-mastered').textContent = `Mastered: ${this.learnMastered.length}`;
+        document.getElementById('learn-progress-fill').style.width =
+            `${(this.learnMastered.length / this.learnTotal) * 100}%`;
+
+        document.getElementById('learn-topic-badge').textContent = question.topic || 'General';
+        document.getElementById('learn-question-title').textContent = question.title || `Question ${question.id}`;
+        document.getElementById('learn-question-text').textContent = question.question;
+
+        let choices = this.shuffle([...question.choices]);
+
+        const container = document.getElementById('learn-choices-container');
+        container.innerHTML = '';
+
+        choices.forEach((choice) => {
+            const choiceEl = document.createElement('div');
+            choiceEl.className = 'choice';
+            choiceEl.dataset.letter = choice.letter;
+            choiceEl.innerHTML = `
+                <span class="choice-letter">${choice.letter}</span>
+                <span class="choice-text">${choice.text}</span>
+            `;
+            choiceEl.addEventListener('click', () => this.selectLearnChoice(choiceEl, choice.letter));
+            container.appendChild(choiceEl);
+        });
+
+        document.getElementById('learn-submit-btn').disabled = true;
+        document.getElementById('learn-submit-btn').style.display = 'block';
+        document.getElementById('learn-explanation-panel').classList.add('hidden');
+    }
+
+    selectLearnChoice(element, letter) {
+        document.querySelectorAll('#learn-choices-container .choice').forEach(c => c.classList.remove('selected'));
+        element.classList.add('selected');
+        this.selectedAnswer = letter;
+        document.getElementById('learn-submit-btn').disabled = false;
+    }
+
+    submitLearnAnswer() {
+        if (!this.selectedAnswer) return;
+
+        const question = this.learnPool[0];
+        const isCorrect = this.selectedAnswer === question.correctAnswer;
+
+        document.querySelectorAll('#learn-choices-container .choice').forEach(choice => {
+            choice.classList.add('disabled');
+            const letter = choice.dataset.letter;
+            if (letter === question.correctAnswer) {
+                choice.classList.add('correct');
+            } else if (letter === this.selectedAnswer && !isCorrect) {
+                choice.classList.add('incorrect');
+            }
+        });
+
+        // Show explanation
+        const panel = document.getElementById('learn-explanation-panel');
+        panel.classList.remove('hidden');
+
+        const header = document.getElementById('learn-result-header');
+        header.className = `result-header ${isCorrect ? 'correct' : 'incorrect'}`;
+        document.getElementById('learn-result-icon').textContent = isCorrect ? '✓' : '✗';
+        document.getElementById('learn-result-text').textContent = isCorrect
+            ? 'Correct! Question mastered.'
+            : 'Incorrect. You\'ll see this again.';
+
+        document.getElementById('learn-explanation-text').textContent = question.explanation || 'No explanation provided.';
+
+        const formulasSection = document.getElementById('learn-key-formulas');
+        if (question.keyFormulas && question.keyFormulas.length > 0) {
+            formulasSection.classList.remove('hidden');
+            const list = document.getElementById('learn-formulas-list');
+            list.innerHTML = '';
+            question.keyFormulas.forEach(formula => {
+                const li = document.createElement('li');
+                li.textContent = formula;
+                list.appendChild(li);
+            });
+        } else {
+            formulasSection.classList.add('hidden');
+        }
+
+        document.getElementById('learn-submit-btn').style.display = 'none';
+
+        // Update pool
+        if (isCorrect) {
+            this.learnMastered.push(this.learnPool.shift());
+        } else {
+            // Move to random position in back half of pool
+            const q = this.learnPool.shift();
+            const minPos = Math.floor(this.learnPool.length / 2);
+            const insertPos = minPos + Math.floor(Math.random() * (this.learnPool.length - minPos + 1));
+            this.learnPool.splice(insertPos, 0, q);
+        }
+    }
+
+    nextLearnQuestion() {
+        this.displayLearnQuestion();
+    }
+
+    // ==================== QBANK MODE ====================
+
+    startQbank() {
+        const topicFilter = document.getElementById('qbank-topic-filter').value;
+
+        this.qbankQuestions = topicFilter === 'all'
+            ? [...this.questions]
+            : this.questions.filter(q => q.topic === topicFilter);
+
+        if (this.qbankQuestions.length === 0) {
+            alert('No questions available for the selected topic.');
+            return;
+        }
+
+        this.qbankIndex = 0;
+        this.showScreen('qbank-screen');
+        this.displayQbankQuestion();
+    }
+
+    displayQbankQuestion() {
+        const question = this.qbankQuestions[this.qbankIndex];
+
+        document.getElementById('qbank-counter').textContent =
+            `Question ${this.qbankIndex + 1} of ${this.qbankQuestions.length}`;
+
+        const container = document.getElementById('qbank-content');
+
+        let formulasHtml = '';
+        if (question.keyFormulas && question.keyFormulas.length > 0) {
+            formulasHtml = `
+                <div class="qbank-formulas">
+                    <h5>Key Formulas</h5>
+                    <ul>
+                        ${question.keyFormulas.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        container.innerHTML = `
+            <div class="qbank-item">
+                <div class="qbank-question">
+                    <div class="topic-badge" style="margin-bottom: 12px;">${question.topic}</div>
+                    <h3>${question.title}</h3>
+                    <p>${question.question}</p>
+                </div>
+                <div class="qbank-choices">
+                    ${question.choices.map(c => `
+                        <div class="qbank-choice ${c.letter === question.correctAnswer ? 'correct' : ''}">
+                            <strong>${c.letter}.</strong> ${c.text}
+                            ${c.letter === question.correctAnswer ? ' ✓' : ''}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="qbank-answer">
+                    <h4>Correct Answer: ${question.correctAnswer}</h4>
+                </div>
+                <div class="qbank-explanation">
+                    <h4>Explanation</h4>
+                    <p>${question.explanation || 'No explanation provided.'}</p>
+                    ${formulasHtml}
+                </div>
+            </div>
+        `;
+
+        // Update nav buttons
+        document.getElementById('qbank-prev-btn').disabled = this.qbankIndex === 0;
+        document.getElementById('qbank-next-btn').disabled = this.qbankIndex >= this.qbankQuestions.length - 1;
+    }
+
+    qbankNav(direction) {
+        this.qbankIndex += direction;
+        if (this.qbankIndex < 0) this.qbankIndex = 0;
+        if (this.qbankIndex >= this.qbankQuestions.length) this.qbankIndex = this.qbankQuestions.length - 1;
+        this.displayQbankQuestion();
+    }
+
+    // ==================== UTILS ====================
+
     showScreen(screenId) {
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active');
         });
         document.getElementById(screenId).classList.add('active');
 
-        // Reset submit button visibility when showing quiz screen
         if (screenId === 'quiz-screen') {
             document.getElementById('submit-btn').style.display = 'block';
+        }
+        if (screenId === 'learn-screen') {
+            document.getElementById('learn-submit-btn').style.display = 'block';
         }
     }
 
