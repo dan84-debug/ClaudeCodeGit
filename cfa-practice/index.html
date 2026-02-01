@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFA Practice Tester</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <h1>CFA Practice Tester</h1>
+            <p class="subtitle">Review questions you got wrong on mock exams</p>
+
+            <div class="stats-preview" id="stats-preview">
+                <div class="stat">
+                    <span class="stat-number" id="total-questions">0</span>
+                    <span class="stat-label">Total Questions</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="total-topics">0</span>
+                    <span class="stat-label">Topics</span>
+                </div>
+            </div>
+
+            <div class="quiz-options">
+                <label for="num-questions">Questions per quiz:</label>
+                <select id="num-questions">
+                    <option value="5">5 questions</option>
+                    <option value="10" selected>10 questions</option>
+                    <option value="15">15 questions</option>
+                    <option value="20">20 questions</option>
+                    <option value="all">All questions</option>
+                </select>
+
+                <label for="topic-filter">Filter by topic:</label>
+                <select id="topic-filter">
+                    <option value="all">All Topics</option>
+                </select>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="shuffle-questions" checked>
+                    Shuffle question order
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="shuffle-choices" checked>
+                    Shuffle answer choices
+                </label>
+            </div>
+
+            <button id="start-btn" class="btn btn-primary">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <span id="question-counter">Question 1 of 10</span>
+                    <span id="score-display">Score: 0/0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="topic-badge" id="topic-badge">Fixed Income</div>
+            </div>
+
+            <div class="question-card">
+                <h2 class="question-title" id="question-title">Question Title</h2>
+                <p class="question-text" id="question-text">Question text goes here...</p>
+
+                <div class="choices" id="choices-container">
+                    <!-- Choices will be dynamically inserted -->
+                </div>
+
+                <button id="submit-btn" class="btn btn-primary" disabled>Submit Answer</button>
+            </div>
+
+            <!-- Explanation Panel (shown after answering) -->
+            <div id="explanation-panel" class="explanation-panel hidden">
+                <div class="result-header" id="result-header">
+                    <span class="result-icon" id="result-icon"></span>
+                    <span class="result-text" id="result-text"></span>
+                </div>
+
+                <div class="explanation-content">
+                    <h3>Explanation</h3>
+                    <div id="explanation-text" class="explanation-text"></div>
+
+                    <div id="key-formulas" class="key-formulas hidden">
+                        <h4>Key Formulas</h4>
+                        <ul id="formulas-list"></ul>
+                    </div>
+
+                    <div id="your-mistake" class="your-mistake hidden">
+                        <h4>Your Original Mistake</h4>
+                        <p id="mistake-text"></p>
+                    </div>
+                </div>
+
+                <button id="next-btn" class="btn btn-primary">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <h1>Quiz Complete!</h1>
+
+            <div class="final-score">
+                <div class="score-circle">
+                    <span class="score-percent" id="final-percent">0%</span>
+                </div>
+                <p class="score-detail" id="final-score-detail">0 out of 0 correct</p>
+            </div>
+
+            <div class="results-breakdown">
+                <h3>Performance by Topic</h3>
+                <div id="topic-breakdown"></div>
+            </div>
+
+            <div class="results-review">
+                <h3>Question Review</h3>
+                <div id="question-review"></div>
+            </div>
+
+            <div class="results-actions">
+                <button id="retry-wrong-btn" class="btn btn-secondary">Retry Wrong Answers</button>
+                <button id="new-quiz-btn" class="btn btn-primary">New Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
