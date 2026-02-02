@@ -3,7 +3,7 @@
 ## Project Overview
 
 Build a tool to analyze SEC S-1 IPO filings and generate two deliverables:
-1. **Excel file** - Extracted financial data (income statement, balance sheet, cash flow)
+1. **Excel file** - Extracted financial data (income statement, balance sheet)
 2. **Summary document** (Word/Markdown) - Investment summary with key analysis
 
 ### Reference Example: Bob's Discount Furniture S-1
@@ -25,9 +25,8 @@ Build a tool to analyze SEC S-1 IPO filings and generate two deliverables:
 #### Financial Statements
 | Statement | Key Line Items |
 |-----------|----------------|
-| **Income Statement** | Revenue, COGS, Gross Profit, SG&A, Operating Income, Interest Expense, Net Income |
+| **Income Statement** | Revenue, COGS, Gross Profit, SG&A, EBITDA, Operating Income, Interest Expense, Net Income |
 | **Balance Sheet** | Cash, A/R, Inventory, PP&E, Total Assets, A/P, Debt (Short/Long-term), Equity |
-| **Cash Flow** | Operating CF, CapEx, Free Cash Flow, Financing Activities |
 
 #### IPO-Specific Data
 - Shares offered (primary + secondary)
@@ -35,6 +34,7 @@ Build a tool to analyze SEC S-1 IPO filings and generate two deliverables:
 - Use of proceeds breakdown
 - Pre-IPO ownership structure
 - Post-IPO cap table
+- Selling shareholders (who is selling and why)
 
 ---
 
@@ -51,27 +51,41 @@ Tab 1: Summary Dashboard
 Tab 2: Income Statement
 - Historical (3 years if available)
 - LTM / Recent interim period
-- YoY growth calculations
-- Margin calculations (Gross, Operating, Net)
+
+  KEY METRICS TO INCLUDE:
+  - Gross Margin %
+  - EBITDA
+  - EBITDA Margin %
+  - Operating Margin %
+  - Net Margin %
+
+  YoY GROWTH CALCULATIONS:
+  - Revenue Growth %
+  - Gross Profit Growth %
+  - EBITDA Growth %
+  - Net Income Growth %
 
 Tab 3: Balance Sheet
 - Most recent period
 - Prior year comparison
 - Key ratios (Current ratio, Debt/Equity, etc.)
 
-Tab 4: Cash Flow Statement
-- Historical periods
-- Free Cash Flow calculation
-
-Tab 5: IPO Details
+Tab 4: IPO Details
 - Shares offered
 - Price range
 - Use of proceeds
 - Cap table (pre/post IPO)
+- Selling shareholders breakdown
 
-Tab 6: Valuation Metrics
-- P/E, P/S, EV/EBITDA at IPO price
-- Comparison to industry peers (if data available)
+Tab 5: Valuation
+- Shares outstanding (pre/post IPO)
+- Market cap at low/mid/high price
+- Enterprise Value
+- P/E ratio
+- P/S ratio
+- EV/Revenue
+- EV/EBITDA
+- Comparison to peers (if available)
 ```
 
 ### 2.2 Python Libraries Required
@@ -79,7 +93,6 @@ Tab 6: Valuation Metrics
 - `pandas` - Data manipulation
 - `requests` or `sec-edgar-downloader` - SEC EDGAR API access
 - `beautifulsoup4` - HTML parsing for S-1 documents
-- `re` - Regex for financial data extraction
 
 ---
 
@@ -94,6 +107,7 @@ Tab 6: Valuation Metrics
 - One paragraph overview of the company and IPO
 
 ## 2. Business Overview
+
 ### What They Do
 - Core business description
 - Products/services offered
@@ -104,43 +118,39 @@ Tab 6: Valuation Metrics
 - Revenue by segment/geography (if disclosed)
 - Key growth drivers
 
-### Competitive Position
-- Market position
-- Key competitors
-- Moat/competitive advantages
-
 ## 3. Financial Analysis
 
-### Profitability Analysis
-- Revenue growth trends
-- Gross margin analysis
-- Operating margin trends
-- Net margin and path to profitability
+### Profitability
+- Revenue and growth trends
+- Gross Margin
+- EBITDA and EBITDA Margin
+- Net Income and Net Margin
+- YoY growth rates (Revenue, EBITDA, Net Income)
 
-### Balance Sheet Health
+### Balance Sheet
 - Cash position
 - Debt levels and structure
-- Working capital adequacy
-- Asset quality
+- Key ratios
 
-### Cash Flow Analysis
-- Operating cash flow trends
-- CapEx requirements
-- Free cash flow generation
+## 4. Valuation
+- IPO price range
+- Implied market cap
+- Enterprise value
+- Key multiples (P/E, P/S, EV/EBITDA)
+- How it compares to peers
 
-## 4. IPO Transaction Details
-- Shares offered and structure
-- Price range and implied valuation
+## 5. Who Is Selling & Why
+- Primary vs secondary offering breakdown
+- Which shareholders are selling
+- Why they are selling (debt repayment, liquidity, etc.)
 - Use of proceeds
-- Lock-up provisions
 
-## 5. Risk Factors (Key Highlights)
+## 6. Risk Factors (Key Highlights)
 - Top 5-7 material risks from S-1
 
-## 6. Investment Considerations
+## 7. Investment Considerations
 - Bull case
 - Bear case
-- Key metrics to watch post-IPO
 ```
 
 ---
@@ -152,7 +162,6 @@ Tab 6: Valuation Metrics
 File: src/sec_fetcher.py
 - Function to download S-1 from EDGAR by CIK or ticker
 - Parse HTML/XBRL for structured data
-- Handle both traditional HTML and inline XBRL formats
 ```
 
 ### Step 2: Financial Parser
@@ -160,8 +169,7 @@ File: src/sec_fetcher.py
 File: src/financial_parser.py
 - Extract Income Statement tables
 - Extract Balance Sheet tables
-- Extract Cash Flow tables
-- Normalize data into standard format
+- Calculate margins and growth rates
 ```
 
 ### Step 3: Excel Generator
@@ -169,15 +177,13 @@ File: src/financial_parser.py
 File: src/excel_generator.py
 - Create workbook with all tabs
 - Apply formatting (currency, percentages, headers)
-- Add formulas for calculated metrics
-- Generate charts (optional)
+- Add formulas for margins and YoY growth
 ```
 
 ### Step 4: Summary Generator
 ```
 File: src/summary_generator.py
 - Template-based markdown generation
-- Pull key narrative sections from S-1
 - Auto-populate financial metrics
 - Export to .md (and optionally .docx via pandoc)
 ```
@@ -186,7 +192,6 @@ File: src/summary_generator.py
 ```
 File: main.py
 - CLI interface
-- Orchestrate full pipeline
 - Input: S-1 URL or company identifier
 - Output: Excel file + Summary document
 ```
@@ -198,17 +203,13 @@ File: main.py
 ```
 ipo-summarizer/
 ├── Claude.md              # This planning document
-├── README.md              # Usage instructions
 ├── requirements.txt       # Python dependencies
 ├── main.py               # Main entry point
 ├── src/
-│   ├── __init__.py
 │   ├── sec_fetcher.py    # Download S-1 filings
 │   ├── financial_parser.py # Parse financial tables
 │   ├── excel_generator.py  # Create Excel output
 │   └── summary_generator.py # Create summary document
-├── templates/
-│   └── summary_template.md # Markdown template
 ├── output/
 │   └── (generated files go here)
 └── examples/
@@ -242,32 +243,17 @@ ipo-summarizer/
 | Implied Valuation | Up to ~$2.48B |
 | Use of Proceeds | Repay $350M Term Loan, general corporate |
 
+### Who Is Selling & Why
+- Existing investors selling via secondary offering
+- Overallotment of 2.91M shares from existing investor
+- Proceeds used to repay $350M Term Loan (from October 2025 dividend)
+- General corporate purposes
+
 ### Business Profile
 - **Industry**: Value home furnishings retail
 - **Stores**: 206 showrooms across 26 states (as of Sept 2025)
 - **Growth Target**: 500+ locations by 2035
 - **Sourcing**: 63% Vietnam, 27% USA (moved out of China by FY2024)
-
----
-
-## Technical Considerations
-
-### SEC EDGAR API
-- Rate limiting: 10 requests per second max
-- User-agent required in headers
-- S-1 filings can be HTML or XBRL format
-- May need to handle amendments (S-1/A)
-
-### Financial Data Extraction Challenges
-- Tables are often inconsistent in format
-- Numbers may include footnote references
-- Need to handle both thousands and millions
-- Negative numbers shown in parentheses
-
-### Output Formatting
-- Excel: Use number formats, conditional formatting
-- Markdown: Can convert to .docx using pandoc
-- Consider using python-docx for native Word output
 
 ---
 
@@ -277,11 +263,9 @@ ipo-summarizer/
 2. [ ] Create requirements.txt with dependencies
 3. [ ] Build SEC fetcher module
 4. [ ] Build financial parser (start with Bob's S-1 as test case)
-5. [ ] Build Excel generator
+5. [ ] Build Excel generator with margins & YoY growth
 6. [ ] Build summary generator
 7. [ ] Test end-to-end with Bob's Discount Furniture
-8. [ ] Add CLI interface
-9. [ ] Documentation and examples
 
 ---
 
