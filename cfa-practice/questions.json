@@ -962,6 +962,118 @@
       "explanation": "Holding Period Cost = Round-trip Trading Cost + Management Fee\n\nRound-trip Trading Cost:\n= (One-way commission × 2) + (½ × Bid-ask spread × 2)\n= (0.10% × 2) + (0.10% × 2)\n= 0.20% + 0.20% = 0.40%\n\nTotal = 0.40% + 0.50% = 0.90%\n\nNote: Pay half spread on buy, half on sell = full spread for round trip.",
       "keyFormulas": ["Round-trip = 2×commission + spread", "Total cost = Trading + Management"],
       "yourMistake": "Used one-way commission instead of round-trip"
+    },
+    {
+      "id": 63,
+      "title": "Key Rate Duration and Volatility",
+      "topic": "Fixed Income",
+      "question": "Li uses 3.25% monthly std dev of 15-year bond yield to estimate annual volatility of 11.26%. He concludes higher key rate durations for longer-term rates lead to higher long-term annualized term structure volatility. Are his calculation and conclusion correct?",
+      "choices": [
+        {"letter": "A", "text": "Yes, both are correct"},
+        {"letter": "B", "text": "No, only the annualized volatility estimate is correct"},
+        {"letter": "C", "text": "No, only the conclusion about key rate duration is correct"},
+        {"letter": "D", "text": "No, both are incorrect"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Volatility Calculation:\nAnnual vol = Monthly vol × √12 = 3.25% × 3.464 = 11.26% ✓ CORRECT\n\nKey Rate Duration Conclusion: INCORRECT\n• Long-term securities DO have higher key rate durations\n• BUT short-term rates are MORE VOLATILE than long-term rates\n• Key rate duration measures price sensitivity, NOT rate volatility\n\nHe confused duration sensitivity with rate volatility.",
+      "keyFormulas": ["Annual σ = Monthly σ × √12", "Short-term rates are more volatile than long-term rates"],
+      "yourMistake": "Accepted the conclusion without checking that short-term rates are actually more volatile"
+    },
+    {
+      "id": 64,
+      "title": "Economic Growth Components",
+      "topic": "Economics",
+      "question": "Which statement about economic growth is CORRECT?\n\n1. R&D spending leads to positive short-run growth\n2. TFP = Capital deepening + Labor productivity\n3. Investment impact depends on existing capital stock",
+      "choices": [
+        {"letter": "A", "text": "Statement 1"},
+        {"letter": "B", "text": "Statement 2"},
+        {"letter": "C", "text": "Statement 3"},
+        {"letter": "D", "text": "All three"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Statement 1: WRONG\n• R&D may cause SHORT-TERM disruption (creative destruction)\n• Benefits come in LONG-RUN\n\nStatement 2: WRONG - Formula is backwards!\n• Correct: Labor Productivity = Capital Deepening + TFP\n• TFP is a RESIDUAL, not a sum\n\nStatement 3: CORRECT\n• Low capital stock → Investment has LARGER impact\n• Diminishing returns: First units of capital add more",
+      "keyFormulas": ["Labor Prod = Capital Deepening + TFP", "Low K → Higher marginal product of capital"],
+      "yourMistake": "Got the TFP formula backwards"
+    },
+    {
+      "id": 65,
+      "title": "Trade Opening - Neoclassical Model",
+      "topic": "Economics",
+      "question": "Which is consistent with neoclassical model when trade opens?\n\n1. Capital exporters grow above steady state\n2. Developed countries run trade deficits\n3. High K/L countries have lower investment returns",
+      "choices": [
+        {"letter": "A", "text": "Statement 1"},
+        {"letter": "B", "text": "Statement 2"},
+        {"letter": "C", "text": "Statement 3"},
+        {"letter": "D", "text": "None of the above"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Statement 1: WRONG\n• Capital outflows → Growth BELOW steady state (losing capital)\n\nStatement 2: WRONG\n• Capital exporters run SURPLUSES not deficits\n• Capital outflow = Financial account deficit = Current account SURPLUS\n\nStatement 3: CORRECT\n• High K/L ratio → Diminishing marginal product of capital\n• → Lower investment returns",
+      "keyFormulas": ["Capital export → Trade surplus", "High K/L → Low MPK → Low returns"],
+      "yourMistake": "Confused capital flows with trade balance direction"
+    },
+    {
+      "id": 66,
+      "title": "Residual Plot - Heteroskedasticity",
+      "topic": "Quant",
+      "question": "Model: ROE ~ SALES. Residual plot shows variance increasing with SALES. Most appropriate conclusion:",
+      "choices": [
+        {"letter": "A", "text": "Unconditional heteroskedasticity present"},
+        {"letter": "B", "text": "Non-linear relationship between variables"},
+        {"letter": "C", "text": "F-test is unreliable"},
+        {"letter": "D", "text": "Model is correctly specified"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Variance increasing with independent variable = CONDITIONAL heteroskedasticity\n\nEffects:\n• F-test becomes unreliable\n• t-statistics biased\n• More Type I errors\n\nNOT unconditional heteroskedasticity:\n• Unconditional = variance NOT correlated with X\n• Here variance IS correlated with SALES → CONDITIONAL",
+      "keyFormulas": ["Variance varies with X → Conditional heteroskedasticity", "Heteroskedasticity → F-test and t-tests unreliable"],
+      "yourMistake": "Confused conditional (variance varies with X) with unconditional (variance unrelated to X)"
+    },
+    {
+      "id": 67,
+      "title": "Additional Compensation - Non-Monetary Benefits",
+      "topic": "Ethics",
+      "question": "Manager receives written approval for performance bonus from client. Client also offers use of luxury yacht for weekend. Manager uses yacht without informing employer since it's unrelated to performance. This is:",
+      "choices": [
+        {"letter": "A", "text": "No violation"},
+        {"letter": "B", "text": "Violation - bonus arrangement not properly disclosed"},
+        {"letter": "C", "text": "Violation - yacht usage requires disclosure"},
+        {"letter": "D", "text": "Violation - both arrangements violate Standards"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Bonus Arrangement: NO violation\n• Written permission obtained ✓\n• Profit-sharing with clients allowed if disclosed\n\nYacht Usage: VIOLATION\n• Standard IV(B) requires disclosure of gifts/benefits creating conflicts\n• Luxury yacht = valuable benefit\n• Creates potential conflict to favor that client\n• MUST be disclosed and approved by employer\n\n'Unrelated to performance' is irrelevant - ANY benefit from client creating conflicts must be disclosed.",
+      "keyFormulas": ["ALL benefits from clients must be disclosed", "Non-monetary gifts can create conflicts too"],
+      "yourMistake": "Thought only monetary compensation needed disclosure"
+    },
+    {
+      "id": 68,
+      "title": "Build-Up Approach - SCRP",
+      "topic": "Equity",
+      "question": "Estimate SCRP using build-up approach. Given: Cost of equity = 13.5%, ERP = 7.0%, Size premium = 1.2%, Risk-free rate = 3.0%. The SCRP is closest to:",
+      "choices": [
+        {"letter": "A", "text": "2.3%"},
+        {"letter": "B", "text": "3.0%"},
+        {"letter": "C", "text": "3.5%"},
+        {"letter": "D", "text": "4.2%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Build-Up Approach:\nr_e = r_f + ERP + Size Premium + SCRP\n\nSolving for SCRP:\nSCRP = r_e - (r_f + ERP + SP)\n= 13.5% - (3.0% + 7.0% + 1.2%)\n= 13.5% - 11.2%\n= 2.3%\n\nTrap answers:\n• 3.0% → Used CAPM formula with beta\n• 3.5% → Forgot size premium",
+      "keyFormulas": ["Build-up: r_e = r_f + ERP + SP + SCRP", "SCRP = r_e - (r_f + ERP + SP)"],
+      "yourMistake": "Forgot to include size premium in the build-up components"
+    },
+    {
+      "id": 69,
+      "title": "ABS Credit Analysis - Statistics-Based",
+      "topic": "Fixed Income",
+      "question": "An ABS is backed by short-term credit card receivables. The pool is granular (many small receivables) and homogeneous. The most appropriate credit analysis approach is:",
+      "choices": [
+        {"letter": "A", "text": "Loan-by-loan analysis"},
+        {"letter": "B", "text": "Portfolio-based analysis"},
+        {"letter": "C", "text": "Statistics-based analysis"},
+        {"letter": "D", "text": "Fundamental credit analysis"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "ABS Credit Analysis Approaches:\n\n• Loan-by-loan: Small, heterogeneous pools (each loan unique)\n• Portfolio-based: Medium-term, dynamic pools (composition changes)\n• Statistics-based: Short-term, granular, homogeneous pools\n\nCredit card ABS characteristics:\n• Short-term ✓\n• Granular (many small receivables) ✓\n• Homogeneous ✓\n\n→ Use aggregate statistics (mean default probability, recovery rate, variance)",
+      "keyFormulas": ["Short-term + Granular + Homogeneous → Statistics-based", "Portfolio-based is for dynamic (changing) pools"],
+      "yourMistake": "Chose portfolio-based, which is for dynamic pools that change over time"
     }
   ]
 }
