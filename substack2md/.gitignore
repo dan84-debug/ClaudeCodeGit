@@ -1,0 +1,8 @@
+# Don't commit output files
+substack_md_files/
+substack_html_pages/
+substack_pdf_files/
+data/
+
+# Don't commit credentials (edit config.py locally)
+# config.py is tracked with placeholder values only

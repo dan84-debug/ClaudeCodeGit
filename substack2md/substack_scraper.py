@@ -27,9 +27,35 @@ def extract_main_part(url: str) -> str:
     return parts[1] if parts[0] == 'www' else parts[0]
 
 
+def resolve_substack_urls(urls: List[str]) -> List[str]:
+    """Resolve substack.com/@author/p-XXXXX profile URLs to actual post URLs."""
+    resolved = []
+    for url in urls:
+        url = url.strip()
+        if not url:
+            continue
+        if "substack.com/@" in url and "/p-" in url:
+            try:
+                resp = requests.head(url, allow_redirects=True, timeout=10)
+                resolved.append(resp.url)
+                print(f"Resolved: {url} -> {resp.url}")
+            except Exception:
+                try:
+                    resp = requests.get(url, allow_redirects=True, timeout=10)
+                    resolved.append(resp.url)
+                    print(f"Resolved: {url} -> {resp.url}")
+                except Exception as e:
+                    print(f"Could not resolve {url}: {e}")
+                    resolved.append(url)
+        else:
+            resolved.append(url)
+    return resolved
+
+
 class BaseSubstackScraper(ABC):
     def __init__(self, base_substack_url: str, md_save_dir: str, html_save_dir: str,
-                 pdf_save_dir: str = "", export_pdf: bool = False):
+                 pdf_save_dir: str = "", export_pdf: bool = False,
+                 specific_urls: Optional[List[str]] = None):
         if not base_substack_url.endswith("/"):
             base_substack_url += "/"
         self.base_substack_url = base_substack_url
@@ -45,7 +71,10 @@ class BaseSubstackScraper(ABC):
             os.makedirs(self.pdf_save_dir, exist_ok=True)
 
         self.keywords = ["about", "archive", "podcast"]
-        self.post_urls = self.get_all_post_urls()
+        if specific_urls:
+            self.post_urls = resolve_substack_urls(specific_urls)
+        else:
+            self.post_urls = self.get_all_post_urls()
 
     def get_all_post_urls(self) -> List[str]:
         urls = self.fetch_urls_from_sitemap()
@@ -237,6 +266,13 @@ blockquote {{ border-left: 3px solid #ccc; padding-left: 16px; color: #555; }}
 
 class SubstackScraper(BaseSubstackScraper):
     """Scrapes free/public posts using requests."""
+    def __init__(self, base_substack_url: str, md_save_dir: str, html_save_dir: str,
+                 pdf_save_dir: str = "", export_pdf: bool = False,
+                 specific_urls: Optional[List[str]] = None):
+        super().__init__(base_substack_url, md_save_dir, html_save_dir,
+                         pdf_save_dir=pdf_save_dir, export_pdf=export_pdf,
+                         specific_urls=specific_urls)
+
     def get_url_soup(self, url: str) -> Optional[BeautifulSoup]:
         page = requests.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
@@ -249,7 +285,8 @@ class SubstackScraper(BaseSubstackScraper):
 class CookieSubstackScraper(BaseSubstackScraper):
     """Scrapes paid posts using a substack.sid session cookie (no browser needed)."""
     def __init__(self, base_substack_url: str, md_save_dir: str, html_save_dir: str,
-                 cookie: str = "", pdf_save_dir: str = "", export_pdf: bool = False):
+                 cookie: str = "", pdf_save_dir: str = "", export_pdf: bool = False,
+                 specific_urls: Optional[List[str]] = None):
         self.session = requests.Session()
         self.session.cookies.set("substack.sid", cookie, domain=".substack.com")
         self.session.headers.update({
@@ -257,7 +294,8 @@ class CookieSubstackScraper(BaseSubstackScraper):
                           "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         })
         super().__init__(base_substack_url, md_save_dir, html_save_dir,
-                         pdf_save_dir=pdf_save_dir, export_pdf=export_pdf)
+                         pdf_save_dir=pdf_save_dir, export_pdf=export_pdf,
+                         specific_urls=specific_urls)
 
     def get_url_soup(self, url: str) -> Optional[BeautifulSoup]:
         resp = self.session.get(url)
@@ -272,7 +310,8 @@ class SeleniumSubstackScraper(BaseSubstackScraper):
     """Scrapes paid posts using Selenium with Chrome (login via email/password)."""
     def __init__(self, base_substack_url: str, md_save_dir: str, html_save_dir: str,
                  headless: bool = True, chrome_path: str = "", chromedriver_path: str = "",
-                 pdf_save_dir: str = "", export_pdf: bool = False):
+                 pdf_save_dir: str = "", export_pdf: bool = False,
+                 specific_urls: Optional[List[str]] = None):
         from selenium import webdriver
         from selenium.webdriver.chrome.options import Options as ChromeOptions
         from selenium.webdriver.chrome.service import Service
@@ -295,7 +334,8 @@ class SeleniumSubstackScraper(BaseSubstackScraper):
         self._login()
 
         super().__init__(base_substack_url, md_save_dir, html_save_dir,
-                         pdf_save_dir=pdf_save_dir, export_pdf=export_pdf)
+                         pdf_save_dir=pdf_save_dir, export_pdf=export_pdf,
+                         specific_urls=specific_urls)
 
     def _login(self) -> None:
         from selenium.webdriver.common.by import By
@@ -346,8 +386,10 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Scrape Substack posts to Markdown, HTML, and PDF."
     )
-    parser.add_argument("-u", "--url", type=str, required=True,
+    parser.add_argument("-u", "--url", type=str, default="",
                         help="Base URL of the Substack (e.g. https://example.substack.com)")
+    parser.add_argument("--urls", type=str, default="",
+                        help="Comma-separated list of specific post URLs to scrape")
     parser.add_argument("-n", "--number", type=int, default=0,
                         help="Number of posts to scrape (0 = all)")
     parser.add_argument("-p", "--premium", action="store_true",
@@ -377,30 +419,59 @@ def main():
     args = parse_args()
     headless = args.headless and not args.no_headless
 
+    # Parse specific URLs if provided
+    specific_urls = None
+    if args.urls:
+        specific_urls = [u.strip() for u in args.urls.split(",") if u.strip()]
+
+    # Determine base URL: explicit --url, or infer from first specific URL
+    base_url = args.url
+    if not base_url and specific_urls:
+        # Try to infer base substack URL from specific URLs
+        first = specific_urls[0]
+        if "substack.com/@" in first:
+            # e.g. https://substack.com/@preparedresearch/p-123 -> preparedresearch
+            author = first.split("/@")[1].split("/")[0]
+            base_url = f"https://{author}.substack.com"
+        else:
+            parsed = urlparse(first)
+            base_url = f"{parsed.scheme}://{parsed.netloc}"
+        print(f"Inferred base URL: {base_url}")
+
+    if not base_url:
+        print("Error: provide --url or --urls")
+        return
+
+    if specific_urls:
+        print(f"Scraping {len(specific_urls)} specific posts...")
+
     if args.premium:
         if args.cookie or SUBSTACK_SID_COOKIE:
             cookie = SUBSTACK_SID_COOKIE
             if not cookie:
                 print("Error: --cookie flag used but SUBSTACK_SID_COOKIE is empty in config.py")
                 return
-            print(f"Using cookie-based auth for: {args.url}")
+            print(f"Using cookie-based auth for: {base_url}")
             scraper = CookieSubstackScraper(
-                args.url, md_save_dir=args.md_dir, html_save_dir=args.html_dir,
-                cookie=cookie, pdf_save_dir=args.pdf_dir, export_pdf=args.pdf
+                base_url, md_save_dir=args.md_dir, html_save_dir=args.html_dir,
+                cookie=cookie, pdf_save_dir=args.pdf_dir, export_pdf=args.pdf,
+                specific_urls=specific_urls
             )
         else:
-            print(f"Using Selenium login for: {args.url}")
+            print(f"Using Selenium login for: {base_url}")
             scraper = SeleniumSubstackScraper(
-                args.url, md_save_dir=args.md_dir, html_save_dir=args.html_dir,
+                base_url, md_save_dir=args.md_dir, html_save_dir=args.html_dir,
                 headless=headless, chrome_path=args.chrome_path,
                 chromedriver_path=args.chromedriver_path,
-                pdf_save_dir=args.pdf_dir, export_pdf=args.pdf
+                pdf_save_dir=args.pdf_dir, export_pdf=args.pdf,
+                specific_urls=specific_urls
             )
     else:
-        print(f"Scraping free posts from: {args.url}")
+        print(f"Scraping free posts from: {base_url}")
         scraper = SubstackScraper(
-            args.url, md_save_dir=args.md_dir, html_save_dir=args.html_dir,
-            pdf_save_dir=args.pdf_dir, export_pdf=args.pdf
+            base_url, md_save_dir=args.md_dir, html_save_dir=args.html_dir,
+            pdf_save_dir=args.pdf_dir, export_pdf=args.pdf,
+            specific_urls=specific_urls
         )
 
     scraper.scrape_posts(args.number)

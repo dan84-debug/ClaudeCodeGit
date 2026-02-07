@@ -6,6 +6,7 @@ Based on [timf34/Substack2Markdown](https://github.com/timf34/Substack2Markdown)
 - **Chrome** support (instead of Edge-only)
 - **PDF export** via `--pdf` flag
 - **Cookie-based auth** for paid posts (avoids captcha issues)
+- **Specific URLs** support via `--urls` (scrape individual posts instead of entire Substack)
 
 ## Setup
 
@@ -54,6 +55,23 @@ Set `EMAIL` and `PASSWORD` in `config.py`, then:
 python substack_scraper.py -u https://example.substack.com -p
 python substack_scraper.py -u https://example.substack.com -p --no-headless  # see the browser
 ```
+
+### Specific posts (by URL)
+
+You can scrape specific posts instead of an entire Substack:
+
+```bash
+# Free specific posts
+python substack_scraper.py --urls "https://example.substack.com/p/post-1,https://example.substack.com/p/post-2" --pdf
+
+# Paid specific posts (with Selenium login)
+python substack_scraper.py --urls "https://substack.com/@author/p-123,https://substack.com/@author/p-456" -p --pdf
+
+# Paid specific posts (with cookie auth)
+python substack_scraper.py --urls "https://substack.com/@author/p-123,https://substack.com/@author/p-456" -p --cookie --pdf
+```
+
+The base Substack URL is auto-inferred from the post URLs. You can also combine `--urls` with `-u` to set the base URL explicitly.
 
 ## Output
 
