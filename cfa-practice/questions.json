@@ -489,6 +489,479 @@
       "correctAnswer": "A",
       "explanation": "Fixed Rate = (1 - PV_final) / Σ(PV factors)\n\nUse PV factor for FINAL payment date in numerator.\nAnnualize by multiplying by payment frequency.",
       "keyFormulas": ["Fixed Rate = (1 - PV_final) / Σ(PV factors)"]
+    },
+    {
+      "id": 33,
+      "title": "Callable Bond Binomial Valuation",
+      "topic": "Fixed Income",
+      "question": "A 2-year bond with 5% coupon is callable at par ($100) at end of Year 1. Using binomial tree: Year 0 rate = 2%, Year 1 rates = 6.09% (up) or 4.08% (down). At Year 1 down node, bond value before call consideration = $100.88. What value should be used at this node?",
+      "choices": [
+        {"letter": "A", "text": "$100.88 (calculated value)"},
+        {"letter": "B", "text": "$100.00 (call price)"},
+        {"letter": "C", "text": "$105.00 (par + coupon)"},
+        {"letter": "D", "text": "$98.97 (up node value)"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "At Year 1 down node (4.08% rate):\n• Calculated value = 105/1.0408 = $100.88\n• Call price = $100\n• Since value > call price, issuer CALLS the bond\n• Use $100 (call price), not $100.88\n\nCallable bond value = min(calculated value, call price) at each node.",
+      "keyFormulas": ["Callable: Use min(calculated, call price)", "Issuer calls when value > call price"],
+      "yourMistake": "Used calculated value without considering the call option"
+    },
+    {
+      "id": 34,
+      "title": "Putable Bond Effective Convexity",
+      "topic": "Fixed Income",
+      "question": "A putable bond can be put at par at the end of Year 1. The effective convexity of this bond:",
+      "choices": [
+        {"letter": "A", "text": "Cannot be negative"},
+        {"letter": "B", "text": "Will become negative if rates fall below the coupon"},
+        {"letter": "C", "text": "Will become negative if rates rise above the coupon"},
+        {"letter": "D", "text": "Is always zero"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Putable vs Callable Convexity:\n\n• Option-free bond: Always positive convexity\n• Callable bond: CAN become negative (call limits upside when rates fall)\n• Putable bond: CANNOT be negative (put provides floor, preserves upside)\n\nThe put option provides downside protection without limiting upside = always positive convexity.",
+      "keyFormulas": ["Callable → Can have negative convexity", "Putable → Always positive convexity"],
+      "yourMistake": "Confused putable with callable bond convexity behavior"
+    },
+    {
+      "id": 35,
+      "title": "OAS and Interest Rate Volatility",
+      "topic": "Fixed Income",
+      "question": "A callable bond has OAS of 51 bps. If bond price stays unchanged but interest rate volatility increases from 20% to 25%, the OAS will:",
+      "choices": [
+        {"letter": "A", "text": "Decrease"},
+        {"letter": "B", "text": "Stay the same"},
+        {"letter": "C", "text": "Increase"},
+        {"letter": "D", "text": "Become negative"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Z-Spread = OAS + Option Cost\n\nFor callable bond when volatility increases:\n• Higher volatility → Higher option value → Higher option cost\n• If price unchanged, Z-spread unchanged\n• OAS = Z-spread - Option Cost\n• Option Cost ↑ means OAS ↓\n\nExample: Z-spread stays 100 bps, option cost goes from 49 to 60 bps → OAS drops from 51 to 40 bps.",
+      "keyFormulas": ["Z-Spread = OAS + Option Cost", "↑ Volatility → ↑ Option Cost → ↓ OAS"],
+      "yourMistake": "Thought higher volatility would increase OAS"
+    },
+    {
+      "id": 36,
+      "title": "Capped Floating Rate Bond",
+      "topic": "Fixed Income",
+      "question": "A floating rate bond pays the 1-year reference rate, capped at 5.0%. If interest rates can exceed 5% at some nodes in the tree, the bond's value is:",
+      "choices": [
+        {"letter": "A", "text": "Less than par"},
+        {"letter": "B", "text": "Equal to par"},
+        {"letter": "C", "text": "Greater than par"},
+        {"letter": "D", "text": "Cannot be determined"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Uncapped floater: Always equals par at reset dates\nCapped floater: Less than par when rates can exceed cap\n\nAt nodes where rates > 5% cap:\n• Bondholder receives only 5% instead of actual rate\n• Lost interest reduces bond value below par\n\nThe cap hurts the bondholder = lower value than uncapped.",
+      "keyFormulas": ["Uncapped floater = par at reset", "Capped floater < par when rates can exceed cap"],
+      "yourMistake": "Treated capped floater like uncapped"
+    },
+    {
+      "id": 37,
+      "title": "Bond Forward Rate Forecast",
+      "topic": "Fixed Income",
+      "question": "Li forecasts that in 3 years, the 2-year spot rate will equal the current 2-year spot rate (2.20%), but lower than the implied forward rate. Given this forecast, a 5-year zero-coupon bond today is:",
+      "choices": [
+        {"letter": "A", "text": "Undervalued"},
+        {"letter": "B", "text": "Fairly valued"},
+        {"letter": "C", "text": "Overvalued"},
+        {"letter": "D", "text": "Cannot determine"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "If Li forecasts future spot rate < implied forward rate:\n• Current pricing uses implied forwards (higher rates)\n• Actual future discounting will use lower rates\n• Bond's actual future value > currently priced value\n• Today's price is too LOW = UNDERVALUED\n\nFairly valued only if future spots = implied forwards.",
+      "keyFormulas": ["Future spot < implied forward → Bond undervalued", "Future spot > implied forward → Bond overvalued"],
+      "yourMistake": "Thought unchanged rate meant fairly valued"
+    },
+    {
+      "id": 38,
+      "title": "CDS Upfront Premium",
+      "topic": "Fixed Income",
+      "question": "CDS data: Credit spread = 4.0%, Duration = 4.5 years, Fixed coupon = 5.0%, Notional = $5M. The upfront premium received by the protection BUYER is closest to:",
+      "choices": [
+        {"letter": "A", "text": "$200,000"},
+        {"letter": "B", "text": "$225,000"},
+        {"letter": "C", "text": "$250,000"},
+        {"letter": "D", "text": "$0"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Upfront Premium = (Credit Spread - Fixed Coupon) × Duration × Notional\n= (4.0% - 5.0%) × 4.5 × $5M\n= -1.0% × 4.5 × $5M = -$225,000\n\nNegative = protection SELLER pays to protection BUYER\n(Because fixed coupon > spread, buyer will overpay through running payments)\n\nKey: Use DURATION (4.5), not maturity!",
+      "keyFormulas": ["Upfront = (Spread - Coupon) × Duration × Notional", "Use CDS duration, not maturity"],
+      "yourMistake": "Used maturity instead of duration in calculation"
+    },
+    {
+      "id": 39,
+      "title": "Stock Options Compensation Expense",
+      "topic": "FSA",
+      "question": "Company grants 4 million stock options. Fair value = EUR 1.8 per option. Options vest in 3 years, expire in 6 years. Annual compensation expense is:",
+      "choices": [
+        {"letter": "A", "text": "EUR 1.2 million"},
+        {"letter": "B", "text": "EUR 2.4 million"},
+        {"letter": "C", "text": "EUR 7.2 million"},
+        {"letter": "D", "text": "EUR 4.8 million"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Annual Expense = Total FV / Vesting Period\n\nTotal FV = 4M × EUR 1.8 = EUR 7.2M\nAnnual = EUR 7.2M / 3 years = EUR 2.4M\n\nUse VESTING period (3 years), NOT expiry (6 years).\nExpense recognized over SERVICE period when employee earns the options.",
+      "keyFormulas": ["Annual expense = Total FV / Vesting period", "Use vesting period, not option life"],
+      "yourMistake": "Divided by expiry term (6 years) instead of vesting period (3 years)"
+    },
+    {
+      "id": 40,
+      "title": "Temporal Method Ratio Analysis",
+      "topic": "FSA",
+      "question": "Under temporal method with average rate = 14,700 and current rate = 14,000. Which ratio remains UNCHANGED after translation?",
+      "choices": [
+        {"letter": "A", "text": "Current ratio"},
+        {"letter": "B", "text": "COGS to sales ratio"},
+        {"letter": "C", "text": "Sales to receivables ratio"},
+        {"letter": "D", "text": "Quick ratio"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Temporal Method Rates:\n• Sales → Average rate (14,700)\n• COGS → Historical/average when inventory purchased (14,700)\n• Receivables → Current rate (14,000)\n\nCOGS/Sales: Both use same rate (14,700) → UNCHANGED\nSales/Receivables: Different rates → Changes\nCurrent ratio: Mixed rates in numerator → Changes",
+      "keyFormulas": ["Temporal: Sales and COGS often use same rate", "Ratios unchanged when num and denom use same rate"],
+      "yourMistake": "Chose current ratio without analyzing which rates apply"
+    },
+    {
+      "id": 41,
+      "title": "SPE Consolidation IFRS",
+      "topic": "FSA",
+      "question": "Company creates SPE, invests EUR 10M, SPE borrows EUR 40M. Company influences SPE policy and absorbs losses. Compared to direct borrowing, the consolidated debt-to-assets ratio is:",
+      "choices": [
+        {"letter": "A", "text": "Lower with SPE structure"},
+        {"letter": "B", "text": "The same under either option"},
+        {"letter": "C", "text": "Higher with SPE structure"},
+        {"letter": "D", "text": "Cannot be determined"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "IFRS Consolidation (IFRS 10, SIC-12):\n\nSPE must be consolidated when:\n1. Ability to influence policy ✓\n2. Exposed to variable returns ✓\n\nBoth conditions met → SPE consolidated → Same as direct borrowing\n\nNo off-balance sheet benefit when control exists.",
+      "keyFormulas": ["Control + Variable returns = Must consolidate", "SPE structure provides no ratio benefit if consolidated"],
+      "yourMistake": "Thought SPE structure keeps debt off balance sheet"
+    },
+    {
+      "id": 42,
+      "title": "Accounting Warning Signs",
+      "topic": "FSA",
+      "question": "Which observation is most likely a WARNING SIGN for overstated net income?\n\n1. Receivables growth < Revenue growth\n2. Management compensation tied to financial results\n3. Depreciable lives shorter than peers",
+      "choices": [
+        {"letter": "A", "text": "Observation 1"},
+        {"letter": "B", "text": "Observation 2"},
+        {"letter": "C", "text": "Observation 3"},
+        {"letter": "D", "text": "All three"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Warning Sign Analysis:\n\n1. Receivables < Revenue growth → GOOD (quality revenue)\n2. Comp tied to results → WARNING (manipulation incentive)\n3. Shorter lives → CONSERVATIVE (accelerates expense)\n\nWarning signs would be:\n• Receivables > Revenue growth\n• Longer depreciable lives than peers\n• Compensation tied to results ✓",
+      "yourMistake": "Thought receivables growing slower was a warning (it's actually good)"
+    },
+    {
+      "id": 43,
+      "title": "Valuation Model Selection",
+      "topic": "Equity",
+      "question": "Firm A has stable dividend payout but plans expansion requiring dividends to EXCEED FCFE. It also has lower quality accounting disclosure. Most appropriate model:",
+      "choices": [
+        {"letter": "A", "text": "Free cash flow model"},
+        {"letter": "B", "text": "Residual income model"},
+        {"letter": "C", "text": "Dividend discount model"},
+        {"letter": "D", "text": "Earnings multiplier"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Model Selection:\n\n• DDM: When dividends bear consistent relationship to profitability\n• RI: When good quality accounting disclosure\n• FCFE/FCFF: When dividends significantly differ from FCFE\n\nFirm A:\n• Dividends > FCFE → DDM inappropriate\n• Low quality disclosure → RI inappropriate\n• FCFE/FCFF captures true cash-generating ability ✓",
+      "keyFormulas": ["Dividends ≠ FCFE → Use FCF model", "Low quality accounting → Don't use RI"],
+      "yourMistake": "Chose DDM based on stable payout history, ignoring expansion plans"
+    },
+    {
+      "id": 44,
+      "title": "DDM Valuation with Threshold",
+      "topic": "Equity",
+      "question": "Using DDM: Required return = 8%, Payout = 40%, Year 3 price = $21.50, EPS forecasts = $1.27, $1.62, $1.91. Current price = $19.00. Policy considers stock fairly valued if within 2% of fair value. Stock is:",
+      "choices": [
+        {"letter": "A", "text": "Undervalued"},
+        {"letter": "B", "text": "Fairly valued"},
+        {"letter": "C", "text": "Overvalued"},
+        {"letter": "D", "text": "Cannot determine"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Dividends (40% payout):\nD1 = $0.508, D2 = $0.648, D3 = $0.764\n\nV₀ = 0.508/1.08 + 0.648/1.08² + 0.764/1.08³ + 21.50/1.08³\n= $0.47 + $0.56 + $0.61 + $17.07 = $18.70\n\nDeviation = ($19.00 - $18.70) / $18.70 = 1.6%\n1.6% < 2% threshold → FAIRLY VALUED",
+      "keyFormulas": ["DDM: V = Σ D/(1+r)^t + P_T/(1+r)^T", "Check against threshold before concluding over/under"],
+      "yourMistake": "Concluded overvalued without checking 2% threshold"
+    },
+    {
+      "id": 45,
+      "title": "FCFF vs FCFE Model Selection",
+      "topic": "Equity",
+      "question": "Firm plans aggressive debt-financed growth with highly fluctuating net borrowing. Growth will decline from 25-35% to 2%. Most appropriate model:",
+      "choices": [
+        {"letter": "A", "text": "Two-stage FCFE"},
+        {"letter": "B", "text": "Three-stage FCFE"},
+        {"letter": "C", "text": "Three-stage FCFF"},
+        {"letter": "D", "text": "Two-stage DDM"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Two considerations:\n\n1. Number of stages: High growth → Declining → Stable = THREE stages\n\n2. FCFF vs FCFE:\n• Fluctuating net borrowing = changing leverage\n• FCFE unreliable with volatile debt\n• FCFF better when capital structure changing\n\nAnswer: Three-stage FCFF",
+      "keyFormulas": ["Changing leverage → Use FCFF not FCFE", "Multiple growth phases → Multi-stage model"],
+      "yourMistake": "Chose FCFE despite fluctuating leverage"
+    },
+    {
+      "id": 46,
+      "title": "FRA No-Arbitrage Rate",
+      "topic": "Derivatives",
+      "question": "Calculate 1×7 FRA rate. Given: 1-month rate = 0.60%, 7-month rate = 0.87%. The FRA rate is closest to:",
+      "choices": [
+        {"letter": "A", "text": "0.71%"},
+        {"letter": "B", "text": "0.91%"},
+        {"letter": "C", "text": "0.81%"},
+        {"letter": "D", "text": "1.02%"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "1×7 FRA: Lock in 6-month rate starting in 1 month\n\nFormula:\nFRA = {[1 + L₇×(210/360)] / [1 + L₁×(30/360)] - 1} / (180/360)\n\n= {[1 + 0.0087×(210/360)] / [1 + 0.0060×(30/360)] - 1} / 0.5\n= {1.005075 / 1.0005 - 1} / 0.5\n= 0.91%\n\nUse 7-month rate, not 6-month!",
+      "keyFormulas": ["1×7 FRA uses 1-month and 7-month rates", "End rate = start month + loan period"],
+      "yourMistake": "Used 6-month rate instead of 7-month rate"
+    },
+    {
+      "id": 47,
+      "title": "Reverse Carry Arbitrage",
+      "topic": "Derivatives",
+      "question": "Forward price is BELOW fair value. To exploit arbitrage, in addition to buying forward, you should:",
+      "choices": [
+        {"letter": "A", "text": "Borrow and buy the underlying"},
+        {"letter": "B", "text": "Borrow and short sell the underlying"},
+        {"letter": "C", "text": "Short sell underlying and invest proceeds at risk-free rate"},
+        {"letter": "D", "text": "Buy underlying and borrow"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Forward price < Fair value (forward is 'cheap'):\n\n1. Buy forward (lock in cheap purchase price)\n2. Short sell underlying (it's 'expensive' relatively)\n3. Invest proceeds at risk-free rate until settlement\n\nThis is REVERSE carry arbitrage.\n\nIf forward ABOVE fair value: Do opposite (borrow and buy underlying).",
+      "keyFormulas": ["Forward < Fair → Buy forward, short spot, invest", "Forward > Fair → Sell forward, buy spot, borrow"],
+      "yourMistake": "Confused with regular carry arbitrage (forward overpriced)"
+    },
+    {
+      "id": 48,
+      "title": "Backtesting Rolling Windows",
+      "topic": "Portfolio Management",
+      "question": "Backtesting a 10-factor strategy with risk parity weighting and monthly rebalancing. The model requires:",
+      "choices": [
+        {"letter": "A", "text": "Non-overlapping rolling windows"},
+        {"letter": "B", "text": "Two iterations of rolling-window procedure"},
+        {"letter": "C", "text": "Single iteration with longer lookback"},
+        {"letter": "D", "text": "Walk-forward optimization only"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Why TWO iterations needed:\n\n1. Iteration 1: Construct factor portfolios\n   - Rank stocks, form long/short portfolios\n\n2. Iteration 2: Calculate risk parity weights\n   - Estimate covariance matrix\n   - Compute risk parity weights\n\nBoth must use only historical data to avoid look-ahead bias.\n\nWindows SHOULD overlap for monthly rebalancing.",
+      "yourMistake": "Thought non-overlapping windows were required"
+    },
+    {
+      "id": 49,
+      "title": "Annual Parametric VaR",
+      "topic": "Portfolio Management",
+      "question": "Strategy has monthly mean = 0.5%, monthly std dev = 7.1%. 5% VaR = 1.65 std dev below mean. Annual 5% VaR is closest to:",
+      "choices": [
+        {"letter": "A", "text": "11.2%"},
+        {"letter": "B", "text": "34.6%"},
+        {"letter": "C", "text": "38.8%"},
+        {"letter": "D", "text": "24.6%"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Annualize parameters FIRST\n• Annual return = 12 × 0.5% = 6.0%\n• Annual std dev = √12 × 7.1% = 24.6%\n\nStep 2: Calculate VaR\n• VaR = -[6.0% - 1.65 × 24.6%]\n• = -[6.0% - 40.6%] = 34.6%\n\nMust annualize parameters before calculating VaR, not calculate monthly VaR then annualize.",
+      "keyFormulas": ["Annual σ = Monthly σ × √12", "Annual return = Monthly × 12", "Annualize params first, then calc VaR"],
+      "yourMistake": "Calculated monthly VaR without annualizing"
+    },
+    {
+      "id": 50,
+      "title": "Maximum Drawdown",
+      "topic": "Portfolio Management",
+      "question": "An equity market-neutral strategy is benchmarked against cash. Which risk measure is most appropriate as a complement to VaR?",
+      "choices": [
+        {"letter": "A", "text": "Relative VaR"},
+        {"letter": "B", "text": "Surplus at risk"},
+        {"letter": "C", "text": "Maximum drawdown"},
+        {"letter": "D", "text": "Tracking error"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Risk Measure Selection:\n\n• Relative VaR: Tracking error vs benchmark (useless with cash benchmark = zero volatility)\n• Surplus at risk: For pension fund surplus\n• Max drawdown: Worst peak-to-trough decline - key for absolute return strategies\n\nFor market-neutral strategy benchmarked to cash:\n• Relative VaR = regular VaR (no additional info)\n• Max drawdown captures downside risk for absolute return assessment",
+      "yourMistake": "Chose relative VaR but cash benchmark makes it redundant"
+    },
+    {
+      "id": 51,
+      "title": "Real Yields and GDP",
+      "topic": "Economics",
+      "question": "Country A: Nominal GDP change = +50 bps, Inflation change = +10 bps.\nCountry B: Nominal GDP change = +65 bps, Inflation change = +30 bps.\nWhich should experience larger increase in real yields?",
+      "choices": [
+        {"letter": "A", "text": "Country A"},
+        {"letter": "B", "text": "Country B"},
+        {"letter": "C", "text": "Same for both"},
+        {"letter": "D", "text": "Cannot determine"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Real GDP Growth = Nominal GDP - Inflation\n\nCountry A: +50 - 10 = +40 bps real growth\nCountry B: +65 - 30 = +35 bps real growth\n\nCountry A has larger real GDP growth increase → larger real yield increase.\n\nDon't be fooled by higher nominal GDP (Country B) - inflation matters!",
+      "keyFormulas": ["Real GDP = Nominal GDP - Inflation", "Higher real GDP growth → Higher real yields"],
+      "yourMistake": "Looked at nominal GDP instead of real GDP"
+    },
+    {
+      "id": 52,
+      "title": "Breakeven Inflation",
+      "topic": "Economics",
+      "question": "2-year nominal bond yield = 3.0%, 2-year real yield = 1.0%. The expected 2-year average inflation is most likely:",
+      "choices": [
+        {"letter": "A", "text": "Less than 2%"},
+        {"letter": "B", "text": "Equal to 2%"},
+        {"letter": "C", "text": "Greater than 2%"},
+        {"letter": "D", "text": "Exactly 2%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Breakeven Inflation (BEI) = Nominal - Real = 3.0% - 1.0% = 2.0%\n\nBUT: BEI ≠ Expected Inflation!\n\nBEI = Expected Inflation + Inflation Risk Premium\n\nTherefore:\nExpected Inflation = BEI - Risk Premium\nExpected Inflation < 2.0%\n\nThe nominal yield includes compensation for inflation uncertainty.",
+      "keyFormulas": ["BEI = Nominal yield - Real yield", "BEI = Expected inflation + Risk premium"],
+      "yourMistake": "Equated BEI with expected inflation"
+    },
+    {
+      "id": 53,
+      "title": "Convergence Theory",
+      "topic": "Economics",
+      "question": "If human capital externalities are large enough to make the production function linear (no diminishing returns), this is most consistent with:",
+      "choices": [
+        {"letter": "A", "text": "Non-convergence"},
+        {"letter": "B", "text": "Absolute convergence"},
+        {"letter": "C", "text": "Conditional convergence"},
+        {"letter": "D", "text": "Club convergence"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Convergence Theories:\n\n• Absolute: Diminishing returns → All converge\n• Conditional: Diminishing returns → Same parameters converge\n• Non-convergence: Constant returns → Rich stay ahead\n\nLarge externalities from human capital:\n→ Offsets diminishing returns\n→ Linear/constant returns production function\n→ No force pushing toward convergence\n→ NON-CONVERGENCE",
+      "keyFormulas": ["Diminishing returns → Convergence possible", "Constant returns → Non-convergence"],
+      "yourMistake": "Thought absolute convergence applies regardless of returns"
+    },
+    {
+      "id": 54,
+      "title": "Time Series Covariance Stationarity",
+      "topic": "Quant",
+      "question": "First-differenced time series has: constant mean, constant variance, and residual autocorrelations with no lag having |t-stat| > critical value. The series is:",
+      "choices": [
+        {"letter": "A", "text": "A random walk"},
+        {"letter": "B", "text": "Exhibiting seasonality"},
+        {"letter": "C", "text": "Covariance stationary"},
+        {"letter": "D", "text": "Non-stationary"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Covariance Stationarity Requirements:\n1. Mean is constant ✓\n2. Variance is constant ✓\n3. Covariance with itself is constant ✓ (residuals uncorrelated)\n\nNOT a random walk: AR coefficients are significant (past values help predict)\n\nNOT seasonality: Would show significant autocorrelation at lag 4 for quarterly data\n\nAll three conditions met = COVARIANCE STATIONARY",
+      "yourMistake": "Confused first-differenced stationary series with random walk"
+    },
+    {
+      "id": 55,
+      "title": "AR Model Forecast on First Differences",
+      "topic": "Quant",
+      "question": "AR(2) model on first-differenced sales growth. Recent sales growth: 18.9% (t=50), 2.0% (t=49), -11.5% (t=48). Intercept = 0.0024, b1 = -0.2021, b2 = -0.5272. Forecast for t=51 is closest to:",
+      "choices": [
+        {"letter": "A", "text": "-4.6%"},
+        {"letter": "B", "text": "8.6%"},
+        {"letter": "C", "text": "18.9%"},
+        {"letter": "D", "text": "29.7%"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Calculate CHANGES (not levels)\nΔSG₅₀ = 18.9% - 2.0% = 16.9%\nΔSG₄₉ = 2.0% - (-11.5%) = 13.5%\n\nStep 2: Forecast change\nΔSG₅₁ = 0.24% - 0.2021(16.9%) - 0.5272(13.5%)\n= 0.24% - 3.42% - 7.12% = -10.3%\n\nStep 3: Forecast level\nSG₅₁ = 18.9% + (-10.3%) = 8.6%",
+      "keyFormulas": ["First difference model: Use CHANGES as inputs", "Final forecast = Current level + Forecasted change"],
+      "yourMistake": "Used levels instead of changes in the AR formula"
+    },
+    {
+      "id": 56,
+      "title": "ML Algorithm - Soft Margin SVM",
+      "topic": "Quant",
+      "question": "For classification where data is not linearly separable and you want to avoid overfitting, the most suitable algorithm is:",
+      "choices": [
+        {"letter": "A", "text": "Non-linear SVM"},
+        {"letter": "B", "text": "Unconstrained CART"},
+        {"letter": "C", "text": "SVM with soft margin classification"},
+        {"letter": "D", "text": "K-nearest neighbors"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Algorithm Comparison:\n\n• Non-linear SVM: Handles non-linearity but HIGH overfitting risk\n• Unconstrained CART: Can perfectly fit → HIGH overfitting\n• Soft margin SVM: Handles non-linearity + LOW overfitting (penalty for misclassification)\n\nSoft margin adds penalty for misclassified observations, optimizing trade-off between margin width and classification error.",
+      "keyFormulas": ["Soft margin = Non-linearity handling + Overfitting prevention", "Penalty parameter controls bias-variance tradeoff"],
+      "yourMistake": "Chose non-linear SVM without considering overfitting"
+    },
+    {
+      "id": 57,
+      "title": "R-squared and Adjusted R-squared",
+      "topic": "Quant",
+      "question": "Model 2 has two variables. Model 3 adds a third variable with t-stat = 1.92 (critical value = 2.0). Compared to Model 2, Model 3 has:",
+      "choices": [
+        {"letter": "A", "text": "Lower R² and higher adjusted R²"},
+        {"letter": "B", "text": "Higher R² and lower adjusted R²"},
+        {"letter": "C", "text": "Higher R² and higher adjusted R²"},
+        {"letter": "D", "text": "Lower R² and lower adjusted R²"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Key Rules:\n1. Adding ANY variable → R² increases (or stays same)\n2. If |t-stat| > 1.0 → Adjusted R² increases\n\nAnalysis:\n• New variable t-stat = 1.92 > 1.0\n• R² ↑ (always increases with more variables)\n• Adjusted R² ↑ (because |t| > 1)\n\nNote: Even though p > 0.05 (not significant at 5%), adjusted R² still increases because |t| > 1.",
+      "keyFormulas": ["|t| > 1.0 → Adj R² increases", "Adding variable → R² always increases"],
+      "yourMistake": "Thought insignificant variable would lower adjusted R²"
+    },
+    {
+      "id": 58,
+      "title": "Liquid Alternatives vs Hedge Funds",
+      "topic": "Alternatives",
+      "question": "Investor wants: (1) Lower incentive fees than traditional HFs, (2) More frequent redemptions than traditional HFs. Do liquid alternatives meet these requirements?",
+      "choices": [
+        {"letter": "A", "text": "Yes"},
+        {"letter": "B", "text": "No, fail requirement 1"},
+        {"letter": "C", "text": "No, fail requirement 2"},
+        {"letter": "D", "text": "No, fail both requirements"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Liquid Alternatives vs Traditional Hedge Funds:\n\n| Feature | Liquid Alts | Traditional HF |\n|---------|-------------|----------------|\n| Incentive fee | NONE (prohibited) | ~20% |\n| Redemption | DAILY | Periodic/lockup |\n\nBoth requirements met:\n1. No incentive fee < 20% ✓\n2. Daily redemption > periodic ✓",
+      "keyFormulas": ["Liquid alts: No incentive fees, daily redemption", "Traditional HF: 2/20 fee, lockup periods"]
+    },
+    {
+      "id": 59,
+      "title": "Multi-Strategy vs Fund of Funds",
+      "topic": "Alternatives",
+      "question": "Compared to fund of funds, multi-strategy hedge funds most likely have:",
+      "choices": [
+        {"letter": "A", "text": "Higher returns"},
+        {"letter": "B", "text": "Lower leverage"},
+        {"letter": "C", "text": "Fewer gates on redemptions"},
+        {"letter": "D", "text": "Lower volatility"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Multi-Strategy vs Fund of Funds:\n\n| Feature | Multi-Strategy | FoF |\n|---------|----------------|-----|\n| Returns | HIGHER (but more volatile) | Lower |\n| Leverage | Higher | Lower |\n| Gates | Often has gates | Fewer gates |\n\nMulti-strategy outperforms due to:\n• No additional layer of fees\n• Faster tactical allocation\n• More flexibility",
+      "yourMistake": "Confused leverage or gate characteristics"
+    },
+    {
+      "id": 60,
+      "title": "Hedge Fund Strategy for Drawdown",
+      "topic": "Alternatives",
+      "question": "Pension plan wants to limit drawdowns when combined with stock/bond portfolio. Best hedge fund strategy:",
+      "choices": [
+        {"letter": "A", "text": "Event-driven"},
+        {"letter": "B", "text": "Global macro"},
+        {"letter": "C", "text": "Relative value"},
+        {"letter": "D", "text": "Long/short equity"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Strategies with LOWEST Drawdowns When Combined:\n✓ Global macro\n✓ Systematic futures\n✓ Merger arbitrage\n✓ Equity market-neutral\n\nHIGH Drawdown Strategies:\n✗ Event-driven\n✗ Relative value\n✗ Long/short equity\n\nGlobal macro provides risk mitigation because it's opportunistic, not exposed to same risks, and liquid during stress.",
+      "keyFormulas": ["Global macro = Low correlation + Liquid + Opportunistic", "Best for drawdown reduction"]
+    },
+    {
+      "id": 61,
+      "title": "Fair Dealing - Contrary Recommendation",
+      "topic": "Ethics",
+      "question": "Client asks to BUY a stock. Portfolio manager knows firm just issued SELL recommendation. Manager executes without informing client. This is:",
+      "choices": [
+        {"letter": "A", "text": "Not a violation"},
+        {"letter": "B", "text": "Violation - should have disclosed contrary recommendation"},
+        {"letter": "C", "text": "Violation - should have refused the order"},
+        {"letter": "D", "text": "Violation - should have waited 24 hours"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Standard III(B) Fair Dealing:\n\n'If clients place orders contrary to a current recommendation, they should be advised of the changed recommendation before the order is accepted.'\n\nClient wanted to BUY, firm recommends SELL → Contrary order\nManager should have informed client of the sell recommendation BEFORE executing.\n\nClient's expertise doesn't excuse the requirement to disclose.",
+      "keyFormulas": ["Contrary order = Must disclose current recommendation", "Inform BEFORE accepting order"],
+      "yourMistake": "Assumed client expertise meant no disclosure needed"
+    },
+    {
+      "id": 62,
+      "title": "ETF Holding Period Cost",
+      "topic": "Alternatives",
+      "question": "ETF data: Management fee = 0.50%, One-way commission = 0.10%, Bid-ask spread = 0.20%. Expected 1-year holding period cost is:",
+      "choices": [
+        {"letter": "A", "text": "0.80%"},
+        {"letter": "B", "text": "0.90%"},
+        {"letter": "C", "text": "1.10%"},
+        {"letter": "D", "text": "0.60%"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Holding Period Cost = Round-trip Trading Cost + Management Fee\n\nRound-trip Trading Cost:\n= (One-way commission × 2) + (½ × Bid-ask spread × 2)\n= (0.10% × 2) + (0.10% × 2)\n= 0.20% + 0.20% = 0.40%\n\nTotal = 0.40% + 0.50% = 0.90%\n\nNote: Pay half spread on buy, half on sell = full spread for round trip.",
+      "keyFormulas": ["Round-trip = 2×commission + spread", "Total cost = Trading + Management"],
+      "yourMistake": "Used one-way commission instead of round-trip"
     }
   ]
 }
