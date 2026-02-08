@@ -405,16 +405,17 @@
       "id": 27,
       "title": "Commodity Futures Total Return",
       "topic": "Alternatives",
-      "question": "An analyst calculates commodity futures return. The market is in backwardation (near price > far price). Total return includes which components?",
+      "question": "An analyst calculates the total return on a commodity futures investment over 4 months.\n\nGiven:\n• Previous spot price: $100\n• Current spot price: $105\n• Near-term futures closing price: $104\n• Far-term futures closing price: $100\n• Risk-free rate: 3% annual\n\nThe total return on the investment is closest to:",
       "choices": [
-        {"letter": "A", "text": "Price return only"},
-        {"letter": "B", "text": "Price return + roll return"},
-        {"letter": "C", "text": "Price return + roll return + collateral return"},
-        {"letter": "D", "text": "Price return + convenience yield"}
+        {"letter": "A", "text": "5.00%"},
+        {"letter": "B", "text": "9.85%"},
+        {"letter": "C", "text": "8.85%"},
+        {"letter": "D", "text": "6.00%"}
       ],
-      "correctAnswer": "C",
-      "explanation": "Total Return = Price Return + Roll Return + Collateral Return\n\n• Price Return: Change in spot price\n• Roll Return: (Near - Far)/Near → POSITIVE in backwardation\n• Collateral Return: Interest earned on margin = Rf × (period/12)\n\nBackwardation = near > far = positive roll return (you sell high, buy low when rolling)",
-      "keyFormulas": ["Total = Price + Roll + Collateral", "Backwardation → Positive roll; Contango → Negative roll"]
+      "correctAnswer": "B",
+      "explanation": "Total Return = Price Return + Roll Return + Collateral Return\n\nStep 1: Price Return\n= (Current price – Previous price) / Previous price\n= ($105 – $100) / $100 = 5.00%\n\nStep 2: Roll Return\n= (Near-term futures – Far-term futures) / Near-term futures\n= ($104 – $100) / $104 = 3.85%\n(Positive because market is in backwardation: near > far)\n\nStep 3: Collateral Return\n= Risk-free rate × (period / 12)\n= 3% × (4/12) = 1.00%\n\nStep 4: Total Return\n= 5.00% + 3.85% + 1.00% = 9.85%\n\nTrap answers:\n• A (5.00%): Price return only, forgot roll and collateral\n• C (8.85%): Forgot collateral return\n• D (6.00%): Price + collateral, forgot roll return",
+      "keyFormulas": ["Price Return = (Current – Previous) / Previous", "Roll Return = (Near – Far) / Near", "Collateral Return = Rf × (months/12)", "Total = Price + Roll + Collateral"],
+      "yourMistake": "Forgot one of the three components (likely roll return or collateral return)"
     },
     {
       "id": 28,
