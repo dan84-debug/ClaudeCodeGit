@@ -1274,7 +1274,7 @@
       "id": 83,
       "title": "Logistic Regression: Probability of Default",
       "topic": "Quant",
-      "question": "Helmer builds a logistic regression model to predict default probability for junk bond issuers:\n\nln(P/(1–P)) = b₀ + b₁×LEVERAGE + b₂×COVERAGE\n\nCoefficients: Intercept (b₀) = –20.0, LEVERAGE (b₁) = 65.5, COVERAGE (b₂) = –35.0\n\nACME has LEVERAGE = 0.8 and COVERAGE = 0.9. The probability that ACME defaults within the next year is closest to:",
+      "question": "Helmer builds a logistic regression model to predict the 1-year probability of default for junk bond issuers using two independent variables: the ratio of debt to total capital (LEVERAGE) and the interest coverage ratio (COVERAGE). The estimated coefficients are:\n\nIntercept: –20.0\nLEVERAGE: 65.5\nCOVERAGE: –35.0\n\nACME is an issuer with LEVERAGE of 0.8 and COVERAGE of 0.9. Based on the logistic regression model, the probability that ACME defaults within the next year is closest to:",
       "choices": [
         {"letter": "A", "text": "29%"},
         {"letter": "B", "text": "71%"},
