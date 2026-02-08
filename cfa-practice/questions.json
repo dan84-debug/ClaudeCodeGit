@@ -550,7 +550,7 @@
         {"letter": "D", "text": "Cannot be determined"}
       ],
       "correctAnswer": "A",
-      "explanation": "UNCAPPED FLOATER:\n• Pays the full reference rate at each reset date\n• Bondholders receive whatever the current rate is\n• Value always equals par at reset dates because coupon adjusts fully to market rates\n\nCAPPED FLOATER (5% cap in this case):\n• Has a maximum coupon rate of 5%\n• When market rates exceed 5%, bondholder only receives 5% instead of actual higher rate\n• This creates a loss of interest income relative to an uncapped floater\n\nWHY IT'S WORTH LESS THAN PAR:\nAt nodes where interest rates can exceed the 5% cap:\n1. Lost interest income: If reference rate is 7%, bondholder receives only 5% instead of 7%\n2. This reduces the bond's value below par because cash flows are now lower than what would be received from an uncapped floater\n3. The cap essentially hurts the bondholder = it's a benefit to the issuer but a cost to the investor\n\nKey insight: The cap is like selling a call option on interest rates to the issuer.",
+      "explanation": "Uncapped Floater:\n• Pays the full reference rate at each reset date\n• Bondholders receive whatever the current rate is\n• Value always equals par at reset dates because coupon adjusts fully to market rates\n\nCapped Floater (5% cap in this case):\n• Has a maximum coupon rate of 5%\n• When market rates exceed 5%, bondholder only receives 5% instead of actual higher rate\n• This creates a loss of interest income relative to an uncapped floater\n\nWhy it's worth less than par:\nAt nodes where interest rates can exceed the 5% cap:\n1. Lost interest income: If reference rate is 7%, bondholder receives only 5% instead of 7%\n2. This reduces the bond's value below par because cash flows are now lower than what would be received from an uncapped floater\n3. The cap essentially hurts the bondholder = it's a benefit to the issuer but a cost to the investor\n\nKey insight: The cap is like selling a call option on interest rates to the issuer.",
       "keyFormulas": ["Uncapped floater = par at reset", "Capped floater < par when rates can exceed cap", "Cap benefit to issuer = cost to bondholder"],
       "yourMistake": "Treated capped floater like uncapped - forgot that the cap limits upside for bondholder when rates rise"
     },
@@ -653,7 +653,7 @@
       "id": 43,
       "title": "Valuation Model Selection",
       "topic": "Equity",
-      "question": "Firm A has stable dividend payout but plans expansion requiring dividends to EXCEED FCFE. It also has lower quality accounting disclosure. Most appropriate model:",
+      "question": "Firm A has stable dividend payout but plans expansion requiring dividends to exceed FCFE. It also has lower quality accounting disclosure. Most appropriate model:",
       "choices": [
         {"letter": "A", "text": "Free cash flow model"},
         {"letter": "B", "text": "Residual income model"},
@@ -661,9 +661,9 @@
         {"letter": "D", "text": "Earnings multiplier"}
       ],
       "correctAnswer": "A",
-      "explanation": "Model Selection:\n\n• DDM: When dividends bear consistent relationship to profitability\n• RI: When good quality accounting disclosure\n• FCFE/FCFF: When dividends significantly differ from FCFE\n\nFirm A:\n• Dividends > FCFE → DDM inappropriate\n• Low quality disclosure → RI inappropriate\n• FCFE/FCFF captures true cash-generating ability ✓",
-      "keyFormulas": ["Dividends ≠ FCFE → Use FCF model", "Low quality accounting → Don't use RI"],
-      "yourMistake": "Chose DDM based on stable payout history, ignoring expansion plans"
+      "explanation": "Model Selection Framework:\n\nDividend Discount Model (DDM):\n• Use when: Dividends bear a consistent relationship to company's profitability\n• Use when: Company has stable dividend policy that reflects earnings capacity\n• Don't use when: Dividends significantly differ from FCFE (like during expansion)\n\nResidual Income Model:\n• Use when: Company has high quality, transparent accounting disclosure\n• Use when: Dividends are not paid or are unpredictable\n• Don't use when: Accounting quality is questionable or aggressive\n\nFree Cash Flow Models (FCFE/FCFF):\n• Use when: Dividends significantly differ from FCFE\n• Use when: Company is undergoing major capital structure changes\n• Captures true cash-generating ability regardless of dividend policy\n\nApplying to Firm A:\n• Dividends > FCFE (expansion funded by borrowing or equity) → DDM inappropriate because dividends don't reflect sustainable cash generation\n• Lower quality accounting disclosure → Residual income inappropriate because it relies on clean accounting numbers\n• Free cash flow model is most appropriate - captures actual cash flows regardless of dividend policy or accounting choices",
+      "keyFormulas": ["DDM: Stable dividends = f(profitability)", "RI: Requires quality accounting", "FCF: Use when Div ≠ FCFE"],
+      "yourMistake": "Chose DDM based on stable payout history, ignoring that planned expansion means dividends will exceed FCFE"
     },
     {
       "id": 44,
