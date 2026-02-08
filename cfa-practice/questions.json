@@ -1184,15 +1184,15 @@
       "id": 77,
       "title": "Binomial Tree Calibration: Adjusting Forward Rates",
       "topic": "Fixed Income",
-      "question": "Susanne Blythe is calibrating a binomial interest rate tree to price a default-free 3-year bond with a 3.5% annual coupon priced at par ($100). Interest rate volatility is 10%. The 1-year forward rates at Year 0 and Year 1 are correct. She calculates the bond's value using the tree and gets $100.1684.\n\nThe 1-year forward rates at Year 2 in the tree are: 5.3534% (high-high), 4.3830% (high-low), 3.5885% (low-low).\nYear 1 rates: 3.8784% (high), 3.1754% (low). Year 0 rate: 2.4500%.\n\nIn the next iteration, Blythe should:",
+      "question": "Susanne Blythe is calibrating a binomial interest rate tree to price a default-free 3-year bond with a 3.5% annual coupon priced at par ($100). Interest rate volatility is 10% and branching from each node to a high or low state occurs with equal probability (0.5). The 1-year forward rates at Year 0 and Year 1 are confirmed correct. She needs to determine whether the Year 2 rates require adjustment.\n\nThe binomial tree rates are:\n\nYear 0: 2.4500%\nYear 1: 3.8784% (up), 3.1754% (down)\nYear 2: 5.3534% (up-up), 4.3830% (up-down), 3.5885% (down-down)\n\nUsing backward induction, calculate the bond's value at Year 0. Based on your result, in the next calibration iteration Blythe should:",
       "choices": [
-        {"letter": "A", "text": "Decrease the 1-year forward rates at Year 2"},
-        {"letter": "B", "text": "Leave the 1-year forward rates at Year 2 unchanged"},
-        {"letter": "C", "text": "Increase the 1-year forward rates at Year 2"}
+        {"letter": "A", "text": "Decrease the 1-year forward rates at Year 2 (calculated value is below $100)"},
+        {"letter": "B", "text": "Leave the 1-year forward rates at Year 2 unchanged (calculated value equals $100)"},
+        {"letter": "C", "text": "Increase the 1-year forward rates at Year 2 (calculated value is above $100)"}
       ],
       "correctAnswer": "C",
-      "explanation": "The calculated bond value ($100.1684) is ABOVE the market price ($100.00).\n\nRelationship: Higher discount rates → Lower bond value\n\nSince the model overvalues the bond, the forward rates at Year 2 need to be INCREASED to bring the calculated value down to match the market price of $100.\n\nVerification of current calculation:\nNode 3-1: (3.5 + 100)/1.053534 = $98.2408\nNode 3-2: (3.5 + 100)/1.043830 = $99.1541\nNode 3-3: (3.5 + 100)/1.035885 = $99.9146\nNode 2-1: [3.5 + 0.5(98.2408) + 0.5(99.1541)]/1.038784 = $98.3818\nNode 2-2: [3.5 + 0.5(99.1541) + 0.5(99.9146)]/1.031754 = $99.8633\nNode 1-1: [3.5 + 0.5(98.3818) + 0.5(99.8633)]/1.024500 = $100.1684\n\nSince $100.1684 > $100.00, rates must increase.",
-      "keyFormulas": ["Calculated value > Market price → Increase forward rates", "Calculated value < Market price → Decrease forward rates", "Higher rates → Lower present values → Lower bond price"],
+      "explanation": "Backward induction from Year 3 to Year 0:\n\nStep 1: Year 3 cash flow at all terminal nodes = coupon + par = $103.50\n\nStep 2: Discount back to Year 2 nodes\nNode UU: 103.50 / 1.053534 = $98.2408\nNode UD: 103.50 / 1.043830 = $99.1541\nNode DD: 103.50 / 1.035885 = $99.9146\n\nStep 3: Year 1 node values (add coupon, take probability-weighted average, discount)\nNode U: [3.5 + 0.5(98.2408) + 0.5(99.1541)] / 1.038784\n= [3.5 + 98.6975] / 1.038784 = $98.3818\nNode D: [3.5 + 0.5(99.1541) + 0.5(99.9146)] / 1.031754\n= [3.5 + 99.5344] / 1.031754 = $99.8633\n\nStep 4: Year 0 value\n[3.5 + 0.5(98.3818) + 0.5(99.8633)] / 1.024500\n= [3.5 + 99.1226] / 1.024500 = $100.1684\n\nResult: $100.1684 > $100.00 (market price)\nThe model overvalues the bond → Forward rates at Year 2 must be INCREASED to lower the calculated value.",
+      "keyFormulas": ["Backward induction: Value = [Coupon + 0.5(V_up) + 0.5(V_down)] / (1 + rate)", "At terminal nodes: Cash flow = Coupon + Par", "Calculated > Market → Increase rates; Calculated < Market → Decrease rates"],
       "yourMistake": "May have confused the direction — if bond value is too high, rates need to go UP (inverse relationship)"
     },
     {
