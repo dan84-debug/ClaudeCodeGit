@@ -4,17 +4,17 @@
       "id": 1,
       "title": "Credit Migration Expected Return",
       "topic": "Fixed Income",
-      "question": "Mark Jackson holds an A-rated bond with YTM of 1.0% and modified duration of 4.5. Using a credit transition matrix, the probability-weighted expected spread change results in an expected price return of -0.14%. What is the expected 1-year total return?",
+      "question": "Mark Jackson holds a BB-rated bond with YTM of 4.0% and modified duration of 5.0. Based on the credit transition matrix, there is a 50% probability of upgrading to BBB (spread narrows by 40 bps) and a 50% probability of downgrading to B (spread widens by 100 bps). What is the expected 1-year total return?",
       "choices": [
-        {"letter": "A", "text": "-0.14%"},
-        {"letter": "B", "text": "0.86%"},
-        {"letter": "C", "text": "1.00%"},
-        {"letter": "D", "text": "4.50%"}
+        {"letter": "A", "text": "4.00%"},
+        {"letter": "B", "text": "2.50%"},
+        {"letter": "C", "text": "-1.50%"},
+        {"letter": "D", "text": "5.50%"}
       ],
       "correctAnswer": "B",
-      "explanation": "Expected total return = YTM + Expected Price Return\n\nYou correctly calculated the expected price return of -0.14%, but forgot to add the YTM.\n\n• Expected price return: -0.14%\n• YTM: +1.00%\n• Total return: 0.86%\n\nChoice A is the trap answer for people who forget total return includes both yield AND price change.",
-      "keyFormulas": ["Expected Total Return = YTM + Σ(Probability × -Duration × Spread Change)", "Use ROW of current rating from transition matrix for probabilities"],
-      "yourMistake": "Only calculated expected price return, forgot to add YTM"
+      "explanation": "Step 1: Calculate price return for EACH scenario\n\nUpgrade to BBB (spread narrows 40 bps):\nReturn = -Duration × Δspread = -5.0 × (-0.40%) = +2.00%\n\nDowngrade to B (spread widens 100 bps):\nReturn = -Duration × Δspread = -5.0 × (+1.00%) = -5.00%\n\nStep 2: Probability-weight the scenario returns\nE(price return) = 0.50 × (+2.00%) + 0.50 × (-5.00%)\n= +1.00% - 2.50% = -1.50%\n\nStep 3: Add YTM for total expected return\nTotal return = YTM + E(price return)\n= 4.0% + (-1.50%) = 2.50%\n\nTrap answers:\n• A (4.00%): Forgot to calculate price impact from migration\n• C (-1.50%): Only calculated price return, forgot to add YTM\n• D (5.50%): Added price return instead of subtracting",
+      "keyFormulas": ["Each scenario: Return = -Duration × Δspread", "E(price return) = Σ(Prob × scenario return)", "Total return = YTM + E(price return)"],
+      "yourMistake": "Either forgot to weight the migrations, forgot YTM, or got the sign wrong on spread widening"
     },
     {
       "id": 2,
@@ -143,17 +143,17 @@
       "id": 10,
       "title": "DB Pension Expense US GAAP",
       "topic": "FSA",
-      "question": "Given: Service cost = $200, Interest cost = $2,940, Expected return on assets = $3,120, Actual return = $2,700. Under US GAAP, what return figure is used in pension expense?",
+      "question": "Given: Service cost = $200, Interest cost = $2,940, Expected return on assets = $3,120, Actual return = $2,700. Calculate the US GAAP pension expense (ignoring amortizations):",
       "choices": [
-        {"letter": "A", "text": "Actual return ($2,700)"},
-        {"letter": "B", "text": "Expected return ($3,120)"},
-        {"letter": "C", "text": "Risk-free rate"},
-        {"letter": "D", "text": "Discount rate on obligation"}
+        {"letter": "A", "text": "$20"},
+        {"letter": "B", "text": "$440"},
+        {"letter": "C", "text": "$2,740"},
+        {"letter": "D", "text": "-$180"}
       ],
-      "correctAnswer": "B",
-      "explanation": "US GAAP Pension Expense = Service + Interest - Expected Return ± Amortizations\n= $200 + $2,940 - $3,120 = $20\n\nIFRS uses Net Interest (same discount rate for both sides).\n\nUS GAAP uses management's expected return. Actual vs expected difference goes to OCI.",
-      "keyFormulas": ["US GAAP: Service + Interest - Expected Return", "IFRS: Service + Net Interest"],
-      "yourMistake": "Used actual return instead of expected return"
+      "correctAnswer": "A",
+      "explanation": "US GAAP Pension Expense = Service Cost + Interest Cost - Expected Return on Assets (± Amortizations)\n\nCalculation:\n= $200 + $2,940 - $3,120\n= $20\n\nKey differences between US GAAP and IFRS:\n• US GAAP uses management's expected return on plan assets\n• IFRS uses Net Interest approach (same discount rate applied to both PBO and plan assets)\n• Under US GAAP, the difference between actual and expected return goes to OCI\n\nWrong answers:\n• B ($440): Would result from using actual return instead of expected ($200 + $2,940 - $2,700)\n• C ($2,740): Just Service + Interest, forgot to subtract expected return\n• D (-$180): Calculation error",
+      "keyFormulas": ["US GAAP: Service + Interest - Expected Return ± Amortizations", "IFRS: Service + Net Interest (discount rate × net pension liability)"],
+      "yourMistake": "Used actual return instead of expected return, or forgot a component"
     },
     {
       "id": 11,
@@ -204,17 +204,17 @@
       "id": 14,
       "title": "Finite-Horizon Residual Income",
       "topic": "Equity",
-      "question": "Using the finite-horizon RI model to value PrimaNet:\n\n• Current book value (B₀): €18.50\n• PV of residual income Year 1: €2.25\n• PV of residual income Year 2: €2.00\n• Forecasted book value at end of Year 2: €23.75\n• Forecasted market price at end of Year 2: €26.50\n• Cost of equity: 12.8%\n• WACC: 6.5%\n\nPrimaNet's intrinsic value per share is closest to:",
+      "question": "Using the finite-horizon RI model to value PrimaNet:\n\n• Current book value (B₀): €18.50\n• Residual income Year 1: €2.54\n• Residual income Year 2: €2.54\n• Forecasted book value at end of Year 2: €23.75\n• Forecasted market price at end of Year 2: €26.50\n• Cost of equity: 12.8%\n• WACC: 6.5%\n\nPrimaNet's intrinsic value per share is closest to:",
       "choices": [
         {"letter": "A", "text": "€24.91"},
         {"letter": "B", "text": "€25.17"},
-        {"letter": "C", "text": "€25.50"},
+        {"letter": "C", "text": "€27.33"},
         {"letter": "D", "text": "€22.75"}
       ],
       "correctAnswer": "A",
-      "explanation": "V₀ = B₀ + Σ PV(RI) + PV(Terminal Premium)\n\nStep 1: Terminal Premium = Market Price - Book Value\n= €26.50 - €23.75 = €2.75\n\nStep 2: Discount premium at COST OF EQUITY (not WACC!)\nPV = €2.75 / (1.128)² = €2.75 / 1.272 = €2.16\n\nStep 3: Add it all up\nV₀ = €18.50 + €2.25 + €2.00 + €2.16 = €24.91\n\nTrap answer B (€25.17) uses WACC to discount: €2.75 / (1.065)² = €2.42",
-      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T", "Equity models → Discount at cost of equity, NOT WACC"],
-      "yourMistake": "Used WACC (6.5%) to discount terminal premium instead of cost of equity (12.8%)"
+      "explanation": "V₀ = B₀ + Σ PV(RI) + PV(Terminal Premium)\n\nStep 1: Discount each year's RI at cost of equity\nPV of RI Year 1 = €2.54 / (1.128)¹ = €2.25\nPV of RI Year 2 = €2.54 / (1.128)² = €2.00\n\nStep 2: Calculate Terminal Premium = Market Price - Book Value\n= €26.50 - €23.75 = €2.75\n\nStep 3: Discount terminal premium at cost of equity (not WACC!)\nPV = €2.75 / (1.128)² = €2.75 / 1.272 = €2.16\n\nStep 4: Add it all up\nV₀ = €18.50 + €2.25 + €2.00 + €2.16 = €24.91\n\nTrap answers:\n• B (€25.17): Uses WACC to discount terminal premium: €2.75 / (1.065)² = €2.42\n• C (€27.33): Forgot to discount the RIs, just added raw values: €18.50 + €2.54 + €2.54 + €2.75 = €26.33",
+      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T", "Equity models → Discount at cost of equity, NOT WACC", "RI must be discounted to PV before adding"],
+      "yourMistake": "Either forgot to discount RI values, or used WACC instead of cost of equity"
     },
     {
       "id": 15,
@@ -405,16 +405,17 @@
       "id": 27,
       "title": "Commodity Futures Total Return",
       "topic": "Alternatives",
-      "question": "An analyst calculates commodity futures return. The market is in backwardation (near price > far price). Total return includes which components?",
+      "question": "An analyst calculates the total return on a commodity futures investment over 4 months.\n\nGiven:\n• Previous spot price: $100\n• Current spot price: $105\n• Near-term futures closing price: $104\n• Far-term futures closing price: $100\n• Risk-free rate: 3% annual\n\nThe total return on the investment is closest to:",
       "choices": [
-        {"letter": "A", "text": "Price return only"},
-        {"letter": "B", "text": "Price return + roll return"},
-        {"letter": "C", "text": "Price return + roll return + collateral return"},
-        {"letter": "D", "text": "Price return + convenience yield"}
+        {"letter": "A", "text": "5.00%"},
+        {"letter": "B", "text": "9.85%"},
+        {"letter": "C", "text": "8.85%"},
+        {"letter": "D", "text": "6.00%"}
       ],
-      "correctAnswer": "C",
-      "explanation": "Total Return = Price Return + Roll Return + Collateral Return\n\n• Price Return: Change in spot price\n• Roll Return: (Near - Far)/Near → POSITIVE in backwardation\n• Collateral Return: Interest earned on margin = Rf × (period/12)\n\nBackwardation = near > far = positive roll return (you sell high, buy low when rolling)",
-      "keyFormulas": ["Total = Price + Roll + Collateral", "Backwardation → Positive roll; Contango → Negative roll"]
+      "correctAnswer": "B",
+      "explanation": "Total Return = Price Return + Roll Return + Collateral Return\n\nStep 1: Price Return\n= (Current price – Previous price) / Previous price\n= ($105 – $100) / $100 = 5.00%\n\nStep 2: Roll Return\n= (Near-term futures – Far-term futures) / Near-term futures\n= ($104 – $100) / $104 = 3.85%\n(Positive because market is in backwardation: near > far)\n\nStep 3: Collateral Return\n= Risk-free rate × (period / 12)\n= 3% × (4/12) = 1.00%\n\nStep 4: Total Return\n= 5.00% + 3.85% + 1.00% = 9.85%\n\nTrap answers:\n• A (5.00%): Price return only, forgot roll and collateral\n• C (8.85%): Forgot collateral return\n• D (6.00%): Price + collateral, forgot roll return",
+      "keyFormulas": ["Price Return = (Current – Previous) / Previous", "Roll Return = (Near – Far) / Near", "Collateral Return = Rf × (months/12)", "Total = Price + Roll + Collateral"],
+      "yourMistake": "Forgot one of the three components (likely roll return or collateral return)"
     },
     {
       "id": 28,
@@ -464,16 +465,17 @@
       "id": 31,
       "title": "Target Payout Adjustment Model",
       "topic": "Equity",
-      "question": "In the target payout adjustment model, if a company adjusts dividends over 4 years, the adjustment factor equals:",
+      "question": "An analyst uses the target payout adjustment model to forecast dividends.\n\nGiven:\n• Previous dividend: $2.00\n• Expected EPS: $5.00\n• Target payout ratio: 50%\n• Company adjusts dividends over 4 years\n\nThe expected dividend for Year 1 is closest to:",
       "choices": [
-        {"letter": "A", "text": "Target payout ratio"},
-        {"letter": "B", "text": "1/4 = 0.25"},
-        {"letter": "C", "text": "Expected EPS growth rate"},
-        {"letter": "D", "text": "Previous dividend / Expected EPS"}
+        {"letter": "A", "text": "$2.125"},
+        {"letter": "B", "text": "$2.50"},
+        {"letter": "C", "text": "$2.00"},
+        {"letter": "D", "text": "$0.125"}
       ],
-      "correctAnswer": "B",
-      "explanation": "Expected Div Increase = (Expected EPS × Target Payout - Previous Div) × Adjustment Factor\n\nAdjustment Factor = 1 / Number of years to adjust = 1/4 = 0.25\n\nCompanies don't jump to target immediately — they adjust gradually over multiple years.",
-      "keyFormulas": ["ΔDiv = (EPS × Target - Prev Div) × (1/n)", "Adjustment Factor = 1/years to adjust"]
+      "correctAnswer": "A",
+      "explanation": "Step 1: Calculate adjustment factor\nAdjustment factor = 1 / years to adjust = 1/4 = 0.25\n\nStep 2: Calculate target dividend\nTarget dividend = EPS × Target payout = $5.00 × 50% = $2.50\n\nStep 3: Calculate gap from target\nGap = Target dividend – Previous dividend = $2.50 – $2.00 = $0.50\n\nStep 4: Calculate expected dividend increase\nIncrease = Gap × Adjustment factor = $0.50 × 0.25 = $0.125\n\nStep 5: Calculate new dividend\nYear 1 dividend = Previous dividend + Increase = $2.00 + $0.125 = $2.125\n\nTrap answers:\n• B ($2.50): Jumped straight to target, forgot gradual adjustment\n• C ($2.00): No change calculated\n• D ($0.125): This is the increase, not the new dividend",
+      "keyFormulas": ["Adjustment factor = 1/n (years to adjust)", "Increase = (EPS × Target – Prev Div) × Adj Factor", "New Div = Prev Div + Increase"],
+      "yourMistake": "Either jumped to target immediately or calculated increase but forgot to add to previous dividend"
     },
     {
       "id": 32,
@@ -550,9 +552,9 @@
         {"letter": "D", "text": "Cannot be determined"}
       ],
       "correctAnswer": "A",
-      "explanation": "Uncapped floater: Always equals par at reset dates\nCapped floater: Less than par when rates can exceed cap\n\nAt nodes where rates > 5% cap:\n• Bondholder receives only 5% instead of actual rate\n• Lost interest reduces bond value below par\n\nThe cap hurts the bondholder = lower value than uncapped.",
-      "keyFormulas": ["Uncapped floater = par at reset", "Capped floater < par when rates can exceed cap"],
-      "yourMistake": "Treated capped floater like uncapped"
+      "explanation": "Uncapped Floater:\n• Pays the full reference rate at each reset date\n• Bondholders receive whatever the current rate is\n• Value always equals par at reset dates because coupon adjusts fully to market rates\n\nCapped Floater (5% cap in this case):\n• Has a maximum coupon rate of 5%\n• When market rates exceed 5%, bondholder only receives 5% instead of actual higher rate\n• This creates a loss of interest income relative to an uncapped floater\n\nWhy it's worth less than par:\nAt nodes where interest rates can exceed the 5% cap:\n1. Lost interest income: If reference rate is 7%, bondholder receives only 5% instead of 7%\n2. This reduces the bond's value below par because cash flows are now lower than what would be received from an uncapped floater\n3. The cap essentially hurts the bondholder = it's a benefit to the issuer but a cost to the investor\n\nKey insight: The cap is like selling a call option on interest rates to the issuer.",
+      "keyFormulas": ["Uncapped floater = par at reset", "Capped floater < par when rates can exceed cap", "Cap benefit to issuer = cost to bondholder"],
+      "yourMistake": "Treated capped floater like uncapped - forgot that the cap limits upside for bondholder when rates rise"
     },
     {
       "id": 37,
@@ -653,7 +655,7 @@
       "id": 43,
       "title": "Valuation Model Selection",
       "topic": "Equity",
-      "question": "Firm A has stable dividend payout but plans expansion requiring dividends to EXCEED FCFE. It also has lower quality accounting disclosure. Most appropriate model:",
+      "question": "Firm A has stable dividend payout but plans expansion requiring dividends to exceed FCFE. It also has lower quality accounting disclosure. Most appropriate model:",
       "choices": [
         {"letter": "A", "text": "Free cash flow model"},
         {"letter": "B", "text": "Residual income model"},
@@ -661,9 +663,9 @@
         {"letter": "D", "text": "Earnings multiplier"}
       ],
       "correctAnswer": "A",
-      "explanation": "Model Selection:\n\n• DDM: When dividends bear consistent relationship to profitability\n• RI: When good quality accounting disclosure\n• FCFE/FCFF: When dividends significantly differ from FCFE\n\nFirm A:\n• Dividends > FCFE → DDM inappropriate\n• Low quality disclosure → RI inappropriate\n• FCFE/FCFF captures true cash-generating ability ✓",
-      "keyFormulas": ["Dividends ≠ FCFE → Use FCF model", "Low quality accounting → Don't use RI"],
-      "yourMistake": "Chose DDM based on stable payout history, ignoring expansion plans"
+      "explanation": "Model Selection Framework:\n\nDividend Discount Model (DDM):\n• Use when: Dividends bear a consistent relationship to company's profitability\n• Use when: Company has stable dividend policy that reflects earnings capacity\n• Don't use when: Dividends significantly differ from FCFE (like during expansion)\n\nResidual Income Model:\n• Use when: Company has high quality, transparent accounting disclosure\n• Use when: Dividends are not paid or are unpredictable\n• Don't use when: Accounting quality is questionable or aggressive\n\nFree Cash Flow Models (FCFE/FCFF):\n• Use when: Dividends significantly differ from FCFE\n• Use when: Company is undergoing major capital structure changes\n• Captures true cash-generating ability regardless of dividend policy\n\nApplying to Firm A:\n• Dividends > FCFE (expansion funded by borrowing or equity) → DDM inappropriate because dividends don't reflect sustainable cash generation\n• Lower quality accounting disclosure → Residual income inappropriate because it relies on clean accounting numbers\n• Free cash flow model is most appropriate - captures actual cash flows regardless of dividend policy or accounting choices",
+      "keyFormulas": ["DDM: Stable dividends = f(profitability)", "RI: Requires quality accounting", "FCF: Use when Div ≠ FCFE"],
+      "yourMistake": "Chose DDM based on stable payout history, ignoring that planned expansion means dividends will exceed FCFE"
     },
     {
       "id": 44,
