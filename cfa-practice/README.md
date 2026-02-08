@@ -87,3 +87,33 @@ Explanation: Why it's correct...
 ```
 
 And I'll convert it to the JSON format for you.
+
+---
+
+## Best Practices for Writing Questions
+
+When translating questions into JSON, follow these guidelines to make them feel like real CFA exam questions:
+
+### 1. Use vignette-style context
+Don't write bare-bones prompts. Give the question a realistic scenario with names, firms, and specific details.
+
+**Bad:** `"Manager receives written approval for bonus from client. This is:"`
+**Good:** `"Sarah Chen, CFA, is a portfolio manager at Ridgewood Capital. One of her clients, Apex Industries, offers Sarah a performance-based bonus of $25,000..."`
+
+### 2. Ask for the full calculation, not just the formula
+If a question involves a formula, provide actual numbers and ask for the computed answer. Don't just ask which formula component goes where.
+
+**Bad:** `"The fixed rate on a currency swap uses which PV factor in the numerator?"`
+**Good:** `"A 2-year currency swap has annual payments. PV factors: PV₁ = 0.9610, PV₂ = 0.9070. The annual fixed rate is closest to:"`
+
+### 3. Show the model/equation when relevant (Quant)
+For regression and time-series questions, write out the model specification so the student can plug in values, just like the real exam.
+
+**Bad:** `"AR(2) model on first-differenced sales growth. Intercept = 0.0024, b1 = -0.2021..."`
+**Good:** `"An analyst estimates an AR(2) model: Δŷ_t = b₀ + b₁Δy_(t-1) + b₂Δy_(t-2), where Δy_t = SG_t - SG_(t-1). Coefficients: b₀ = 0.0024..."`
+
+### 4. Make the student solve the problem end-to-end
+The answer choices should be final numerical answers or conclusions, not intermediate steps. If there's a multi-step calculation, the student should have to work through all of it.
+
+### 5. Include plausible distractors
+Wrong answer choices should reflect common mistakes (using wrong time period, forgetting a step, mixing up formulas). This tests real understanding.

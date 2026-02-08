@@ -1033,16 +1033,16 @@
       "id": 67,
       "title": "Additional Compensation - Non-Monetary Benefits",
       "topic": "Ethics",
-      "question": "Manager receives written approval for performance bonus from client. Client also offers use of luxury yacht for weekend. Manager uses yacht without informing employer since it's unrelated to performance. This is:",
+      "question": "Sarah Chen, CFA, is a portfolio manager at Ridgewood Capital. One of her clients, Apex Industries, is pleased with the fund's recent performance and offers Sarah a performance-based bonus of $25,000, payable quarterly. Sarah obtains written approval from both Apex and her employer, Ridgewood Capital, before accepting the arrangement. Separately, the CEO of Apex invites Sarah to use the company's luxury yacht for a weekend trip. Sarah accepts the yacht invitation without notifying Ridgewood, reasoning that it is a personal gift unrelated to her investment performance. Which of Sarah's actions most likely violates the CFA Institute Standards of Professional Conduct?",
       "choices": [
-        {"letter": "A", "text": "No violation"},
-        {"letter": "B", "text": "Violation - bonus arrangement not properly disclosed"},
-        {"letter": "C", "text": "Violation - yacht usage requires disclosure"},
-        {"letter": "D", "text": "Violation - both arrangements violate Standards"}
+        {"letter": "A", "text": "Neither the bonus arrangement nor the yacht usage violates the Standards"},
+        {"letter": "B", "text": "The bonus arrangement violates Standard IV(B) - Additional Compensation Arrangements"},
+        {"letter": "C", "text": "The yacht usage violates Standard IV(B) - Additional Compensation Arrangements"},
+        {"letter": "D", "text": "Both the bonus and yacht usage violate Standard IV(B)"}
       ],
       "correctAnswer": "C",
-      "explanation": "Bonus Arrangement: NO violation\n• Written permission obtained ✓\n• Profit-sharing with clients allowed if disclosed\n\nYacht Usage: VIOLATION\n• Standard IV(B) requires disclosure of gifts/benefits creating conflicts\n• Luxury yacht = valuable benefit\n• Creates potential conflict to favor that client\n• MUST be disclosed and approved by employer\n\n'Unrelated to performance' is irrelevant - ANY benefit from client creating conflicts must be disclosed.",
-      "keyFormulas": ["ALL benefits from clients must be disclosed", "Non-monetary gifts can create conflicts too"],
+      "explanation": "Standard IV(B) - Additional Compensation Arrangements:\n\nBonus Arrangement: NO violation\n• Sarah obtained written approval from both Apex (client) and Ridgewood (employer) ✓\n• Performance-based compensation from clients is permitted when properly disclosed\n\nYacht Usage: VIOLATION of Standard IV(B)\n• Standard IV(B) requires members to disclose to their employer ALL compensation/benefits received from clients or prospects\n• A luxury yacht weekend is a valuable non-monetary benefit\n• Creates a potential conflict — Sarah may favor Apex over other clients\n• MUST be disclosed to and approved by employer regardless of whether it's 'performance-related'\n\nKey takeaway: 'Unrelated to performance' is irrelevant — ANY benefit from a client that could create a conflict of interest must be disclosed to the employer.",
+      "keyFormulas": ["Standard IV(B): ALL compensation/benefits from clients must be disclosed to employer", "Non-monetary gifts (yacht, travel, entertainment) are covered", "The test is whether a conflict COULD arise, not whether the gift is performance-related"],
       "yourMistake": "Thought only monetary compensation needed disclosure"
     },
     {
