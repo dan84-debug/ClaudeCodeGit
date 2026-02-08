@@ -35,6 +35,7 @@ class CFAPracticeTester {
         await this.loadQuestions();
         this.bindEvents();
         this.updateStartScreen();
+        this.checkLearnProgress();
     }
 
     async loadQuestions() {
@@ -84,6 +85,15 @@ class CFAPracticeTester {
         document.getElementById('learn-next-btn').addEventListener('click', () => this.nextLearnQuestion());
         document.getElementById('learn-again-btn').addEventListener('click', () => this.startLearn());
         document.getElementById('learn-home-btn').addEventListener('click', () => this.showScreen('start-screen'));
+
+        // Learn progress persistence
+        document.getElementById('learn-resume-btn').addEventListener('click', () => this.resumeLearn());
+        document.getElementById('learn-reset-btn').addEventListener('click', () => this.resetLearnProgress());
+        document.getElementById('learn-export-btn').addEventListener('click', () => this.exportLearnProgress());
+        document.getElementById('learn-import-btn').addEventListener('click', () => {
+            document.getElementById('learn-import-file').click();
+        });
+        document.getElementById('learn-import-file').addEventListener('change', (e) => this.importLearnProgress(e));
 
         // Qbank screen
         document.getElementById('qbank-back-btn').addEventListener('click', () => this.showScreen('start-screen'));
@@ -382,6 +392,10 @@ class CFAPracticeTester {
         this.learnPool = this.shuffle([...availableQuestions]);
         this.learnMastered = [];
         this.learnTotal = availableQuestions.length;
+        this.learnTopic = topicFilter;
+
+        localStorage.removeItem('cfa-learn-progress');
+        document.getElementById('learn-resume-banner').classList.add('hidden');
 
         this.showScreen('learn-screen');
         this.displayLearnQuestion();
@@ -389,6 +403,7 @@ class CFAPracticeTester {
 
     displayLearnQuestion() {
         if (this.learnPool.length === 0) {
+            localStorage.removeItem('cfa-learn-progress');
             this.showScreen('learn-complete-screen');
             return;
         }
@@ -490,10 +505,115 @@ class CFAPracticeTester {
             const insertPos = minPos + Math.floor(Math.random() * (this.learnPool.length - minPos + 1));
             this.learnPool.splice(insertPos, 0, q);
         }
+
+        // Auto-save progress
+        this.saveLearnProgress();
     }
 
     nextLearnQuestion() {
         this.displayLearnQuestion();
+    }
+
+    // Learn mode persistence
+
+    saveLearnProgress() {
+        const progress = {
+            masteredIds: this.learnMastered.map(q => q.id),
+            poolIds: this.learnPool.map(q => q.id),
+            topic: this.learnTopic || 'all',
+            total: this.learnTotal,
+            timestamp: Date.now()
+        };
+        localStorage.setItem('cfa-learn-progress', JSON.stringify(progress));
+    }
+
+    checkLearnProgress() {
+        const saved = localStorage.getItem('cfa-learn-progress');
+        if (!saved) return;
+
+        try {
+            const progress = JSON.parse(saved);
+            if (progress.poolIds && progress.poolIds.length > 0) {
+                const banner = document.getElementById('learn-resume-banner');
+                const detail = document.getElementById('learn-resume-detail');
+                const mastered = progress.masteredIds ? progress.masteredIds.length : 0;
+                const remaining = progress.poolIds.length;
+                const topic = progress.topic === 'all' ? 'All Topics' : progress.topic;
+                const date = new Date(progress.timestamp).toLocaleDateString();
+                detail.textContent = `${mastered} mastered, ${remaining} remaining (${topic}) — saved ${date}`;
+                banner.classList.remove('hidden');
+            }
+        } catch (e) {
+            localStorage.removeItem('cfa-learn-progress');
+        }
+    }
+
+    resumeLearn() {
+        const saved = localStorage.getItem('cfa-learn-progress');
+        if (!saved) return;
+
+        try {
+            const progress = JSON.parse(saved);
+            const questionMap = new Map(this.questions.map(q => [q.id, q]));
+
+            this.learnPool = progress.poolIds
+                .map(id => questionMap.get(id))
+                .filter(q => q !== undefined);
+            this.learnMastered = (progress.masteredIds || [])
+                .map(id => questionMap.get(id))
+                .filter(q => q !== undefined);
+            this.learnTotal = progress.total || (this.learnPool.length + this.learnMastered.length);
+            this.learnTopic = progress.topic || 'all';
+
+            this.showScreen('learn-screen');
+            this.displayLearnQuestion();
+        } catch (e) {
+            alert('Could not restore progress. Starting fresh.');
+            this.startLearn();
+        }
+    }
+
+    resetLearnProgress() {
+        localStorage.removeItem('cfa-learn-progress');
+        document.getElementById('learn-resume-banner').classList.add('hidden');
+    }
+
+    exportLearnProgress() {
+        const saved = localStorage.getItem('cfa-learn-progress');
+        if (!saved) {
+            alert('No learn progress to export. Start a learn session first.');
+            return;
+        }
+
+        const blob = new Blob([saved], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cfa-learn-progress-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    importLearnProgress(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const progress = JSON.parse(e.target.result);
+                if (!progress.poolIds || !Array.isArray(progress.poolIds)) {
+                    throw new Error('Invalid format');
+                }
+                localStorage.setItem('cfa-learn-progress', JSON.stringify(progress));
+                this.checkLearnProgress();
+                alert('Progress imported! Click Resume to continue.');
+            } catch (err) {
+                alert('Invalid progress file.');
+            }
+        };
+        reader.readAsText(file);
+        event.target.value = '';
     }
 
     // ==================== QBANK MODE ====================

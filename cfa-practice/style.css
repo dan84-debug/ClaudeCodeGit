@@ -631,6 +631,39 @@ body {
     min-height: auto;
 }
 
+/* Learn progress persistence */
+.learn-resume-banner {
+    margin-top: 12px;
+    padding: 14px 16px;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: var(--radius);
+}
+
+.resume-info {
+    font-size: 0.9rem;
+    color: var(--gray-800);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.resume-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.progress-sync {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.progress-sync .btn {
+    flex: 1;
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
 /* Qbank Screen */
 .qbank-header {
     display: flex;
