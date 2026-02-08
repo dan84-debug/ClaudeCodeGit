@@ -464,16 +464,17 @@
       "id": 31,
       "title": "Target Payout Adjustment Model",
       "topic": "Equity",
-      "question": "In the target payout adjustment model, if a company adjusts dividends over 4 years, the adjustment factor equals:",
+      "question": "An analyst uses the target payout adjustment model to forecast dividends.\n\nGiven:\n• Previous dividend: $2.00\n• Expected EPS: $5.00\n• Target payout ratio: 50%\n• Company adjusts dividends over 4 years\n\nThe expected dividend for Year 1 is closest to:",
       "choices": [
-        {"letter": "A", "text": "Target payout ratio"},
-        {"letter": "B", "text": "1/4 = 0.25"},
-        {"letter": "C", "text": "Expected EPS growth rate"},
-        {"letter": "D", "text": "Previous dividend / Expected EPS"}
+        {"letter": "A", "text": "$2.125"},
+        {"letter": "B", "text": "$2.50"},
+        {"letter": "C", "text": "$2.00"},
+        {"letter": "D", "text": "$0.125"}
       ],
-      "correctAnswer": "B",
-      "explanation": "Expected Div Increase = (Expected EPS × Target Payout - Previous Div) × Adjustment Factor\n\nAdjustment Factor = 1 / Number of years to adjust = 1/4 = 0.25\n\nCompanies don't jump to target immediately — they adjust gradually over multiple years.",
-      "keyFormulas": ["ΔDiv = (EPS × Target - Prev Div) × (1/n)", "Adjustment Factor = 1/years to adjust"]
+      "correctAnswer": "A",
+      "explanation": "Step 1: Calculate adjustment factor\nAdjustment factor = 1 / years to adjust = 1/4 = 0.25\n\nStep 2: Calculate target dividend\nTarget dividend = EPS × Target payout = $5.00 × 50% = $2.50\n\nStep 3: Calculate gap from target\nGap = Target dividend – Previous dividend = $2.50 – $2.00 = $0.50\n\nStep 4: Calculate expected dividend increase\nIncrease = Gap × Adjustment factor = $0.50 × 0.25 = $0.125\n\nStep 5: Calculate new dividend\nYear 1 dividend = Previous dividend + Increase = $2.00 + $0.125 = $2.125\n\nTrap answers:\n• B ($2.50): Jumped straight to target, forgot gradual adjustment\n• C ($2.00): No change calculated\n• D ($0.125): This is the increase, not the new dividend",
+      "keyFormulas": ["Adjustment factor = 1/n (years to adjust)", "Increase = (EPS × Target – Prev Div) × Adj Factor", "New Div = Prev Div + Increase"],
+      "yourMistake": "Either jumped to target immediately or calculated increase but forgot to add to previous dividend"
     },
     {
       "id": 32,
