@@ -1076,6 +1076,273 @@
       "explanation": "ABS Credit Analysis Approaches:\n\n• Loan-by-loan: Small, heterogeneous pools (each loan unique)\n• Portfolio-based: Medium-term, dynamic pools (composition changes)\n• Statistics-based: Short-term, granular, homogeneous pools\n\nCredit card ABS characteristics:\n• Short-term ✓\n• Granular (many small receivables) ✓\n• Homogeneous ✓\n\n→ Use aggregate statistics (mean default probability, recovery rate, variance)",
       "keyFormulas": ["Short-term + Granular + Homogeneous → Statistics-based", "Portfolio-based is for dynamic (changing) pools"],
       "yourMistake": "Chose portfolio-based, which is for dynamic pools that change over time"
+    },
+    {
+      "id": 70,
+      "title": "Mundell-Fleming: Currency Appreciation",
+      "topic": "Economics",
+      "question": "Janet Kuspa evaluates three countries with floating exchange rates using the Mundell-Fleming model. The countries have the following characteristics:\n\nCountry A: High capital mobility, Expansionary monetary policy, Restrictive fiscal policy\nCountry B: Low capital mobility, Expansionary monetary policy, Restrictive fiscal policy\nCountry C: Low capital mobility, Restrictive monetary policy, Restrictive fiscal policy\n\nBased on the Mundell-Fleming model, which country is most likely to experience appreciation of its domestic currency in the short term?",
+      "choices": [
+        {"letter": "A", "text": "Country A"},
+        {"letter": "B", "text": "Country B"},
+        {"letter": "C", "text": "Country C"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Under the Mundell-Fleming model with FLOATING exchange rates:\n\nCountry A (High capital mobility):\n• Expansionary monetary → C↓\n• Restrictive fiscal → C↓\n• Net: Currency depreciates\n\nCountry B (Low capital mobility):\n• Expansionary monetary → C↓ (increases spending/imports)\n• Restrictive fiscal → C↑ (decreases spending/imports)\n• Net: INDETERMINATE (opposing effects)\n\nCountry C (Low capital mobility):\n• Restrictive monetary → C↑ (reduces spending/imports)\n• Restrictive fiscal → C↑ (reduces spending/imports)\n• Net: Currency APPRECIATES\n\nKey: With HIGH capital mobility, capital flows dominate (monetary policy has bigger impact through interest rates). With LOW capital mobility, trade flows dominate (focus on spending and imports).",
+      "keyFormulas": ["High capital mobility: Capital flows dominate → focus on interest rate effects", "Low capital mobility: Trade flows dominate → focus on spending/import effects", "Restrictive monetary + Restrictive fiscal (low mobility) = appreciation"],
+      "yourMistake": "Selected Country A — forgot that with high capital mobility, expansionary monetary policy causes depreciation through capital outflows"
+    },
+    {
+      "id": 71,
+      "title": "Normalizing Private Company Earnings",
+      "topic": "Equity",
+      "question": "Margaret Smith is normalizing the operating income of Lytham Corporation, a small, family-owned company, to compare it with public companies. She notes the following:\n\n1. The CEO's annual salary is $600,000. A similarly qualified CEO at a comparable public company earns $1,000,000.\n2. Lytham owns a luxury apartment used by the CEO for business and personal travel. If Lytham were public, the apartment would be sold. Annual operating costs are $200,000 and annual depreciation expense is $200,000.\n3. Lytham pays 15% of net income in dividends; Smith believes this would be 50% if Lytham were public.\n\nThe required adjustments to normalize Lytham's earnings will result in:",
+      "choices": [
+        {"letter": "A", "text": "A reduction in reported operating income"},
+        {"letter": "B", "text": "No change in reported operating income"},
+        {"letter": "C", "text": "An increase in reported operating income"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Item 1 — CEO Salary: Increase SG&A by $400,000 ($1,000,000 – $600,000) to reflect market-rate compensation → Decreases operating income by $400,000.\n\nItem 2 — Apartment: If sold, both operating costs ($200,000) and depreciation ($200,000) would be eliminated → Increases operating income by $400,000.\n\nItem 3 — Dividends: Dividends are NOT a component of operating income, so changing the payout ratio has NO effect on operating income.\n\nNet impact: –$400,000 + $400,000 + $0 = $0 (no change).\n\nKey: Dividends are paid from net income, not operating income. Don't confuse dividend policy with operating adjustments.",
+      "keyFormulas": ["CEO salary normalization: Increase SG&A to market rate", "Remove personal-use assets: Eliminate both operating costs AND depreciation", "Dividends do NOT affect operating income"],
+      "yourMistake": "Likely forgot that the apartment adjustment offsets the salary adjustment, or incorrectly included dividends as an operating item"
+    },
+    {
+      "id": 72,
+      "title": "Equity Value with Control Premium and DLOM",
+      "topic": "Equity",
+      "question": "Calcyte is a publicly traded company with an equity value of $9,043 million. Margaret Smith conducts a valuation for a private buyout client interested in purchasing a controlling stake. She determines the relevant discount for lack of control (DLOC) to be 23% and the relevant discount for lack of marketability (DLOM) to be 20%.\n\nAfter applying the appropriate discounts or premiums, the value of Calcyte's equity (in $ millions) to the private buyout client should be closest to:",
+      "choices": [
+        {"letter": "A", "text": "$8,898"},
+        {"letter": "B", "text": "$9,395"},
+        {"letter": "C", "text": "$11,744"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Convert DLOC to a Control Premium\nDLOC = 1 – [1/(1 + Control Premium)]\nControl Premium = [1/(1 – DLOC)] – 1\nControl Premium = [1/(1 – 0.23)] – 1 = 1/0.77 – 1 = 0.2987 or 29.87%\n\nStep 2: Apply Control Premium (add, since buyer gains control)\nStep 3: Apply DLOM (subtract, since firm will be private post-buyout)\n\nValue = $9,043 × (1 + 0.2987) × (1 – 0.20)\nValue = $9,043 × 1.2987 × 0.80\nValue ≈ $9,395 million\n\nCommon mistakes:\n• A ($8,898): Using DLOC directly as control premium → $9,043 × 1.23 × 0.80\n• C ($11,744): Forgetting to apply DLOM → $9,043 × 1.2987",
+      "keyFormulas": ["Control Premium = [1/(1 – DLOC)] – 1", "Value = Public Equity × (1 + Control Premium) × (1 – DLOM)", "DLOC ≠ Control Premium — must convert!"]
+    },
+    {
+      "id": 73,
+      "title": "Equity Method: Carrying Value with Excess Purchase Price",
+      "topic": "FSA",
+      "question": "On 1 January, RMRL purchased a 30% interest in Begonia Bus Inc.'s outstanding common equity for $12,000,000. The excess purchase price was $2,150,000. Half of the excess was attributable to Begonia's plant and equipment (straight-line depreciation, 10-year remaining useful life, zero residual value), and the other half was attributable to land. RMRL has significant influence over Begonia. Begonia is expected to report net income of $1,500,000 for the current year and not pay any dividends.\n\nThe estimated carrying value of RMRL's investment in Begonia at the end of the current year should be:",
+      "choices": [
+        {"letter": "A", "text": "$12,342,500"},
+        {"letter": "B", "text": "$12,450,000"},
+        {"letter": "C", "text": "$13,392,500"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Under the equity method:\n\nStep 1: RMRL's share of Begonia's net income\n30% × $1,500,000 = $450,000\n\nStep 2: Amortize excess purchase price for plant and equipment\nExcess for P&E = 0.5 × $2,150,000 = $1,075,000\nAnnual amortization = $1,075,000 / 10 years = $107,500\n(Land is NOT amortized)\n\nStep 3: Calculate carrying value\n= Purchase price + Share of NI – Amortization of excess\n= $12,000,000 + $450,000 – $107,500\n= $12,342,500\n\nCommon mistakes:\n• B ($12,450,000): Forgot to amortize the excess purchase price for P&E\n• C ($13,392,500): Used 100% of Begonia's NI instead of 30%",
+      "keyFormulas": ["Equity method: Carrying value = Cost + Share of NI – Dividends – Amortization of excess", "Only amortize excess on depreciable assets (P&E), NOT land", "Use investor's share (30%) of NI, not 100%"],
+      "yourMistake": "Common error: forgetting to amortize excess purchase price or using 100% of NI"
+    },
+    {
+      "id": 74,
+      "title": "Accruals Ratios: BS-Based vs CF-Based Trends",
+      "topic": "FSA",
+      "question": "Ahmad reviews the trend in RMRL's accruals ratios over the past two years:\n\n                          Most Recent Year    Year Ago\nBS-based accruals ratio      4.3%              0.6%\nCF-based accruals ratio      1.7%             –2.5%\nBeneish M-score             –1.94             –1.43\nAltman Z-score               1.54              1.85\n\nWith respect to RMRL's accruals ratios, Ahmad should conclude that:",
+      "choices": [
+        {"letter": "A", "text": "Both the balance-sheet-based and cash-flow-based accruals ratios have improved"},
+        {"letter": "B", "text": "The BS-based accruals ratio has deteriorated, but the CF-based accruals ratio has improved"},
+        {"letter": "C", "text": "The BS-based accruals ratio has improved, but the CF-based accruals ratio has deteriorated"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "For accruals ratios, use ABSOLUTE VALUES — closer to zero = better quality.\n\nBS-based accruals ratio:\n• Year Ago: |0.6%| = 0.6%\n• Most Recent: |4.3%| = 4.3%\n• Absolute value INCREASED → DETERIORATED\n\nCF-based accruals ratio:\n• Year Ago: |–2.5%| = 2.5%\n• Most Recent: |1.7%| = 1.7%\n• Absolute value DECREASED → IMPROVED\n\nKey insight: The sign doesn't matter for accruals ratios — it's the magnitude (absolute value) that indicates earnings quality. Lower absolute values mean less accrual-based earnings, which is higher quality.",
+      "keyFormulas": ["Accruals ratios: Use ABSOLUTE VALUE to assess", "Lower |accruals ratio| = higher earnings quality = improvement", "Higher |accruals ratio| = lower earnings quality = deterioration"],
+      "yourMistake": "Likely looked at the direction of the numbers rather than comparing absolute values"
+    },
+    {
+      "id": 75,
+      "title": "Defined Benefit Pension: Operating Expense Under IFRS",
+      "topic": "FSA",
+      "question": "Anita Daani analyzes KTR Insurance, which reports under IFRS. KTR has a defined benefit pension plan (Plan A). For the most recent year, Plan A had a current service cost of $10 million and a past service cost of $2 million.\n\nFor the most recent year, KTR's operating expense (in $ millions) related to Plan A was:",
+      "choices": [
+        {"letter": "A", "text": "8"},
+        {"letter": "B", "text": "10"},
+        {"letter": "C", "text": "12"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Under IFRS, service cost has TWO sub-components:\n1. Current service cost: $10 million\n2. Past service cost: $2 million\n\nBOTH are recognized as operating expense on the income statement.\nOperating expense = $10 + $2 = $12 million\n\nKey distinction — IFRS vs US GAAP:\n• IFRS: Past service costs go to P&L immediately as operating expense\n• US GAAP: Past service costs go to OCI first, then amortized to P&L over average service lives\n\nIf this were US GAAP, the answer would be $10 million (current service cost only).\n\nWrong answers:\n• A ($8): Subtracted past service cost instead of adding\n• B ($10): Only included current service cost (US GAAP treatment)",
+      "keyFormulas": ["IFRS: Operating expense = Current service cost + Past service cost", "US GAAP: Operating expense = Current service cost only (past service cost → OCI)", "This is a common IFRS vs GAAP trap question"],
+      "yourMistake": "Used US GAAP treatment (only current service cost) instead of IFRS treatment (both current + past)"
+    },
+    {
+      "id": 76,
+      "title": "Treasury Stock Method: Diluted Shares with RSUs",
+      "topic": "FSA",
+      "question": "Daani assesses the dilutive effect of KTR's restricted stock units (RSUs) using the treasury stock method and the following data:\n\nBasic shares outstanding at end of year: 2,700 million\nNumber of unvested RSUs at end of year: 150 million\nAverage unrecognized share-based compensation expense: $840 million\nAverage share price during the most recent year: $7\n\nUsing the treasury stock method, KTR's number of diluted shares outstanding at the end of the most recent year (in millions) is closest to:",
+      "choices": [
+        {"letter": "A", "text": "2,730"},
+        {"letter": "B", "text": "2,850"},
+        {"letter": "C", "text": "2,970"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Treasury stock method for RSUs:\n\nStep 1: Start with basic shares = 2,700 million\n\nStep 2: Add unvested RSUs = +150 million\n\nStep 3: Subtract assumed repurchases\n= Average unrecognized compensation / Average share price\n= $840 million / $7 = 120 million\n\nDiluted shares = 2,700 + 150 – 120 = 2,730 million\n\nThe logic: The unrecognized compensation expense represents proceeds the company would theoretically receive. These proceeds are used to 'repurchase' shares at the average market price, reducing the dilutive impact.\n\nCommon mistakes:\n• B (2,850): Forgot to subtract assumed repurchases\n• C (2,970): Added assumed repurchases instead of subtracting",
+      "keyFormulas": ["Diluted shares = Basic + RSUs – (Unrecognized comp expense / Avg share price)", "Treasury stock method: Net dilution, not gross dilution", "Assumed repurchases reduce the dilutive impact"]
+    },
+    {
+      "id": 77,
+      "title": "Binomial Tree Calibration: Adjusting Forward Rates",
+      "topic": "Fixed Income",
+      "question": "Susanne Blythe is calibrating a binomial interest rate tree to price a default-free 3-year bond with a 3.5% annual coupon priced at par ($100). Interest rate volatility is 10%. The 1-year forward rates at Year 0 and Year 1 are correct. She calculates the bond's value using the tree and gets $100.1684.\n\nThe 1-year forward rates at Year 2 in the tree are: 5.3534% (high-high), 4.3830% (high-low), 3.5885% (low-low).\nYear 1 rates: 3.8784% (high), 3.1754% (low). Year 0 rate: 2.4500%.\n\nIn the next iteration, Blythe should:",
+      "choices": [
+        {"letter": "A", "text": "Decrease the 1-year forward rates at Year 2"},
+        {"letter": "B", "text": "Leave the 1-year forward rates at Year 2 unchanged"},
+        {"letter": "C", "text": "Increase the 1-year forward rates at Year 2"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "The calculated bond value ($100.1684) is ABOVE the market price ($100.00).\n\nRelationship: Higher discount rates → Lower bond value\n\nSince the model overvalues the bond, the forward rates at Year 2 need to be INCREASED to bring the calculated value down to match the market price of $100.\n\nVerification of current calculation:\nNode 3-1: (3.5 + 100)/1.053534 = $98.2408\nNode 3-2: (3.5 + 100)/1.043830 = $99.1541\nNode 3-3: (3.5 + 100)/1.035885 = $99.9146\nNode 2-1: [3.5 + 0.5(98.2408) + 0.5(99.1541)]/1.038784 = $98.3818\nNode 2-2: [3.5 + 0.5(99.1541) + 0.5(99.9146)]/1.031754 = $99.8633\nNode 1-1: [3.5 + 0.5(98.3818) + 0.5(99.8633)]/1.024500 = $100.1684\n\nSince $100.1684 > $100.00, rates must increase.",
+      "keyFormulas": ["Calculated value > Market price → Increase forward rates", "Calculated value < Market price → Decrease forward rates", "Higher rates → Lower present values → Lower bond price"],
+      "yourMistake": "May have confused the direction — if bond value is too high, rates need to go UP (inverse relationship)"
+    },
+    {
+      "id": 78,
+      "title": "Negative Convexity: Callable vs Putable Bonds",
+      "topic": "Fixed Income",
+      "question": "Blythe evaluates three bonds issued by Y Corporation, all with 3-year maturity and 4.5% annual coupon:\n\nBond 1: Option-free bond\nBond 2: Putable at 100, one year and two years from now\nBond 3: Callable at 102, one year and two years from now\n\nWhich of the bonds issued by Y Corporation is most likely to exhibit negative convexity?",
+      "choices": [
+        {"letter": "A", "text": "Bond 1"},
+        {"letter": "B", "text": "Bond 2"},
+        {"letter": "C", "text": "Bond 3"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Bond 3 (the callable bond) is most likely to exhibit negative convexity.\n\nWhen rates are HIGH: The call option is far out-of-the-money, so the callable bond behaves like a straight bond with positive convexity.\n\nWhen rates are LOW: The call option is near or in-the-money, and the bond's price is capped near the call price. This creates negative convexity — the upside is limited while the downside remains.\n\nNegative convexity means: Price gains from rate decreases are SMALLER than price losses from equivalent rate increases.\n\nBond 1 (option-free): Always has positive convexity.\nBond 2 (putable): Always has positive convexity — the put provides a floor that enhances convexity.\nBond 3 (callable): Exhibits negative convexity when the call is near the money.\n\nMemory aid: Callable = Capped upside = negative Convexity. Putable = Protected downside = Positive convexity.",
+      "keyFormulas": ["Callable bonds: negative convexity when call is near the money", "Putable bonds: ALWAYS positive convexity", "Option-free bonds: ALWAYS positive convexity"],
+      "yourMistake": "May have confused which embedded option creates negative convexity"
+    },
+    {
+      "id": 79,
+      "title": "Implied Interest Cost of a Lease",
+      "topic": "Corporate Finance",
+      "question": "Sebastian Traver at Feldcroft Inc. evaluates a 10-year helicopter lease with the following terms:\n• Monthly payments of $125,000 at the end of each month\n• Fair value of helicopter: $15,000,000\n• Direct cost incurred by Feldcroft at lease inception: $750,000\n• Residual value at end of lease: $8,700,000\n• Feldcroft's unsecured incremental borrowing rate: 8%\n\nThe implied annual interest cost of the helicopter lease is closest to:",
+      "choices": [
+        {"letter": "A", "text": "6.30%"},
+        {"letter": "B", "text": "7.10%"},
+        {"letter": "C", "text": "8.00%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "The implied interest cost equates the initial cash outflow to the PV of future cash flows.\n\nUsing a financial calculator:\nPV = –$15,750,000 (fair value $15M + direct costs $750K)\nPMT = $125,000\nN = 120 (10 years × 12 months)\nFV = $8,700,000\nSolve for i = 0.5249% per month\n\nImplied annual rate = 0.5249% × 12 = 6.299% ≈ 6.30%\n\nCommon mistakes:\n• B (7.10%): Excluded the $750,000 direct cost from PV → PV = –$15,000,000\n• C (8.00%): Used Feldcroft's incremental borrowing rate instead of calculating the implied rate from the lease cash flows\n\nKey: The implied interest cost is derived from the ACTUAL lease cash flows, not from the borrowing rate. Direct costs must be included in the initial outflow.",
+      "keyFormulas": ["PV = Fair value + Direct costs (total initial outflow)", "Solve for monthly rate, then annualize: annual rate = monthly rate × 12", "Implied lease rate ≠ incremental borrowing rate"],
+      "yourMistake": "Either excluded direct costs or used the borrowing rate instead of solving for the implied rate"
+    },
+    {
+      "id": 80,
+      "title": "Country Spread Model: Equity Risk Premium",
+      "topic": "Equity",
+      "question": "Feldcroft has operations in Country A, an emerging market representing 10% of the company's revenue. Traver uses the country spread model (no adjustment for relative volatility) with the following data:\n\n• Current US equity risk premium: 5.94%\n• 10-year US Treasury bond yield: 3.50%\n• Country A 10-year bond yield (local currency): 7.55%\n• Country A 10-year bond yield (denominated in USD): 5.15%\n\nBased on the country spread model, the equity risk premium that should be used in calculating Feldcroft's cost of equity is closest to:",
+      "choices": [
+        {"letter": "A", "text": "6.11%"},
+        {"letter": "B", "text": "6.35%"},
+        {"letter": "C", "text": "7.59%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Country Spread Model:\nERP = ERP_developed + (λ × Country Risk Premium)\n\nStep 1: Calculate Country Risk Premium\nCRP = Yield on Country A bond (in USD) – Yield on US Treasury\nCRP = 5.15% – 3.50% = 1.65%\n\nIMPORTANT: Use the USD-denominated bond (5.15%), NOT the local currency bond (7.55%). The local currency bond includes FX risk, which is not a credit spread.\n\nStep 2: Apply exposure weighting\nλ = 10% (Feldcroft's revenue exposure to Country A)\n\nStep 3: Calculate ERP\nERP = 5.94% + (0.10 × 1.65%) = 5.94% + 0.165% = 6.105% ≈ 6.11%\n\nCommon mistakes:\n• B (6.35%): Used local currency bond yield (7.55%) instead of USD-denominated (5.15%)\n• C (7.59%): Did not apply λ weighting → 5.94% + 1.65% = 7.59%",
+      "keyFormulas": ["ERP = ERP_developed + (λ × CRP)", "CRP = EM bond yield (USD-denominated) – US Treasury yield", "Use USD-denominated EM bond, NOT local currency bond", "λ = proportion of revenue from the emerging market"],
+      "yourMistake": "Either used the local currency bond or forgot to weight by λ"
+    },
+    {
+      "id": 81,
+      "title": "Pro Forma Income Statement: Acquisition Adjustments",
+      "topic": "Corporate Finance",
+      "question": "Traver prepares a pro forma income statement for Feldcroft's acquisition of a target company. The acquisition will be funded with new debt (including refinancing the target's existing debt). He generates cost synergies. After separating D&A from operating expenses, Traver models the following adjustments:\n\n• Interest expense: Add interest from new debt issuance to the target's current interest expense\n• Operating expenses: Add cost synergies to, and subtract cost dis-synergies from, combined operating expenses\n• D&A expense: Add amortization of acquired intangible assets to combined D&A\n\nWhich of the following balances does Traver most likely model correctly?",
+      "choices": [
+        {"letter": "A", "text": "Interest expense"},
+        {"letter": "B", "text": "Operating expenses"},
+        {"letter": "C", "text": "Depreciation and amortization expense"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "C is correct — D&A is modeled correctly:\n1. Combine acquirer and target D&A ✓\n2. Add amortization of acquired intangible assets ✓\n\nA is INCORRECT — Interest expense has errors:\n• Traver adds new debt interest to the TARGET's current interest expense\n• But the target's debt is being REFINANCED as part of the new debt issuance\n• This double-counts the target's pre-acquisition interest expense\n• Correct approach: Start with acquirer's interest expense, then add interest on ALL new debt (which already includes refinanced target debt)\n\nB is INCORRECT — Operating expenses have the direction reversed:\n• Traver ADDS cost synergies and SUBTRACTS dis-synergies\n• This is backwards! Cost synergies are SAVINGS → should REDUCE (subtract from) operating expenses\n• Cost dis-synergies are extra costs → should INCREASE (add to) operating expenses\n• Correct: Subtract synergies, add dis-synergies",
+      "keyFormulas": ["Pro forma D&A = Combined D&A + Amortization of acquired intangibles", "Pro forma OpEx = Combined OpEx – Cost synergies + Dis-synergies", "Pro forma Interest = Acquirer interest + Interest on ALL new debt (don't double count target)"],
+      "yourMistake": "May have missed the double-counting of interest or the reversed direction of synergies"
+    },
+    {
+      "id": 82,
+      "title": "ML Overfitting: Bias-Variance Tradeoff",
+      "topic": "Quant",
+      "question": "Megan Helmer uses machine learning to build a model that categorizes companies by whether their predicted ROE is low or high. The model uses multiple features to explain variations in ROE. The model produces low error rates using training data, but much higher error rates using out-of-sample data.\n\nHelmer's ROE prediction model most likely suffers from:",
+      "choices": [
+        {"letter": "A", "text": "Overfitting and base error"},
+        {"letter": "B", "text": "Underfitting and bias error"},
+        {"letter": "C", "text": "Overfitting and variance error"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "The model has LOW in-sample error but HIGH out-of-sample error → Classic sign of OVERFITTING.\n\nBias-Variance Tradeoff:\n• Bias error (underfitting): Model is too simple, poor fit on BOTH training and test data. High in-sample error.\n• Variance error (overfitting): Model is too complex, fits noise in training data. Low in-sample error but high out-of-sample error.\n• Base error: Irreducible randomness in the data. Affects both training and test data equally.\n\nHere:\n• Low training error → Model fits training data well → NOT underfitting, NOT bias error\n• High out-of-sample error → Model doesn't generalize → Overfitting with variance error\n\nThe model has learned the noise/idiosyncrasies of the training data rather than the true underlying patterns.",
+      "keyFormulas": ["Low in-sample + High out-of-sample = Overfitting + Variance error", "High in-sample + High out-of-sample = Underfitting + Bias error", "Base error = irreducible noise (affects both)"],
+      "yourMistake": "May have confused base error (random noise) with variance error (poor generalization from overfitting)"
+    },
+    {
+      "id": 83,
+      "title": "Logistic Regression: Probability of Default",
+      "topic": "Quant",
+      "question": "Helmer builds a logistic regression model to predict default probability for junk bond issuers:\n\nln(P/(1–P)) = b₀ + b₁×LEVERAGE + b₂×COVERAGE\n\nCoefficients: Intercept (b₀) = –20.0, LEVERAGE (b₁) = 65.5, COVERAGE (b₂) = –35.0\n\nACME has LEVERAGE = 0.8 and COVERAGE = 0.9. The probability that ACME defaults within the next year is closest to:",
+      "choices": [
+        {"letter": "A", "text": "29%"},
+        {"letter": "B", "text": "71%"},
+        {"letter": "C", "text": "90%"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Calculate the linear combination\nb₀ + b₁×LEVERAGE + b₂×COVERAGE\n= –20.0 + 65.5(0.8) + (–35.0)(0.9)\n= –20.0 + 52.4 – 31.5\n= 0.9\n\nStep 2: Apply the logistic function\nP = 1 / (1 + e^(–z)), where z = 0.9\nP = 1 / (1 + e^(–0.9))\nP = 1 / (1 + 0.4066)\nP = 1 / 1.4066\nP = 0.7109 ≈ 71%\n\nCommon mistakes:\n• A (29%): Forgot the negative sign → P = 1/(1 + e^(+0.9)) = 1/3.46 = 29%\n• C (90%): Treated as linear regression → P = 0.9 = 90% (didn't apply logistic transform)\n\nKey: The logistic function is P = 1/(1 + e^(–z)), note the NEGATIVE sign in the exponent.",
+      "keyFormulas": ["Logistic: P = 1/(1 + e^(–z)) where z = b₀ + b₁X₁ + b₂X₂", "Note the NEGATIVE sign: e^(–z), not e^(+z)", "Linear combination first, THEN apply logistic transform"],
+      "yourMistake": "Either forgot the negative sign in e^(–z) or didn't apply the logistic transform at all"
+    },
+    {
+      "id": 84,
+      "title": "Breusch-Pagan Test: Heteroskedasticity Correction",
+      "topic": "Quant",
+      "question": "Helmer builds a linear regression model for manufacturing companies:\n\nModel 1: MARGIN_t = b₀ + b₁×INPUT_t + b₂×LOGISTICS_t + ε_t\n\nwhere MARGIN is profit margin, INPUT is raw material cost inflation, and LOGISTICS is freight cost inflation. She uses five years of quarterly data for 100 companies.\n\nShe makes two observations:\n• Observation 1: Significant deviations of residuals from the diagonal in the Q-Q plot\n• Observation 2: The null hypothesis of the Breusch-Pagan test is rejected\n\nWith respect to Observation 2, this indicates that:",
+      "choices": [
+        {"letter": "A", "text": "No corrective action is necessary"},
+        {"letter": "B", "text": "A larger sample size should be used"},
+        {"letter": "C", "text": "Robust standard errors should be calculated"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "The Breusch-Pagan test:\n• H₀: No conditional heteroskedasticity (homoskedastic residuals)\n• H₁: Conditional heteroskedasticity is present\n\nSince H₀ is REJECTED → Conditional heteroskedasticity is present.\n\nThis means the variance of residuals is related to the independent variables, which:\n• Biases the standard errors of coefficients\n• Makes t-statistics and F-tests unreliable\n• May lead to incorrect inference (too many Type I errors)\n\nCorrection: Use ROBUST STANDARD ERRORS (White's heteroskedasticity-consistent standard errors), which adjust the standard errors to account for the heteroskedasticity.\n\nWhy not the other choices?\n• A: Heteroskedasticity requires correction — can't ignore it\n• B: Increasing sample size addresses multicollinearity, not heteroskedasticity",
+      "keyFormulas": ["Breusch-Pagan: H₀ = no conditional heteroskedasticity", "Reject H₀ → heteroskedasticity present → use robust standard errors", "Larger sample size fixes multicollinearity, NOT heteroskedasticity"]
+    },
+    {
+      "id": 85,
+      "title": "REIT Valuation: P/AFFO Disadvantage",
+      "topic": "Alternatives",
+      "question": "Sarah Lambert researches REIT A, a hotel REIT. She notes that recent property market transaction volumes have been high. In addition, REIT A has recorded a number of one-time gains and charges.\n\nLambert considers the potential impact these issues could have on different valuation approaches. The issues Lambert is considering regarding REIT A would pose a disadvantage for which of the following valuation models?",
+      "choices": [
+        {"letter": "A", "text": "Net asset value (NAV)"},
+        {"letter": "B", "text": "P/AFFO multiple"},
+        {"letter": "C", "text": "Dividend discount model"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "P/AFFO is disadvantaged because one-time gains and accounting charges directly affect the income statement, making FFO and AFFO harder to compute and complicating comparisons between companies.\n\nWhy NOT the others?\n\n• NAV (A): Actually BENEFITS from high transaction volumes — more property comparables make it easier to estimate net asset values. High transaction volumes = more market data = more reliable NAV.\n\n• DDM (C): Not significantly affected. One-time charges have limited effect on dividend payouts since REITs pay dividends based on taxable income requirements, not accounting income. REITs distribute a high percentage of income by law, and one-time items don't usually change that.\n\nKey: P/AFFO is income-statement-based, so anything that distorts the income statement (one-time items, gains, charges) directly impairs this metric.",
+      "keyFormulas": ["P/AFFO: Disadvantaged by one-time gains/charges (income statement distortion)", "NAV: Advantaged by high transaction volumes (more comparables)", "DDM: Relatively unaffected by one-time items (dividends are stable)"],
+      "yourMistake": "May have thought NAV would be disadvantaged, but high transaction volumes actually help NAV estimation"
+    },
+    {
+      "id": 86,
+      "title": "REIT B: Calculating P/AFFO Multiple",
+      "topic": "Alternatives",
+      "question": "Lambert reviews REIT B, an industrial REIT, and calculates the P/AFFO multiple using the following data (in thousands):\n\nFunds from operations (FFO): $465,419\n(Gains)/Losses from sale of depreciable real estate: $22,613\nNon-cash (straight-line) rent adjustment: $14,705\nRecurring maintenance-type capex and leasing commissions: $33,297\nShares outstanding: 100,000\nCurrent share price: $74.65\n\nThe P/AFFO multiple for REIT B is closest to:",
+      "choices": [
+        {"letter": "A", "text": "16.6x"},
+        {"letter": "B", "text": "17.9x"},
+        {"letter": "C", "text": "18.9x"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Calculate AFFO\nAFFO = FFO – Non-cash rent adjustment – Recurring maintenance capex & leasing commissions\nAFFO = $465,419 – $14,705 – $33,297 = $417,417\n\nIMPORTANT: Do NOT subtract gains/losses from sale of depreciable real estate — those have ALREADY been removed when calculating FFO. Subtracting them again would double-count.\n\nStep 2: Calculate AFFO per share\nAFFO/share = $417,417 / 100,000 = $4.17\n\nStep 3: Calculate P/AFFO\nP/AFFO = $74.65 / $4.17 = 17.9x\n\nCommon mistakes:\n• A (16.6x): Only subtracted non-cash rent, forgot maintenance capex\n• C (18.9x): Also subtracted gains/losses (double-counting since already removed from FFO)",
+      "keyFormulas": ["AFFO = FFO – Non-cash rent adjustments – Recurring maintenance capex", "Do NOT subtract gains/losses again (already excluded from FFO)", "P/AFFO = Share price / AFFO per share"],
+      "yourMistake": "Either forgot to subtract maintenance capex or double-counted gains already excluded from FFO"
+    },
+    {
+      "id": 87,
+      "title": "BCT Compliance Manual: Independence and Objectivity",
+      "topic": "Ethics",
+      "question": "Irina Benoit, CFA, starts her own firm (BCT) and writes a compliance manual with three procedures:\n\nProcedure 1: Analysts may accept gifts in the form of business-related entertainment to a maximum value listed by the compliance office.\n\nProcedure 2: For all analysts, the purchase of a company's stock through a private placement is capped at a maximum per private placement as listed by the compliance office.\n\nProcedure 3: When attending meetings at an issuer's headquarters, analysts are allowed to accept modest commercial transportation and hotel accommodation paid by the issuer.\n\nWhich procedure in the BCT compliance manual is NOT consistent with the CFA Institute Standards of Professional Conduct?",
+      "choices": [
+        {"letter": "A", "text": "Procedure 1"},
+        {"letter": "B", "text": "Procedure 2"},
+        {"letter": "C", "text": "Procedure 3"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Procedure 3 violates Standard I(B) Independence and Objectivity.\n\nThe recommended procedures for Standard I(B) explicitly state: When attending meetings at an issuer's headquarters, members and candidates should PAY FOR their own commercial transportation and hotel charges. No corporate issuer should reimburse members or candidates for air transportation.\n\nAllowing issuers to pay for transportation and hotels creates a conflict of interest that compromises the analyst's independence and objectivity.\n\nProcedure 1 is CONSISTENT: Standard I(B) permits customary, ordinary business-related entertainment as long as it doesn't influence or reward analysts. Setting a maximum value is a recommended practice.\n\nProcedure 2 is CONSISTENT: Standard I(B) recommends formal policies with strict limits on employee purchases through private placements. Capping purchases is appropriate.",
+      "keyFormulas": ["Standard I(B): Analysts must pay their own transportation and hotel when visiting issuers", "Business entertainment with value limits = acceptable", "Private placement caps = acceptable", "Issuer-paid travel/lodging = NOT acceptable"],
+      "yourMistake": "May have thought one of the other procedures was inconsistent, but Procedures 1 and 2 follow recommended practices"
     }
   ]
 }
