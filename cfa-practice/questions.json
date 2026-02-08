@@ -550,9 +550,9 @@
         {"letter": "D", "text": "Cannot be determined"}
       ],
       "correctAnswer": "A",
-      "explanation": "Uncapped floater: Always equals par at reset dates\nCapped floater: Less than par when rates can exceed cap\n\nAt nodes where rates > 5% cap:\n• Bondholder receives only 5% instead of actual rate\n• Lost interest reduces bond value below par\n\nThe cap hurts the bondholder = lower value than uncapped.",
-      "keyFormulas": ["Uncapped floater = par at reset", "Capped floater < par when rates can exceed cap"],
-      "yourMistake": "Treated capped floater like uncapped"
+      "explanation": "UNCAPPED FLOATER:\n• Pays the full reference rate at each reset date\n• Bondholders receive whatever the current rate is\n• Value always equals par at reset dates because coupon adjusts fully to market rates\n\nCAPPED FLOATER (5% cap in this case):\n• Has a maximum coupon rate of 5%\n• When market rates exceed 5%, bondholder only receives 5% instead of actual higher rate\n• This creates a loss of interest income relative to an uncapped floater\n\nWHY IT'S WORTH LESS THAN PAR:\nAt nodes where interest rates can exceed the 5% cap:\n1. Lost interest income: If reference rate is 7%, bondholder receives only 5% instead of 7%\n2. This reduces the bond's value below par because cash flows are now lower than what would be received from an uncapped floater\n3. The cap essentially hurts the bondholder = it's a benefit to the issuer but a cost to the investor\n\nKey insight: The cap is like selling a call option on interest rates to the issuer.",
+      "keyFormulas": ["Uncapped floater = par at reset", "Capped floater < par when rates can exceed cap", "Cap benefit to issuer = cost to bondholder"],
+      "yourMistake": "Treated capped floater like uncapped - forgot that the cap limits upside for bondholder when rates rise"
     },
     {
       "id": 37,
