@@ -4,17 +4,17 @@
       "id": 1,
       "title": "Credit Migration Expected Return",
       "topic": "Fixed Income",
-      "question": "Mark Jackson holds an A-rated bond with YTM of 1.0% and modified duration of 4.5. Using a credit transition matrix, the probability-weighted expected spread change results in an expected price return of -0.14%. What is the expected 1-year total return?",
+      "question": "Mark Jackson holds a BB-rated bond with YTM of 4.0% and modified duration of 5.0. Based on the credit transition matrix, there is a 50% probability of upgrading to BBB (spread narrows by 40 bps) and a 50% probability of downgrading to B (spread widens by 100 bps). What is the expected 1-year total return?",
       "choices": [
-        {"letter": "A", "text": "-0.14%"},
-        {"letter": "B", "text": "0.86%"},
-        {"letter": "C", "text": "1.00%"},
-        {"letter": "D", "text": "4.50%"}
+        {"letter": "A", "text": "4.00%"},
+        {"letter": "B", "text": "2.50%"},
+        {"letter": "C", "text": "-1.50%"},
+        {"letter": "D", "text": "5.50%"}
       ],
       "correctAnswer": "B",
-      "explanation": "Expected total return = YTM + Expected Price Return\n\nYou correctly calculated the expected price return of -0.14%, but forgot to add the YTM.\n\n• Expected price return: -0.14%\n• YTM: +1.00%\n• Total return: 0.86%\n\nChoice A is the trap answer for people who forget total return includes both yield AND price change.",
-      "keyFormulas": ["Expected Total Return = YTM + Σ(Probability × -Duration × Spread Change)", "Use ROW of current rating from transition matrix for probabilities"],
-      "yourMistake": "Only calculated expected price return, forgot to add YTM"
+      "explanation": "Step 1: Calculate expected spread change\nE(Δspread) = 0.50 × (-40 bps) + 0.50 × (+100 bps)\n= -20 bps + 50 bps = +30 bps = +0.30%\n\nStep 2: Calculate expected price return\nPrice return = -Modified Duration × Δspread\n= -5.0 × 0.30% = -1.50%\n\nStep 3: Calculate total expected return\nTotal return = YTM + Price return\n= 4.0% + (-1.50%) = 2.50%\n\nTrap answers:\n• A (4.00%): Forgot to calculate price impact from migration\n• C (-1.50%): Only calculated price return, forgot to add YTM\n• D (5.50%): Added price return instead of subtracting (spread widening hurts price)",
+      "keyFormulas": ["E(Δspread) = Σ(Prob × Δspread for each scenario)", "Price return = -Duration × Δspread", "Total return = YTM + Price return"],
+      "yourMistake": "Either forgot to weight the migrations, forgot YTM, or got the sign wrong on spread widening"
     },
     {
       "id": 2,
