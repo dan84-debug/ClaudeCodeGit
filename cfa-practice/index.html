@@ -80,6 +80,22 @@
                 </select>
 
                 <p class="mode-info">Answer each question correctly once to master it. Wrong answers stay in the pool until you get them right.</p>
+
+                <!-- Resume saved progress banner -->
+                <div id="learn-resume-banner" class="learn-resume-banner hidden">
+                    <p class="resume-info"><strong>Saved progress found!</strong> <span id="learn-resume-detail"></span></p>
+                    <div class="resume-actions">
+                        <button id="learn-resume-btn" class="btn btn-primary btn-small">Resume</button>
+                        <button id="learn-reset-btn" class="btn btn-secondary btn-small">Start Fresh</button>
+                    </div>
+                </div>
+
+                <!-- Import/Export -->
+                <div class="progress-sync">
+                    <button id="learn-export-btn" class="btn btn-secondary btn-small">Export Progress</button>
+                    <button id="learn-import-btn" class="btn btn-secondary btn-small">Import Progress</button>
+                    <input type="file" id="learn-import-file" accept=".json" class="hidden">
+                </div>
             </div>
 
             <!-- Qbank Options (shown for Qbank mode) -->
