@@ -204,17 +204,17 @@
       "id": 14,
       "title": "Finite-Horizon Residual Income",
       "topic": "Equity",
-      "question": "Using the finite-horizon RI model to value PrimaNet:\n\n• Current book value (B₀): €18.50\n• PV of residual income Year 1: €2.25\n• PV of residual income Year 2: €2.00\n• Forecasted book value at end of Year 2: €23.75\n• Forecasted market price at end of Year 2: €26.50\n• Cost of equity: 12.8%\n• WACC: 6.5%\n\nPrimaNet's intrinsic value per share is closest to:",
+      "question": "Using the finite-horizon RI model to value PrimaNet:\n\n• Current book value (B₀): €18.50\n• Residual income Year 1: €2.54\n• Residual income Year 2: €2.54\n• Forecasted book value at end of Year 2: €23.75\n• Forecasted market price at end of Year 2: €26.50\n• Cost of equity: 12.8%\n• WACC: 6.5%\n\nPrimaNet's intrinsic value per share is closest to:",
       "choices": [
         {"letter": "A", "text": "€24.91"},
         {"letter": "B", "text": "€25.17"},
-        {"letter": "C", "text": "€25.50"},
+        {"letter": "C", "text": "€27.33"},
         {"letter": "D", "text": "€22.75"}
       ],
       "correctAnswer": "A",
-      "explanation": "V₀ = B₀ + Σ PV(RI) + PV(Terminal Premium)\n\nStep 1: Terminal Premium = Market Price - Book Value\n= €26.50 - €23.75 = €2.75\n\nStep 2: Discount premium at COST OF EQUITY (not WACC!)\nPV = €2.75 / (1.128)² = €2.75 / 1.272 = €2.16\n\nStep 3: Add it all up\nV₀ = €18.50 + €2.25 + €2.00 + €2.16 = €24.91\n\nTrap answer B (€25.17) uses WACC to discount: €2.75 / (1.065)² = €2.42",
-      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T", "Equity models → Discount at cost of equity, NOT WACC"],
-      "yourMistake": "Used WACC (6.5%) to discount terminal premium instead of cost of equity (12.8%)"
+      "explanation": "V₀ = B₀ + Σ PV(RI) + PV(Terminal Premium)\n\nStep 1: Discount each year's RI at cost of equity\nPV of RI Year 1 = €2.54 / (1.128)¹ = €2.25\nPV of RI Year 2 = €2.54 / (1.128)² = €2.00\n\nStep 2: Calculate Terminal Premium = Market Price - Book Value\n= €26.50 - €23.75 = €2.75\n\nStep 3: Discount terminal premium at cost of equity (not WACC!)\nPV = €2.75 / (1.128)² = €2.75 / 1.272 = €2.16\n\nStep 4: Add it all up\nV₀ = €18.50 + €2.25 + €2.00 + €2.16 = €24.91\n\nTrap answers:\n• B (€25.17): Uses WACC to discount terminal premium: €2.75 / (1.065)² = €2.42\n• C (€27.33): Forgot to discount the RIs, just added raw values: €18.50 + €2.54 + €2.54 + €2.75 = €26.33",
+      "keyFormulas": ["V₀ = B₀ + Σ PV(RI) + (P_T - B_T)/(1+r)^T", "Equity models → Discount at cost of equity, NOT WACC", "RI must be discounted to PV before adding"],
+      "yourMistake": "Either forgot to discount RI values, or used WACC instead of cost of equity"
     },
     {
       "id": 15,
