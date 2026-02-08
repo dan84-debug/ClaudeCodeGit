@@ -12,8 +12,8 @@
         {"letter": "D", "text": "5.50%"}
       ],
       "correctAnswer": "B",
-      "explanation": "Step 1: Calculate expected spread change\nE(Δspread) = 0.50 × (-40 bps) + 0.50 × (+100 bps)\n= -20 bps + 50 bps = +30 bps = +0.30%\n\nStep 2: Calculate expected price return\nPrice return = -Modified Duration × Δspread\n= -5.0 × 0.30% = -1.50%\n\nStep 3: Calculate total expected return\nTotal return = YTM + Price return\n= 4.0% + (-1.50%) = 2.50%\n\nTrap answers:\n• A (4.00%): Forgot to calculate price impact from migration\n• C (-1.50%): Only calculated price return, forgot to add YTM\n• D (5.50%): Added price return instead of subtracting (spread widening hurts price)",
-      "keyFormulas": ["E(Δspread) = Σ(Prob × Δspread for each scenario)", "Price return = -Duration × Δspread", "Total return = YTM + Price return"],
+      "explanation": "Step 1: Calculate price return for EACH scenario\n\nUpgrade to BBB (spread narrows 40 bps):\nReturn = -Duration × Δspread = -5.0 × (-0.40%) = +2.00%\n\nDowngrade to B (spread widens 100 bps):\nReturn = -Duration × Δspread = -5.0 × (+1.00%) = -5.00%\n\nStep 2: Probability-weight the scenario returns\nE(price return) = 0.50 × (+2.00%) + 0.50 × (-5.00%)\n= +1.00% - 2.50% = -1.50%\n\nStep 3: Add YTM for total expected return\nTotal return = YTM + E(price return)\n= 4.0% + (-1.50%) = 2.50%\n\nTrap answers:\n• A (4.00%): Forgot to calculate price impact from migration\n• C (-1.50%): Only calculated price return, forgot to add YTM\n• D (5.50%): Added price return instead of subtracting",
+      "keyFormulas": ["Each scenario: Return = -Duration × Δspread", "E(price return) = Σ(Prob × scenario return)", "Total return = YTM + E(price return)"],
       "yourMistake": "Either forgot to weight the migrations, forgot YTM, or got the sign wrong on spread widening"
     },
     {
