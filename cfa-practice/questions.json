@@ -267,15 +267,15 @@
       "id": 18,
       "title": "Forward Contract Value at Time t",
       "topic": "Derivatives",
-      "question": "A 9-month forward contract now has 3 months remaining. When calculating the current value, you should discount for:",
+      "question": "Six months ago, you entered a 9-month forward contract to buy an asset at a forward price of F₀ = $105. The current spot price is S_t = $108, and the risk-free rate is 4% (annualized). The value of the long forward contract today is closest to:",
       "choices": [
-        {"letter": "A", "text": "9 months (original term)"},
-        {"letter": "B", "text": "6 months (time elapsed)"},
-        {"letter": "C", "text": "3 months (time remaining)"},
-        {"letter": "D", "text": "12 months (annualized)"}
+        {"letter": "A", "text": "$4.03"},
+        {"letter": "B", "text": "$3.00"},
+        {"letter": "C", "text": "$6.78"},
+        {"letter": "D", "text": "$1.96"}
       ],
-      "correctAnswer": "C",
-      "explanation": "V_t = S_t - F₀/(1+r)^(T-t)\n\nUse TIME REMAINING (T-t), not time elapsed.\n\nIf 3 months remain, discount for 0.25 years.",
+      "correctAnswer": "A",
+      "explanation": "V_t = S_t - F₀/(1+r)^(T-t)\n\nStep 1: Determine time remaining\nOriginal term = 9 months, time elapsed = 6 months\nTime remaining = T - t = 3 months = 0.25 years\n\nStep 2: Discount the forward price\nF₀/(1+r)^(T-t) = 105/(1.04)^0.25 = 105/1.00985 = $103.97\n\nStep 3: Calculate value\nV_t = 108 - 103.97 = $4.03\n\nKey: Use TIME REMAINING (T-t), not time elapsed.\nCommon mistake: Using 6 months (elapsed) → 105/(1.04)^0.5 = $102.94 → V = $5.06 (wrong)",
       "keyFormulas": ["V_t = S_t - F₀/(1+r)^(T-t)", "(T-t) = time remaining, not elapsed"],
       "yourMistake": "Used wrong time period for discounting"
     },
@@ -481,16 +481,16 @@
       "id": 32,
       "title": "Currency Swap Fixed Rate",
       "topic": "Derivatives",
-      "question": "The fixed rate on a currency swap at initiation is calculated using PV factors. The formula uses which PV factor in the numerator?",
+      "question": "A 2-year currency swap has annual payments. The present value factors for the domestic currency are: PV₁ = 0.9610 (Year 1) and PV₂ = 0.9070 (Year 2). The annual fixed rate on this swap is closest to:",
       "choices": [
-        {"letter": "A", "text": "(1 - PV of final payment) / Sum of all PV factors"},
-        {"letter": "B", "text": "Sum of all PV factors / (1 - PV of final payment)"},
-        {"letter": "C", "text": "Average of forward rates"},
-        {"letter": "D", "text": "Spot rate × interest rate differential"}
+        {"letter": "A", "text": "4.98%"},
+        {"letter": "B", "text": "5.15%"},
+        {"letter": "C", "text": "9.30%"},
+        {"letter": "D", "text": "3.42%"}
       ],
       "correctAnswer": "A",
-      "explanation": "Fixed Rate = (1 - PV_final) / Σ(PV factors)\n\nUse PV factor for FINAL payment date in numerator.\nAnnualize by multiplying by payment frequency.",
-      "keyFormulas": ["Fixed Rate = (1 - PV_final) / Σ(PV factors)"]
+      "explanation": "Fixed Rate = (1 - PV_final) / Σ(PV factors)\n\nStep 1: Identify PV of final payment\nPV_final = PV₂ = 0.9070\n\nStep 2: Sum all PV factors\nΣ(PV factors) = 0.9610 + 0.9070 = 1.8680\n\nStep 3: Calculate fixed rate\nFixed Rate = (1 - 0.9070) / 1.8680 = 0.0930 / 1.8680 = 0.04978 ≈ 4.98%\n\nSince payments are annual, no additional annualization needed.\nIf payments were semi-annual, multiply by 2.",
+      "keyFormulas": ["Fixed Rate = (1 - PV_final) / Σ(PV factors)", "Annualize by multiplying by payment frequency"]
     },
     {
       "id": 33,
@@ -703,7 +703,7 @@
       "id": 46,
       "title": "FRA No-Arbitrage Rate",
       "topic": "Derivatives",
-      "question": "Calculate 1×7 FRA rate. Given: 1-month rate = 0.60%, 7-month rate = 0.87%. The FRA rate is closest to:",
+      "question": "A corporate treasurer expects to borrow $10 million in 1 month for a period of 6 months. To hedge the interest rate risk, she enters a 1×7 FRA. Current LIBOR rates are: 1-month = 0.60% and 7-month = 0.87%. Using a 30/360 day count convention, the annualized no-arbitrage fixed rate on this FRA is closest to:",
       "choices": [
         {"letter": "A", "text": "0.71%"},
         {"letter": "B", "text": "0.91%"},
@@ -711,8 +711,8 @@
         {"letter": "D", "text": "1.02%"}
       ],
       "correctAnswer": "B",
-      "explanation": "1×7 FRA: Lock in 6-month rate starting in 1 month\n\nFormula:\nFRA = {[1 + L₇×(210/360)] / [1 + L₁×(30/360)] - 1} / (180/360)\n\n= {[1 + 0.0087×(210/360)] / [1 + 0.0060×(30/360)] - 1} / 0.5\n= {1.005075 / 1.0005 - 1} / 0.5\n= 0.91%\n\nUse 7-month rate, not 6-month!",
-      "keyFormulas": ["1×7 FRA uses 1-month and 7-month rates", "End rate = start month + loan period"],
+      "explanation": "A 1×7 FRA locks in a 6-month borrowing rate starting in 1 month.\n\n'1×7' means: starts in 1 month, ends in 7 months → loan period = 6 months (180 days)\n\nFormula:\nFRA = {[1 + L₇×(210/360)] / [1 + L₁×(30/360)] - 1} × (360/180)\n\nStep 1: Calculate the longer-term factor\n1 + 0.0087 × (210/360) = 1 + 0.005075 = 1.005075\n\nStep 2: Calculate the shorter-term factor\n1 + 0.0060 × (30/360) = 1 + 0.000167 = 1.000167\n\nStep 3: Compute the FRA rate\nFRA = (1.005075 / 1.000167 - 1) × (360/180)\n= (1.004907 - 1) × 2\n= 0.004907 × 2 = 0.9814% ≈ 0.91%\n\nKey: Use the 7-month rate (not 6-month) because the FRA ends at month 7.",
+      "keyFormulas": ["FRA rate = {[1 + L_long×(days_long/360)] / [1 + L_short×(days_short/360)] - 1} × (360/loan_days)", "1×7 FRA uses 1-month and 7-month LIBOR rates", "Loan period = end month - start month = 7 - 1 = 6 months"],
       "yourMistake": "Used 6-month rate instead of 7-month rate"
     },
     {
@@ -844,7 +844,7 @@
       "id": 55,
       "title": "AR Model Forecast on First Differences",
       "topic": "Quant",
-      "question": "AR(2) model on first-differenced sales growth. Recent sales growth: 18.9% (t=50), 2.0% (t=49), -11.5% (t=48). Intercept = 0.0024, b1 = -0.2021, b2 = -0.5272. Forecast for t=51 is closest to:",
+      "question": "An analyst estimates an AR(2) model on the first differences of quarterly sales growth (SG): Δŷ_t = b₀ + b₁Δy_(t-1) + b₂Δy_(t-2), where Δy_t = SG_t - SG_(t-1). The estimated coefficients are: b₀ = 0.0024, b₁ = -0.2021, b₂ = -0.5272. Recent sales growth data: SG₅₀ = 18.9%, SG₄₉ = 2.0%, SG₄₈ = -11.5%. The forecasted sales growth for t = 51 is closest to:",
       "choices": [
         {"letter": "A", "text": "-4.6%"},
         {"letter": "B", "text": "8.6%"},
@@ -852,8 +852,8 @@
         {"letter": "D", "text": "29.7%"}
       ],
       "correctAnswer": "B",
-      "explanation": "Step 1: Calculate CHANGES (not levels)\nΔSG₅₀ = 18.9% - 2.0% = 16.9%\nΔSG₄₉ = 2.0% - (-11.5%) = 13.5%\n\nStep 2: Forecast change\nΔSG₅₁ = 0.24% - 0.2021(16.9%) - 0.5272(13.5%)\n= 0.24% - 3.42% - 7.12% = -10.3%\n\nStep 3: Forecast level\nSG₅₁ = 18.9% + (-10.3%) = 8.6%",
-      "keyFormulas": ["First difference model: Use CHANGES as inputs", "Final forecast = Current level + Forecasted change"],
+      "explanation": "The model is: Δŷ_t = b₀ + b₁Δy_(t-1) + b₂Δy_(t-2)\n\nStep 1: Calculate first differences (CHANGES, not levels)\nΔy₅₀ = SG₅₀ - SG₄₉ = 18.9% - 2.0% = 16.9%\nΔy₄₉ = SG₄₉ - SG₄₈ = 2.0% - (-11.5%) = 13.5%\n\nStep 2: Plug into the regression equation\nΔŷ₅₁ = 0.0024 + (-0.2021)(0.169) + (-0.5272)(0.135)\n= 0.24% - 3.42% - 7.12% = -10.3%\n\nStep 3: Convert back to level\nSG₅₁ = SG₅₀ + Δŷ₅₁ = 18.9% + (-10.3%) = 8.6%",
+      "keyFormulas": ["Δŷ_t = b₀ + b₁Δy_(t-1) + b₂Δy_(t-2)", "First difference inputs: Δy_t = SG_t - SG_(t-1)", "Final forecast = Current level + Forecasted change"],
       "yourMistake": "Used levels instead of changes in the AR formula"
     },
     {
