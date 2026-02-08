@@ -143,17 +143,17 @@
       "id": 10,
       "title": "DB Pension Expense US GAAP",
       "topic": "FSA",
-      "question": "Given: Service cost = $200, Interest cost = $2,940, Expected return on assets = $3,120, Actual return = $2,700. Under US GAAP, what return figure is used in pension expense?",
+      "question": "Given: Service cost = $200, Interest cost = $2,940, Expected return on assets = $3,120, Actual return = $2,700. Calculate the US GAAP pension expense (ignoring amortizations):",
       "choices": [
-        {"letter": "A", "text": "Actual return ($2,700)"},
-        {"letter": "B", "text": "Expected return ($3,120)"},
-        {"letter": "C", "text": "Risk-free rate"},
-        {"letter": "D", "text": "Discount rate on obligation"}
+        {"letter": "A", "text": "$20"},
+        {"letter": "B", "text": "$440"},
+        {"letter": "C", "text": "$2,740"},
+        {"letter": "D", "text": "-$180"}
       ],
-      "correctAnswer": "B",
-      "explanation": "US GAAP Pension Expense = Service + Interest - Expected Return ± Amortizations\n= $200 + $2,940 - $3,120 = $20\n\nIFRS uses Net Interest (same discount rate for both sides).\n\nUS GAAP uses management's expected return. Actual vs expected difference goes to OCI.",
-      "keyFormulas": ["US GAAP: Service + Interest - Expected Return", "IFRS: Service + Net Interest"],
-      "yourMistake": "Used actual return instead of expected return"
+      "correctAnswer": "A",
+      "explanation": "US GAAP Pension Expense = Service Cost + Interest Cost - Expected Return on Assets (± Amortizations)\n\nCalculation:\n= $200 + $2,940 - $3,120\n= $20\n\nKey differences between US GAAP and IFRS:\n• US GAAP uses management's expected return on plan assets\n• IFRS uses Net Interest approach (same discount rate applied to both PBO and plan assets)\n• Under US GAAP, the difference between actual and expected return goes to OCI\n\nWrong answers:\n• B ($440): Would result from using actual return instead of expected ($200 + $2,940 - $2,700)\n• C ($2,740): Just Service + Interest, forgot to subtract expected return\n• D (-$180): Calculation error",
+      "keyFormulas": ["US GAAP: Service + Interest - Expected Return ± Amortizations", "IFRS: Service + Net Interest (discount rate × net pension liability)"],
+      "yourMistake": "Used actual return instead of expected return, or forgot a component"
     },
     {
       "id": 11,
