@@ -310,7 +310,7 @@
     },
     {
       "id": 21,
-      "title": "Transfer Coefficient",
+      "title": "Fundamental Law: Effect of Portfolio Constraints",
       "topic": "Portfolio Management",
       "question": "A prospective client's guidelines restrict maximum sector over/underweights. What is the most likely effect on the fundamental law components?",
       "choices": [
@@ -1287,7 +1287,7 @@
     },
     {
       "id": 84,
-      "title": "Breusch-Pagan Test: Heteroskedasticity Correction",
+      "title": "Regression Assumption Violations: Corrective Action",
       "topic": "Quant",
       "question": "Helmer builds a linear regression model for manufacturing companies:\n\nModel 1: MARGIN_t = b₀ + b₁×INPUT_t + b₂×LOGISTICS_t + ε_t\n\nwhere MARGIN is profit margin, INPUT is raw material cost inflation, and LOGISTICS is freight cost inflation. She uses five years of quarterly data for 100 companies.\n\nShe makes two observations:\n• Observation 1: Significant deviations of residuals from the diagonal in the Q-Q plot\n• Observation 2: The null hypothesis of the Breusch-Pagan test is rejected\n\nWith respect to Observation 2, this indicates that:",
       "choices": [
