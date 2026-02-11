@@ -82,6 +82,7 @@ class CFAPracticeTester {
 
         // Learn screen
         document.getElementById('learn-submit-btn').addEventListener('click', () => this.submitLearnAnswer());
+        document.getElementById('learn-idk-btn').addEventListener('click', () => this.learnIDontKnow());
         document.getElementById('learn-next-btn').addEventListener('click', () => this.nextLearnQuestion());
         document.getElementById('learn-again-btn').addEventListener('click', () => this.startLearn());
         document.getElementById('learn-home-btn').addEventListener('click', () => this.showScreen('start-screen'));
@@ -440,6 +441,7 @@ class CFAPracticeTester {
 
         document.getElementById('learn-submit-btn').disabled = true;
         document.getElementById('learn-submit-btn').style.display = 'block';
+        document.getElementById('learn-idk-btn').style.display = 'block';
         document.getElementById('learn-explanation-panel').classList.add('hidden');
     }
 
@@ -494,6 +496,7 @@ class CFAPracticeTester {
         }
 
         document.getElementById('learn-submit-btn').style.display = 'none';
+        document.getElementById('learn-idk-btn').style.display = 'none';
 
         // Update pool
         if (isCorrect) {
@@ -507,6 +510,54 @@ class CFAPracticeTester {
         }
 
         // Auto-save progress
+        this.saveLearnProgress();
+    }
+
+    learnIDontKnow() {
+        const question = this.learnPool[0];
+
+        // Highlight correct answer
+        document.querySelectorAll('#learn-choices-container .choice').forEach(choice => {
+            choice.classList.add('disabled');
+            if (choice.dataset.letter === question.correctAnswer) {
+                choice.classList.add('correct');
+            }
+        });
+
+        // Show explanation
+        const panel = document.getElementById('learn-explanation-panel');
+        panel.classList.remove('hidden');
+
+        const header = document.getElementById('learn-result-header');
+        header.className = 'result-header incorrect';
+        document.getElementById('learn-result-icon').textContent = '?';
+        document.getElementById('learn-result-text').textContent = 'You\'ll see this again.';
+
+        document.getElementById('learn-explanation-text').textContent = question.explanation || 'No explanation provided.';
+
+        const formulasSection = document.getElementById('learn-key-formulas');
+        if (question.keyFormulas && question.keyFormulas.length > 0) {
+            formulasSection.classList.remove('hidden');
+            const list = document.getElementById('learn-formulas-list');
+            list.innerHTML = '';
+            question.keyFormulas.forEach(formula => {
+                const li = document.createElement('li');
+                li.textContent = formula;
+                list.appendChild(li);
+            });
+        } else {
+            formulasSection.classList.add('hidden');
+        }
+
+        document.getElementById('learn-submit-btn').style.display = 'none';
+        document.getElementById('learn-idk-btn').style.display = 'none';
+
+        // Move to back half of pool (same as wrong answer)
+        const q = this.learnPool.shift();
+        const minPos = Math.floor(this.learnPool.length / 2);
+        const insertPos = minPos + Math.floor(Math.random() * (this.learnPool.length - minPos + 1));
+        this.learnPool.splice(insertPos, 0, q);
+
         this.saveLearnProgress();
     }
 

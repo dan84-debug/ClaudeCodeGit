@@ -372,7 +372,7 @@
     },
     {
       "id": 25,
-      "title": "ARCH Testing",
+      "title": "Regression Residual Diagnostics",
       "topic": "Quant",
       "question": "Silva runs an AR(1) model and tests residuals:\n• Regression 1 (ε on lagged ε): t-stat = 0.70\n• Regression 2 (ε² on lagged ε²): t-stat = 2.94\nCritical value = 1.97. Is the model misspecified?",
       "choices": [
