@@ -1343,6 +1343,196 @@
       "explanation": "Procedure 3 violates Standard I(B) Independence and Objectivity.\n\nThe recommended procedures for Standard I(B) explicitly state: When attending meetings at an issuer's headquarters, members and candidates should PAY FOR their own commercial transportation and hotel charges. No corporate issuer should reimburse members or candidates for air transportation.\n\nAllowing issuers to pay for transportation and hotels creates a conflict of interest that compromises the analyst's independence and objectivity.\n\nProcedure 1 is CONSISTENT: Standard I(B) permits customary, ordinary business-related entertainment as long as it doesn't influence or reward analysts. Setting a maximum value is a recommended practice.\n\nProcedure 2 is CONSISTENT: Standard I(B) recommends formal policies with strict limits on employee purchases through private placements. Capping purchases is appropriate.",
       "keyFormulas": ["Standard I(B): Analysts must pay their own transportation and hotel when visiting issuers", "Business entertainment with value limits = acceptable", "Private placement caps = acceptable", "Issuer-paid travel/lodging = NOT acceptable"],
       "yourMistake": "May have thought one of the other procedures was inconsistent, but Procedures 1 and 2 follow recommended practices"
+    },
+    {
+      "id": 88,
+      "title": "Multistage Residual Income Valuation",
+      "topic": "Equity",
+      "question": "Victoria Lazslo values Firm A using a multistage residual income model. She compiles the following data:\n\n| Item | Value |\n|------|-------|\n| Constant long-term growth rate | 9.6% |\n| Constant long-term ROE | 16.0% |\n| Market price per share | $220.00 |\n| Book value per share | $166.00 |\n| Cost of equity | 12.5% |\n\nLazslo considers that after Year 10, Firm A's ROE will exhibit mean reversion. She estimates residual income in Year 10 to be $8.38 per share, with a persistence factor of 0.7.\n\nBased on the multistage residual income model, the present value of the estimated terminal value of Firm A's stock is closest to:",
+      "choices": [
+        {"letter": "A", "text": "$6.07"},
+        {"letter": "B", "text": "$6.83"},
+        {"letter": "C", "text": "$9.68"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "PV of Terminal Value = RI_T / [(1 + r - ω) × (1 + r)^(T-1)]\n\nWhere:\n- RI_T = $8.38\n- r = 12.5%\n- ω = 0.7 (persistence factor)\n- T = 10\n\nPV of TV = $8.38 / [(1 + 0.125 - 0.7) × (1.125)^9]\n= $8.38 / [0.425 × 2.8760]\n= $8.38 / 1.2223\n= $6.86 ≈ $6.83\n\nCommon mistakes:\n• A ($6.07): Discounted for T=10 periods instead of T-1=9 → $8.38 / [0.425 × (1.125)^10] = $6.07\n• C ($9.68): Used (1 - ω) instead of (1 + r - ω) in denominator → $8.38 / [0.3 × 2.876] = $9.68",
+      "keyFormulas": ["PV of TV = RI_T / [(1 + r - ω) × (1 + r)^(T-1)]", "Discount for T-1 periods, NOT T periods", "Denominator uses (1 + r - ω), NOT (1 - ω)"],
+      "yourMistake": "Discounted for 10 years instead of 9 years (T-1)"
+    },
+    {
+      "id": 89,
+      "title": "Residual Income with Comprehensive Income",
+      "topic": "Equity",
+      "question": "Victoria Lazslo values Firm B, a building supplies distributor. Firm B's year-end (Year 0) book value of equity is $111 per share and its cost of equity is 12%. Lazslo forecasts the following per-share data:\n\n| Item | Year 1 | Year 2 |\n|------|--------|--------|\n| Net income | $26.25 | $31.56 |\n| Dividends | $3.80 | $4.57 |\n| Other comprehensive income | $0.00 | $2.75 |\n\nFirm B's per-share residual income for Year 2 is closest to:",
+      "choices": [
+        {"letter": "A", "text": "$14.73"},
+        {"letter": "B", "text": "$15.55"},
+        {"letter": "C", "text": "$18.30"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Step 1: Calculate Book Value at End of Year 1 (= Beginning BV for Year 2)\nBV_1 = BV_0 + NI_1 - Div_1 + OCI_1\nBV_1 = $111.00 + $26.25 - $3.80 + $0.00 = $133.45\n\nStep 2: Calculate Comprehensive Income for Year 2\nComp Income_2 = NI_2 + OCI_2 = $31.56 + $2.75 = $34.31\n\nStep 3: Calculate Residual Income for Year 2\nRI_2 = Comp Income_2 - (r × BV_1)\nRI_2 = $34.31 - (12% × $133.45)\nRI_2 = $34.31 - $16.01 = $18.30\n\nCommon mistakes:\n• B ($15.55): Used NI only, forgot to add OCI → $31.56 - $16.01 = $15.55\n• A ($14.73): Used END-of-Year 2 BV instead of BEGINNING → $34.31 - (12% × $163.19) = $14.73",
+      "keyFormulas": ["RI = (NI + OCI) - (r × Beginning Book Value)", "Use BEGINNING of period BV for equity charge", "Include OCI in income for clean surplus compliance"],
+      "yourMistake": "Did not add OCI to net income when calculating comprehensive income"
+    },
+    {
+      "id": 90,
+      "title": "Capital Structure Change Impact on Firm Valuation",
+      "topic": "Equity",
+      "question": "Clara Connor is valuing Omega Pipeline using a two-stage FCFF model with the following assumptions:\n\n| Item | Value |\n|------|-------|\n| FCFF for both Year 1 and Year 2 | $1,850 million |\n| Expected long-term FCFF growth starting Year 3 | 3.0% |\n| Pretax cost of debt | 6.0% |\n| Debt-to-assets ratio | 40% |\n| Risk-free rate | 3.5% |\n| Market equity risk premium | 5.5% |\n| ESG equity risk premium | 0.9% |\n| Equity beta | 1.4 |\n| Corporate tax rate | 25% |\n\nSoon after Connor completes her valuation, Omega announces it will issue debt to buy back equity during Year 1. After incorporating this capital structure change, Connor's FCFF forecasts would most likely be:",
+      "choices": [
+        {"letter": "A", "text": "Lower"},
+        {"letter": "B", "text": "Unchanged"},
+        {"letter": "C", "text": "Higher"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "FCFF is Independent of Capital Structure.\n\nFCFF represents cash flow available to ALL providers of capital BEFORE any financing decisions:\nFCFF = EBIT(1 - Tax) + Depreciation - CapEx - ΔWorking Capital\n\nDebt issuance and share repurchases are FINANCING activities — they affect how FCFF is distributed, not the FCFF itself.\n\n| Item | Effect of Higher Leverage |\n|------|---------------------------|\n| FCFF | UNCHANGED |\n| FCFE | Changes (higher in year of debt issuance, lower thereafter) |\n| WACC | Changes (different debt/equity weighting) |\n| Firm Value | May change (if WACC changes) |\n\nMemory aid: FCFF is what the business generates; capital structure is how you divide it up.",
+      "keyFormulas": ["FCFF is independent of capital structure", "FCFE IS affected by capital structure changes", "Debt issuance/buybacks are financing activities, not operating"],
+      "yourMistake": "Confused FCFF with FCFE — FCFE changes with leverage, FCFF does not"
+    },
+    {
+      "id": 91,
+      "title": "Credit Risk: Bond Default Return",
+      "topic": "Fixed Income",
+      "question": "Nathan Moffet purchases a senior unsecured bond issued by Company A at $105.35. The bond has an 8% annual-pay coupon, $100 face value, no embedded options, and three years remaining to maturity (coupon just paid).\n\nHe collects the following end-of-period credit data:\n\n| Year | Exposure | Recovery | Loss Given Default |\n|------|----------|----------|-----------|\n| 1 | $117.57 | $47.03 | $70.54 |\n| 2 | $112.85 | $45.14 | $67.71 |\n| 3 | $108.00 | $43.20 | $64.80 |\n\nUnder a base case scenario where the bond defaults at the end of Year 3, the annualized return on Moffet's investment would be closest to:",
+      "choices": [
+        {"letter": "A", "text": "-19.57%"},
+        {"letter": "B", "text": "-15.45%"},
+        {"letter": "C", "text": "-9.29%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "If default occurs at end of Year 3, the bondholder receives:\n• Year 1: $8 coupon\n• Year 2: $8 coupon\n• Year 3: Recovery value of $43.20 (NO additional coupon — recovery already includes accrued interest)\n\nSolve for IRR:\n$105.35 = $8/(1+IRR) + $8/(1+IRR)² + $43.20/(1+IRR)³\nIRR = -19.57%\n\nIMPORTANT: The Year 3 recovery of $43.20 is 40% of the $108 exposure. The exposure ($108) already includes principal + accrued coupon. Do NOT add an extra $8 coupon in Year 3.\n\nCommon mistakes:\n• B (-15.45%): Added extra $8 coupon in Year 3 → $43.20 + $8 = $51.20\n• C (-9.29%): Used Loss Given Default ($64.80) instead of Recovery ($43.20)",
+      "keyFormulas": ["Recovery already includes accrued interest — don't double-count coupons", "Exposure = Principal + Accrued Interest", "Recovery = Exposure × Recovery Rate"],
+      "yourMistake": "Added an extra $8 coupon payment in Year 3 on top of recovery value"
+    },
+    {
+      "id": 92,
+      "title": "Credit Default Swap: Settlement Comparison",
+      "topic": "Fixed Income",
+      "question": "Nathan Moffet owns $10 million of Bond 1, a 5-year senior unsecured bond issued by Company C. He bought credit protection using a $10 million notional CDS that can be settled physically or by cash. The reference obligation is Bond 1. Company C files for bankruptcy.\n\n| Bond | Seniority | Tenor | Par Value | Current Price |\n|------|-----------|-------|-----------|---------------|\n| Bond 1 | Senior unsecured | 5 years | $100 | $40 |\n| Bond 2 | Senior unsecured | 4 years | $100 | $35 |\n\nWould the two settlement methods result in the same total proceeds for Moffet?",
+      "choices": [
+        {"letter": "A", "text": "Yes"},
+        {"letter": "B", "text": "No, cash settlement would result in higher total proceeds"},
+        {"letter": "C", "text": "No, physical settlement would result in higher total proceeds"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Identify Cheapest-to-Deliver (CTD) bond\nBond 1: $40 (40% of par)\nBond 2: $35 (35% of par) ← CTD (lowest price, same seniority)\n\nStep 2: Cash Settlement\n• CDS payoff = Notional × (1 - Recovery of CTD) = $10M × (1 - 35%) = $6.5M\n• Sell Bond 1 at market = $10M × 40% = $4.0M\n• Total = $6.5M + $4.0M = $10.5M\n\nStep 3: Physical Settlement\n• Deliver Bond 1 to CDS seller, receive notional = $10.0M\n\nCash settlement gives $0.5M more because:\n- CDS payoff is based on the CTD (Bond 2 at 35%), but\n- Moffet keeps Bond 1 which trades at 40% (higher than CTD)\n\nThe protection buyer benefits from cash settlement when they hold a bond trading ABOVE the CTD price.",
+      "keyFormulas": ["Cash settlement: CDS payoff based on CTD + keep your bond", "Physical settlement: deliver your bond, receive notional", "Cash > Physical when held bond price > CTD price"],
+      "yourMistake": "Assumed both methods always produce the same result — they differ when held bond ≠ CTD"
+    },
+    {
+      "id": 93,
+      "title": "Currency Translation: Current Rate Method",
+      "topic": "FSA",
+      "question": "Herbert Erikson examines Obsidian AG, a eurozone company (EUR). On 1 January, Obsidian formed Ametrine, a UK subsidiary (GBP), consolidated using the current rate method. The GBP steadily strengthened against the EUR throughout the year. Ametrine was profitable and had positive shareholders' equity in its first year.\n\nOn 31 December, after translating Ametrine, Obsidian should have reported a:",
+      "choices": [
+        {"letter": "A", "text": "Foreign exchange loss on its consolidated income statement"},
+        {"letter": "B", "text": "Positive translation adjustment on its consolidated balance sheet"},
+        {"letter": "C", "text": "Negative translation adjustment on its consolidated balance sheet"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Current Rate Method key rules:\n• Translation adjustment goes to OCI/Equity (NOT income statement) — eliminates choice A\n• Creates Net Asset Exposure (Assets > Liabilities when equity is positive)\n\nEffect of foreign currency strengthening:\n| FC Movement | Exposure | Translation Adjustment |\n|-------------|----------|------------------------|\n| FC strengthens | Net asset | POSITIVE |\n| FC strengthens | Net liability | Negative |\n| FC weakens | Net asset | Negative |\n| FC weakens | Net liability | Positive |\n\nHere: GBP strengthened + positive equity (net asset exposure) = Positive translation adjustment on balance sheet.\n\nWhy A is wrong: Current rate method reports translation adjustments in OCI/equity, NOT income statement. (Temporal method uses the income statement.)\nWhy C is wrong: Strengthening FC + net asset exposure = positive, not negative.",
+      "keyFormulas": ["Current rate method: Translation adjustment → OCI/Equity (balance sheet)", "Temporal method: Translation gain/loss → Income statement", "FC strengthens + net asset exposure = positive CTA"]
+    },
+    {
+      "id": 94,
+      "title": "Currency Translation: Gross Profit Margin Effect",
+      "topic": "FSA",
+      "question": "Herbert Erikson examines Citrine, a Poland-based subsidiary (PLN) of Obsidian AG (EUR), consolidated using the temporal method. The PLN steadily strengthened against the EUR throughout the year. All PP&E and a major portion of inventory sold during the year were acquired when the subsidiary was formed on 1 January.\n\nCitrine's gross profit margin on 31 December was:",
+      "choices": [
+        {"letter": "A", "text": "Lower after translation"},
+        {"letter": "B", "text": "The same after translation"},
+        {"letter": "C", "text": "Higher after translation"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Temporal Method translation rates for income statement:\n• Revenue → Average rate\n• COGS (from inventory) → Historical rate\n• Depreciation → Historical rate\n\nWhen PLN strengthens steadily through the year:\n• Historical rate (Jan 1) < Average rate < Current rate (Dec 31)\n• Revenue translated at HIGHER average rate → larger EUR amount\n• COGS translated at LOWER historical rate → smaller EUR amount\n\nResult: Numerator (Revenue - COGS) grows proportionally more than Revenue alone → GPM increases.\n\nExample:\n• PLN: Revenue=1000, COGS=600, GPM=40%\n• If Historical=0.20, Average=0.25 EUR/PLN:\n• EUR Revenue: 1000×0.25=250, EUR COGS: 600×0.20=120\n• EUR GPM: (250-120)/250 = 52% > 40%",
+      "keyFormulas": ["Temporal: Revenue at average rate, COGS at historical rate", "Strengthening FC → Historical < Average → COGS grows less than Revenue", "Result: Higher GPM after translation"]
+    },
+    {
+      "id": 95,
+      "title": "Active Portfolio: Optimal Risk-Return Combination",
+      "topic": "Portfolio Management",
+      "question": "Juan Bolton analyzes two actively managed funds. He compiles the following data:\n\n| Metric | Fund X | Fund Y | Benchmark |\n|--------|--------|--------|----------|\n| Expected annual return | 6.7% | 6.5% | 6.2% |\n| Standard deviation | 8.9% | 8.6% | 8.3% |\n\nFund X's expected active risk is 1.3%. Fund Y's ex ante information ratio is 0.27. The risk-free rate is 2.3%.\n\nThe maximum Sharpe ratio that can be achieved by combining Fund Y and the benchmark portfolio is closest to:",
+      "choices": [
+        {"letter": "A", "text": "0.29"},
+        {"letter": "B", "text": "0.54"},
+        {"letter": "C", "text": "0.74"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Calculate Benchmark Sharpe Ratio\nSR_B = (6.2% - 2.3%) / 8.3% = 3.9% / 8.3% = 0.4699\n\nStep 2: Fund Y's Information Ratio = 0.27 (given)\n\nStep 3: Maximum combined Sharpe ratio\nSR_Combined = √(SR²_B + IR²_Y)\n= √(0.4699² + 0.27²)\n= √(0.2208 + 0.0729)\n= √0.2937\n= 0.542 ≈ 0.54\n\nCommon mistakes:\n• A (0.29): Forgot to take the square root → just computed SR² + IR² = 0.2937\n• C (0.74): Added SR and IR linearly → 0.4699 + 0.27 = 0.74",
+      "keyFormulas": ["SR²_Combined = SR²_Benchmark + IR²_Active", "Maximum SR = √(SR²_B + IR²)", "Don't forget the square root! And don't add linearly!"]
+    },
+    {
+      "id": 96,
+      "title": "Two-Period Binomial Option Pricing",
+      "topic": "Derivatives",
+      "question": "Qiu Tian values European-style call options on Tara Corp. (non-dividend-paying) using a two-period binomial model:\n\n| Parameter | Value |\n|-----------|-------|\n| Current stock price | INR 10 |\n| Time to expiration | 2 years |\n| Risk-free rate (annual) | 5.0% |\n| Strike price | INR 12 |\n| Up factor per period | 1.50 |\n| Down factor per period | 0.67 |\n\nUsing the two-period binomial model, the no-arbitrage value of the Tara call option is closest to:",
+      "choices": [
+        {"letter": "A", "text": "INR 1.31"},
+        {"letter": "B", "text": "INR 2.00"},
+        {"letter": "C", "text": "INR 2.80"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Risk-neutral probability\nπ = (1 + r - d)/(u - d) = (1.05 - 0.67)/(1.50 - 0.67) = 0.38/0.83 = 0.4578\n\nStep 2: Stock prices at T=2\nS++ = 10 × 1.50² = 22.50\nS+- = 10 × 1.50 × 0.67 = 10.05\nS-- = 10 × 0.67² = 4.49\n\nStep 3: Call values at T=2\nc++ = max(0, 22.50-12) = 10.50\nc+- = max(0, 10.05-12) = 0\nc-- = max(0, 4.49-12) = 0\n\nStep 4: Call values at T=1\nc+ = [0.4578×10.50 + 0.5422×0]/1.05 = 4.807/1.05 = 4.578\nc- = [0.4578×0 + 0.5422×0]/1.05 = 0\n\nStep 5: Call value at T=0\nc₀ = [0.4578×4.578 + 0.5422×0]/1.05 = 2.096/1.05 = INR 2.00\n\nCommon mistakes:\n• A (1.31): Used single-period model → c+ = max(0,15-12)=3, c₀ = [0.4578×3]/1.05 = 1.31\n• C (2.80): Swapped u and d in probability formula → π = 0.5422",
+      "keyFormulas": ["π = (1 + r - d)/(u - d)", "Work backwards: T=2 → T=1 → T=0", "Each step: c = [π×c_up + (1-π)×c_down]/(1+r)"],
+      "yourMistake": "Used single-period model instead of two-period — must calculate values at T=2 first, then work backwards"
+    },
+    {
+      "id": 97,
+      "title": "Fair Dealing: Oversubscribed Offering Allocation",
+      "topic": "Ethics",
+      "question": "Michael Lee is a portfolio manager at Skylark Advisory. His adult sister has a fee-paying account at Skylark managed in the same manner as other clients. Prexel Funds offers a limited number of shares in a previously closed fund (PCSF) to Skylark. Demand from Skylark's suitable clients far exceeds the limited supply. To avoid any conflict of interest, Lee does not allocate any PCSF shares to himself or his sister.\n\nDid Lee violate the Standard relating to fair dealing in his allocation of PCSF shares?",
+      "choices": [
+        {"letter": "A", "text": "No"},
+        {"letter": "B", "text": "Yes, because he should have allocated shares to his sister's account"},
+        {"letter": "C", "text": "Yes, because he should have allocated shares to both his sister's and to his account"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Standard III(B) Fair Dealing:\n\nFor oversubscribed/limited offerings:\n• Member's OWN account: EXCLUDE (correct to forgo personal allocation)\n• Family accounts managed like other clients: INCLUDE (must not be excluded)\n• All suitable client accounts: INCLUDE (pro-rata allocation)\n\nLee was correct to exclude HIMSELF. But his sister's account is explicitly described as 'managed in the same manner as other clients.' Under the Standards, family-member accounts managed similarly to other client accounts should NOT be excluded from buying shares in limited offerings.\n\nThe Standard states: 'If the investment professional's family-member accounts are managed similarly to the accounts of other clients of the firm, however, the family-member accounts should not be excluded from buying such shares.'\n\nWhy A is wrong: Lee DID violate — by excluding his sister's account.\nWhy C is wrong: Lee was CORRECT to exclude his own account.",
+      "keyFormulas": ["Member's own account: EXCLUDE from oversubscribed offerings", "Family accounts managed as regular clients: INCLUDE in allocation", "Family ≠ Member — different treatment under the Standards"],
+      "yourMistake": "Thought excluding all family accounts was correct, but family accounts managed as clients must be included"
+    },
+    {
+      "id": 98,
+      "title": "IPO Allocation: Personal Account Participation",
+      "topic": "Ethics",
+      "question": "Carl Hirayo, CFA, at Summit Investments plans to participate in Tarragon Petroleum's IPO for both his personal account and clients' accounts. He obtains preclearance for personal participation because the IPO is NOT fully subscribed at that time. The offering turns out to be fully subscribed at issue and Summit receives ALL requested shares. Hirayo allocates shares on a pro rata basis among all subscribing accounts, including his own.\n\nWith respect to the IPO, does Hirayo violate the Standard relating to priority of transactions?",
+      "choices": [
+        {"letter": "A", "text": "No"},
+        {"letter": "B", "text": "Yes, because he allocates shares to himself"},
+        {"letter": "C", "text": "Yes, because he applied for the IPO for his personal account"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Standard VI(B) Priority of Transactions:\n\nNo violation because:\n1. IPO was NOT fully subscribed when Hirayo obtained preclearance\n2. Summit received 100% of ALL requested shares\n3. Allocation was PRO RATA among all subscribers\n4. NO CLIENT WAS DISADVANTAGED — every client got their full allocation\n\nThe Standard prohibits members from benefiting AT THE EXPENSE of clients. Here, clients received everything they wanted. Hirayo's participation did not reduce any client's allocation.\n\nWhy B is wrong: Receiving shares personally is not automatically a violation — the violation occurs only when clients are disadvantaged.\nWhy C is wrong: Applying for personal IPO participation is permitted. The preclearance process exists for this purpose.",
+      "keyFormulas": ["Priority of transactions = clients must not be disadvantaged", "100% fill + pro rata = no violation", "Preclearance when not fully subscribed = proper procedure"]
+    },
+    {
+      "id": 99,
+      "title": "Conflicts of Interest: Compensation Disclosure",
+      "topic": "Ethics",
+      "question": "Carl Hirayo, CFA, at Summit Investments has two compensation arrangements:\n\n1. A $60,000 performance bonus from Summit if his monthly portfolio performance exceeds that of Summit's other portfolios. He discloses this to existing clients but NOT to prospective clients.\n\n2. A $12,000 reward from Summit after he brought in 20 clients from his previous employer. This reward is paid by Summit and is NOT charged to clients. Hirayo does not disclose this to the clients he brought over.\n\nIn relation to his compensation, Hirayo violates the Standards when he fails to disclose:",
+      "choices": [
+        {"letter": "A", "text": "The $60,000 bonus only"},
+        {"letter": "B", "text": "The $12,000 reward only"},
+        {"letter": "C", "text": "Both the $60,000 bonus and the $12,000 reward"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Standard VI(A) Disclosure of Conflicts:\n\n$60,000 Performance Bonus — MUST DISCLOSE:\n• Creates conflict: incentivizes outperforming other Summit portfolios\n• Could lead to excessive risk-taking or front-running other clients\n• Disclosed to existing clients ✓ but NOT to prospective clients ✗\n• VIOLATION: Must disclose to ALL clients, including prospective\n\n$12,000 Client Recruitment Reward — NO DISCLOSURE REQUIRED:\n• NOT a referral fee — paid by employer (Summit), not a third party\n• Not charged to clients\n• One-time payment for past action, no ongoing conflict\n• Standard VI(C) Referral Fees applies to compensation from THIRD PARTIES\n\nThe $12,000 is employer compensation for business development, not a referral fee from 'others.'",
+      "keyFormulas": ["Performance bonuses creating conflicts = must disclose to ALL clients (including prospective)", "Employer-paid recruitment rewards ≠ referral fees", "Referral fees = compensation from THIRD PARTIES for recommendations"],
+      "yourMistake": "Thought both required disclosure — the $12,000 is employer compensation, not a third-party referral fee"
+    },
+    {
+      "id": 100,
+      "title": "Record Retention: Scope of Required Records",
+      "topic": "Ethics",
+      "question": "Summit's record retention policy has the following provisions:\n\nProvision 1: Client meeting notes must be preserved in electronic form; hence, any hard copies must be digitized.\n\nProvision 2: Informal blog posts and short message form posts sourced from the internet do not need to be preserved.\n\nProvision 3: Research reports and all supporting documents have a retention period of three years.\n\nTo comply with the Standards, which provision should be amended?",
+      "choices": [
+        {"letter": "A", "text": "Provision 1"},
+        {"letter": "B", "text": "Provision 2"},
+        {"letter": "C", "text": "Provision 3"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Standard V(C) Record Retention:\n\nProvision 1 (Electronic form) — COMPLIANT:\n• Records may be kept in electronic or hard copy form\n• Digitizing hard copies is acceptable\n\nProvision 2 (Blog posts exempt) — NON-COMPLIANT:\n• The Standard states: 'The nature or format of the information does not remove a member's responsibility to maintain a record.'\n• ALL investment-related communications must be retained: emails, text messages, blog posts, social media posts\n• 'Informal' does not exempt records from retention\n\nProvision 3 (Three-year retention) — COMPLIANT:\n• The 7-year recommendation only applies when there is NO firm policy\n• Since Summit has a policy (3 years), that policy governs\n• 'Firms may implement policies detailing the applicable time frame... Fulfilling such requirements satisfies Standard V(C).'\n\nWhy C is wrong: 7 years is only a default recommendation in absence of firm policy.",
+      "keyFormulas": ["ALL formats must be retained (emails, texts, blog posts, social media)", "Firm policy governs retention period (not the 7-year recommendation)", "7-year recommendation only applies WITHOUT a firm policy"]
     }
   ]
 }

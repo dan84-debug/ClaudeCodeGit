@@ -28,11 +28,15 @@ class CFAPracticeTester {
         this.qbankQuestions = [];
         this.qbankIndex = 0;
 
+        // Long-term per-question stats
+        this.questionStats = {};
+
         this.init();
     }
 
     async init() {
         await this.loadQuestions();
+        this.loadQuestionStats();
         this.bindEvents();
         this.updateStartScreen();
         this.checkLearnProgress();
@@ -99,6 +103,13 @@ class CFAPracticeTester {
         // Qbank screen
         document.getElementById('qbank-back-btn').addEventListener('click', () => this.showScreen('start-screen'));
 
+        // Long-term stats export/import
+        document.getElementById('stats-export-btn').addEventListener('click', () => this.exportQuestionStats());
+        document.getElementById('stats-import-btn').addEventListener('click', () => {
+            document.getElementById('stats-import-file').click();
+        });
+        document.getElementById('stats-import-file').addEventListener('change', (e) => this.importQuestionStats(e));
+
         // Options
         document.getElementById('shuffle-questions').addEventListener('change', (e) => {
             this.settings.shuffleQuestions = e.target.checked;
@@ -139,19 +150,17 @@ class CFAPracticeTester {
         const topics = [...new Set(this.questions.map(q => q.topic))];
         document.getElementById('total-topics').textContent = topics.length;
 
-        // Populate all topic filters
-        ['topic-filter', 'learn-topic-filter', 'qbank-topic-filter'].forEach(id => {
-            const select = document.getElementById(id);
-            if (select) {
-                select.innerHTML = '<option value="all">All Topics</option>';
-                topics.forEach(topic => {
-                    const option = document.createElement('option');
-                    option.value = topic;
-                    option.textContent = topic;
-                    select.appendChild(option);
-                });
-            }
-        });
+        // Populate single shared topic filter
+        const select = document.getElementById('topic-filter');
+        if (select) {
+            select.innerHTML = '<option value="all">All Topics</option>';
+            topics.forEach(topic => {
+                const option = document.createElement('option');
+                option.value = topic;
+                option.textContent = topic;
+                select.appendChild(option);
+            });
+        }
 
         const numSelect = document.getElementById('num-questions');
         const maxQuestions = this.questions.length;
@@ -247,6 +256,7 @@ class CFAPracticeTester {
         const isCorrect = this.selectedAnswer === question.correctAnswer;
 
         if (isCorrect) this.score++;
+        this.recordQuestionStat(question.id, isCorrect);
 
         this.results.push({
             question: question,
@@ -379,7 +389,7 @@ class CFAPracticeTester {
     // ==================== LEARN MODE ====================
 
     startLearn() {
-        const topicFilter = document.getElementById('learn-topic-filter').value;
+        const topicFilter = document.getElementById('topic-filter').value;
 
         let availableQuestions = topicFilter === 'all'
             ? [...this.questions]
@@ -457,6 +467,7 @@ class CFAPracticeTester {
 
         const question = this.learnPool[0];
         const isCorrect = this.selectedAnswer === question.correctAnswer;
+        this.recordQuestionStat(question.id, isCorrect);
 
         document.querySelectorAll('#learn-choices-container .choice').forEach(choice => {
             choice.classList.add('disabled');
@@ -515,6 +526,7 @@ class CFAPracticeTester {
 
     learnIDontKnow() {
         const question = this.learnPool[0];
+        this.recordQuestionStat(question.id, false);
 
         // Highlight correct answer
         document.querySelectorAll('#learn-choices-container .choice').forEach(choice => {
@@ -670,7 +682,7 @@ class CFAPracticeTester {
     // ==================== QBANK MODE ====================
 
     startQbank() {
-        const topicFilter = document.getElementById('qbank-topic-filter').value;
+        const topicFilter = document.getElementById('topic-filter').value;
 
         this.qbankQuestions = topicFilter === 'all'
             ? [...this.questions]
@@ -739,6 +751,69 @@ class CFAPracticeTester {
 
         // Hide nav buttons since we show all questions now
         document.querySelector('.qbank-nav').style.display = 'none';
+    }
+
+    // ==================== LONG-TERM STATS ====================
+
+    loadQuestionStats() {
+        try {
+            const saved = localStorage.getItem('cfa-question-stats');
+            if (saved) this.questionStats = JSON.parse(saved);
+        } catch (e) {
+            this.questionStats = {};
+        }
+    }
+
+    recordQuestionStat(questionId, isCorrect) {
+        if (!this.questionStats[questionId]) {
+            this.questionStats[questionId] = { correct: 0, incorrect: 0 };
+        }
+        if (isCorrect) {
+            this.questionStats[questionId].correct++;
+        } else {
+            this.questionStats[questionId].incorrect++;
+        }
+        localStorage.setItem('cfa-question-stats', JSON.stringify(this.questionStats));
+    }
+
+    exportQuestionStats() {
+        if (Object.keys(this.questionStats).length === 0) {
+            alert('No stats to export yet. Answer some questions first.');
+            return;
+        }
+        const blob = new Blob([JSON.stringify(this.questionStats, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cfa-question-stats-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    importQuestionStats(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const imported = JSON.parse(e.target.result);
+                // Merge: add imported counts to existing
+                Object.entries(imported).forEach(([id, stats]) => {
+                    if (!this.questionStats[id]) {
+                        this.questionStats[id] = { correct: 0, incorrect: 0 };
+                    }
+                    this.questionStats[id].correct += (stats.correct || 0);
+                    this.questionStats[id].incorrect += (stats.incorrect || 0);
+                });
+                localStorage.setItem('cfa-question-stats', JSON.stringify(this.questionStats));
+                alert('Stats imported and merged successfully!');
+            } catch (err) {
+                alert('Invalid stats file.');
+            }
+        };
+        reader.readAsText(file);
+        event.target.value = '';
     }
 
     // ==================== UTILS ====================

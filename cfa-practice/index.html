@@ -45,6 +45,14 @@
                 </button>
             </div>
 
+            <!-- Shared Topic Filter -->
+            <div class="shared-filter">
+                <label for="topic-filter">Filter by topic:</label>
+                <select id="topic-filter">
+                    <option value="all">All Topics</option>
+                </select>
+            </div>
+
             <!-- Quiz Options (shown for Quiz mode) -->
             <div id="quiz-options" class="quiz-options">
                 <label for="num-questions">Questions per quiz:</label>
@@ -54,11 +62,6 @@
                     <option value="15">15 questions</option>
                     <option value="20">20 questions</option>
                     <option value="all">All questions</option>
-                </select>
-
-                <label for="topic-filter">Filter by topic:</label>
-                <select id="topic-filter">
-                    <option value="all">All Topics</option>
                 </select>
 
                 <label class="checkbox-label">
@@ -74,11 +77,6 @@
 
             <!-- Learn Options (shown for Learn mode) -->
             <div id="learn-options" class="quiz-options hidden">
-                <label for="learn-topic-filter">Filter by topic:</label>
-                <select id="learn-topic-filter">
-                    <option value="all">All Topics</option>
-                </select>
-
                 <p class="mode-info">Answer each question correctly once to master it. Wrong answers stay in the pool until you get them right.</p>
 
                 <!-- Resume saved progress banner -->
@@ -92,20 +90,22 @@
 
                 <!-- Import/Export -->
                 <div class="progress-sync">
-                    <button id="learn-export-btn" class="btn btn-secondary btn-small">Export Progress</button>
-                    <button id="learn-import-btn" class="btn btn-secondary btn-small">Import Progress</button>
+                    <button id="learn-export-btn" class="btn btn-secondary btn-small">Export Learn Session</button>
+                    <button id="learn-import-btn" class="btn btn-secondary btn-small">Import Learn Session</button>
                     <input type="file" id="learn-import-file" accept=".json" class="hidden">
                 </div>
             </div>
 
             <!-- Qbank Options (shown for Qbank mode) -->
             <div id="qbank-options" class="quiz-options hidden">
-                <label for="qbank-topic-filter">Filter by topic:</label>
-                <select id="qbank-topic-filter">
-                    <option value="all">All Topics</option>
-                </select>
-
                 <p class="mode-info">Browse all questions with answers and explanations.</p>
+            </div>
+
+            <!-- Long-term Stats Export -->
+            <div class="progress-sync" style="justify-content: center;">
+                <button id="stats-export-btn" class="btn btn-secondary btn-small">Export Stats</button>
+                <button id="stats-import-btn" class="btn btn-secondary btn-small">Import Stats</button>
+                <input type="file" id="stats-import-file" accept=".json" class="hidden">
             </div>
 
             <button id="start-btn" class="btn btn-primary">Start Quiz</button>
