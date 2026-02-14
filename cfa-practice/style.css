@@ -615,6 +615,32 @@ body {
     color: var(--gray-500);
 }
 
+/* Shared topic filter */
+.shared-filter {
+    background: white;
+    padding: 16px 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.shared-filter label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.shared-filter select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    font-size: 16px;
+    background: white;
+}
+
 .mode-info {
     font-size: 0.9rem;
     color: var(--gray-600);
