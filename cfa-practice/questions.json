@@ -1533,6 +1533,231 @@
       "correctAnswer": "B",
       "explanation": "Standard V(C) Record Retention:\n\nProvision 1 (Electronic form) — COMPLIANT:\n• Records may be kept in electronic or hard copy form\n• Digitizing hard copies is acceptable\n\nProvision 2 (Blog posts exempt) — NON-COMPLIANT:\n• The Standard states: 'The nature or format of the information does not remove a member's responsibility to maintain a record.'\n• ALL investment-related communications must be retained: emails, text messages, blog posts, social media posts\n• 'Informal' does not exempt records from retention\n\nProvision 3 (Three-year retention) — COMPLIANT:\n• The 7-year recommendation only applies when there is NO firm policy\n• Since Summit has a policy (3 years), that policy governs\n• 'Firms may implement policies detailing the applicable time frame... Fulfilling such requirements satisfies Standard V(C).'\n\nWhy C is wrong: 7 years is only a default recommendation in absence of firm policy.",
       "keyFormulas": ["ALL formats must be retained (emails, texts, blog posts, social media)", "Firm policy governs retention period (not the 7-year recommendation)", "7-year recommendation only applies WITHOUT a firm policy"]
+    },
+    {
+      "id": 101,
+      "title": "Derivatives: No-Arbitrage Bond Forward Pricing",
+      "topic": "Derivatives",
+      "question": "Lucy Wang is a derivatives trader for a South African broker-dealer. All trades use a 30/360 day count convention.\n\nWang determines the no-arbitrage price of a bond forward contract using the following data:\n\nExhibit 2:\n- Quoted bond price (clean, % of par): 105.0\n- Future value of coupon interest (% of par): 4.51\n- Accrued interest at contract initiation (% of par): 3.00\n- Accrued interest at contract expiration (% of par): 0.75\n- Time to forward contract expiration: 90 days\n- Annualized risk-free rate: 3.7%\n- Conversion factor: 1.0\n\nThe no-arbitrage bond forward price (as a percentage of par) is closest to:",
+      "choices": [
+        {"letter": "A", "text": "99.2"},
+        {"letter": "B", "text": "103.7"},
+        {"letter": "C", "text": "108.4"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Bond Forward Price: F₀ = FV[B₀ + AI₀] − AI_T − FVCI\n\nStep 1: Full (dirty) price at initiation = 105.0 + 3.00 = 108.00\nStep 2: Future value of spot = 108.00 × (1.037)^(90/360) = 108.00 × 1.00912 = 108.985\nStep 3: Forward price = 108.985 − 0.75 − 4.51 = 103.73 ≈ 103.7\n\nChoice A (99.2) subtracts AI₀ instead of adding it and adds AI_T instead of subtracting: [(1.037)^0.25 × (105 − 3)] + 0.75 − 4.51 = 99.17.\nChoice C (108.4) ignores FVCI entirely: 108.985 − 0.75 = 108.24.",
+      "keyFormulas": ["F₀ = FV(S₀) − AI_T − FVCI", "S₀ (dirty price) = Clean Price + AI at initiation", "FV(S₀) = S₀ × (1 + r)^T"],
+      "yourMistake": ""
+    },
+    {
+      "id": 102,
+      "title": "Equity Valuation: Model Selection for Takeover Target",
+      "topic": "Equity",
+      "question": "Charlene Norberg is an analyst for a sell-side firm building valuation models for publicly traded firms.\n\nFirm B has consistently paid dividends and has a large cash balance with growing retained earnings. Norberg believes Firm B is a takeover target because it offers synergies to a main competitor. If a takeover occurs, the new owner will likely change Firm B's dividend payout and will issue debt to maintain capital expenditures. Norberg evaluates the potential takeover from the acquirer's perspective.\n\nWhich of the following is the most appropriate model to value Firm B?",
+      "choices": [
+        {"letter": "A", "text": "DDM"},
+        {"letter": "B", "text": "FCFE"},
+        {"letter": "C", "text": "FCFF"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "FCFF is correct because:\n1. Takeover situation — acquirer's perspective requires cash flows available to ALL capital providers\n2. Capital structure will change — new owner will issue debt, changing debt/equity mix\n3. Dividend policy will change — makes DDM unreliable\n4. FCFF growth reflects fundamentals more clearly than FCFE when leverage fluctuates; WACC is less sensitive to capital structure changes than cost of equity\n\nFCFE is wrong because it's affected by net borrowing decisions. When capital structure changes, historical FCFE growth rates become less meaningful.\nDDM is wrong because dividends will change after acquisition and current policy doesn't reflect future payout.",
+      "keyFormulas": ["FCFF: Use when capital structure is changing or evaluating from acquirer perspective", "FCFE: Use when capital structure is stable", "DDM: Use when dividends are predictable and no change in control"],
+      "yourMistake": "Selected FCFE. For acquisitions with expected capital structure changes, FCFF is preferred because it represents total cash available to all stakeholders before financing decisions."
+    },
+    {
+      "id": 103,
+      "title": "Equity Valuation: Appropriate Value Definition",
+      "topic": "Equity",
+      "question": "Charlene Norberg is an analyst evaluating Firm B, which she believes is a takeover target because it offers synergies to one of its main competitors. If a takeover occurs, the new owner will likely change Firm B's dividend payout and issue debt. Norberg evaluates the potential takeover from the acquirer's perspective.\n\nWhich of the following definitions of value would be most relevant for Norberg's valuation estimate for Firm B?",
+      "choices": [
+        {"letter": "A", "text": "Intrinsic value"},
+        {"letter": "B", "text": "Investment value"},
+        {"letter": "C", "text": "Fair market value"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Investment value is the value to a SPECIFIC buyer considering synergies.\n\nIntrinsic value = PV of expected future cash flows; going-concern value (no special buyer assumed)\nInvestment value = Value to a specific buyer including synergies\nFair market value = Price between willing buyer and seller with no compulsion\n\nThe vignette states Firm B offers synergies to a specific competitor and Norberg evaluates from the acquirer's perspective. Investment value captures synergy benefits specific to this acquirer and strategic value beyond standalone cash flows.\n\nInvestment Value = Intrinsic Value + Value of Synergies\n\nIntrinsic value is wrong because it doesn't capture buyer-specific synergies. Fair market value is wrong because it doesn't account for buyer-specific synergies — transaction price in a takeover will likely exceed fair market value.",
+      "keyFormulas": ["Investment Value = Intrinsic Value + Value of Synergies", "Intrinsic value: What company is worth to ANY owner", "Investment value: What company is worth to THIS SPECIFIC owner"],
+      "yourMistake": "Selected fair market value. When a specific acquirer's synergies are relevant, investment value is the appropriate concept."
+    },
+    {
+      "id": 104,
+      "title": "Equity Valuation: Normalized Earnings Calculation",
+      "topic": "Equity",
+      "question": "Amanda Mond is valuing Delong, a growing company in a cyclical industry with volatile earnings. She normalizes Delong's EPS using the average ROE method.\n\nExhibit 1:\n| Metric | Most Recent Year | Avg Over Most Recent Business Cycle | Long-Term Historical Avg |\n| BVPS | EUR 11.2 | EUR 10.5 | EUR 9.6 |\n| ROE | 15.0% | 16.0% | 17.5% |\n\nBased on the average ROE method, Delong's normalized EPS is closest to:",
+      "choices": [
+        {"letter": "A", "text": "EUR 1.68"},
+        {"letter": "B", "text": "EUR 1.79"},
+        {"letter": "C", "text": "EUR 1.96"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Average ROE Method: Normalized EPS = Average ROE (over business cycle) × Current BVPS\n\nNormalized EPS = 16.0% × EUR 11.2 = 0.16 × 11.2 = EUR 1.79\n\nUse average ROE from the MOST RECENT BUSINESS CYCLE (16.0%), not long-term historical (17.5%).\nUse CURRENT BVPS (11.2), not average BVPS.\n\nChoice C (1.96) uses long-term historical ROE: 17.5% × 11.2 = 1.96\nChoice A (1.68) uses average BVPS × average ROE: 16.0% × 10.5 = 1.68, or current ROE × current BVPS: 15.0% × 11.2 = 1.68",
+      "keyFormulas": ["Normalized EPS = Average ROE (business cycle) × Current BVPS", "Use MOST RECENT business cycle ROE, not long-term historical", "Use CURRENT book value, not average book value"],
+      "yourMistake": "Used long-term historical average ROE (17.5%) instead of most recent business cycle ROE (16.0%). The average ROE method uses business cycle ROE with current BVPS."
+    },
+    {
+      "id": 105,
+      "title": "Equity Valuation: Justified Price Multiple",
+      "topic": "Equity",
+      "question": "Amanda Mond uses the following forecasted fundamentals to calculate Delong's justified trailing P/E:\n- Dividend payout ratio: 46%\n- ROE: 15%\n- Required rate of return: 10.8%\n\nBased on Mond's forecasted fundamentals, Delong's justified trailing P/E is closest to:",
+      "choices": [
+        {"letter": "A", "text": "14.8"},
+        {"letter": "B", "text": "17.0"},
+        {"letter": "C", "text": "18.4"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Step 1: Retention rate b = 1 − payout = 1 − 0.46 = 0.54 (NOT 0.46!)\nStep 2: Sustainable growth g = b × ROE = 0.54 × 15% = 8.1%\nStep 3: Justified TRAILING P/E = (1 − b)(1 + g) / (r − g)\n= (0.46)(1.081) / (0.108 − 0.081)\n= 0.4973 / 0.027\n= 18.42 ≈ 18.4\n\nChoice B (17.0) is the FORWARD P/E: (1 − b) / (r − g) = 0.46 / 0.027 = 17.04\nChoice A (14.8) uses payout ratio AS retention rate: g = 0.46 × 15% = 6.9%, then (0.54)(1.069) / (0.108 − 0.069) = 14.8",
+      "keyFormulas": ["Trailing P/E: P₀/E₀ = (1 − b)(1 + g) / (r − g)", "Forward P/E: P₀/E₁ = (1 − b) / (r − g)", "b = retention rate = 1 − payout ratio", "g = b × ROE"],
+      "yourMistake": "Calculated the FORWARD P/E (17.0) instead of TRAILING P/E (18.4). Trailing P/E includes the (1 + g) factor to convert E₀ to its relationship with current price."
+    },
+    {
+      "id": 106,
+      "title": "Commodities: Spread Identification",
+      "topic": "Portfolio Management",
+      "question": "Ross Wyman is a portfolio manager planning to add commodities to his client's holdings. He and Tina Becker, a commodity advisor, discuss current market prices for three commodities:\n\n| Item | Commodity 1 | Commodity 2 | Commodity 3 |\n| Spot price | $1,688 | $830 | $87.20 |\n| Near-term futures price | $1,688 | $835 | $85.90 |\n| Farther-term futures price | $1,707 | $835 | $84.60 |\n\nBased on current market prices, which commodity has a negative calendar spread?",
+      "choices": [
+        {"letter": "A", "text": "Commodity 1"},
+        {"letter": "B", "text": "Commodity 2"},
+        {"letter": "C", "text": "Commodity 3"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Calendar Spread = Near-term Futures − Farther-term Futures\n\nCommodity 1: $1,688 − $1,707 = −$19 (NEGATIVE)\nCommodity 2: $835 − $835 = $0 (flat)\nCommodity 3: $85.90 − $84.60 = +$1.30 (positive)\n\nOnly Commodity 1 has a negative calendar spread (contango — futures curve slopes upward).\n\nDo NOT confuse Calendar Spread with Basis:\n- Calendar Spread = Near-term futures − Farther-term futures\n- Basis = Spot − Futures\n\nNegative calendar spread = Contango\nPositive calendar spread = Backwardation",
+      "keyFormulas": ["Calendar Spread = Near-term Futures − Farther-term Futures", "Basis = Spot − Futures", "Negative calendar spread = Contango", "Positive calendar spread = Backwardation"],
+      "yourMistake": "Selected Commodity 3 — likely reversed the formula (Farther − Near) or confused calendar spread with basis."
+    },
+    {
+      "id": 107,
+      "title": "Commodities: Futures Curve Theory",
+      "topic": "Portfolio Management",
+      "question": "Ross Wyman and Tina Becker discuss Commodity 3, which is in backwardation (Spot: $87.20, Near-term futures: $85.90, Farther-term futures: $84.60).\n\nBecker provides additional information about Commodity 3:\n- Hedging demand by consumers currently exceeds hedging demand by producers\n- The convenience yield exceeds direct storage costs\n\nBased on the exhibit and Becker's additional information, the shape of the futures price curve of Commodity 3 is most consistent with the:",
+      "choices": [
+        {"letter": "A", "text": "Insurance theory"},
+        {"letter": "B", "text": "Theory of storage"},
+        {"letter": "C", "text": "Hedging pressure hypothesis"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Theory of Storage: Futures Price = Spot + Storage Costs − Convenience Yield\nWhen Convenience Yield > Storage Costs → Futures < Spot = Backwardation ✓\n\nInsurance Theory and Hedging Pressure Hypothesis both predict:\n- Backwardation when PRODUCER hedging > Consumer hedging\n- Contango when Consumer hedging > Producer hedging\n\nBut Commodity 3 has consumer hedging > producer hedging, which these theories would predict leads to CONTANGO — not backwardation!\n\nSince Commodity 3 IS in backwardation despite consumer hedging exceeding producer hedging, only the Theory of Storage is consistent (because convenience yield > storage costs).",
+      "keyFormulas": ["Theory of Storage: Futures = Spot + Storage Costs − Convenience Yield", "Insurance/Hedging Pressure: Backwardation when producer hedging > consumer hedging", "If hedging conditions contradict observed curve shape → Theory of Storage applies"],
+      "yourMistake": "Selected hedging pressure hypothesis. The vignette states consumer hedging > producer hedging, which under hedging pressure would predict contango — but Commodity 3 is in backwardation. Only Theory of Storage (convenience yield > storage costs) is consistent."
+    },
+    {
+      "id": 108,
+      "title": "Commodities: Index Construction Strategy",
+      "topic": "Portfolio Management",
+      "question": "Ross Wyman considers investing in a commodity index. His objective is to select the index providing the largest contribution to performance based on two expectations:\n1. Trending commodity markets, where outperforming assets continue to go up in price and underperforming assets continue to drift lower\n2. No changes in the shapes of forward curves, with some markets currently in backwardation and others in contango\n\nBased on his objective, Wyman should select an index that:",
+      "choices": [
+        {"letter": "A", "text": "Rebalances frequently and contains a large percentage of constituents in backwardation"},
+        {"letter": "B", "text": "Rebalances frequently and contains a small percentage of constituents in backwardation"},
+        {"letter": "C", "text": "Rebalances infrequently and contains a large percentage of constituents in backwardation"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Two factors:\n\n1. Rebalancing in trending markets: INFREQUENT rebalancing is better. Frequent rebalancing sells outperformers (which keep rising) and buys underperformers (which keep falling), hurting performance. Infrequent rebalancing lets winners run.\n\n2. Backwardation and roll return: LARGE % in backwardation is better. In backwardation, near-term > farther-term, so rolling futures contracts generates positive roll return. In contango, roll return is negative.\n\nOptimal: Infrequent rebalancing + large % backwardation.\n\nChoice A: Frequent rebalancing hurts in trending markets.\nChoice B: Both wrong — frequent rebalancing hurts AND small % backwardation means less positive roll return.",
+      "keyFormulas": ["Trending markets → Infrequent rebalancing (let winners run)", "Mean-reverting markets → Frequent rebalancing (sell high, buy low)", "Backwardation → Positive roll return", "Contango → Negative roll return"],
+      "yourMistake": "Selected frequent rebalancing with small % backwardation. In trending markets, frequent rebalancing forces you to sell winners and buy losers. Backwardation generates positive roll return."
+    },
+    {
+      "id": 109,
+      "title": "Portfolio Management: ETF Cost Calculation",
+      "topic": "Portfolio Management",
+      "question": "Marietjie Granger works for a South African equity fund manager specializing in ETFs. She wants to make a 6-month tactical investment in ETF X-Ray and determines the expected holding period cost using:\n\n- Bid-ask spread: 0.15%\n- One-way commission: 0.10%\n- Annual management fee: 0.20%\n\nThe expected holding period cost for Granger's investment in ETF X-Ray is closest to:",
+      "choices": [
+        {"letter": "A", "text": "0.45%"},
+        {"letter": "B", "text": "0.55%"},
+        {"letter": "C", "text": "0.60%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "ETF Holding Period Cost = Round-trip Trading Cost + Management Fee for Period\n\nRound-trip commission: 0.10% × 2 = 0.20%\nBid-ask spread (paid once on round trip): 0.15%\nManagement fee (6 months): 0.20% × (6/12) = 0.10%\n\nTotal = 0.20% + 0.15% + 0.10% = 0.45%\n\nChoice B (0.55%) does not prorate the annual fee for 6 months: 0.20% + 0.15% + 0.20% = 0.55%\nChoice C (0.60%) doubles the bid-ask spread: 0.20% + 0.30% + 0.10% = 0.60%\n\nKey: Bid-ask spread is paid ONCE on the round trip, commission is paid TWICE, and management fee must be PRORATED for holding period.",
+      "keyFormulas": ["Holding Period Cost = (Commission × 2) + Bid-ask Spread + (Annual Fee × Holding Period)", "Bid-ask spread paid ONCE on round trip", "Commission paid TWICE (buy + sell)", "Management fee prorated for holding period"],
+      "yourMistake": "Did not adjust the annual management fee for the 6-month holding period. Used full 0.20% instead of 0.10%."
+    },
+    {
+      "id": 110,
+      "title": "FSA: Asset Impairment Loss Calculation",
+      "topic": "Financial Statement Analysis",
+      "question": "Dora Kriser, a financial analyst, evaluates Delphine Industries, a company reporting under IFRS. She is concerned that industry changes may negatively affect one of Delphine's cash-generating units and evaluates:\n\n- Carrying value of cash-generating unit: €18,200,000\n- Recoverable amount of cash-generating unit: €17,700,000\n- Goodwill allocated to cash-generating unit: €300,000\n\nBased on Kriser's projections, the expected impairment loss for Delphine's cash-generating unit is:",
+      "choices": [
+        {"letter": "A", "text": "€200,000"},
+        {"letter": "B", "text": "€300,000"},
+        {"letter": "C", "text": "€500,000"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "IFRS Impairment: Impairment Loss = Carrying Value − Recoverable Amount (if CV > RA)\n\nImpairment Loss = €18,200,000 − €17,700,000 = €500,000\n\nThe TOTAL impairment loss is the full difference. Allocation order:\n1. First reduce goodwill to zero (€300,000)\n2. Then allocate remaining (€200,000) pro-rata to other assets\n\nBut the TOTAL impairment loss recognized is still €500,000.\n\nChoice A (€200,000) = Total loss minus goodwill — this is only the loss allocated to other assets AFTER goodwill write-off, not the total.\nChoice B (€300,000) = Assumes impairment is limited to goodwill only — wrong.",
+      "keyFormulas": ["IFRS Impairment Loss = Carrying Value − Recoverable Amount", "Allocation: First to goodwill, then pro-rata to other assets", "Question asks for TOTAL loss, not just loss to specific assets"],
+      "yourMistake": "Calculated €500,000 − €300,000 = €200,000. This is the loss allocated to other assets after goodwill, but the question asks for the TOTAL impairment loss."
+    },
+    {
+      "id": 111,
+      "title": "FSA: Cash Flow Classification Comparison",
+      "topic": "Financial Statement Analysis",
+      "question": "Dora Kriser evaluates Delphine Industries, which reports under IFRS. She examines Delphine's statement of cash flows and observes that interest paid is classified as an operating activity and interest received is classified as an investing activity. She considers whether these classifications could affect comparisons with competitors reporting under US GAAP.\n\nIs Delphine's classification of interest paid and interest received consistent with competitors that report under US GAAP?",
+      "choices": [
+        {"letter": "A", "text": "Yes"},
+        {"letter": "B", "text": "No, the classification of interest paid is not consistent"},
+        {"letter": "C", "text": "No, the classification of interest received is not consistent"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Cash Flow Classification Rules:\n\n| Item | IFRS | US GAAP |\n| Interest paid | Operating OR Financing | Operating ONLY |\n| Interest received | Operating OR Investing | Operating ONLY |\n| Dividends paid | Operating OR Financing | Financing ONLY |\n| Dividends received | Operating OR Investing | Operating ONLY |\n\nDelphine's interest paid → Operating ✓ (consistent with US GAAP)\nDelphine's interest received → Investing ✗ (US GAAP requires Operating)\n\nIFRS provides CHOICE for interest and dividend classification. US GAAP REQUIRES specific classifications with no choice.\n\nUS GAAP: Interest (paid AND received) = ALWAYS Operating.",
+      "keyFormulas": ["US GAAP: Interest paid/received = ALWAYS Operating", "IFRS: Interest = Choice (Operating/Financing for paid; Operating/Investing for received)", "US GAAP: Dividends paid = Financing; Dividends received = Operating"],
+      "yourMistake": "Thought both classifications were consistent. Under US GAAP, interest received MUST be classified as operating — there is no choice."
+    },
+    {
+      "id": 112,
+      "title": "Economics: Forward Contract Mark-to-Market",
+      "topic": "Economics",
+      "question": "Jennifer Francis is a currency specialist. All currencies are quoted as numerator currency per unit of denominator currency.\n\nNine months ago, Stephan Podowski bought EUR 20 million forward against USD by entering a 1-year forward contract at 1.1308 USD/EUR. He wants to calculate the mark-to-market value today.\n\nCurrent data:\n- USD/EUR spot rate: 1.1352/1.1355 (bid/ask)\n- 90-day forward points: −14/−12\n- Annualized 90-day MRR (Actual/360): USD 0.53%, EUR 0.77%\n\nThe mark-to-market value of Podowski's USD/EUR forward contract is closest to:",
+      "choices": [
+        {"letter": "A", "text": "USD 59,921"},
+        {"letter": "B", "text": "USD 69,907"},
+        {"letter": "C", "text": "USD 115,847"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Step 1: Podowski is LONG EUR (bought EUR forward). To offset, he must SELL EUR forward → use BID side.\nSpot bid: 1.1352, Forward points bid: −14\n\nStep 2: All-in forward rate = 1.1352 + (−14/10,000) = 1.1352 − 0.0014 = 1.1338 USD/EUR\n\nStep 3: Cash flow at settlement:\nOriginal: BUY EUR 20M at 1.1308 → Pay USD 22,616,000\nOffset: SELL EUR 20M at 1.1338 → Receive USD 22,676,000\nNet = USD 22,676,000 − USD 22,616,000 = USD 60,000\n\nStep 4: Discount at USD rate for 90 days:\nPV = 60,000 / [1 + 0.0053 × (90/360)] = 60,000 / 1.001325 = USD 59,921\n\nChoice C (115,847): Added forward points instead of subtracting (treated negative as positive): 1.1352 + 0.0014 = 1.1366\nChoice B (69,907): Used OFFER rate instead of BID: 1.1355 − 0.0012 = 1.1343",
+      "keyFormulas": ["To offset LONG base currency: use BID (selling)", "To offset SHORT base currency: use OFFER (buying)", "Forward points are already signed (negative = subtract)", "Discount at price currency rate"],
+      "yourMistake": "Added forward points instead of subtracting them. Forward points of −14 means SUBTRACT 0.0014 from spot. The negative sign is already built in."
+    },
+    {
+      "id": 113,
+      "title": "Ethics: Work Product and Employer Obligations",
+      "topic": "Ethics",
+      "question": "Marcia Garrett is a research analyst at IGMA Investments, a large investment firm that claims compliance with the Standards. Garrett has accepted an offer to join a rival firm.\n\nWhile at IGMA, Garrett and a colleague developed a quantitative model that was used for industry and company analysis. Garrett considers if she can continue to use the model at her new firm.\n\nWould Garrett violate the Standards if she uses the quantitative model at her new firm?",
+      "choices": [
+        {"letter": "A", "text": "No"},
+        {"letter": "B", "text": "Yes, unless she receives permission from IGMA"},
+        {"letter": "C", "text": "Yes, unless she receives written permission from her colleague at IGMA"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Standard IV(A) Loyalty: Members must act for the benefit of their employer and not deprive their employer of the advantage of their skills and abilities, divulge confidential information, or otherwise cause harm.\n\nKey principle: Work product belongs to EMPLOYER, not the employee — even if the employee created it.\n\nThe model was developed while employed at IGMA, used for IGMA's business, and is IGMA's property. Using it at a competitor without IGMA's permission = self-dealing (appropriating employer's property).\n\nChoice A is wrong: The model belongs to IGMA regardless of who developed it.\nChoice C is wrong: Permission from the colleague is irrelevant — the model belongs to IGMA (the employer), not individual employees. Only IGMA can authorize its use elsewhere.",
+      "keyFormulas": ["Work product developed during employment = Employer's property", "Need EMPLOYER permission (not colleague's) to use elsewhere", "Self-dealing = Appropriating employer's business opportunity/information"],
+      "yourMistake": "Selected 'No' — thought the model could be freely used. Any models, research, or IP developed during employment belong to the employer."
+    },
+    {
+      "id": 114,
+      "title": "Fixed Income: CDS Contract Initiation Payment",
+      "topic": "Fixed Income",
+      "question": "Liying Wang manages an investment-grade bond portfolio and considers purchasing a senior unsecured bond issued by AHM Manufacturing (AHM01). She purchases protection on the AHM01 bond using a single-name CDS with counterparty XRM Bank.\n\nCDS details:\n- Standard annual coupon: 100 basis points\n- Current market spread on AHM01: 150 basis points\n- Initial CDS contract value: set to zero\n\nThe CDS protection that Wang purchases on the AHM01 bond requires:",
+      "choices": [
+        {"letter": "A", "text": "No upfront payment"},
+        {"letter": "B", "text": "Wang to make an upfront payment"},
+        {"letter": "C", "text": "XRM Bank to make an upfront payment"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "CDS contracts trade with standardized fixed coupons (typically 100 or 500 bps). The fair value of protection depends on the actual credit spread.\n\nHere: Coupon = 100 bps (what Wang pays annually), Market spread = 150 bps (what protection is worth).\nWang gets protection worth 150 bps but only pays 100 bps per year. The 50 bps difference must be compensated upfront to set initial CDS value to zero.\n\nRule:\n- Market spread > Coupon → Protection BUYER pays upfront\n- Market spread < Coupon → Protection SELLER pays upfront\n- Market spread = Coupon → No upfront payment\n\nApproximation: Upfront ≈ (Credit Spread − Coupon) × Duration = (150 − 100) × Duration = 50 bps × Duration\n\nChoice A is wrong: If no upfront payment with a below-market coupon, the seller gives away value for free.\nChoice C is wrong: XRM Bank (seller) would only pay upfront if coupon exceeded market spread.",
+      "keyFormulas": ["Upfront ≈ (Credit Spread − Coupon) × Duration", "Spread > Coupon → Buyer pays upfront", "Spread < Coupon → Seller pays upfront", "Upfront payment sets initial CDS value to zero"],
+      "yourMistake": "Selected no upfront payment. CDS standardized coupons rarely match market spreads — the difference is settled via upfront premium."
+    },
+    {
+      "id": 115,
+      "title": "Fixed Income: Structured Bond Issuer Benefits",
+      "topic": "Fixed Income",
+      "question": "Nathan Moffet is a fixed-income portfolio manager analyzing credit risk within a corporate bond portfolio. Company B plans to issue a covered bond.\n\nA covered bond is a senior debt obligation of a financial institution that gives recourse to both the originator/issuer and a predetermined underlying collateral pool (the 'cover pool'). The dual recourse to the issuing financial institution and the underlying asset pool has been a hallmark of covered bonds since their inception.\n\nWhich of the following is a benefit of the Company B bond from the perspective of the issuer?",
+      "choices": [
+        {"letter": "A", "text": "The bond can have a higher credit rating than Company B's rating"},
+        {"letter": "B", "text": "Once fully collateralized, the bond is no longer an obligation of Company B"},
+        {"letter": "C", "text": "Any prepaid or non-performing assets in the cover pool do not have to be replaced"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "Covered bonds provide investors with dual recourse: (1) recourse to the issuer — the financial institution remains obligated, and (2) recourse to the cover pool — collateral backing the bond.\n\nGiven additional credit enhancements (dual recourse + dynamic cover pool), covered bonds typically receive credit ratings several notches ABOVE the issuing institution. This benefits the issuer through lower borrowing costs and a wider investor base.\n\nChoice B is wrong: The covered bond is an ONGOING obligation. Dual recourse means the issuer NEVER escapes liability — they must make payments even if the cover pool falls short.\nChoice C is wrong: The cover pool is DYNAMIC, not static. The issuer MUST replace prepaid and non-performing assets and maintain sufficient cash flows to bond maturity.",
+      "keyFormulas": ["Covered bond: Dual recourse (issuer + collateral pool)", "Dynamic cover pool: Issuer must replace prepaid/non-performing assets", "Higher rating = Lower borrowing costs for issuer", "Issuer liability continues throughout bond life"],
+      "yourMistake": ""
     }
   ]
 }
