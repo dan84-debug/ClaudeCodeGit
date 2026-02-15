@@ -1758,6 +1758,261 @@
       "explanation": "Covered bonds provide investors with dual recourse: (1) recourse to the issuer — the financial institution remains obligated, and (2) recourse to the cover pool — collateral backing the bond.\n\nGiven additional credit enhancements (dual recourse + dynamic cover pool), covered bonds typically receive credit ratings several notches ABOVE the issuing institution. This benefits the issuer through lower borrowing costs and a wider investor base.\n\nChoice B is wrong: The covered bond is an ONGOING obligation. Dual recourse means the issuer NEVER escapes liability — they must make payments even if the cover pool falls short.\nChoice C is wrong: The cover pool is DYNAMIC, not static. The issuer MUST replace prepaid and non-performing assets and maintain sufficient cash flows to bond maturity.",
       "keyFormulas": ["Covered bond: Dual recourse (issuer + collateral pool)", "Dynamic cover pool: Issuer must replace prepaid/non-performing assets", "Higher rating = Lower borrowing costs for issuer", "Issuer liability continues throughout bond life"],
       "yourMistake": ""
+    },
+    {
+      "id": 116,
+      "title": "Regression Diagnostics: Error Autocorrelation",
+      "topic": "Quantitative Methods",
+      "question": "Bella Stone is an analyst covering Garnet Corp. To forecast the price of Garnet shares, she estimates a log-linear trend in a related economic variable and evaluates whether the model suffers from serially correlated errors.\n\nThe Durbin–Watson test statistic from the regression is 0.54 and the lower critical value for the Durbin–Watson statistic is dl = 1.25.\n\nBased on the Durbin–Watson test, the errors in the economic variable's trend model are:",
+      "choices": [
+        {"letter": "A", "text": "Negatively serially correlated"},
+        {"letter": "B", "text": "Not serially correlated"},
+        {"letter": "C", "text": "Positively serially correlated"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Durbin-Watson (DW) statistic ranges from 0 to 4:\n- DW ≈ 2: No serial correlation\n- DW < 2: Positive serial correlation\n- DW > 2: Negative serial correlation\n\nDecision rules:\n- DW < d_L → Positive serial correlation (reject H₀)\n- d_L ≤ DW ≤ d_U → Inconclusive\n- d_U < DW < 4 − d_U → No serial correlation\n- DW > 4 − d_L → Negative serial correlation\n\nHere: DW = 0.54 < d_L = 1.25 → Positive serial correlation.\n\nA LOW DW (close to 0) = positive correlation (errors move together). A HIGH DW (close to 4) = negative correlation (errors alternate).",
+      "keyFormulas": ["DW < d_L → Positive serial correlation", "DW > 4 − d_L → Negative serial correlation", "DW ≈ 2 → No serial correlation", "DW range: 0 to 4"],
+      "yourMistake": "Selected negative serial correlation. A LOW DW statistic (0.54, close to 0) indicates POSITIVE correlation. Negative correlation produces a HIGH DW (close to 4)."
+    },
+    {
+      "id": 117,
+      "title": "Time Series: Forecast vs Mean-Reverting Level",
+      "topic": "Quantitative Methods",
+      "question": "Bella Stone predicts Garnet's EPS using quarterly data in a first-order autoregressive model, AR(1). She tests for and rejects the presence of a unit root. The most recent quarter EPS was $0.96.\n\nExhibit 1:\n| Coefficient | Value | Std Error | t-Stat |\n| Intercept | 0.4485 | 0.1457 | 3.08 |\n| EPS_t-1 | 0.4541 | 0.1572 | 2.89 |\nR² = 0.2059, Observations = 32, Critical t = 2.04\n\nThe 1-period-ahead forecast of Garnet's EPS is:",
+      "choices": [
+        {"letter": "A", "text": "Below its mean-reverting level"},
+        {"letter": "B", "text": "Equal to its mean-reverting level"},
+        {"letter": "C", "text": "Above its mean-reverting level"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "AR(1) model: x_t+1 = b₀ + b₁ × x_t\nMean-reverting level: x̄ = b₀ / (1 − b₁)\n\nStep 1: Mean-reverting level = 0.4485 / (1 − 0.4541) = 0.4485 / 0.5459 = 0.8216\n\nStep 2: Current EPS = $0.96 > $0.8216 → current value is ABOVE the mean-reverting level\n\nStep 3: 1-period forecast = 0.4485 + 0.4541 × 0.96 = 0.8844, which is still above 0.8216\n\nCommon error: Using x̄ = b₀ / b₁ = 0.4485 / 0.4541 = 0.9877, then 0.96 < 0.9877 suggests 'below.' The correct denominator is (1 − b₁), not b₁.",
+      "keyFormulas": ["Mean-reverting level: x̄ = b₀ / (1 − b₁)", "AR(1) forecast: x_t+1 = b₀ + b₁ × x_t", "If current > mean level → series will decrease toward mean", "Denominator is (1 − b₁), NOT b₁"],
+      "yourMistake": "Used wrong formula: b₀/b₁ instead of b₀/(1 − b₁). The correct mean-reverting level is 0.8216, and current EPS of 0.96 is above it."
+    },
+    {
+      "id": 118,
+      "title": "ML Model Validation: Performance Metrics",
+      "topic": "Quantitative Methods",
+      "question": "Bella Stone evaluates if a model can properly classify the 'Type' feature into 'buy' or 'sell' and examines the model training performance via the confusion matrix:\n\n| | Actual: Buy (Class 1) | Actual: Sell (Class 0) |\n| Predicted: Buy (1) | 70 | 40 |\n| Predicted: Sell (0) | 20 | 70 |\n\nThe confusion matrix indicates that model accuracy is closest to:",
+      "choices": [
+        {"letter": "A", "text": "0.64"},
+        {"letter": "B", "text": "0.70"},
+        {"letter": "C", "text": "0.78"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Confusion matrix components:\nTP (Predicted Buy, Actually Buy) = 70\nFP (Predicted Buy, Actually Sell) = 40\nTN (Predicted Sell, Actually Sell) = 70\nFN (Predicted Sell, Actually Buy) = 20\nTotal = 200\n\nAccuracy = (TP + TN) / Total = (70 + 70) / 200 = 140/200 = 0.70\n\nChoice A (0.64) is Precision = TP / (TP + FP) = 70 / 110 = 0.636\nChoice C (0.78) is Recall (Sensitivity) = TP / (TP + FN) = 70 / 90 = 0.778\n\nAccuracy = How often is the model correct overall?\nPrecision = When it predicts positive, how often is it right?\nRecall = Of all actual positives, how many did it catch?",
+      "keyFormulas": ["Accuracy = (TP + TN) / Total", "Precision = TP / (TP + FP)", "Recall = TP / (TP + FN)", "F1 = 2 × (Precision × Recall) / (Precision + Recall)"],
+      "yourMistake": "Calculated Precision (0.64) instead of Accuracy (0.70). Accuracy uses ALL correct predictions (TP + TN), not just true positives."
+    },
+    {
+      "id": 119,
+      "title": "Fixed Income: Convertible Bond Floor Value",
+      "topic": "Fixed Income",
+      "question": "Vilem Polti, a fixed-income analyst, evaluates a convertible bond issued by ZXEL Corporation.\n\nThe convertible bond was initially sold at par ($1,000), pays a 3.00% annual fixed-rate coupon, has a conversion ratio of 23, and the price of ZXEL Corp. common stock is currently $47 per share. The underlying straight-bond value of the convertible bond is $990.\n\nThe minimum value of the ZXEL Corp. convertible bond is closest to:",
+      "choices": [
+        {"letter": "A", "text": "$990"},
+        {"letter": "B", "text": "$1,000"},
+        {"letter": "C", "text": "$1,081"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Convertible bond minimum value = MAX(Conversion Value, Straight Bond Value)\n\nStep 1: Conversion Value = Share Price × Conversion Ratio = $47 × 23 = $1,081\nStep 2: Straight Bond Value = $990 (given)\nStep 3: Minimum Value = MAX($1,081, $990) = $1,081\n\nA convertible bond has TWO floors: (1) straight bond value and (2) conversion value. The bondholder can always choose the more valuable option, so the minimum value is the HIGHER floor.\n\nChoice A ($990) selects straight bond value without comparing to conversion value.\nChoice B ($1,000) is par value, irrelevant to current minimum value.",
+      "keyFormulas": ["Minimum Value = MAX(Conversion Value, Straight Bond Value)", "Conversion Value = Share Price × Conversion Ratio", "Convertible Bond Value ≥ MAX(Conversion Value, Straight Bond Value)"],
+      "yourMistake": "Selected straight bond value ($990) without comparing to conversion value ($1,081). The minimum is the GREATER of the two floors."
+    },
+    {
+      "id": 120,
+      "title": "Ethics: Outside Activity Disclosure Requirements",
+      "topic": "Ethics",
+      "question": "Minah Lee, CFA, recently joined Caldecott Asset Management as a portfolio manager. Lee resides in a country where securities laws are stricter than the Code and Standards. Caldecott is based in a neighboring country with less strict laws.\n\nLee joins the board of trustees at the local university. The position is unpaid but is likely to be time consuming in the first year. She also starts as an adjunct professor at the university. Her compensation includes government-mandated defined contributions to a retirement plan, which she allocates to a large diversified mutual fund managed by Caldecott's competitor.\n\nLee obtained written approval from Caldecott for her compensation as an adjunct professor but did not disclose her board position or how the retirement plan assets are invested.\n\nWith respect to the university, does Lee violate the Standard relating to disclosure of conflicts?",
+      "choices": [
+        {"letter": "A", "text": "No"},
+        {"letter": "B", "text": "Yes, by failing to disclose the retirement plan investment"},
+        {"letter": "C", "text": "Yes, by failing to disclose her position on the board of trustees"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Standard VI(A) Disclosure of Conflicts: Members must make full disclosure of all matters that could impair independence/objectivity or interfere with duties.\n\nThe board position requires disclosure because Lee acknowledges it will be 'time consuming in the first year' — this could interfere with her responsibilities at Caldecott. Even though unpaid, the TIME commitment creates potential interference.\n\nThe retirement plan investment does NOT require disclosure — it's a large diversified mutual fund with no concentrated position or special relationship creating a conflict.\n\nChoice A is wrong because the board position creates a potential conflict through time demands.\nChoice B is wrong because investing in a diversified fund managed by a competitor is not a conflict requiring disclosure (unless employer policy specifically requires it).\n\nKey principle: Any outside activity that could INTERFERE with job duties requires disclosure, regardless of compensation.",
+      "keyFormulas": ["Standard VI(A): Disclose matters that could interfere with duties", "Time-consuming activities require disclosure even if unpaid", "Diversified fund investments generally not a conflict"],
+      "yourMistake": "Thought the unpaid board position didn't create a conflict. The TIME commitment, not compensation, is what creates potential interference with job duties."
+    },
+    {
+      "id": 121,
+      "title": "Corporate Issuers: Macroeconomic Equity Risk Premium",
+      "topic": "Economics",
+      "question": "Jessica Gunning estimates GameDay Inc.'s cost of equity using a macroeconomic model (Grinold-Kroner) for the equity risk premium.\n\nExhibit 1:\n| Item | Value |\n| Risk-free rate | 3.0% |\n| Inflation | 1.3% |\n| Growth rate in P/E ratio | 0.0% |\n| S&P 500 dividend yield | 1.8% |\n| Percent change in shares outstanding | −0.2% |\n| Real GDP growth | 2.6% |\n\nUsing the Grinold-Kroner model, the estimated equity risk premium is:",
+      "choices": [
+        {"letter": "A", "text": "2.5%"},
+        {"letter": "B", "text": "2.9%"},
+        {"letter": "C", "text": "5.9%"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Grinold-Kroner: Expected Return = DY + Δ(P/E) + i + g − ΔS\n\nStep 1: Expected Return = 1.8% + 0.0% + 1.3% + 2.6% − (−0.2%) = 1.8% + 1.3% + 2.6% + 0.2% = 5.9%\n\nNote: ΔS = −0.2% (shares decreasing from buybacks). Formula SUBTRACTS ΔS, so −(−0.2%) = +0.2%. Buybacks benefit remaining shareholders.\n\nStep 2: ERP = Expected Return − Risk-free Rate = 5.9% − 3.0% = 2.9%\n\nChoice C (5.9%) is the expected return, NOT the ERP. ERP = Expected Return − Rf.\nChoice A (2.5%) adds the change in shares instead of subtracting: 1.8% + 0% + 1.3% + 2.6% + (−0.2%) − 3.0% = 2.5%.",
+      "keyFormulas": ["ERP = [DY + Δ(P/E) + i + g − ΔS] − Rf", "Expected Return ≠ ERP", "Negative ΔS (buybacks) → Adds to return", "SUBTRACT ΔS in formula: −(−0.2%) = +0.2%"],
+      "yourMistake": "Calculated expected return (5.9%) but forgot to subtract the risk-free rate. ERP = Expected Return − Rf = 5.9% − 3.0% = 2.9%."
+    },
+    {
+      "id": 122,
+      "title": "Fixed Income: Term Structure Theory Identification",
+      "topic": "Fixed Income",
+      "question": "Stephen Russo is a treasury analyst at Central Finance Inc., which specializes in financing equipment and real estate. Russo and his manager discuss the term structure of interest rates.\n\nRusso accepts the theory that yields are solely a function of the supply and demand for funds at a particular maturity.\n\nThe term structure theory that Russo accepts is best described as the:",
+      "choices": [
+        {"letter": "A", "text": "Local expectations theory"},
+        {"letter": "B", "text": "Liquidity preference theory"},
+        {"letter": "C", "text": "Segmented markets theory"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Segmented markets theory: Each maturity segment is an independent market. Yields are 'solely a function of supply and demand for funds of a particular maturity.' No substitution between maturities — lenders and borrowers are restricted to specific maturity segments.\n\nThis exactly matches Russo's stated view.\n\nLocal expectations theory says expected return equals the risk-free rate over short periods (no-arbitrage). It doesn't focus on supply/demand at specific maturities.\n\nLiquidity preference theory says investors require a premium for longer maturities due to interest rate risk. It's about risk premiums, not independent supply/demand.\n\nPreferred habitat theory is similar to segmented markets but allows investors to move between maturities for sufficient premium.",
+      "keyFormulas": ["Segmented markets: Yields = supply/demand at each maturity independently", "Pure expectations: Forwards = expected future spots", "Liquidity preference: Premium required for longer maturities", "Preferred habitat: Like segmented but investors will move for sufficient premium"],
+      "yourMistake": ""
+    },
+    {
+      "id": 123,
+      "title": "Equity: Sustainable Growth Component Analysis",
+      "topic": "Equity",
+      "question": "Joao Viniciu analyzes the sustainability of net sales growth for Pedra S.A.'s geographic segments.\n\nExhibit 1 — Components of Total Net Sales Growth:\n| Segment | Volume Growth | Price Growth | FX Contribution | Total |\n| Europe | 4.6% | 1.9% | 1.4% | 7.9% |\n| Americas | 0.7% | 1.1% | 4.3% | 6.1% |\n| Asia Pacific | 3.6% | 2.1% | 1.8% | 7.5% |\n\nBased on the components of total net sales growth, which of Pedra's geographic segments has the lowest sustainable growth rate?",
+      "choices": [
+        {"letter": "A", "text": "Europe"},
+        {"letter": "B", "text": "Americas"},
+        {"letter": "C", "text": "Asia Pacific"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Growth sustainability by component:\n- Volume growth: HIGH sustainability (management control, real demand)\n- Price growth: HIGH sustainability (management control, pricing power)\n- FX contribution: LOW sustainability (no control, currency fluctuations)\n\nSustainable growth = Volume + Price (exclude FX):\n- Europe: 4.6% + 1.9% = 6.5%\n- Americas: 0.7% + 1.1% = 1.8% ← LOWEST\n- Asia Pacific: 3.6% + 2.1% = 5.7%\n\nAmericas has the lowest sustainable growth (1.8%) and the highest FX contribution (4.3%). Most of its growth comes from currency effects, not real growth. FX-driven growth is temporary and reverses when currencies move.",
+      "keyFormulas": ["Sustainable growth ≈ Volume growth + Price growth", "FX contribution is NOT sustainable (no management control)", "Analyze growth quality by separating controllable vs uncontrollable components"],
+      "yourMistake": ""
+    },
+    {
+      "id": 124,
+      "title": "FSA: Foreign Currency Transaction Remeasurement",
+      "topic": "Financial Statement Analysis",
+      "question": "Joao Viniciu researches Pedra S.A., a Brazilian multinational (reporting currency: BRL).\n\nExhibit 2 — BRL/USD Exchange Rates:\n| Date | BRL/USD |\n| 1 January | 5.07 |\n| 1 November | 5.53 |\n| 31 December | 5.45 |\n| Average for year | 5.26 |\n\nOn 1 November, Pedra purchased imported goods worth USD 3.2 million on credit from a US supplier. The amount payable was still outstanding as of 31 December.\n\nFor the most recent year, Pedra's purchase of imported goods resulted in a foreign exchange:",
+      "choices": [
+        {"letter": "A", "text": "Loss of BRL 256,000"},
+        {"letter": "B", "text": "Gain of BRL 256,000"},
+        {"letter": "C", "text": "Gain of BRL 864,000"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Pedra (Brazilian) owes USD 3.2 million. Payable recorded Nov 1 at 5.53, remeasured Dec 31 at 5.45.\n\nInitial payable (Nov 1): USD 3.2M × 5.53 = BRL 17,696,000\nYear-end payable (Dec 31): USD 3.2M × 5.45 = BRL 17,440,000\n\nPayable DECREASED by BRL 256,000 → GAIN for Pedra.\n\nFormula: FX Result = −Liability × (End Rate − Begin Rate)\n= −USD 3.2M × (5.45 − 5.53) = −3.2M × (−0.08) = +BRL 256,000 (GAIN)\n\nLogic: Pedra owes USD. USD weakened against BRL (fewer BRL needed per USD). It now takes FEWER BRL to buy the USD needed to pay → Pedra benefits → GAIN.\n\nRule: FC liability + FC weakens = GAIN. FC liability + FC strengthens = LOSS.\n\nChoice C uses Jan 1 rate instead of Nov 1: (5.45 − 5.07) × 3.2M = wrong dates.",
+      "keyFormulas": ["FX Result on liability = −Liability × (End Rate − Begin Rate)", "FC liability + FC weakens = Gain", "FC liability + FC strengthens = Loss", "FC asset + FC strengthens = Gain"],
+      "yourMistake": "Reversed the sign. When a liability DECREASES in home currency terms, it's a GAIN, not a loss."
+    },
+    {
+      "id": 125,
+      "title": "FSA: Translation Method Effect on Ratios",
+      "topic": "Financial Statement Analysis",
+      "question": "Carro Corp. is Pedra's wholly-owned US subsidiary. Pedra translates Carro's financial statements using the current rate method. Carro's only non-monetary assets are inventory and fixed assets (purchased at BRL/USD 5.24). All liabilities are monetary. Year-end BRL/USD rate is 5.45.\n\nAfter translation, Carro's debt-to-assets ratio at 31 December was:",
+      "choices": [
+        {"letter": "A", "text": "Lower than it was before translation"},
+        {"letter": "B", "text": "The same as it was before translation"},
+        {"letter": "C", "text": "Higher than it was before translation"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Under the current rate method:\n- ALL assets → current rate (5.45)\n- ALL liabilities → current rate (5.45)\n- Equity → historical rates\n\nDebt-to-Assets = Total Debt / Total Assets\n\nBefore translation: Ratio = Debt(USD) / Assets(USD)\nAfter translation: Ratio = [Debt(USD) × 5.45] / [Assets(USD) × 5.45] = Debt/Assets\n\nThe ratio is UNCHANGED because both numerator and denominator are multiplied by the SAME exchange rate.\n\nDo NOT confuse with temporal method, where non-monetary assets use historical rate and monetary liabilities use current rate — that WOULD change the ratio.\n\nKey: Current rate method → pure balance sheet ratios (debt/assets, debt/equity) are unchanged because the same rate applies to both sides.",
+      "keyFormulas": ["Current rate: ALL assets and liabilities at current rate → ratios unchanged", "Temporal: Different rates for monetary vs non-monetary → ratios change", "Current rate: Translation adjustment → Equity (OCI)", "Temporal: Translation gain/loss → Income statement"],
+      "yourMistake": "Confused with temporal method. Under current rate method, same rate applies to both numerator and denominator, so ratios stay the same."
+    },
+    {
+      "id": 126,
+      "title": "FSA: Translation Adjustment Location and Direction",
+      "topic": "Financial Statement Analysis",
+      "question": "Carro Corp. is Pedra's wholly-owned US subsidiary, translated using the current rate method. Over the current year, Viniciu expects Carro to maintain a stable net asset balance sheet exposure and that the BRL will weaken against the USD.\n\nBased on Viniciu's expectations, the translation of Carro's financial statements in the current year will most likely result in a:",
+      "choices": [
+        {"letter": "A", "text": "Translation loss in Pedra's income statement"},
+        {"letter": "B", "text": "Translation gain in Pedra's income statement"},
+        {"letter": "C", "text": "Positive translation adjustment in Pedra's shareholders' equity"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Under the current rate method, translation adjustments go to OCI/Shareholders' Equity — NOT the income statement. (Only the temporal method puts gains/losses in the income statement.)\n\nDirection: Carro has net asset exposure (positive equity). BRL weakens against USD means USD strengthens.\n\nForeign currency (USD) strengthens + Net asset exposure = POSITIVE translation adjustment in equity.\n\nChoices A and B are both wrong because under the current rate method, translation adjustments go to equity, not the income statement.\n\nThe correct direction (gain) was identified but the wrong location (income statement) is the trap.",
+      "keyFormulas": ["Current rate method: Translation adjustment → OCI/Equity", "Temporal method: Translation gain/loss → Income statement", "Net asset exposure + FC strengthens = Positive adjustment", "Net liability exposure + FC strengthens = Negative adjustment"],
+      "yourMistake": "Identified the correct direction (gain) but wrong location (income statement). Under current rate method, it goes to equity, not I/S."
+    },
+    {
+      "id": 127,
+      "title": "FSA: Regulatory Capital Ratio Calculation",
+      "topic": "Financial Statement Analysis",
+      "question": "Darren Carter reviews Gowran Bank's capital adequacy under Basel III. For the most recent year end, Gowran reported Common Equity Tier 1 Capital of $15 billion and risk-weighted assets of $100 billion.\n\nCarter determines the pro forma year-end CET1 ratio accounting for two post-year-end events:\n1. Gowran issued $1 billion of Additional Tier 1 Capital\n2. The regulator required Gowran to recognize an additional $3.5 billion of operational risk-weighted assets\n\nGowran's pro forma Common Equity Tier 1 Capital ratio is closest to:",
+      "choices": [
+        {"letter": "A", "text": "14.5%"},
+        {"letter": "B", "text": "15.0%"},
+        {"letter": "C", "text": "15.5%"}
+      ],
+      "correctAnswer": "A",
+      "explanation": "CET1 Ratio = Common Equity Tier 1 Capital / Risk-Weighted Assets\n\nEvent 1: $1B Additional Tier 1 Capital issued. Additional Tier 1 ≠ Common Equity Tier 1. This does NOT increase the CET1 numerator. CET1 remains $15B.\n\nEvent 2: Additional $3.5B operational RWA. Increases denominator: $100B + $3.5B = $103.5B.\n\nPro forma CET1 ratio = $15B / $103.5B = 14.49% ≈ 14.5%\n\nChoice C (15.5%) wrongly adds AT1 to CET1: ($15B + $1B) / $103.5B = 15.5%\nChoice B (15.0%) is the original ratio: $15B / $100B = 15.0%\n\nCapital hierarchy: CET1 (common stock, retained earnings) ⊂ Tier 1 (CET1 + AT1) ⊂ Total Capital (Tier 1 + Tier 2). Additional Tier 1 includes preferred stock and hybrid instruments — NOT CET1.",
+      "keyFormulas": ["CET1 Ratio = CET1 Capital / Risk-Weighted Assets", "Additional Tier 1 does NOT count as CET1", "CET1: Common stock, retained earnings, AOCI", "AT1: Preferred stock, hybrid instruments"],
+      "yourMistake": "Added Additional Tier 1 Capital to CET1. AT1 and CET1 are different categories. Only CET1 goes in the numerator of the CET1 ratio."
+    },
+    {
+      "id": 128,
+      "title": "FSA: Loan Loss Allowance Ratio Analysis",
+      "topic": "Financial Statement Analysis",
+      "question": "Carter assesses Gowran Bank's asset quality by analyzing the allowance for loan losses to non-performing loans ratio.\n\nExhibit 1 (in millions):\n| Item | Value |\n| Non-performing loans at start of year | $2,000 |\n| Non-performing loans at end of year | $2,400 |\n| Allowance for loan losses at start of year | $1,500 |\n| Provision for loan losses during the year | $500 |\n| Charge-offs, net of recoveries, during the year | $200 |\n\nOver the most recent year, the ratio of Gowran's allowances for loan losses to non-performing loans:",
+      "choices": [
+        {"letter": "A", "text": "Decreased"},
+        {"letter": "B", "text": "Not changed"},
+        {"letter": "C", "text": "Increased"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Calculate ending allowance:\nBeginning allowance: $1,500\n+ Provision for loan losses: +$500\n− Net charge-offs: −$200\n= Ending allowance: $1,800\n\nStep 2: Calculate ratios:\nStart of year: $1,500 / $2,000 = 0.75\nEnd of year: $1,800 / $2,400 = 0.75\n\nThe ratio is UNCHANGED at 0.75.\n\nAllowance roll-forward: Ending = Beginning + Provision − Net Charge-offs\n- Provision = Income statement expense → INCREASES allowance\n- Charge-offs = Writing off actual losses → DECREASES allowance\n- Recoveries = Collecting previously charged-off → INCREASES allowance",
+      "keyFormulas": ["Ending Allowance = Beginning + Provision − Net Charge-offs", "Provision increases allowance (I/S expense)", "Charge-offs decrease allowance (B/S write-off)", "Compare ratio at beginning vs end to determine trend"],
+      "yourMistake": ""
+    },
+    {
+      "id": 129,
+      "title": "FSA: Stock Option Exercise and Paid-in Capital",
+      "topic": "Financial Statement Analysis",
+      "question": "Gowran Bank has a stock option plan. Three years ago, Gowran granted executives 5 million at-the-money stock options with a three-year vesting period. On the grant date, share price was $12 and fair value per option was $3. All options are now vested.\n\nCarter determines the effect on paid-in capital assuming 2 million options are exercised at the strike price of $12 while Gowran's share price is currently $18.\n\nBased on Carter's assumptions, paid-in capital on Gowran's balance sheet in the current year will increase by:",
+      "choices": [
+        {"letter": "A", "text": "$24 million"},
+        {"letter": "B", "text": "$30 million"},
+        {"letter": "C", "text": "$42 million"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "During vesting (Years 1-3): Total compensation reserve = 5M options × $3 = $15M built up in equity.\n\nAt exercise (2 million options):\nSource 1 — Cash from strike price: 2M × $12 = $24M → Paid-in Capital\nSource 2 — Transfer from compensation reserve: 2M × $3 = $6M → Paid-in Capital\n\nTotal increase in paid-in capital: $24M + $6M = $30M\n\nJournal entry:\nDr. Cash $24M (2M × $12 strike)\nDr. Share-Based Compensation Reserve $6M (2M × $3 fair value)\n    Cr. Paid-in Capital $30M\n\nChoice C ($42M) uses current market price ($18) instead of strike price ($12): 2M × $18 + 2M × $3 = $42M. The exercise price is what the employee PAYS — market price is irrelevant.\nChoice A ($24M) only counts cash received, missing the reserve transfer.",
+      "keyFormulas": ["Paid-in capital increase = Cash from exercise + Reserve transfer", "Cash = Options exercised × Strike price", "Reserve transfer = Options exercised × Fair value per option", "Use STRIKE price, not current market price"],
+      "yourMistake": "Used current market price ($18) instead of strike price ($12). The company receives the strike price as cash, not the market price."
+    },
+    {
+      "id": 130,
+      "title": "Derivatives: Option Sensitivity and Moneyness",
+      "topic": "Derivatives",
+      "question": "Judy West sets up a gamma hedging exercise for new hire Alex Carter. She shows how to predict call price changes for three calls with the same expiration.\n\nExhibit 2:\n| Item | Value |\n| Current stock price | $100 |\n| Call 1 strike price | $90 |\n| Call 2 strike price | $100 |\n| Call 3 strike price | $110 |\n\nWhich option would have the largest gamma?",
+      "choices": [
+        {"letter": "A", "text": "Call 1"},
+        {"letter": "B", "text": "Call 2"},
+        {"letter": "C", "text": "Call 3"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Gamma = rate of change of delta with respect to stock price (second derivative of option price).\n\nGamma is HIGHEST for at-the-money options:\n- Deep ITM: Delta ≈ 1, stable → Low gamma\n- ATM: Delta ≈ 0.5, highly unstable → HIGHEST gamma\n- Deep OTM: Delta ≈ 0, stable → Low gamma\n\nCall 1 ($90 strike): In-the-money → Lower gamma\nCall 2 ($100 strike): At-the-money (S = X) → HIGHEST gamma\nCall 3 ($110 strike): Out-of-the-money → Lower gamma\n\nATM options are most sensitive because small stock moves can shift the option from ITM to OTM or vice versa, causing delta to change rapidly.",
+      "keyFormulas": ["Gamma is highest for ATM options", "Gamma = ∂²C/∂S² (second derivative)", "Deep ITM/OTM: Delta is stable → Low gamma", "ATM: Delta is unstable (~0.5) → Highest gamma"],
+      "yourMistake": ""
+    },
+    {
+      "id": 131,
+      "title": "Derivatives: Delta Hedge Position Sizing",
+      "topic": "Derivatives",
+      "question": "Judy West presents a delta hedging example: short call position on 5,000 shares of an underlying stock. She asks Carter to determine the optimal number of shares to buy to hedge.\n\nExhibit 1:\n| Item | Value |\n| N(d₁) | 0.589 |\n| N(d₂) | 0.505 |\n| N(−d₁) | 0.411 |\n| N(−d₂) | 0.495 |\n\nThe optimal number of shares that should be purchased to delta hedge the short call position is closest to:",
+      "choices": [
+        {"letter": "A", "text": "2,055"},
+        {"letter": "B", "text": "2,525"},
+        {"letter": "C", "text": "2,945"}
+      ],
+      "correctAnswer": "C",
+      "explanation": "Step 1: Call delta = N(d₁) = 0.589\n\nStep 2: Portfolio delta from short 5,000 calls:\nPortfolio Delta = −0.589 × 5,000 = −2,945 (negative because SHORT)\n\nStep 3: Shares to buy (share delta = 1.0):\nShares = −Portfolio Delta / 1.0 = −(−2,945) = 2,945 shares\n\nChoice A (2,055) uses N(−d₁) = 0.411 — that's PUT delta, not call delta: 0.411 × 5,000 = 2,055\nChoice B (2,525) uses N(d₂) = 0.505 — d₂ is for probability of exercise, not delta: 0.505 × 5,000 = 2,525\n\nKey: Call delta = N(d₁), Put delta = N(d₁) − 1 = −N(−d₁)\nShort calls have negative delta → buy shares (positive delta) to offset → target net delta = 0.",
+      "keyFormulas": ["Call delta = N(d₁)", "Put delta = N(d₁) − 1 = −N(−d₁)", "Hedge shares = Call delta × Number of contracts (for short calls)", "N(d₂) = risk-neutral probability of exercise, NOT delta"],
+      "yourMistake": "Used N(−d₁) = 0.411 (put delta) instead of N(d₁) = 0.589 (call delta). For hedging short CALLS, use the call delta."
+    },
+    {
+      "id": 132,
+      "title": "Portfolio Management: Active Risk Optimization",
+      "topic": "Portfolio Management",
+      "question": "Mary Navarro reviews the performance of an active portfolio with no short-selling restrictions.\n\nExhibit 1:\n| Metric | Portfolio | Benchmark |\n| Active return | 1.40% | --- |\n| Active risk | 10.00% | --- |\n| Standard deviation | 21% | 17% |\n| Sharpe ratio | 0.29 | 0.28 |\n\nNavarro determines the optimal level of active risk is 8.50%. Can she improve the Sharpe ratio by combining investments in this portfolio and the benchmark?",
+      "choices": [
+        {"letter": "A", "text": "No"},
+        {"letter": "B", "text": "Yes, by taking a short position in the active portfolio and a long position in the benchmark"},
+        {"letter": "C", "text": "Yes, by taking a long position in the active portfolio and a short position in the benchmark"}
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: IR = Active Return / Active Risk = 1.40% / 10.00% = 0.14\n\nStep 2: Optimal active risk = (IR / SR_B) × σ_B = (0.14 / 0.28) × 17% = 0.5 × 17% = 8.50% ✓\n\nStep 3: Actual active risk (10.00%) > Optimal (8.50%) → Too much active risk!\n\nStep 4: To REDUCE active risk → Short the active portfolio, Long the benchmark. This moves toward the optimal blend.\n\nGoing long active/short benchmark would INCREASE active risk further from optimal.\n\nMaximum Sharpe ratio: SR*_max = √(SR²_B + IR²) = √(0.28² + 0.14²) = √(0.0784 + 0.0196) = √0.098 = 0.31\n\nRule: Actual risk > Optimal → Short active, long benchmark. Actual risk < Optimal → Long active, short benchmark.",
+      "keyFormulas": ["Optimal active risk: σ*_A = (IR / SR_B) × σ_B", "IR = Active Return / Active Risk", "Actual > Optimal → Short active, long benchmark", "SR*_max = √(SR²_B + IR²)"],
+      "yourMistake": "Reversed the direction. Since actual active risk (10%) exceeds optimal (8.5%), need to REDUCE active risk by shorting the active portfolio and going long the benchmark."
     }
   ]
 }
