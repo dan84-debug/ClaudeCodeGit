@@ -329,7 +329,7 @@ body {
     padding-top: 4px;
 }
 
-#submit-btn {
+#q-submit-btn {
     width: 100%;
 }
 
@@ -443,7 +443,7 @@ body {
     color: var(--gray-700);
 }
 
-#next-btn {
+#q-next-btn {
     width: 100%;
 }
 
