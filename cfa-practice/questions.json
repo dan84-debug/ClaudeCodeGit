@@ -3642,6 +3642,1515 @@
         "SR*_max = √(SR²_B + IR²)"
       ],
       "yourMistake": "Reversed the direction. Since actual active risk (10%) exceeds optimal (8.5%), need to REDUCE active risk by shorting the active portfolio and going long the benchmark."
+    },
+    {
+      "id": 165,
+      "title": "Primary Influences on Commodity Sectors",
+      "topic": "Alternatives",
+      "question": "George Hansen manages portfolios for high-net-worth clients based in the US. He meets with a client who recently inherited a portfolio with investments in both a REIT and a commodity futures fund.\n\nHansen reviews the investment in the Crescent commodity futures fund. The fund currently holds positions in the natural gas, softs (cash crops), and livestock sectors.\n\nHansen observes that Crescent's returns in the natural gas sector behaved differently from the other two sectors over the past five years.\n\nWhich of the following factors is most likely a primary influence for all three commodity sectors held by Crescent?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Spoilage"
+        },
+        {
+          "letter": "B",
+          "text": "Weather conditions"
+        },
+        {
+          "letter": "C",
+          "text": "Consumer preferences"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Factor Analysis by Commodity Sector:\n\n| Factor | Natural Gas | Softs (Cash Crops) | Livestock |\n| Weather | YES — heating/cooling demand | YES — crop yields | YES — animal health |\n| Spoilage | NO — doesn't spoil | YES — perishable | YES — perishable |\n| Consumer Preferences | NO — utility demand | Partial | Partial |\n\nWhy Weather is Correct:\n- Natural Gas: Demand driven by heating (cold weather) and cooling (hot weather)\n- Softs: Crop yields heavily dependent on rainfall, temperature, drought\n- Livestock: Animal health vulnerable to extreme weather; feed costs affected by crop weather\n\nWhy C (Consumer Preferences) is Wrong:\nNatural gas demand is driven by weather and industrial activity, NOT consumer preferences. You don't choose whether to heat your home based on preference — you do it because it's cold.\n\nWhy A (Spoilage) is Wrong:\nNatural gas doesn't spoil. It's stored in pipelines and tanks indefinitely. Spoilage affects softs and livestock but NOT all three sectors.\n\nKey Insight: Weather is the universal factor affecting ALL commodity categories — energy, agriculture, and livestock.",
+      "yourMistake": "Chose C (Consumer preferences). Natural gas demand is driven by weather and industrial activity, not consumer preferences. Weather is the only factor that is a primary influence across all three sectors (natural gas, softs, livestock)."
+    },
+    {
+      "id": 166,
+      "title": "Residual Income Model Suitability",
+      "topic": "Equity",
+      "question": "Debra McAlister is an equity analyst for a mutual fund company. She is researching Zedco Inc. as a possible addition to the firm's portfolios.\n\nMcAlister gathers the following information about Zedco:\n- ROE: Highest in industry but volatile; McAlister is concerned about using past data to estimate future ROE\n- Debt: Average level for industry; expected to refinance most older debt within the next year (lower interest rates)\n- Terminal Value: McAlister is uncertain about her estimate\n- Dividend Payout: Low payout ratio, expected to be maintained\n- Accounting Accruals: Most recent financial statement shows abnormally high level\n\nMcAlister decides to use both single-stage and multistage residual income models to value Zedco.\n\nWhich of the following best supports McAlister's choice of valuation models for Zedco?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "The properties of Zedco's ROE"
+        },
+        {
+          "letter": "B",
+          "text": "The characteristics of Zedco's debt"
+        },
+        {
+          "letter": "C",
+          "text": "The estimation of Zedco's terminal value"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Why C (Terminal Value Uncertainty) SUPPORTS RI Model:\n\nThe key strength of residual income models: Terminal value does NOT make up a large portion of total present value.\n\nIn RI valuation:\n- Current book value captures a large portion of total value\n- ROE fades toward cost of equity over time\n- Terminal value is a smaller component than in DDM or DCF\n\nIf McAlister is UNCERTAIN about terminal value, the RI model is APPROPRIATE because terminal value is less important in RI models.\n\nWhy A (ROE Properties) Does NOT Support:\n- ROE is volatile and unpredictable\n- McAlister is \"not highly confident\" in using past ROE\n- ROE is a critical input to RI models\n- Unreliable ROE makes RI LESS appropriate, not more\n\nWhy B (Debt Characteristics) Does NOT Support:\n- Zedco is refinancing debt at lower rates\n- Current interest expense doesn't reflect true cost of debt\n- RI model assumes interest expense accurately reflects cost of debt\n- This is a weakness for using RI, not a strength\n\nResidual Income Model — When to Use:\nSupports RI: Uncertain terminal value, No dividends paid, Negative FCF, Focus on book value\nDoes NOT Support RI: Unpredictable ROE, Changing capital structure, Interest expense doesn't reflect cost of debt, High accounting accruals",
+      "yourMistake": "Chose B (Debt characteristics). Zedco is refinancing debt at lower rates, meaning current interest expense doesn't reflect true cost of debt — this is a weakness for RI, not a strength. The correct answer is C because RI models are strong when terminal value is uncertain, since terminal value is a smaller portion of total value in RI models."
+    },
+    {
+      "id": 167,
+      "title": "Single-Stage RI Implied Growth Rate",
+      "topic": "Equity",
+      "question": "McAlister calculates the implied growth rate in Zedco's residual income using its current market price. She uses the following data:\n\nExhibit 1:\n- Cost of equity capital: 12%\n- WACC: 10%\n- ROE (3-year average): 29%\n- Current price per share: $80\n- Book value per share: $20\n\nUsing the single-stage residual income model, Zedco's implied growth rate in residual income is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "3.7%"
+        },
+        {
+          "letter": "B",
+          "text": "6.3%"
+        },
+        {
+          "letter": "C",
+          "text": "7.8%"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Single-Stage Residual Income Model:\nV0 = B0 + [(ROE - r) / (r - g)] x B0\n\nRearranging to solve for g:\ng = r - [(ROE - r) / (V0/B0 - 1)]\n\nStep 1: Identify Variables\n- V0 = Current price = $80\n- B0 = Book value per share = $20\n- ROE = 29%\n- r = Cost of equity = 12% (NOT WACC!)\n\nStep 2: Calculate P/B Ratio\nV0/B0 = $80/$20 = 4\n\nStep 3: Solve for Implied Growth Rate\ng = 0.12 - [(0.29 - 0.12) / (4 - 1)]\ng = 0.12 - [0.17 / 3]\ng = 0.12 - 0.0567\ng = 0.0633 = 6.3%\n\nWhy A is Wrong (3.7%): Uses WACC (10%) instead of cost of equity (12%):\ng = 0.10 - [(0.29 - 0.10) / (4 - 1)] = 0.10 - [0.19 / 3] = 0.10 - 0.0633 = 3.7%\n\nWhy C is Wrong (7.8%): Forgets the \"-1\" in the denominator:\ng = 0.12 - [(0.29 - 0.12) / 4] = 0.12 - 0.0425 = 7.8%\n\nCritical Reminder: For EQUITY valuation, use COST OF EQUITY (r), not WACC.",
+      "keyFormulas": [
+        "V0 = B0 + [(ROE - r) / (r - g)] x B0",
+        "g = r - [(ROE - r) / (P/B - 1)]",
+        "For equity valuation: use cost of equity, NOT WACC"
+      ],
+      "yourMistake": "Chose A (3.7%). Used WACC (10%) instead of cost of equity (12%) in the single-stage RI formula. For equity valuation, always use the cost of equity."
+    },
+    {
+      "id": 168,
+      "title": "H-Model Valuation",
+      "topic": "Equity",
+      "question": "McAlister values Midord Corporation using the H-model with the following inputs:\n- Required return on equity (r) = 10%\n- Most recent dividend (D0) = $0.55\n- Half-life of high-growth period (H) = 4 years\n- Initial short-term dividend growth rate (gS) = 12%\n- Long-term dividend growth rate (gL) = 5%\n\nUsing the H-model, the estimated value per share of Midord stock is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "$12"
+        },
+        {
+          "letter": "B",
+          "text": "$13"
+        },
+        {
+          "letter": "C",
+          "text": "$15"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "H-Model Formula:\nV0 = [D0(1 + gL) + D0 x H x (gS - gL)] / (r - gL)\n\nStep 1: Calculate Each Component\n- D0(1 + gL) = $0.55 x 1.05 = $0.5775\n- D0 x H x (gS - gL) = $0.55 x 4 x (0.12 - 0.05) = $0.55 x 4 x 0.07 = $0.154\n\nStep 2: Sum the Numerator\nNumerator = $0.5775 + $0.154 = $0.7315\n\nStep 3: Divide by (r - gL)\nV0 = $0.7315 / (0.10 - 0.05)\nV0 = $0.7315 / 0.05\nV0 = $14.63 ≈ $15\n\nWhy B is Wrong ($13): Uses 0.5H (half of 4 = 2) instead of H (4):\nV0 = [$0.55(1.05) + $0.55 x 2 x 0.07] / 0.05\nV0 = [$0.5775 + $0.077] / 0.05 = $0.6545 / 0.05 = $13.09 ≈ $13\n\nWhy A is Wrong ($12): Omits H entirely:\nV0 = [$0.55(1.05) + $0.55 x 0.07] / 0.05 = $0.616 / 0.05 = $12.32\n\nH-Model Key Points:\n- H = Half-life of high-growth period (given directly)\n- Do NOT halve H again — it's already the half-life\n- The formula uses H as given, not H/2",
+      "keyFormulas": [
+        "V0 = [D0(1 + gL) + D0 x H x (gS - gL)] / (r - gL)",
+        "H = half-life (already halved, do NOT divide by 2 again)"
+      ],
+      "yourMistake": "Chose B ($13). Used 0.5H (half of 4 = 2) instead of H (4) in the H-model formula. H is already defined as the half-life, so it should be used directly without further halving."
+    },
+    {
+      "id": 169,
+      "title": "Fair Dealing: IPO Allocation Disclosure",
+      "topic": "Ethics",
+      "question": "Susan Park, CFA, is a portfolio manager at Plum Asset Management. Plum has adopted the Standards as part of its ethics and compliance policy.\n\nPark receives orders from four of her clients to purchase shares in an oversubscribed IPO. She determines that the IPO is suitable for all of these clients. One of the clients, a family member of Park's, has a regular fee-paying account that is managed similarly to those of the other three clients. Park allocates the shares she receives to the four clients on a pro rata basis according to order size. She discloses the firm's IPO allocation policy to only those clients that participate in IPOs.\n\nWith regard to her actions associated with the IPO, did Park violate the Standard relating to fair dealing?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "No"
+        },
+        {
+          "letter": "B",
+          "text": "Yes, because she allocated IPO shares to her family member"
+        },
+        {
+          "letter": "C",
+          "text": "Yes, because she did not appropriately disclose the firm's IPO allocation policy"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Standard III(B) Fair Dealing — Disclosure Requirements:\n\nMembers must disclose trade allocation procedures to ALL clients and prospective clients, not just those who participate in specific trades.\n\nPark's Violation:\nShe disclosed the IPO allocation policy ONLY to clients that participate in IPOs.\n\nThis violates the Standard because:\n- ALL clients should know how allocations work\n- Prospective clients need this information to make informed decisions\n- Selective disclosure is unfair to non-participating clients\n\nWhy A is Wrong:\nThere IS a violation — the selective disclosure of allocation policy.\n\nWhy B is Wrong:\nAllocating to family members is NOT a violation IF:\n- Family account is fee-paying (yes)\n- Family account is managed similarly to others (yes)\n- Allocation is pro-rata (yes)\nPark did all of these correctly. The family allocation was fine.\n\nKey Rule: Allocation policies must be disclosed to ALL clients and prospects — not just those who participate in a given trade.",
+      "yourMistake": "Chose A (No violation). Missed that Park only disclosed the IPO allocation policy to clients that participate in IPOs, not to ALL clients and prospective clients as required by Standard III(B) Fair Dealing."
+    },
+    {
+      "id": 170,
+      "title": "Equity Method Investment Carrying Value",
+      "topic": "FSA",
+      "question": "Karl Reinke, a research analyst, is examining the financial statements of Argon plc, a UK-based company that reports under IFRS.\n\nOn 1 January of the current year, Argon purchased a 40% non-controlling interest in Xenon plc for GBP 500 million. The book values of the assets and liabilities were equal to their fair values except for:\n- Inventory: Undervalued by GBP 5 million\n- Equipment: Undervalued by GBP 10 million (remaining life: 10 years, straight-line, no residual value)\n\nXenon uses the FIFO inventory valuation method. Reinke estimates that Xenon will report net income of GBP 60 million and will not declare any dividends for the current year.\n\nThe estimated amount of Argon's investment in Xenon at the end of the current year should be:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "GBP 521.6 million"
+        },
+        {
+          "letter": "B",
+          "text": "GBP 522.4 million"
+        },
+        {
+          "letter": "C",
+          "text": "GBP 523.6 million"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Equity Method Investment Calculation:\n\n| Component | Calculation | Amount |\n| Initial purchase price | Given | 500.0 |\n| + Share of net income | 60 x 40% | +24.0 |\n| - Inventory FV adjustment | 5 x 40% (sold under FIFO) | -2.0 |\n| - Equipment depreciation | (10/10 years) x 40% | -0.4 |\n| Ending balance | | 521.6 |\n\nStep-by-Step:\n\n1. Start with Purchase Price: GBP 500.0M\n\n2. Add Share of Net Income:\nXenon's net income = GBP 60M\nArgon's share = 60 x 40% = +GBP 24.0M\n\n3. Subtract Inventory FV Adjustment:\nThe inventory was undervalued by GBP 5M at acquisition.\nUnder FIFO, this inventory is sold first during the year.\nAdjustment = 5 x 40% = -GBP 2.0M\nThis reduces income because the acquired inventory had a higher fair value than book value. When sold, COGS should have been higher.\n\n4. Subtract Equipment Depreciation:\nThe equipment was undervalued by GBP 10M.\nAnnual depreciation on excess = 10M / 10 years = GBP 1M\nArgon's share = 1 x 40% = -GBP 0.4M\n\n5. Total: 500.0 + 24.0 - 2.0 - 0.4 = GBP 521.6M\n\nWhy B is Wrong (GBP 522.4M): ADDED the equipment depreciation instead of SUBTRACTING it: 500.0 + 24.0 - 2.0 + 0.4 = 522.4\n\nWhy C is Wrong (GBP 523.6M): Omits the inventory adjustment entirely: 500.0 + 24.0 - 0.4 = 523.6\n\nKey Rule for FV Adjustments:\n- Inventory (FIFO): FV > BV → Subtract when sold\n- Equipment: FV > BV → Subtract depreciation annually\n- Inventory (LIFO): FV > BV → No immediate effect",
+      "keyFormulas": [
+        "Equity Method Year-End Balance = Purchase Price + Share of NI - FV Adjustments",
+        "Inventory (FIFO) adjustment = Undervaluation x Ownership %",
+        "Equipment adjustment = (Undervaluation / Useful life) x Ownership %"
+      ],
+      "yourMistake": "Chose B (GBP 522.4M). Added the equipment depreciation adjustment (+0.4) instead of subtracting it (-0.4). When equipment is undervalued (FV > BV), additional depreciation expense reduces the investment balance."
+    },
+    {
+      "id": 171,
+      "title": "Partial vs Full Goodwill and D/E Ratio",
+      "topic": "FSA",
+      "question": "Argon also acquired an 80% controlling interest in Radon plc in the current year, and has elected to use the partial goodwill option for recognizing goodwill when consolidating Radon.\n\nArgon reports under IFRS. Argon's primary competitors are US-based companies that report under US GAAP.\n\nWhen consolidating Radon, Argon's D/E ratio at the end of the current year would be:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Lower than if it used the method of its primary competitors"
+        },
+        {
+          "letter": "B",
+          "text": "The same as if it used the method of its primary competitors"
+        },
+        {
+          "letter": "C",
+          "text": "Higher than if it used the method of its primary competitors"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Goodwill Methods:\n\n| Method | Standard | Goodwill Recognized | NCI Includes Goodwill? |\n| Partial | IFRS (optional) | Acquirer's share only | NO |\n| Full | US GAAP (required) | 100% of entity | YES |\n\nImpact on Balance Sheet:\n\n| Item | Partial Goodwill | Full Goodwill |\n| Goodwill (Asset) | Lower | Higher |\n| NCI (Equity) | Lower | Higher |\n| Total Equity | Lower | Higher |\n| Total Debt | Same | Same |\n\nD/E Ratio Analysis:\nD/E = Total Debt / Total Equity\n\n- Argon (IFRS, partial): Lower equity → Higher D/E\n- Competitors (US GAAP, full): Higher equity → Lower D/E\n\nWhy C is Correct:\nPartial goodwill results in lower NCI (minority interest), which means lower total equity, which means higher D/E ratio.\n\nWhy B is Wrong:\nGoodwill method affects both assets (goodwill) and equity (NCI), so D/E is NOT the same.\n\nKey Insight:\nPartial goodwill → Lower NCI → Lower equity → Higher D/E\nFull goodwill → Higher NCI → Higher equity → Lower D/E",
+      "yourMistake": "Chose B (The same). Thought the goodwill method only affects assets, not equity. But the NCI (non-controlling interest) component of equity is directly affected — partial goodwill means lower NCI, lower total equity, and therefore a higher D/E ratio."
+    },
+    {
+      "id": 172,
+      "title": "REIT NAVPS Calculation",
+      "topic": "Alternatives",
+      "question": "Hansen reviews the client's investment in Maipo Valley Group, a retail REIT located in the US.\n\nExhibit 1:\n- Last-12-month pro forma cash NOI: $240 million\n- Next-12-month growth in NOI: $36 million\n- Cash and equivalents: $10 million\n- Accounts receivable: $25 million\n- Prepaid/Other assets: $15 million\n- Land held for future development: $800 million\n- Total debt: $600 million\n- Market capitalization: $2,250 million\n- Shares outstanding: 50 million\n- Capitalization rate: 8.0%\n\nBased on Exhibit 1, the net asset value per share (NAVPS) of Maipo Valley Group is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "$63"
+        },
+        {
+          "letter": "B",
+          "text": "$74"
+        },
+        {
+          "letter": "C",
+          "text": "$86"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "NAVPS Calculation:\n\nStep 1: Calculate Next-12-Month NOI\nNext NOI = $240M + $36M = $276M\n\nStep 2: Capitalize Operating Real Estate\nOperating RE Value = $276M / 8% = $3,450M\n\nStep 3: Add Other Assets\nCash + AR + Prepaid = $10M + $25M + $15M = $50M\nLand = $800M\nTotal Other Assets = $850M\n\nStep 4: Calculate Gross Asset Value\nGAV = $3,450M + $850M = $4,300M\n\nStep 5: Subtract Debt\nNAV = $4,300M - $600M = $3,700M\n\nStep 6: Calculate NAVPS\nNAVPS = $3,700M / 50M shares = $74\n\nCommon Errors:\n- Using cost of equity instead of cap rate → $63\n- Forgetting to subtract debt → $86",
+      "keyFormulas": [
+        "NAVPS = (Capitalized NOI + Other Assets - Debt) / Shares",
+        "Capitalized NOI = Next-12-month NOI / Cap Rate"
+      ],
+      "yourMistake": "Answered correctly — included for review practice."
+    },
+    {
+      "id": 173,
+      "title": "Justified P/B Ratio",
+      "topic": "Equity",
+      "question": "Georgiou determines Rummidge's justified P/B ratio based on forecasts using the Gordon growth model.\n\nGiven:\n- Average ROE (past 7 years) = 9.5% (used as forecast)\n- Required return on equity (r) = 9.0%\n- Dividend payout ratio = 75%\n\nRummidge's justified P/B ratio is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "0.95"
+        },
+        {
+          "letter": "B",
+          "text": "1.08"
+        },
+        {
+          "letter": "C",
+          "text": "1.27"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Step 1: Calculate Retention Rate\nb = 1 - Payout = 1 - 0.75 = 25%\n\nStep 2: Calculate Sustainable Growth Rate\ng = b x ROE = 0.25 x 9.5% = 2.375%\n\nStep 3: Apply Justified P/B Formula\nJustified P/B = (ROE - g) / (r - g)\nJustified P/B = (9.5% - 2.375%) / (9.0% - 2.375%)\nJustified P/B = 7.125% / 6.625%\nJustified P/B = 1.08\n\nCommon Error:\nUsing payout ratio instead of retention rate:\nWrong g = 0.75 x 9.5% = 7.125%\nWrong P/B = 1.27",
+      "keyFormulas": [
+        "Justified P/B = (ROE - g) / (r - g)",
+        "g = (1 - Payout) x ROE"
+      ],
+      "yourMistake": "Answered correctly — included for review practice."
+    },
+    {
+      "id": 174,
+      "title": "ETF Holding Period Cost",
+      "topic": "Portfolio Management",
+      "question": "Boyer compares the characteristics of two smart beta ETFs:\n\nExhibit 2:\n| Metric | zTrak | xShares |\n| Commission (one-way) | 5 bps | 10 bps |\n| Bid-ask spread | 15 bps | 10 bps |\n| Annual management fee | 20 bps | 15 bps |\n\nBased on a 3-month holding period, which ETF has the lower total holding period cost?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "zTrak has the lower cost"
+        },
+        {
+          "letter": "B",
+          "text": "xShares has the lower cost"
+        },
+        {
+          "letter": "C",
+          "text": "Both have the same cost"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "3-Month Holding Period Cost Formula:\nCost = (2 x Commission) + Spread + (Management Fee x 3/12)\n\nzTrak:\n= (2 x 5) + 15 + (20 x 0.25)\n= 10 + 15 + 5\n= 30 bps\n\nxShares:\n= (2 x 10) + 10 + (15 x 0.25)\n= 20 + 10 + 3.75\n= 33.75 bps\n\nzTrak has LOWER 3-month cost (30 < 33.75)\n\nKey Points:\n- Commission: Multiply by 2 (round trip — buy and sell)\n- Spread: Count once (pay on buy at ask, sell at bid)\n- Fee: Pro-rate for holding period",
+      "keyFormulas": [
+        "ETF Holding Cost = (2 x Commission) + Spread + (Fee x Holding Period / 12)"
+      ],
+      "yourMistake": "Answered correctly — included for review practice."
+    },
+    {
+      "id": 175,
+      "title": "Out-of-Sample Forecasting Performance",
+      "topic": "Quant",
+      "question": "Hardie uses regression statistics to compare the forecasting performance of two AR models.\n\nExhibit 1:\n| Metric | AR(1) | AR(2) |\n| R-squared | 0.907 | 0.905 |\n| Standard error | 0.027 | 0.027 |\n| RMSE | 0.032 | 0.030 |\n\nBased on out-of-sample forecasting performance, which AR model is preferred?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "AR(1), because it has the higher R-squared"
+        },
+        {
+          "letter": "B",
+          "text": "AR(1), because it has the lower RMSE"
+        },
+        {
+          "letter": "C",
+          "text": "AR(2), because it has the lower RMSE"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Use Root Mean Squared Error (RMSE) for out-of-sample comparison.\n\nAR(2) RMSE (0.030) < AR(1) RMSE (0.032)\nAR(2) is better for out-of-sample forecasting.\n\nKey Points:\n- R-squared: In-sample fit (higher = better IN-SAMPLE)\n- Standard error: In-sample (lower = better IN-SAMPLE)\n- RMSE: OUT-OF-SAMPLE (lower = better forecasting)\n\nFor forecasting, always use RMSE!",
+      "yourMistake": "Answered correctly — included for review practice."
+    },
+    {
+      "id": 176,
+      "title": "Growth Accounting / TFP Calculation",
+      "topic": "Economics",
+      "question": "Nod calculates the contribution of total factor productivity to economic growth for Country A.\n\nExhibit 1:\n- Share of capital in GDP (alpha) = 45.0%\n- Growth rate of capital (DK/K) = 4.5%\n- Growth rate of labor (DL/L) = 6.5%\n- Growth rate of output (DY/Y) = 6.7%\n\nThe contribution of total factor productivity (TFP) to economic growth for Country A is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "1.1%"
+        },
+        {
+          "letter": "B",
+          "text": "2.2%"
+        },
+        {
+          "letter": "C",
+          "text": "3.1%"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Growth Accounting Equation:\nDY/Y = DA/A + alpha(DK/K) + (1 - alpha)(DL/L)\n\nSolve for TFP Growth (DA/A):\nDA/A = DY/Y - alpha(DK/K) - (1 - alpha)(DL/L)\nDA/A = 6.7% - (0.45 x 4.5%) - (0.55 x 6.5%)\nDA/A = 6.7% - 2.025% - 3.575%\nDA/A = 1.1%\n\nTFP Growth = Output Growth - Weighted Input Growth",
+      "keyFormulas": [
+        "DY/Y = DA/A + alpha(DK/K) + (1 - alpha)(DL/L)",
+        "TFP = Output Growth - alpha(Capital Growth) - (1 - alpha)(Labor Growth)"
+      ],
+      "yourMistake": "Answered correctly — included for review practice."
+    },
+    {
+      "id": 177,
+      "title": "Endogenous Growth Theory",
+      "topic": "Economics",
+      "question": "Over the next two years, Nod expects an increase in the saving rate in Country A, resulting in increased investment in research and development targeting more efficient production methods. He concludes that this will lead to a permanently higher per capita GDP growth rate in the future, with no diminishing returns to capital.\n\nNod's conclusion is most consistent with which growth theory?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Classical growth theory"
+        },
+        {
+          "letter": "B",
+          "text": "Neoclassical growth theory"
+        },
+        {
+          "letter": "C",
+          "text": "Endogenous growth theory"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Why Endogenous Growth:\n- No diminishing returns to capital\n- Permanent increase in growth rate from R&D\n- Higher saving rate leads to permanently higher growth\n\nWhy NOT Neoclassical:\nNeoclassical assumes diminishing returns to capital. Capital deepening can't sustain permanent growth once steady state is reached.\n\nWhy NOT Classical:\nClassical predicts technology leads to larger population, not higher per capita income.\n\nGrowth Theories Summary:\n| Theory | Diminishing Returns? | R&D Effect on Growth |\n| Classical | Yes | Temporary |\n| Neoclassical | Yes | Temporary |\n| Endogenous | No | Permanent |",
+      "yourMistake": "Answered correctly — included for review practice."
+    },
+    {
+      "id": 149,
+      "title": "Duty of Loyalty During Notice Period",
+      "topic": "Ethics",
+      "question": "Alice Chan, CFA is a senior partner at a large investment bank which has adopted the CFA Institute Code of Ethics and Standards of Professional Conduct. Alex Berg is her supervisor.\n\nChan provides her resignation to Berg, effective in 10 business days. Chan expects to remain at the bank during the notice period to transition her client portfolios and to ensure that she leaves the bank on good terms. However, after reviewing the bank's standard policy for an employee's departure, Chan realizes that she must notify her clients and provide an alternative contact person. Accordingly, on the same day that she submits her resignation notice, Chan contacts all of her clients, informing them of her planned departure and providing Berg's contact information. If clients ask about her departure, Chan informs them she is starting her own firm. Immediately after contacting her clients, Chan updates her social media profile, which includes personal and professional contacts and information on the product offerings of her new firm.\n\nWith regard to informing her clients of her planned departure and updating her social media profile, did Chan violate the Standards?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "No"
+        },
+        {
+          "letter": "B",
+          "text": "Yes, because of the timing of her updating her social media accounts"
+        },
+        {
+          "letter": "C",
+          "text": "Yes, because of the timing of when she informed clients that she was starting her own firm"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Standard IV(A) Loyalty to Employer: While still employed, members must act for the benefit of their employer and not cause harm to the employer.\n\nAnalysis of Chan's Actions:\n- Notifying clients of departure: NO violation — Followed employer's policy\n- Telling clients about new firm (if asked): NO violation — Responding honestly to direct questions\n- Updating social media with new firm info: YES violation — Promotes new firm while still employed\n\nWhy Updating Social Media is a Violation:\n- Chan is still in her notice period (still employed)\n- Publicly posting product offerings of her new firm:\n  - Promotes her competing business\n  - Could cause confusion among clients\n  - Is detrimental to current employer\n  - Gives her new firm an unfair advantage\n\nWhy A is Wrong:\nThe social media update IS a violation. While notifying clients per employer policy is fine, actively promoting a competing firm's products while still employed is not.\n\nWhy C is Wrong:\nTelling clients she's starting her own firm (when asked) is NOT a violation because she followed employer's notification policy, she was responding honestly to direct questions, and she didn't proactively solicit clients.\n\nKey Principle: During notice period — follow employer policies, but do NOT actively promote competing business.",
+      "yourMistake": "Failed to recognize that updating social media with new firm product offerings while still employed violates the duty of loyalty, even though notifying clients per employer policy is fine."
+    },
+    {
+      "id": 150,
+      "title": "Two-Stage FCFF Valuation",
+      "topic": "Equity",
+      "question": "Emily Silva is an equity analyst working at a US-based investment consulting firm. She values the equity of four publicly traded firms.\n\nSilva estimates the intrinsic value of Firm A's equity based on a declining growth two-stage model. The market value of Firm A's debt is $450 million. Firm A's cost of equity is 12%, and its WACC is 10%.\n\nExhibit 2: Projected FCFF ($ millions)\n| Year | Projected FCFF ($ millions) |\n| 1 | 160 |\n| 2 | 180 |\n| 3 | 190 |\n\nSilva assumes that FCFF will grow at a constant annual rate of 3% after Year 3.\n\nThe intrinsic value of Firm A's equity (in $ millions), as estimated by Silva, should be closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "1,519"
+        },
+        {
+          "letter": "B",
+          "text": "2,087"
+        },
+        {
+          "letter": "C",
+          "text": "2,537"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Two-Stage FCFF Valuation:\n\nStep 1: Calculate PV of Projected FCFF (Years 1-3)\nUse WACC (10%) as the discount rate for FCFF:\n- Year 1: $160M / 1.10 = $145.45M\n- Year 2: $180M / 1.10^2 = $148.76M\n- Year 3: $190M / 1.10^3 = $142.75M\n- Total PV = $436.96M\n\nStep 2: Calculate Terminal Value at End of Year 3\nFCFF4 = FCFF3 x (1 + g) = $190M x 1.03 = $195.7M\nTV3 = FCFF4 / (WACC - g) = $195.7M / (0.10 - 0.03) = $195.7M / 0.07 = $2,795.71M\n\nStep 3: Calculate PV of Terminal Value\nPV(TV3) = $2,795.71M / (1.10)^3 = $2,795.71M / 1.331 = $2,100.46M\n\nStep 4: Calculate Firm Value\nFirm Value = PV(FCFF) + PV(TV) = $436.96M + $2,100.46M = $2,537.43M\n\nStep 5: Calculate EQUITY Value\nEquity Value = Firm Value - Market Value of Debt\nEquity Value = $2,537.43M - $450M = $2,087.43M ≈ $2,087M\n\nWhy A is Wrong ($1,519M): Answer A uses cost of equity (12%) instead of WACC (10%) to discount FCFF. For FCFF valuation, always use WACC.\n\nKey Rules:\n- FCFF model: Discount at WACC → Firm value (subtract debt for equity)\n- FCFE model: Discount at Cost of Equity → Equity value directly",
+      "keyFormulas": [
+        "TV = FCFF_(n+1) / (WACC - g)",
+        "Equity Value = Firm Value - Market Value of Debt",
+        "FCFF discounted at WACC, FCFE discounted at Cost of Equity"
+      ],
+      "yourMistake": "Calculated the FIRM value ($2,537M) but forgot to subtract debt ($450M) to get EQUITY value."
+    },
+    {
+      "id": 151,
+      "title": "Pairs Trade Valuation Approach",
+      "topic": "Equity",
+      "question": "Emily Silva is an equity analyst working at a US-based investment consulting firm.\n\nAnother client asks Silva to evaluate a pairs trade that involves two publicly traded firms, Firm C and Firm D. Both firms operate in the copper mining industry. They are both profitable and close competitors. In addition to owning copper reserves, both firms manufacture electrical wires. The electrical wire segment comprises approximately one-third of each firm's revenues. For the pairs trade, Silva wants to evaluate which firm to buy and which firm to sell using an appropriate valuation approach.\n\nWhich of the following valuation approaches is the most appropriate for Silva to use when evaluating the pairs trade involving Firm C and Firm D?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "A P/E-based comparables valuation"
+        },
+        {
+          "letter": "B",
+          "text": "An asset-based valuation adjusted for conglomerate discount"
+        },
+        {
+          "letter": "C",
+          "text": "A price-to-EBITDA-based comparables valuation adjusted for lack of marketability discount"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "What is a Pairs Trade?\nA pairs trade is a relative value strategy:\n- Buy the relatively undervalued stock\n- Short the relatively overvalued stock\n- Profit from convergence regardless of market direction\n\nValuation Approach Selection:\n- P/E Comparables: YES — Identifies relative mispricing\n- Asset-based: NO — Better for liquidation, not relative value\n- P/EBITDA with DLOM: NO — DLOM applies to private firms, not public\n\nWhy P/E Comparables is Correct:\n- Pairs trading requires identifying relative mispricing\n- Both firms are similar (same industry, profitable, close competitors)\n- Relative valuation (P/E multiples) directly compares the two firms\n- Can identify which is cheap vs expensive relative to fundamentals\n\nWhy B is Wrong (Asset-based + Conglomerate Discount):\n1. Asset-based approach: Better for liquidation scenarios, not ongoing operations\n2. Conglomerate discount: Applies to companies with unrelated business segments. Firm C and D have related segments (copper mining + electrical wires from copper) — both segments are in the same value chain. Not a conglomerate situation.\n\nWhy C is Wrong (P/EBITDA + DLOM):\n- DLOM (Discount for Lack of Marketability): Applies to private firms\n- Both Firm C and Firm D are publicly traded\n- No marketability discount needed for liquid public stocks\n\nKey Principle: Pairs trade = Relative value strategy → Use relative valuation (comparables)",
+      "yourMistake": "Selected asset-based valuation with conglomerate discount, but the firms have related segments (same value chain) and pairs trading requires relative valuation (comparables), not asset-based approaches."
+    },
+    {
+      "id": 152,
+      "title": "FCFE Coverage Ratio",
+      "topic": "Equity",
+      "question": "Emery also covers Etaphi Company. He calculates Etaphi's FCFE coverage ratio using the financial information (in $ millions) in Exhibit 2.\n\nExhibit 2:\n| Item | Value ($ millions) |\n| Net interest paid | 6 |\n| Dividends paid | 76 |\n| Share issuance proceeds | 12 |\n| FCFE | 89 |\n\nEtaphi's FCFE coverage ratio is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "1.17"
+        },
+        {
+          "letter": "B",
+          "text": "1.27"
+        },
+        {
+          "letter": "C",
+          "text": "1.39"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "FCFE Coverage Ratio Formula:\nFCFE Coverage Ratio = FCFE / (Dividends + Share Repurchases)\n\nKey Point: Share ISSUANCE is NOT included — only share REPURCHASES\n\nCalculation:\nFCFE Coverage = $89M / $76M = 1.17\n\nWhy B is Wrong (1.27):\nIncorrectly included share issuance proceeds and/or net interest paid:\nWrong = $89M / ($76M - $12M + $6M) = $89M / $70M = 1.27\n\nWhy C is Wrong (1.39):\nIncorrectly subtracted share issuance:\nWrong = $89M / ($76M - $12M) = $89M / $64M = 1.39\n\nWhat Goes in the Denominator:\n- Include: Dividends paid, Share repurchases\n- Exclude: Share issuance proceeds, Net interest paid, Other financing activities\n\nKey Rule: FCFE Coverage = FCFE / (Dividends + Repurchases). Share ISSUANCE is a source of funds, not a use — don't include it!",
+      "keyFormulas": [
+        "FCFE Coverage Ratio = FCFE / (Dividends + Share Repurchases)",
+        "Share ISSUANCE is excluded from denominator"
+      ],
+      "yourMistake": "Incorrectly included share issuance proceeds and/or net interest paid in the denominator. Only dividends and share repurchases belong in the denominator."
+    },
+    {
+      "id": 153,
+      "title": "Foreign Currency Transaction Gain/Loss Timing",
+      "topic": "FSA",
+      "question": "Jennifer Lee is analyzing the performance of Belle, a global consumer products company. Belle is located in the eurozone and uses the EUR as its functional and presentation currency. Belle reports under IFRS and has a 31 December year end.\n\nLee gathers the information about EUR/GBP exchange rates (amount of EUR per 1 GBP) in Exhibit 1.\n\nExhibit 1:\n| Date | EUR/GBP Exchange Rate |\n| 16 November, most recent year | 1.186 |\n| 31 December, most recent year | 1.176 |\n| 18 January, current year | 1.193 |\n\nLee notes that Belle purchased inventory for GBP 500,000 from an unaffiliated UK company on 16 November of the most recent year. The transaction was settled on 18 January of the current year.\n\nAs a result of the inventory purchase, Belle should recognize a foreign currency transaction loss of:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "EUR 8,500 in the current year"
+        },
+        {
+          "letter": "B",
+          "text": "EUR 5,000 in the most recent year"
+        },
+        {
+          "letter": "C",
+          "text": "EUR 3,500 in the current year"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Timeline of Events:\n- Nov 16: Purchase (payable created) at rate 1.186 → GBP 500K x 1.186 = EUR 593,000\n- Dec 31: Year-end revaluation at rate 1.176 → GBP 500K x 1.176 = EUR 588,000\n- Jan 18: Settlement (payment) at rate 1.193 → GBP 500K x 1.193 = EUR 596,500\n\nStep 1: Most Recent Year (Nov 16 → Dec 31)\n- Payable started at EUR 593,000\n- Payable at year-end: EUR 588,000\n- Change: EUR 588,000 - EUR 593,000 = -EUR 5,000\n- GBP weakened → payable decreased → GAIN of EUR 5,000 (not a loss!)\n\nStep 2: Current Year (Dec 31 → Jan 18)\n- Payable at start of year: EUR 588,000\n- Actual payment: EUR 596,500\n- Change: EUR 596,500 - EUR 588,000 = +EUR 8,500\n- GBP strengthened → paid more → LOSS of EUR 8,500\n\nSummary:\n- Most recent year: EUR 5,000 GAIN\n- Current year: EUR 8,500 LOSS\n\nWhy B is Wrong: EUR 5,000 was a GAIN (not loss) because the payable decreased.\n\nWhy C is Wrong (EUR 3,500): EUR 3,500 is the NET loss from transaction date to settlement (EUR 596,500 - EUR 593,000 = EUR 3,500 net loss). But this ignores the year-end cutoff. Each year recognizes its own portion.\n\nKey Principle: Unsettled foreign currency payables/receivables are revalued at each balance sheet date. Gains/losses are recognized in the period they occur.",
+      "keyFormulas": [
+        "FX Gain/Loss = (New Rate - Old Rate) x Foreign Currency Amount",
+        "Payable decrease = GAIN; Payable increase = LOSS",
+        "Revalue at each balance sheet date"
+      ],
+      "yourMistake": "Said EUR 5,000 LOSS in the most recent year, but the EUR 5,000 was actually a GAIN (payable decreased). The question asks about the LOSS, which is the EUR 8,500 in the current year."
+    },
+    {
+      "id": 154,
+      "title": "Cumulative Translation Adjustment Location",
+      "topic": "FSA",
+      "question": "Belle uses the current rate method to translate its subsidiaries' financial statements. In contrast, Belle's primary competitor uses the temporal method to translate its subsidiaries' financial statements. Lee considers how each company should report its cumulative translation adjustment under the method used.\n\nBelle should report its cumulative translation adjustment as:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "A component of non-operating income"
+        },
+        {
+          "letter": "B",
+          "text": "A component of other operating income"
+        },
+        {
+          "letter": "C",
+          "text": "A separate component of stockholders' equity"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Translation Adjustment Location by Method:\n- Current Rate Method: Stockholders' Equity (OCI/CTA)\n- Temporal Method: Income Statement (P&L)\n\nBelle uses the Current Rate Method:\n- All assets and liabilities translated at current rate\n- Income statement at average rate\n- Translation adjustment → Cumulative Translation Adjustment (CTA)\n- CTA is reported in stockholders' equity as part of AOCI\n\nWhy A and B are Wrong:\n- Both A and B place the adjustment in the income statement\n- This would be correct for the temporal method, not current rate method\n- Also, A and B describe treatment of transaction gains/losses, not translation adjustments\n\nMemory Aid:\n- Current Rate Method → Functional currency = Local currency → CTA goes to Equity\n- Temporal Method → Functional currency = Parent's currency → Translation adjustment goes to Income Statement",
+      "yourMistake": "Confused translation adjustments (balance sheet, go to equity under current rate method) with transaction gains/losses (income statement). Under the current rate method, the CTA goes to stockholders' equity, not the income statement."
+    },
+    {
+      "id": 155,
+      "title": "Greeks: Key Risks for Dealers vs Speculators",
+      "topic": "Derivatives",
+      "question": "Thomas Edel explains to portfolio manager Anton Uder about the effects of unusual option trading volumes on markets. Recently, discussion on a popular social media site promoted heavy purchases of short-term far out-of-the-money call options on New Optics Technology stock. Unlike in equities markets where there is a seller for every buyer, option contracts can be created by options dealers selling directly to speculators. They are able to do so by simultaneously delta hedging their own positions.\n\nExhibit 1:\n| Information | USD Price |\n| Stock price 2 weeks before expiry | 47 |\n| 90 Call price 2 weeks before expiry | 0.15 |\n| Delta_c 2 weeks before expiry | 0.057 |\n| Stock price 1 week before expiry | 90 |\n| Stock price at expiry | 140 |\n\nEdel explains: \"Option prices are sensitive to the 'Greeks' — delta, gamma, theta, vega and rho, which are risk measures. The same measure can simultaneously represent different types of risks to different market participants, such as options dealers and speculators.\"\n\nThe Greek letters representing the greatest risks to the two groups of market participants cited by Uder are most likely:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Delta and rho"
+        },
+        {
+          "letter": "B",
+          "text": "Vega and delta"
+        },
+        {
+          "letter": "C",
+          "text": "Gamma and theta"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Key Risks by Market Participant:\n- Options Dealers: Primary risk = Gamma (becoming unhedged — large price moves break delta hedge)\n- Speculators (buyers): Primary risk = Theta (time decay — option value erodes as expiry approaches)\n\nGamma Risk (Dealers):\n- Dealers delta-hedge by buying stock when selling calls\n- Delta changes as stock price moves (gamma effect)\n- Large price moves cause delta to change rapidly\n- Dealers must constantly rebalance, incurring costs\n- In the New Optics example: stock went from $47 → $90 → $140\n- This massive move would cause significant gamma risk\n\nTheta Risk (Speculators):\n- Speculators bought far OTM calls ($90 strike when stock was $47)\n- These options had mostly time value\n- Every day that passes, time value decreases\n- If stock doesn't move, option value decays to zero\n- Theta is the \"enemy\" of option buyers\n\nWhy B is Wrong (Vega and Delta):\n- Vega: Sensitivity to volatility changes — affects both parties but not the PRIMARY risk for dealers who hedge\n- Delta: Yes, dealers care about delta, but they HEDGE delta. The risk is when the hedge BREAKS (gamma)\n\nWhy A is Wrong (Delta and Rho):\n- Rho: Sensitivity to interest rates — minimal impact for short-term options\n- Not a significant risk for either party in this scenario",
+      "yourMistake": "Selected Vega and Delta. Dealers hedge delta, so the risk is not delta itself but gamma (when the delta hedge breaks due to large price moves). Speculators' main risk is theta (time decay), not delta."
+    },
+    {
+      "id": 156,
+      "title": "Options Strategy Profit Calculation",
+      "topic": "Derivatives",
+      "question": "Edel and Uder discuss New Optics Technology options. The stock experienced massive price movement due to a short squeeze.\n\nExhibit 1:\n| Information | USD Price |\n| Stock price 2 weeks before expiry | $47 |\n| 90 Call price 2 weeks before expiry | $0.15 |\n| 90 Put price 2 weeks before expiry | $42.97 |\n| Stock price at expiry | $140 |\n\nAccording to the data in Exhibit 1, the position resulting in the greatest USD profit beginning two weeks to expiry would most likely have been realized initiating a position combining:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Long calls and long puts"
+        },
+        {
+          "letter": "B",
+          "text": "Long puts and long stocks"
+        },
+        {
+          "letter": "C",
+          "text": "Long calls and short stocks"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Calculate Profit for Each Strategy:\n\nStrategy A: Long Calls + Long Puts (Straddle-like)\n- Long 90 Call: Cost $0.15, Payoff = max(0, 140-90) = $50, Profit = $50 - $0.15 = $49.85\n- Long 90 Put: Cost $42.97, Payoff = max(0, 90-140) = $0, Profit = $0 - $42.97 = -$42.97\n- Total: $49.85 + (-$42.97) = $6.88\n\nStrategy B: Long Puts + Long Stock\n- Long Stock: Cost $47, Value at expiry $140, Profit = $140 - $47 = $93.00\n- Long 90 Put: Cost $42.97, Payoff = max(0, 90-140) = $0, Profit = $0 - $42.97 = -$42.97\n- Total: $93.00 + (-$42.97) = $50.03\n\nStrategy C: Long Calls + Short Stock\n- Stock loss from $47 to $90 (below strike) = $43 loss\n- Call value at expiry = $50 - $0.15 = $49.85\n- Net = $49.85 - $43 = $6.85\n\nProfit Ranking:\n1. Strategy B (Long Puts + Long Stock): $50.03 ← HIGHEST\n2. Strategy A (Long Calls + Long Puts): $6.88\n3. Strategy C (Long Calls + Short Stock): $6.85\n\nWhy B is Best:\n- Long stock captures the entire $93 gain ($47 → $140)\n- Put expires worthless (cost $42.97, worth $0)\n- Net profit: $93 - $42.97 = $50.03",
+      "keyFormulas": [
+        "Call Payoff = max(0, S_T - K) - Premium",
+        "Put Payoff = max(0, K - S_T) - Premium",
+        "Stock Profit = S_T - Purchase Price"
+      ],
+      "yourMistake": "Chose long calls + long puts, but the put cost ($42.97) wipes out most of the call's gain ($49.85), leaving only $6.88 profit. Long puts + long stock yields $50.03 because the stock captures the full $93 gain."
+    },
+    {
+      "id": 157,
+      "title": "Value Added from Asset Allocation",
+      "topic": "Portfolio Management",
+      "question": "Imane Kabbaj is the CIO of the Dynamo Fund. Kabbaj reviews the performance of the Dynamo Fund for the past year and focuses on the decomposition of the value added from asset allocation and security selection.\n\nExhibit 1:\n| Asset Class | Fund Return | Fund Allocation | Benchmark Return | Strategic Asset Allocation |\n| Equities | -16% | 50% | -20% | 60% |\n| Bonds | -12% | 50% | -10% | 40% |\n\nFor the Dynamo Fund, the value added from asset allocation over the past year was:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Less than the value added from security selection"
+        },
+        {
+          "letter": "B",
+          "text": "Equal to the value added from security selection"
+        },
+        {
+          "letter": "C",
+          "text": "Greater than the value added from security selection"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Active Return Decomposition Formula:\nR_A = (Dw_stocks x R_B,stocks + Dw_bonds x R_B,bonds) + (w_P,stocks x R_A,stocks + w_P,bonds x R_A,bonds)\nR_A = Asset Allocation + Security Selection\n\nStep 1: Calculate Value Added from Asset Allocation\n- Equities: (50% - 60%) x (-20%) = (-10%) x (-20%) = +2.0%\n- Bonds: (50% - 40%) x (-10%) = (+10%) x (-10%) = -1.0%\n- Total Asset Allocation = +2.0% + (-1.0%) = +1.0%\n\nInterpretation: Underweighting equities (which fell 20%) added 2%. Overweighting bonds (which fell 10%) cost 1%. Net: +1%.\n\nStep 2: Calculate Value Added from Security Selection\n- Equities: 50% x (-16% - (-20%)) = 50% x (+4%) = +2.0%\n- Bonds: 50% x (-12% - (-10%)) = 50% x (-2%) = -1.0%\n- Total Security Selection = +2.0% + (-1.0%) = +1.0%\n\nInterpretation: Equities beat benchmark by 4% (-16% vs -20%). Bonds lagged by 2% (-12% vs -10%).\n\nComparison:\n- Asset Allocation: +1.0%\n- Security Selection: +1.0%\n- They are EQUAL!",
+      "keyFormulas": [
+        "Asset Allocation Value Added = Sum[(Portfolio Weight - Benchmark Weight) x Benchmark Return]",
+        "Security Selection Value Added = Sum[Portfolio Weight x (Portfolio Return - Benchmark Return)]"
+      ],
+      "yourMistake": "Used an incorrect formula or calculation order. Asset allocation uses benchmark returns x weight differentials, and security selection uses portfolio weights x return differentials. Both equal +1.0%."
+    },
+    {
+      "id": 158,
+      "title": "Optimal Active Risk Allocation",
+      "topic": "Portfolio Management",
+      "question": "Kabbaj's goal for the fund's equity exposure is to maximize the Sharpe ratio by optimizing the allocation to active equity risk. She intends to invest in a combination of an active stock selection strategy and its benchmark, a global equity index. Based on the information in Exhibit 2, Kabbaj calculates the weight that should be allocated to the global equity index benchmark portfolio to achieve her goal.\n\nExhibit 2:\n| Metric | Active Stock Selection Strategy | Global Equity Index |\n| Standard deviation of returns | 23% | 15% |\n| Sharpe ratio | 0.47 | 0.53 |\n| Active risk | 9% | --- |\n| Information ratio | 0.27 | --- |\n\nTo achieve her goal for the equity exposure, the weight that Kabbaj should allocate to the global equity index benchmark portfolio is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "-30%"
+        },
+        {
+          "letter": "B",
+          "text": "15%"
+        },
+        {
+          "letter": "C",
+          "text": "100%"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Optimal Active Risk Formula:\nσ*(R_A) = (IR / SR_B) x σ_B\n\nWhere:\n- IR = Information ratio of active strategy = 0.27\n- SR_B = Sharpe ratio of benchmark = 0.53\n- σ_B = Standard deviation of benchmark = 15%\n\nStep 1: Calculate Optimal Active Risk\nσ*(R_A) = (0.27 / 0.53) x 15% = 0.5094 x 15% = 7.64%\n\nStep 2: Determine Weight on Active Strategy\nCurrent active risk = 9%\nOptimal active risk = 7.64%\nWeight on Active = Optimal Active Risk / Current Active Risk = 7.64% / 9% = 0.85 = 85%\n\nStep 3: Calculate Weight on Benchmark\nWeight on Benchmark = 1 - Weight on Active = 1 - 0.85 = 0.15 = 15%\n\nWhy A is Wrong (-30%):\nUsed the active strategy's standard deviation (23%) instead of the benchmark's standard deviation (15%):\nWrong: σ*(R_A) = (0.27 / 0.53) x 23% = 11.72%\nWeight on Active = 11.72% / 9% = 1.30 = 130%\nWeight on Benchmark = 1 - 1.30 = -0.30 = -30%\n\nKey Formula Reminder: Optimal active risk uses BENCHMARK standard deviation, not active strategy's.",
+      "keyFormulas": [
+        "Optimal active risk: σ*(R_A) = (IR / SR_B) x σ_B",
+        "Weight on Active = Optimal Active Risk / Current Active Risk",
+        "Weight on Benchmark = 1 - Weight on Active"
+      ],
+      "yourMistake": "Used the active strategy's standard deviation (23%) instead of the benchmark's standard deviation (15%) in the optimal active risk formula, leading to an answer of -30%."
+    },
+    {
+      "id": 159,
+      "title": "Bond Risk Premium for Inflation Uncertainty",
+      "topic": "Portfolio Management",
+      "question": "Kabbaj analyzes the information in Exhibit 3, which shows the yields on corporate bonds, conventional government bonds, and inflation-linked government bonds issued in Country A with the same maturity, along with inflation expectations. She analyzes the bond risk premium to determine the market's confidence in inflation expectations being realized through the business cycle.\n\nExhibit 3:\n| Item | Value |\n| Corporate bond yield | 6.28% |\n| Conventional government bond yield | 5.66% |\n| Inflation-linked government bond yield | 2.32% |\n| Survey-based inflation expectation | 2.80% |\n\nThe bond risk premium for uncertainty about future inflation in Country A is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "0.54%"
+        },
+        {
+          "letter": "B",
+          "text": "1.16%"
+        },
+        {
+          "letter": "C",
+          "text": "2.86%"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Bond Risk Premium Formula:\nBRP = Conventional Gov't Yield - Inflation-Linked Yield - Expected Inflation\n\nCalculation:\nBRP = 5.66% - 2.32% - 2.80% = 0.54%\n\nDecomposition of Conventional Government Bond Yield:\n- Real rate (risk-free): 2.32% (from inflation-linked bond yield)\n- Expected inflation: 2.80% (from survey-based expectation)\n- Inflation uncertainty premium: 0.54% (residual = BRP)\n- Total: 5.66% (conventional gov't yield)\n\nWhy C is Wrong (2.86%):\nCalculated 5.66% - 2.80% = 2.86%. This gives (Real rate + BRP), not just BRP. Forgot to subtract the inflation-linked yield.\n\nWhy B is Wrong (1.16%):\nUsed CORPORATE bond yield instead of government bond yield:\nWrong: 6.28% - 2.32% - 2.80% = 1.16%. This includes the credit risk premium, not just inflation uncertainty.\n\nKey Concept: The bond risk premium (for inflation uncertainty) is what remains after accounting for: (1) Real return (proxied by inflation-linked bond) and (2) Expected inflation (from surveys).",
+      "keyFormulas": [
+        "BRP = Conventional Gov't Yield - Inflation-Linked Yield - Expected Inflation",
+        "Conventional Yield = Real Rate + Expected Inflation + BRP"
+      ],
+      "yourMistake": "Calculated 5.66% - 2.80% = 2.86%, which gives (Real rate + BRP) combined. Forgot to also subtract the inflation-linked yield (2.32%) to isolate just the BRP."
+    },
+    {
+      "id": 160,
+      "title": "Types of Economic Convergence",
+      "topic": "Economics",
+      "question": "Amine Ling manages a multi-asset portfolio that invests in the stocks and bonds of Country A and Country B.\n\nCountry A is a developing economy and its population growth rate will continue to be higher than that in developed economies. Country A's long-term goal is to accelerate economic growth so that its level of per capita income will eventually match that of developed economies. Country A intends to implement trade policies and develop legal, political, and economic institutions of developed countries to support this goal.\n\nThe type of convergence occurring if Country A achieves its long-term goal is best referred to as:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Club convergence"
+        },
+        {
+          "letter": "B",
+          "text": "Absolute convergence"
+        },
+        {
+          "letter": "C",
+          "text": "Conditional convergence"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Types of Convergence:\n- Absolute: All countries converge to same income level regardless of characteristics\n- Conditional: Countries converge to their own steady state based on savings rate, population growth\n- Club: Countries converge IF they have the right institutions — must \"join the club\"\n\nWhy Club Convergence is Correct:\nThe vignette states Country A will:\n- \"Implement trade policies of developed countries\"\n- \"Develop legal, political, and economic institutions\"\nThis describes joining the club of developed nations by adopting their institutional frameworks. Club convergence theory says only countries with the right institutions can converge, and poor countries can join if they make necessary institutional changes.\n\nWhy C (Conditional) is Wrong:\nConditional convergence says countries converge to their own steady state based on savings rate, population growth rate, and production function. Country A has higher population growth than developed economies, so under conditional convergence, it would converge to a different (lower) steady state, not match developed country income levels.\n\nWhy B (Absolute) is Wrong:\nAbsolute convergence assumes all countries automatically converge regardless of characteristics. But Country A is actively making institutional changes, and the vignette emphasizes the importance of these changes. This contradicts the \"regardless of characteristics\" assumption.\n\nKey Distinction:\n- Club convergence: \"You can join if you adopt our institutions\"\n- Conditional convergence: \"You'll reach your own steady state based on your fundamentals\"",
+      "yourMistake": "Selected conditional convergence, but the key signal was the institutional changes (trade policies, legal/political/economic institutions). Club convergence requires adopting institutions, while conditional convergence is about converging to your own steady state based on fundamentals."
+    },
+    {
+      "id": 161,
+      "title": "Permanent vs Temporary GDP Growth Factors",
+      "topic": "Economics",
+      "question": "Ling researches Country B's labor market. She expects that in the next decade, Country B will experience the following changes:\n\n- Change 1: The unemployment rate will decline\n- Change 2: The female labor force participation rate will rise\n- Change 3: A greater proportion of the workforce will receive on-the-job training\n\nWhich expected change in Country B's labor market will most likely contribute to a permanent increase in its potential GDP growth?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Change 1"
+        },
+        {
+          "letter": "B",
+          "text": "Change 2"
+        },
+        {
+          "letter": "C",
+          "text": "Change 3"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Permanent vs Temporary Growth Effects:\n- Declining unemployment: TEMPORARY — One-time shift to higher employment level\n- Rising female participation: TEMPORARY — One-time shift to higher labor force level\n- On-the-job training: PERMANENT — Continuous improvement in labor quality\n\nWhy Change 3 (Training) is Permanent:\n- Better-educated workers are more productive\n- More skills lead to more innovation\n- This can result in ongoing technological progress\n- The effect compounds over time\n\nWhy Change 2 (Female Participation) is Temporary:\n- Rising participation increases the level of the labor force\n- But participation rates eventually stabilize (can't exceed 100%)\n- This is a one-time transition to a higher level\n- Growth rate returns to normal after transition\n\nWhy Change 1 (Unemployment) is Temporary:\n- Lower unemployment means more workers are employed\n- But this is just better utilization of existing labor supply\n- Not a permanent increase in growth rate\n- Unemployment has a natural floor (can't go negative)\n\nAnalogy:\n- Level effect: Filling a bucket to a new, higher level (temporary growth)\n- Growth rate effect: Increasing the rate at which water flows into the bucket (permanent growth)\n- Training increases the flow rate (permanent), while participation and employment changes just raise the water level (temporary).",
+      "yourMistake": "Selected rising female labor force participation, which is a temporary level effect (one-time shift). On-the-job training improves labor quality permanently, leading to ongoing productivity gains."
+    },
+    {
+      "id": 162,
+      "title": "Potential GDP Growth Rate Calculation",
+      "topic": "Economics",
+      "question": "Ling estimates the potential GDP growth rate of Country B based on the labor productivity growth accounting equation and using her forecast of long-term growth rates in Exhibit 1.\n\nExhibit 1:\n| Item | Value |\n| Growth rate of labor force | -1.7% |\n| Growth in total hours worked | -1.6% |\n| Growth rate of labor productivity | 2.4% |\n| Growth rate of total factor productivity | 0.8% |\n\nBased on the labor productivity growth accounting equation, the potential GDP growth rate of Country B is:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "-0.9%"
+        },
+        {
+          "letter": "B",
+          "text": "0.7%"
+        },
+        {
+          "letter": "C",
+          "text": "1.5%"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Labor Productivity Growth Accounting Equation:\nGrowth rate of Potential GDP = Growth rate of Labor Force + Growth rate of Labor Productivity\n\nCalculation:\nPotential GDP Growth = (-1.7%) + 2.4% = 0.7%\n\nWhy A is Wrong (-0.9%):\nIncluded \"Growth in total hours worked\" in the calculation:\nWrong: -1.6% + (-1.7%) + 2.4% = -0.9%\n\nExtraneous Information:\nThe question says to use the \"labor productivity growth accounting equation,\" which is:\nGDP Growth = Labor Force Growth + Labor Productivity Growth\n\nThe following are NOT needed:\n- Growth in total hours worked (-1.6%): Already captured in labor force growth\n- Growth rate of TFP (0.8%): Used in a different growth accounting framework\n\nWhy C is Wrong (1.5%):\nIncludes TFP: -1.7% + 2.4% + 0.8% = 1.5%. But TFP is not part of the labor productivity growth accounting equation.",
+      "keyFormulas": [
+        "Potential GDP Growth = Labor Force Growth + Labor Productivity Growth",
+        "Do NOT include TFP or total hours worked in this equation"
+      ],
+      "yourMistake": "Included extraneous data (growth in total hours worked) in the calculation. The labor productivity growth accounting equation only uses labor force growth and labor productivity growth."
+    },
+    {
+      "id": 163,
+      "title": "Expanded CAPM Required Return",
+      "topic": "Alternatives",
+      "question": "Joel Dlamini, a private equity fund manager, is evaluating several potential investment opportunities for his portfolio.\n\nRomala Enterprises: Dlamini uses the information in Exhibit 1 and the expanded CAPM to calculate Romala's required return on equity. For this calculation, he concludes that an industry risk premium is not relevant for Romala.\n\nExhibit 1:\n| Item | Value |\n| Estimated beta | 1.5 |\n| Risk-free rate | 3.5% |\n| Equity risk premium | 5.0% |\n| Small stock risk premium | 2.0% |\n| Company-specific risk premium | 1.0% |\n\nThe required return on equity for Romala using the expanded CAPM is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "11.5%"
+        },
+        {
+          "letter": "B",
+          "text": "12.0%"
+        },
+        {
+          "letter": "C",
+          "text": "14.0%"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Expanded CAPM Formula:\nr_e = r_f + B(ERP) + Small Stock Premium + Company-Specific Premium\n\nCalculation:\nr_e = 3.5% + (1.5 x 5.0%) + 2.0% + 1.0%\nr_e = 3.5% + 7.5% + 2.0% + 1.0%\nr_e = 14.0%\n\nWhy B is Wrong (12.0%):\nOmitted the small stock risk premium:\nWrong: r_e = 3.5% + (1.5 x 5.0%) + 1.0% = 3.5% + 7.5% + 1.0% = 12.0%\n\nWhy A is Wrong (11.5%):\nDoes NOT adjust ERP for beta (adds components linearly):\nWrong: 3.5% + 5.0% + 2.0% + 1.0% = 11.5%\n\nKey Points:\n1. Beta only applies to the market risk premium (ERP)\n2. Size and company-specific premiums are added directly (not multiplied by beta)\n3. These premiums compensate for risks not captured by beta\n\nExpanded CAPM Components:\n- Risk-free rate: No beta applied\n- Equity risk premium: YES — multiply by beta\n- Small stock premium: No beta applied\n- Company-specific premium: No beta applied\n- Industry risk premium: No beta applied (not applicable here)",
+      "keyFormulas": [
+        "r_e = r_f + B(ERP) + Small Stock Premium + Company-Specific Premium + Industry Premium",
+        "Only ERP is multiplied by beta; other premiums are added directly"
+      ],
+      "yourMistake": "Omitted the small stock risk premium (2.0%) from the calculation, arriving at 12.0% instead of 14.0%."
+    },
+    {
+      "id": 164,
+      "title": "DLOC and DLOM Calculation",
+      "topic": "Alternatives",
+      "question": "Dlamini plans to acquire a non-controlling minority interest in Romala. He determines Romala has an unadjusted equity value of $900 million. He estimates the discount for lack of marketability to be 15% and the control premium to be 10%. Dlamini calculates the current equity value of Romala by making adjustments for lack of control and lack of marketability.\n\nRomala's adjusted equity value (in $ millions) is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "683"
+        },
+        {
+          "letter": "B",
+          "text": "689"
+        },
+        {
+          "letter": "C",
+          "text": "695"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Step 1: Calculate Discount for Lack of Control (DLOC)\nDLOC is derived from the control premium:\nDLOC = 1 - [1 / (1 + Control Premium)]\nDLOC = 1 - [1 / (1 + 0.10)]\nDLOC = 1 - [1 / 1.10]\nDLOC = 1 - 0.9091\nDLOC = 9.09%\n\nStep 2: Calculate Total Discount\nTotal discount combines DLOC and DLOM multiplicatively:\nTotal Discount = 1 - [(1 - DLOC) x (1 - DLOM)]\nTotal Discount = 1 - [(1 - 0.0909) x (1 - 0.15)]\nTotal Discount = 1 - [0.9091 x 0.85]\nTotal Discount = 1 - 0.7727\nTotal Discount = 22.73%\n\nStep 3: Calculate Adjusted Equity Value\nAdjusted Value = Unadjusted Value x (1 - Total Discount)\nAdjusted Value = $900M x (1 - 0.2273)\nAdjusted Value = $900M x 0.7727\nAdjusted Value = $695.4M ≈ $695M\n\nWhy B is Wrong ($689M):\nUsed the control premium directly as the DLOC (10%) instead of converting it:\nWrong Total Discount = 1 - [(1 - 0.10) x (1 - 0.15)] = 1 - [0.90 x 0.85] = 1 - 0.765 = 23.5%\nWrong Adjusted Value = $900M x (1 - 0.235) = $689M\n\nWhy A is Wrong ($683M):\nAdded DLOC and DLOM instead of multiplicatively combining:\nWrong: Total Discount = 9.09% + 15% = 24.09%\nWrong: $900M x (1 - 0.2409) = $683M\n\nRemember:\n- Control premium ≠ DLOC (must convert using formula)\n- Discounts combine multiplicatively, not additively",
+      "keyFormulas": [
+        "DLOC = 1 - [1 / (1 + Control Premium)]",
+        "Total Discount = 1 - [(1 - DLOC) x (1 - DLOM)]",
+        "Adjusted Value = Unadjusted Value x (1 - Total Discount)"
+      ],
+      "yourMistake": "Used the control premium (10%) directly as the DLOC instead of converting it using the formula DLOC = 1 - [1/(1 + Control Premium)] = 9.09%."
+    },
+    {
+      "id": 133,
+      "title": "FCFE vs Residual Income Model Selection",
+      "topic": "Equity",
+      "question": "Hector Priam, an equity analyst at Troy Investments, is considering the following three valuation models.\n\n- Model 1: Dividend discount model\n- Model 2: Residual income model\n- Model 3: Free cash flow to equity (FCFE) model\n\nPriam assumes constant growth in earnings and collects the information on Castor Industries shown in Exhibit 1.\n\nExhibit 1:\nItem | Value\nExpected EPS next period (E1) | $2.65\nPresent value of growth opportunities (PVGO) per share | $16.52\nRequired return on equity | 12%\nDividend payout ratio (constant) | 40%\nReturn on assets (ROA) | 9%\nCurrent book value per share (B0) | $17.25\nTotal assets (millions) | $77\nShareholders' equity (millions) | $45\n\nWhich of the following is the best reason to use Model 3 (FCFE) rather than Model 2 (Residual Income) to value a company?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "The investor takes a control perspective"
+        },
+        {
+          "letter": "B",
+          "text": "The company's residual net income is negative"
+        },
+        {
+          "letter": "C",
+          "text": "The company's expected free cash flow is negative"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "When to Use FCFE vs Residual Income:\n\nSituation | Preferred Model\nControl perspective | FCFE - can redeploy cash outside company\nNegative free cash flow | Residual Income - works when FCF is negative\nNo dividends | Either FCFE or RI\nGoing concern focus | Residual Income\n\nWhy A is Correct:\nFCFE represents cash flow that can be redeployed outside the company without affecting capital investments. A controlling equity interest can bring about such redeployment. FCFE valuation is appropriate for investors who want to take a control perspective.\n\nResidual income valuation does NOT indicate how much free cash is available for outside deployment.\n\nWhy B is Wrong:\nNegative residual income is NOT a reason to prefer FCFE over RI. The residual income model can value a firm even if residual income is negative:\n- Positive RI: Company is creating value\n- Negative RI: Company is destroying value\n- Either way, the model works\n\nWhy C is Wrong:\nNegative free cash flow is actually a reason to prefer Residual Income OVER FCFE, not the reverse. RI is suitable when:\n- Company is not paying dividends\n- Expected free cash flows are negative within the forecast horizon\n\nKey Principle:\nFCFE = Control perspective (redeploy cash)\nRI = Going concern, negative FCF situations",
+      "yourMistake": "Chose B (negative residual income) instead of A (control perspective). Negative RI does not break the RI model; it simply means the company is destroying value. The key reason to prefer FCFE over RI is the control perspective."
+    },
+    {
+      "id": 134,
+      "title": "Comparable Transaction Method",
+      "topic": "Corporate Finance",
+      "question": "Palmco Plc is a large British drinks manufacturer. Palmco's CEO, Jacky Westerholm, approaches CFO Fabio Sylvester with a proposal that Palmco acquire Spritz Ltd. Spritz is a privately held drinks company that specializes in alcoholic seltzers.\n\nTo provide a quick estimate of the price that Palmco should expect to pay to acquire Spritz, Sylvester gathers information about two comparable transactions, both of which completed in the last two years. Exhibit 1 shows the transaction price per share for each comparable company, along with various per share metrics which are given equal weights in Sylvester's analysis.\n\nExhibit 1:\nMetric | Company 1 | Company 2 | Spritz\nTransaction share price (GBP) | 10.55 | 35.60 | ?\nEarnings per share (GBP) | 0.52 | 1.36 | 3.24\nBook value per share (GBP) | 3.15 | 10.05 | 15.62\n\nUsing Sylvester's comparable transaction method, the estimated share price at which Spritz can be acquired is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "56.53"
+        },
+        {
+          "letter": "B",
+          "text": "64.55"
+        },
+        {
+          "letter": "C",
+          "text": "67.07"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Correct Method: Calculate multiples for EACH company, THEN average.\n\nStep 1: Calculate P/E Ratios for Each Company\nCompany 1 P/E = 10.55 / 0.52 = 20.29\nCompany 2 P/E = 35.60 / 1.36 = 26.18\nAverage P/E = (20.29 + 26.18) / 2 = 23.23\n\nStep 2: Calculate P/BV Ratios for Each Company\nCompany 1 P/BV = 10.55 / 3.15 = 3.35\nCompany 2 P/BV = 35.60 / 10.05 = 3.54\nAverage P/BV = (3.35 + 3.54) / 2 = 3.45\n\nStep 3: Apply Multiples to Spritz\nSpritz value from P/E = 23.23 x 3.24 = 75.27\nSpritz value from P/BV = 3.45 x 15.62 = 53.82\n\nStep 4: Average the Values (Equal Weights)\nSpritz estimated price = (75.27 + 53.82) / 2 = 64.55\n\nWhy Answer C (67.07) is Wrong:\nAveraging the metrics BEFORE calculating the ratios:\nAverage transaction price = (10.55 + 35.60) / 2 = 23.075\nAverage EPS = (0.52 + 1.36) / 2 = 0.94\nAverage BV = (3.15 + 10.05) / 2 = 6.60\nWrong P/E = 23.075 / 0.94 = 24.55\nWrong P/BV = 23.075 / 6.60 = 3.50\nWrong Spritz P/E value = 24.55 x 3.24 = 79.54\nWrong Spritz P/BV value = 3.50 x 15.62 = 54.61\nWrong average = (79.54 + 54.61) / 2 = 67.07\n\nKey Rule: Calculate multiples FIRST for each comparable, THEN average the multiples, THEN apply to target.",
+      "keyFormulas": [
+        "Multiple = Transaction Price / Metric (for EACH comparable separately)",
+        "Average Multiple = sum of individual multiples / number of comparables",
+        "Target Value = Average Multiple x Target Metric"
+      ],
+      "yourMistake": "Averaged the raw metrics (prices, EPS, BV) across comparables before computing ratios, yielding 67.07. The correct method is to compute multiples for each comparable individually first, then average the multiples."
+    },
+    {
+      "id": 135,
+      "title": "Post-Acquisition Capital Structure",
+      "topic": "Corporate Finance",
+      "question": "Palmco's board of directors and Westerholm agree that the acquisition is the right move to improve stakeholder value and so they decide to make an offer to purchase Spritz. Currently, Palmco has no preferred equity and 25 million common equity shares outstanding, each trading at GBP 28.00 per share. Palmco also has a book value of debt of GBP 850 million, including publicly traded debt without any embedded options. Details of Palmco's offer are summarized in Exhibit 2. The balance of financing for the transaction will be funded with cash on hand.\n\nExhibit 2:\nItem | Value\nOffer price per Spritz share | GBP 70.00\nMix of consideration per Spritz share | 1 Palmco share and GBP 42.00 cash\nTotal consideration | GBP 350 million\nAssumed Spritz debt | GBP 150 million\nNew borrowings by Palmco | GBP 200 million\nShare issuance | 5 million Palmco shares\n\nPalmco's capital structure after acquiring Spritz is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "54.8% debt and 45.2% equity"
+        },
+        {
+          "letter": "B",
+          "text": "55.6% debt and 44.4% equity"
+        },
+        {
+          "letter": "C",
+          "text": "58.8% debt and 41.2% equity"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Step 1: Calculate Post-Acquisition Debt\nExisting Palmco debt: GBP 850 million\n+ Assumed Spritz debt: GBP 150 million\n+ New borrowings: GBP 200 million\nTotal Post-Acquisition Debt: GBP 1,200 million\n\nStep 2: Calculate Post-Acquisition Equity (Market Value)\nExisting shares: 25 million\n+ New shares issued: 5 million\nTotal shares: 30 million\nx Share price: GBP 28.00\nTotal Post-Acquisition Equity: GBP 840 million\n\nStep 3: Calculate Capital Structure\nTotal Capital = 1,200M + 840M = GBP 2,040 million\nDebt % = 1,200M / 2,040M = 58.8%\nEquity % = 840M / 2,040M = 41.2%\n\nWhy Answer B (55.6% / 44.4%) is Wrong:\nForgetting to include the assumed Spritz debt (GBP 150 million):\nWrong Debt = 850M + 200M = 1,050M (missing 150M Spritz debt)\nWrong Total = 1,050M + 840M = 1,890M\nWrong Debt % = 1,050M / 1,890M = 55.6%\n\nKey Point: When calculating post-acquisition capital structure, include ALL debt:\n1. Acquirer's existing debt\n2. Target's assumed debt (often forgotten!)\n3. New debt issued for the acquisition",
+      "keyFormulas": [
+        "Post-Acquisition Debt = Existing Debt + Assumed Target Debt + New Borrowings",
+        "Post-Acquisition Equity = (Existing Shares + New Shares) x Share Price",
+        "Debt % = Total Debt / (Total Debt + Total Equity)"
+      ],
+      "yourMistake": "Forgot to include the assumed Spritz debt (GBP 150 million) in post-acquisition debt, computing debt as 850M + 200M = 1,050M instead of the correct 1,200M."
+    },
+    {
+      "id": 136,
+      "title": "Common Equity Tier 1 Capital Ratio",
+      "topic": "FSA",
+      "question": "Janice McCabe is an analyst specializing in the financial institutions sector. She is currently reviewing the financial statements and regulatory disclosures for Acme Bank, a large commercial bank headquartered in the US. Acme prepares its financial statements in accordance with US GAAP.\n\nAs part of her analysis, McCabe uses the CAMELS approach. She reviews Acme's selected financial information (in $ millions) for the most recent year in Exhibit 1 and computes its Common Equity Tier 1 Capital Ratio.\n\nExhibit 1:\nItem | Value ($ millions)\nCommon stockholders' equity | 176,400\nIntangible assets | 18,784\nDeferred tax assets | 7,986\nTotal risk-weighted assets | 1,042,361\nTotal assets | 1,596,723\n\nAcme's Common Equity Tier 1 Capital Ratio for the most recent year is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "9%"
+        },
+        {
+          "letter": "B",
+          "text": "14%"
+        },
+        {
+          "letter": "C",
+          "text": "17%"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "CET1 Capital Ratio Formula:\nCET1 Ratio = (Common Equity - Intangibles - Deferred Tax Assets) / Risk-Weighted Assets\n\nCalculation:\nCET1 Capital = $176,400M - $18,784M - $7,986M = $149,630 million\nCET1 Ratio = $149,630M / $1,042,361M = 14.35% ~ 14%\n\nWhy Answer C (17%) is Wrong:\nDid NOT deduct intangible assets and deferred tax assets:\nWrong CET1 = $176,400M / $1,042,361M = 16.9% ~ 17%\n\nWhy A is Wrong (9%):\nAnswer A uses TOTAL assets instead of RISK-WEIGHTED assets:\nWrong: ($176,400M - $18,784M - $7,986M) / $1,596,723M = 9.4%\n\nCET1 Capital Components:\nIncluded: Common stock, Retained earnings, AOCI, Issuance surplus\nDeducted: Intangible assets, Deferred tax assets, Goodwill",
+      "keyFormulas": [
+        "CET1 Ratio = (CET1 Capital - Regulatory Deductions) / Risk-Weighted Assets",
+        "CET1 Capital = Common Equity - Intangibles - Deferred Tax Assets"
+      ],
+      "yourMistake": "Did not deduct intangible assets and deferred tax assets from common equity before dividing by risk-weighted assets, resulting in 17% instead of the correct 14%."
+    },
+    {
+      "id": 137,
+      "title": "Stock-Based Compensation Tax Effects",
+      "topic": "FSA",
+      "question": "McCabe notes that a large restricted stock grant of Acme vested during the current year, and that Acme's share price increased significantly between the initial stock grant date and the settlement date. Recognizing that Acme's financial statements are prepared in accordance with US GAAP, McCabe considers how the change in share price between the initial grant date and the settlement date will affect Acme's net income in the current year.\n\nThe change in Acme's share price between the initial grant date and the settlement date will most likely cause its current-year net income to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Decrease"
+        },
+        {
+          "letter": "B",
+          "text": "Not change"
+        },
+        {
+          "letter": "C",
+          "text": "Increase"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Tax Treatment of Stock-Based Compensation:\n\nItem | Book Treatment | Tax Treatment\nExpense basis | Grant-date fair value | Settlement/exercise-date intrinsic value\nTiming | Over vesting period | At settlement\n\nWhen Share Price INCREASES (Grant to Settlement):\n- Tax deduction > Cumulative book expense\n- This creates an EXCESS TAX BENEFIT (tax windfall)\n- Under US GAAP: Excess tax benefit -> DECREASES income tax expense -> INCREASES net income\n\nWhen Share Price DECREASES:\n- Tax deduction < Cumulative book expense\n- This creates a TAX SHORTFALL\n- Under US GAAP: Tax shortfall -> INCREASES income tax expense -> DECREASES net income\n\nUS GAAP vs IFRS Comparison:\nUS GAAP: Windfall/Shortfall goes to Income Statement (affects net income)\nIFRS: Windfall/Shortfall goes to Equity (does NOT affect net income)\n\nKey Principle: Under US GAAP, stock price increase at settlement -> Tax windfall -> Lower tax expense -> Higher net income",
+      "keyFormulas": [
+        "US GAAP: Excess tax benefit (windfall) = Tax deduction - Cumulative book expense -> hits Income Statement",
+        "IFRS: Excess tax benefit -> hits Equity (no P&L impact)"
+      ],
+      "yourMistake": "Chose B (not change), likely confusing US GAAP with IFRS treatment. Under IFRS the windfall goes to equity (no net income impact), but under US GAAP the excess tax benefit flows through the income statement, increasing net income."
+    },
+    {
+      "id": 138,
+      "title": "Bond Classification and Income Statement Impact",
+      "topic": "FSA",
+      "question": "Marcos Bonetti is an equity analyst reviewing the financial statements of Cela SpA, a publicly traded Italian company that reports under IFRS.\n\nBonetti notes that Cela invested EUR 25 million in each of three bonds at the beginning of the most recent year. All three bonds were acquired at par and paid their annual coupons at the end of the most recent year. Bonetti compiles information about these bonds in Exhibit 1.\n\nExhibit 1:\nItem | Bond 1 | Bond 2 | Bond 3\nClassification | Amortized cost | FVOCI | FVPL\nFair value at end of year | EUR 24,990,000 | EUR 25,600,000 | EUR 24,700,000\nCoupon interest rate | 6.0% | 5.5% | 7.0%\n\nWhich bond had the largest contribution to Cela's pre-tax income in the most recent year?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Bond 1"
+        },
+        {
+          "letter": "B",
+          "text": "Bond 2"
+        },
+        {
+          "letter": "C",
+          "text": "Bond 3"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Income Recognition by Classification:\n\nClassification | Interest Income | FV Change | Goes to P&L?\nAmortized Cost | Yes (coupon) | No recognition | Interest only\nFVOCI | Yes (coupon) | Yes, but to OCI | Interest only to P&L\nFVPL | Yes (coupon) | Yes, to P&L | Both to P&L\n\nBond 1 (Amortized Cost):\nP&L contribution = Coupon only\n= 6.0% x EUR 25,000,000 = EUR 1,500,000\n\nBond 2 (FVOCI):\nP&L contribution = Coupon only (FV change goes to OCI)\n= 5.5% x EUR 25,000,000 = EUR 1,375,000\n\nBond 3 (FVPL):\nCoupon = 7.0% x EUR 25,000,000 = EUR 1,750,000\nFV change = EUR 24,700,000 - EUR 25,000,000 = -EUR 300,000\nP&L contribution = EUR 1,750,000 - EUR 300,000 = EUR 1,450,000\n\nRanking:\n1. Bond 1: EUR 1,500,000 (HIGHEST)\n2. Bond 3: EUR 1,450,000\n3. Bond 2: EUR 1,375,000\n\nKey Insight: For FVPL, both gains AND losses flow through P&L. A high coupon can be offset by FV decline.",
+      "keyFormulas": [
+        "Amortized Cost P&L = Coupon income only",
+        "FVOCI P&L = Coupon income only (FV changes go to OCI)",
+        "FVPL P&L = Coupon income + Fair value changes"
+      ],
+      "yourMistake": "Chose Bond 3 based on its highest coupon rate (7%) without accounting for the fair value loss of EUR 300,000 that also hits P&L for FVPL securities. Bond 3's net P&L contribution was only EUR 1,450,000 vs Bond 1's EUR 1,500,000."
+    },
+    {
+      "id": 139,
+      "title": "Forward Contract Value and Rate Expectations",
+      "topic": "Fixed Income",
+      "question": "Alice Walhan, a fixed-income portfolio manager at Wye Creek Investments, is evaluating her portfolio and reviewing new investment opportunities in three different countries. For her analysis, Walhan collects the par and spot rates for various maturities of government bonds of Country A, as shown in Exhibit 1.\n\nExhibit 1:\nMaturity (Years) | Par Rate | Spot Rate\n1 | 3.25% | 3.25%\n2 | 3.00% | 3.00%\n3 | 2.75% | 2.80%\n\nWalhan decides to enter into a 2-year forward contract to purchase a 2-year zero-coupon government bond. Wye Creek's economist expects increasing employment and lower inflation in Country A to drive future spot rates below those predicted by the prevailing forward rates.\n\nIf the expectation of Wye Creek's economist is correct, the price of Walhan's forward contract would most likely:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Decrease"
+        },
+        {
+          "letter": "B",
+          "text": "Remain unchanged"
+        },
+        {
+          "letter": "C",
+          "text": "Increase"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Forward Contract Value Dynamics:\n\nThe forward contract is to BUY a bond. Walhan is LONG the forward.\n\nRelationship between spot rates and bond prices:\n- Lower spot rates -> Higher bond prices\n- Higher spot rates -> Lower bond prices\n\nIf future spot rates are BELOW forward-implied rates:\n- Actual future bond price will be HIGHER than forward-implied price\n- Walhan locked in a purchase price based on forward rates\n- She will be buying at a better (lower) price than the actual market price\n- The forward contract VALUE INCREASES\n\nThink of it this way:\n- Forward price was set assuming rates would follow the forward curve\n- If actual rates are LOWER than expected, the bond is worth MORE\n- Long position in forward benefits -> Forward value INCREASES\n\nRate Expectation vs Forward | Long Forward Value\nFuture spot < Forward implied | Increases (buy bond worth more)\nFuture spot > Forward implied | Decreases (buy bond worth less)\nFuture spot = Forward implied | Unchanged",
+      "keyFormulas": [
+        "Lower spot rates -> Higher bond prices -> Long forward gains",
+        "Forward value increases when actual rates < forward-implied rates"
+      ],
+      "yourMistake": "Confused the direction of the relationship. Lower rates mean higher bond prices, which benefits a long forward position (buying at a locked-in lower price). Chose Decrease instead of Increase."
+    },
+    {
+      "id": 140,
+      "title": "Effective Convexity Calculation",
+      "topic": "Fixed Income",
+      "question": "Grant Pulo is a fixed income analyst evaluating bonds for his firm's portfolio.\n\nPulo gathers information about a callable bond and a putable bond issued by Corr, as shown in Exhibit 2.\n\nExhibit 2:\nItem | Callable Bond | Putable Bond\nMaturity | 3 years | 3 years\nPar value | $100 | $100\nCurrent price (PV0) | $102.91 | $104.58\nPrice when curve shifts UP 50 bps (PV+) | $102.03 | $103.45\nPrice when curve shifts DOWN 50 bps (PV-) | $103.41 | $105.96\n\nPulo calculates the effective convexity of the Corr putable bond. The effective convexity of the Corr putable bond is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "2.40"
+        },
+        {
+          "letter": "B",
+          "text": "95.62"
+        },
+        {
+          "letter": "C",
+          "text": "100.00"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Effective Convexity Formula:\nEffective Convexity = [PV- + PV+ - (2 x PV0)] / [(dCurve)^2 x PV0]\n\nStep 1: Identify Values for Putable Bond\nPV- = $105.96 (price when rates fall)\nPV+ = $103.45 (price when rates rise)\nPV0 = $104.58 (current price)\ndCurve = 0.005 (50 bps = 0.50% = 0.005)\n\nStep 2: Calculate Numerator\nNumerator = PV- + PV+ - (2 x PV0)\n= $105.96 + $103.45 - (2 x $104.58)\n= $209.41 - $209.16\n= $0.25\n\nStep 3: Calculate Denominator\nDenominator = (dCurve)^2 x PV0\n= (0.005)^2 x $104.58\n= 0.000025 x $104.58\n= $0.0026145\n\nStep 4: Calculate Effective Convexity\nEffective Convexity = $0.25 / $0.0026145 = 95.62\n\nWhy Answer A (2.40) is Wrong:\nThat is the EFFECTIVE DURATION, not convexity:\nDuration = (PV- - PV+) / [2 x dCurve x PV0]\n= ($105.96 - $103.45) / [2 x 0.005 x $104.58]\n= $2.51 / $1.0458\n= 2.40\n\nKey Distinction:\nDuration: (PV- - PV+) / [2 x d x PV0] -- Difference of prices in numerator\nConvexity: [PV- + PV+ - 2*PV0] / [d^2 x PV0] -- Sum minus 2x current in numerator",
+      "keyFormulas": [
+        "Effective Convexity = [PV- + PV+ - 2*PV0] / [(dCurve)^2 x PV0]",
+        "Effective Duration = (PV- - PV+) / [2 x dCurve x PV0]",
+        "Duration uses DIFFERENCE in numerator; Convexity uses SUM minus 2x current"
+      ],
+      "yourMistake": "Calculated effective duration (2.40) instead of effective convexity (95.62). Used the duration formula (PV- - PV+) / [2 x d x PV0] instead of the convexity formula [PV- + PV+ - 2*PV0] / [d^2 x PV0]."
+    },
+    {
+      "id": 141,
+      "title": "Return from Security Selection",
+      "topic": "Portfolio Management",
+      "question": "Anna Kemp is an analyst with a UK-based asset management firm. Kemp uses macroeconomic factor models to analyze the returns of both UK equity portfolios.\n\nFor Portfolio 1, Kemp's model uses the inflation rate and the GDP growth rate as its factors. The portfolio's benchmark is a major UK equity market index, and the portfolio's active return for the most recent year was 1.34%. Based on the information in Exhibit 1, Kemp determines the contribution of factor tilts and security selection to the portfolio's active return.\n\nExhibit 1:\nFactor | Portfolio 1 Sensitivity | Benchmark Sensitivity | Factor Surprise\nInflation rate | -1.5 | -2.1 | 0.4%\nGDP growth rate | 2.4 | 0.7 | -0.8%\n\nFor the most recent year, the return from security selection for Portfolio 1 was closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "0.22%"
+        },
+        {
+          "letter": "B",
+          "text": "1.74%"
+        },
+        {
+          "letter": "C",
+          "text": "2.46%"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Active Return Decomposition:\nActive Return = Return from Factor Tilts + Return from Security Selection\n\nFactor Tilt Return Formula:\nFactor Tilt Return = Sum of [(Portfolio Sensitivity - Benchmark Sensitivity) x Factor Surprise]\n\nStep 1: Calculate Factor Tilt Return\n\nInflation Factor:\n= (-1.5 - (-2.1)) x 0.4%\n= (-1.5 + 2.1) x 0.4%\n= 0.6 x 0.4%\n= +0.24%\n\nGDP Growth Factor:\n= (2.4 - 0.7) x (-0.8%)\n= 1.7 x (-0.8%)\n= -1.36%\n\nTotal Factor Tilt Return:\n= 0.24% + (-1.36%)\n= -1.12%\n\nStep 2: Calculate Security Selection Return\nSecurity Selection = Active Return - Factor Tilt Return\n= 1.34% - (-1.12%)\n= 1.34% + 1.12%\n= 2.46%\n\nWhy Answer A (0.22%) is Wrong:\nReversing the order in the factor tilt formula: (Benchmark - Portfolio) instead of (Portfolio - Benchmark)\nWrong Inflation = (-2.1 - (-1.5)) x 0.4% = -0.6 x 0.4% = -0.24%\nWrong GDP = (0.7 - 2.4) x (-0.8%) = -1.7 x (-0.8%) = +1.36%\nWrong Factor Tilt = -0.24% + 1.36% = +1.12%\nWrong Security Selection = 1.34% - 1.12% = 0.22%\n\nRemember: Portfolio MINUS Benchmark (alphabetical order: B comes before P, but subtract B FROM P)",
+      "keyFormulas": [
+        "Active Return = Factor Tilt Return + Security Selection Return",
+        "Factor Tilt Return = Sum of [(Portfolio Sensitivity - Benchmark Sensitivity) x Factor Surprise]",
+        "Security Selection = Active Return - Factor Tilt Return"
+      ],
+      "yourMistake": "Reversed the order in the factor tilt formula, using (Benchmark - Portfolio) instead of (Portfolio - Benchmark), which flipped the sign of the factor tilt return and produced 0.22% instead of 2.46%."
+    },
+    {
+      "id": 142,
+      "title": "ETF Holding Period Cost",
+      "topic": "Portfolio Management",
+      "question": "Kemp calculates the expected total holding period cost of investing in a US equity ETF, based on the following information:\n\n- The ETF will be held for six months\n- The one-way commission is 0.05%\n- The bid-ask spread on purchase and sale is 0.20%\n- The annual management fee is 0.30%\n\nThe expected total holding period cost of investing in the US equity ETF is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "0.45%"
+        },
+        {
+          "letter": "B",
+          "text": "0.60%"
+        },
+        {
+          "letter": "C",
+          "text": "0.65%"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "ETF Holding Period Cost Components:\n\nComponent | Calculation | Value\nManagement fee (6 months) | 0.30% x (6/12) | 0.15%\nRound-trip commission | 0.05% x 2 | 0.10%\nBid-ask spread | 0.20% x 1 | 0.20%\nTotal | | 0.45%\n\nWhy Answer B (0.60%) is Wrong:\nUsing the ANNUAL management fee instead of pro-rating for 6 months:\n0.30% (full annual fee) + 0.10% (commission) + 0.20% (spread) = 0.60%\n\nWhy C is Wrong (0.65%):\nAnswer C doubles the bid-ask spread:\n0.15% + 0.10% + (0.20% x 2) = 0.65%\n\nKey Points:\n1. Management fee: Pro-rate for holding period (divide by 12, multiply by months)\n2. Commission: Pay TWICE (buy and sell) = round-trip\n3. Bid-ask spread: Pay ONCE (built into buy at ask, sell at bid)",
+      "keyFormulas": [
+        "ETF Holding Cost = (Fee x Period/12) + (Commission x 2) + (Spread x 1)",
+        "Commission = round-trip (2x)",
+        "Spread = once (1x)",
+        "Management fee = annualized x (holding period / 12)"
+      ],
+      "yourMistake": "Used the full annual management fee (0.30%) instead of pro-rating for the 6-month holding period (0.15%), resulting in 0.60% instead of the correct 0.45%."
+    },
+    {
+      "id": 143,
+      "title": "Data Snooping Bias in Backtesting",
+      "topic": "Portfolio Management",
+      "question": "Chenta plans to launch a new portfolio for clients utilizing an equity investment strategy based on a multifactor model. To select the new investment strategy, Pirlo identifies ten fundamental factors and uses these factors to backtest numerous strategies. For the backtest, Pirlo uses point-in-time data while accounting for reporting lags and data revisions. Based on the backtesting results, Pirlo selects the strategy with the highest t-statistics for Chenta's new portfolio offering.\n\nThe backtesting approach used to identify the new investment strategy is most likely subject to which of the following biases?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Data snooping"
+        },
+        {
+          "letter": "B",
+          "text": "Look-ahead bias"
+        },
+        {
+          "letter": "C",
+          "text": "Survivorship bias"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Types of Backtesting Bias:\n\nData Snooping: Testing many strategies and picking best performer. How to avoid: Test a PRIOR hypothesis.\nLook-ahead Bias: Using info not available at the time. How to avoid: Use point-in-time data.\nSurvivorship Bias: Using only surviving companies. How to avoid: Include delisted/failed firms.\n\nWhy This is Data Snooping:\n- Pirlo backtests numerous strategies\n- Pirlo picks the strategy with highest t-statistics\n- This is \"cherry-picking\" -- making inference AFTER looking at results\n\nData snooping = Testing many hypotheses and selecting the best result.\n\nThis inflates statistical significance because:\n- With enough tests, SOME will show significance by chance\n- Picking the \"winner\" doesn't mean it will work going forward\n\nWhy B (Look-ahead) is Wrong:\nThe vignette explicitly states Pirlo \"uses point-in-time data while accounting for reporting lags and data revisions\" -- this AVOIDS look-ahead bias.\n\nWhy C (Survivorship) is Wrong:\nThe vignette states Pirlo uses \"point-in-time data\" which includes companies as they existed at each point -- this AVOIDS survivorship bias.\n\nKey Distinction:\n- Data snooping: Bad research design (test many, pick best)\n- Look-ahead: Using future information\n- Survivorship: Using only survivors",
+      "yourMistake": "Chose survivorship bias instead of data snooping. The vignette explicitly addresses look-ahead and survivorship bias (using point-in-time data), but the key issue is testing numerous strategies and selecting the best performer, which is data snooping."
+    },
+    {
+      "id": 144,
+      "title": "Log-Linear Trend Prediction",
+      "topic": "Quant",
+      "question": "Susan Branson is a quantitative analyst studying several financial and economic time series.\n\nBranson fits a log-linear trend model to the monthly values of a financial variable (in $ thousands). The time series consists of 964 monthly observations, and the most recent observation of the time series is 4,860. Branson uses the estimated coefficients of the log-linear trend model in Exhibit 1 to predict the trend value of the variable for the following month.\n\nExhibit 1:\nCoefficient | Value | Standard Error\nIntercept | 2.5230 | 0.0195\nt (Trend) | 0.0068 | 0.0004\n\nThe predicted trend value of the financial variable for the following month is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "4,893"
+        },
+        {
+          "letter": "B",
+          "text": "8,822"
+        },
+        {
+          "letter": "C",
+          "text": "9,085"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Log-Linear Trend Model:\nln(y_t) = b0 + b1 x t\n\nTo predict y, we need to:\n1. Calculate ln(y) using the model\n2. Exponentiate to get y\n\nStep 1: Identify the Next Period\nMost recent observation is period 964\nNext month is period t = 965\n\nStep 2: Calculate ln(y_965)\nln(y_965) = 2.5230 + 0.0068 x 965\nln(y_965) = 2.5230 + 6.562\nln(y_965) = 9.085\n\nStep 3: Exponentiate to Get y_965\ny_965 = e^9.085\ny_965 = 8,821.97 ~ 8,822\n\nWhy Answer A (4,893) is Wrong:\nApplying the growth rate to the LAST OBSERVED value instead of using the model:\nGrowth rate per month = e^0.0068 ~ 1.00682 (about 0.68% per month)\ny_965 = 4,860 x 1.00682 = 4,893\nThis method ignores the model's intercept and cumulative trend.\n\nWhy C is Wrong (9,085):\nAnswer C forgets to exponentiate -- it's the ln(y) value, not y itself.\n\nKey Steps for Log-Linear Models:\n1. Use model to calculate ln(y)\n2. Exponentiate (e^...) to convert back to y\n3. Never just apply growth rate to last observation",
+      "keyFormulas": [
+        "Log-linear model: ln(y_t) = b0 + b1 x t",
+        "Prediction: y_t = e^(b0 + b1 x t)",
+        "Must exponentiate the result to get y from ln(y)"
+      ],
+      "yourMistake": "Applied the growth rate to the last observed value (4,860 x 1.00682 = 4,893) instead of using the full model equation and exponentiating: e^(2.5230 + 0.0068 x 965) = e^9.085 = 8,822."
+    },
+    {
+      "id": 145,
+      "title": "Dickey-Fuller Test Interpretation",
+      "topic": "Quant",
+      "question": "Branson also analyzes the quarterly time series of another financial variable. She performs a Dickey-Fuller test on the time series and fails to reject the null hypothesis of the test at the chosen significance level.\n\nThe test performed by Branson indicates that the quarterly financial time series:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Has a unit root"
+        },
+        {
+          "letter": "B",
+          "text": "Is covariance stationary"
+        },
+        {
+          "letter": "C",
+          "text": "Exhibits autoregressive conditional heteroskedasticity"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Dickey-Fuller Test Hypotheses:\n- H0 (Null): The time series HAS a unit root (non-stationary)\n- H1 (Alternative): The time series does NOT have a unit root (stationary)\n\nBranson's Result:\n- She FAILS TO REJECT the null hypothesis\n- Therefore, she cannot reject that the series has a unit root\n- Conclusion: The series HAS a unit root\n\nTest Result | Conclusion\nReject H0 | No unit root -> Stationary\nFail to reject H0 | Has unit root -> Non-stationary\n\nWhy B is Wrong:\nCovariance stationarity requires NO unit root. Branson failed to reject the unit root hypothesis, so the series is NOT covariance stationary.\n\nWhy C is Wrong:\nThe Dickey-Fuller test is for unit roots, NOT for ARCH effects. Use the Engle test for ARCH.\n\nKey Point:\nDickey-Fuller: H0 = Unit root exists (non-stationary)\nFail to reject -> Unit root -> Non-stationary",
+      "keyFormulas": [
+        "Dickey-Fuller H0: Unit root exists (series is non-stationary)",
+        "Dickey-Fuller H1: No unit root (series is stationary)",
+        "Fail to reject H0 -> Has unit root -> Non-stationary"
+      ],
+      "yourMistake": "Reversed the null and alternative hypotheses. Failing to reject H0 means accepting that there IS a unit root (non-stationary), not that the series is covariance stationary."
+    },
+    {
+      "id": 146,
+      "title": "F1 Score Calculation",
+      "topic": "Quant",
+      "question": "Branson evaluates the machine-learning model's performance using the information in Exhibit 2. She calculates the F1 score to evaluate the overall performance of the model.\n\nExhibit 2 - Confusion Matrix:\n                    | Actual: Up (Class \"1\") | Actual: Down (Class \"0\")\nPredicted: Up (\"1\") | 350                    | 533\nPredicted: Down (\"0\")| 246                   | 941\n\nThe F1 score for the machine-learning model is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "0.47"
+        },
+        {
+          "letter": "B",
+          "text": "0.59"
+        },
+        {
+          "letter": "C",
+          "text": "0.62"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Step 1: Extract Confusion Matrix Values\nTP (True Positive) = 350\nFP (False Positive) = 533\nFN (False Negative) = 246\nTN (True Negative) = 941\n\nStep 2: Calculate Precision\nPrecision = TP / (TP + FP)\n= 350 / (350 + 533)\n= 350 / 883\n= 0.3964\n\nStep 3: Calculate Recall\nRecall = TP / (TP + FN)\n= 350 / (350 + 246)\n= 350 / 596\n= 0.5872\n\nStep 4: Calculate F1 Score\nF1 = (2 x Precision x Recall) / (Precision + Recall)\n= (2 x 0.3964 x 0.5872) / (0.3964 + 0.5872)\n= 0.4655 / 0.9836\n= 0.4733 ~ 0.47\n\nWhy Answer C (0.62) is Wrong:\nCalculated ACCURACY instead of F1 Score:\nAccuracy = (TP + TN) / Total\n= (350 + 941) / (350 + 533 + 246 + 941)\n= 1,291 / 2,070\n= 0.6237 ~ 0.62\n\nWhy B is Wrong (0.59):\nAnswer B is RECALL alone, not F1:\nRecall = 350 / 596 = 0.587 ~ 0.59\n\nKey Metrics:\nPrecision = TP / (TP + FP)\nRecall = TP / (TP + FN)\nF1 Score = (2 x P x R) / (P + R)\nAccuracy = (TP + TN) / Total\n\nF1 is the HARMONIC MEAN of Precision and Recall.",
+      "keyFormulas": [
+        "Precision = TP / (TP + FP)",
+        "Recall = TP / (TP + FN)",
+        "F1 = (2 x Precision x Recall) / (Precision + Recall)",
+        "Accuracy = (TP + TN) / Total"
+      ],
+      "yourMistake": "Calculated accuracy ((TP + TN) / Total = 0.62) instead of the F1 score. F1 is the harmonic mean of precision and recall, not overall accuracy."
+    },
+    {
+      "id": 147,
+      "title": "REOC vs REIT vs Direct Investment Selection",
+      "topic": "Alternatives",
+      "question": "Alix Montana, an investment consultant, advises family offices and institutional clients on real estate investments.\n\nThe D'Amato family plans to add real estate to their portfolio. They tell Montana that their requirements for the investment are:\n1. High liquidity\n2. Maximization of growth opportunities\n\nTo meet these requirements, Montana considers three investment vehicles: a public real estate operating company (REOC), an equity REIT, and a direct investment in an income-producing property.\n\nBased on the D'Amato family's requirements, which of the following real estate investment vehicles is the most suitable to add to their portfolio?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "REOC"
+        },
+        {
+          "letter": "B",
+          "text": "Equity REIT"
+        },
+        {
+          "letter": "C",
+          "text": "Direct investment in an income-producing property"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Evaluate Each Requirement:\n\nRequirement 1: High Liquidity\nREOC: HIGH (publicly traded)\nREIT: HIGH (publicly traded)\nDirect: LOW (illiquid, long sale process)\nBoth REOC and REIT satisfy the liquidity requirement. Direct investment does NOT.\n\nRequirement 2: Maximum Growth Opportunities\nREOC: HIGH - No distribution requirement; can reinvest all earnings\nREIT: LIMITED - Must distribute 90%+ of taxable income\nDirect: HIGH - Full control over reinvestment\nREOCs can reinvest earnings freely into development, acquisitions, and trading real estate. REITs are constrained by mandatory distribution requirements.\n\nCombined Analysis:\nVehicle | Liquidity | Growth | Meets Both?\nREOC | Yes | Yes | YES\nREIT | Yes | No | NO\nDirect | No | Yes | NO\n\nOnly REOC meets BOTH requirements.\n\nKey REIT Constraint:\nREITs must distribute at least 90% of taxable income as dividends. This limits their ability to reinvest for growth.",
+      "keyFormulas": [
+        "REIT distribution requirement: >= 90% of taxable income",
+        "REOC: No mandatory distribution -> can reinvest all earnings for growth"
+      ],
+      "yourMistake": "Chose Equity REIT, which has high liquidity but LIMITED growth opportunities due to the 90%+ distribution requirement. REITs cannot retain earnings for reinvestment like REOCs can. REOC is the only vehicle meeting both high liquidity and maximum growth."
+    },
+    {
+      "id": 148,
+      "title": "REIT NAV Per Share Calculation",
+      "topic": "Alternatives",
+      "question": "The management of Slade considers investing in a multi-family REIT. Montana values the REIT using the financial information (in $ millions) in Exhibit 1. Montana forecasts an annual net operating income (NOI) growth rate of 3% and uses a capitalization rate of 5%. The REIT has 20 million shares outstanding.\n\nExhibit 1:\nItem | Value ($ millions)\nNOI for the last 12 months | 80\nCash and equivalents | 12\nLand held for future development | 32\nTotal debt and other liabilities | 192\n\nThe NAV per share for the multi-family REIT is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "$72.80"
+        },
+        {
+          "letter": "B",
+          "text": "$75.00"
+        },
+        {
+          "letter": "C",
+          "text": "$84.60"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "REIT NAV Calculation Steps:\n\nStep 1: Calculate Next 12 Months NOI\nNext NOI = Current NOI x (1 + g)\n= $80M x (1 + 0.03)\n= $80M x 1.03\n= $82.4 million\n\nStep 2: Estimate Value of Operating Real Estate\nOperating RE Value = Next NOI / Cap Rate\n= $82.4M / 0.05\n= $1,648 million\n\nStep 3: Calculate Gross Asset Value\nGross Asset Value = Operating RE + Cash + Land\n= $1,648M + $12M + $32M\n= $1,692 million\n\nStep 4: Calculate Net Asset Value\nNAV = Gross Asset Value - Debt and Liabilities\n= $1,692M - $192M\n= $1,500 million\n\nStep 5: Calculate NAV Per Share\nNAVPS = NAV / Shares Outstanding\n= $1,500M / 20M shares\n= $75.00\n\nWhy Answer A ($72.80) is Wrong:\nDid NOT add cash and land held for development to the gross asset value:\nGross Asset Value = $1,648M (operating RE only)\nNAV = $1,648M - $192M = $1,456M\nNAVPS = $1,456M / 20M = $72.80\n\nWhy C is Wrong ($84.60):\nForgets to subtract debt and liabilities:\nNAVPS = $1,692M / 20M = $84.60\n\nKey Components to Include:\n- Capitalized NOI for operating properties\n- Cash and equivalents\n- Land held for development\n- Subtract ALL debt and liabilities",
+      "keyFormulas": [
+        "NAV = (Next NOI / Cap Rate + Cash + Land + Other Assets) - (Debt + Liabilities)",
+        "Next NOI = Current NOI x (1 + growth rate)",
+        "NAVPS = NAV / Shares Outstanding"
+      ],
+      "yourMistake": "Did not add cash ($12M) and land held for future development ($32M) to the gross asset value, computing NAV as $1,648M - $192M = $1,456M instead of ($1,648M + $12M + $32M) - $192M = $1,500M."
+    },
+    {
+      "id": 178,
+      "title": "Credit Spread from CVA",
+      "topic": "Fixed Income",
+      "question": "Fabiano Arlandi, a portfolio manager, is analyzing the term structure of credit spreads for three companies.\n\nArlandi determines the credit spread of Company A's zero-coupon bond over a default-risk-free government bond, given the following information:\n- The bond has a remaining maturity of 5 years and a face value of 100\n- The default-risk-free discount rate is 4% and the government yield curve is flat\n- The credit valuation adjustment (CVA) is 2.924\n- Arlandi assumes there is no interest rate volatility\n\nThe credit spread for Company A's zero-coupon bond is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "0.15%"
+        },
+        {
+          "letter": "B",
+          "text": "0.72%"
+        },
+        {
+          "letter": "C",
+          "text": "0.76%"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "Step 1: Calculate PV of Default-Risk-Free Bond\nPV_rf = FV / (1 + r)^n\nPV_rf = 100 / (1.04)^5\nPV_rf = 100 / 1.2167\nPV_rf = 82.1927\n\nStep 2: Subtract CVA to Get Corporate Bond Value\nPV_corp = PV_rf - CVA\nPV_corp = 82.1927 - 2.924\nPV_corp = 79.2687\n\nStep 3: Calculate Corporate Bond Yield\n(FV / PV_corp)^(1/n) - 1 = Yield\n(100 / 79.2687)^0.2 - 1\n(1.2615)^0.2 - 1\n= 4.756%\n\nStep 4: Calculate Credit Spread\nCredit Spread = Corporate Yield - Risk-Free Rate\nCredit Spread = 4.756% - 4.00%\nCredit Spread = 0.756% \u2248 0.76%\n\nKey Concept:\n- CVA represents the loss due to credit risk\n- CVA is SUBTRACTED from risk-free value to get risky bond value\n- Lower price \u2192 Higher yield \u2192 Positive credit spread",
+      "keyFormulas": [
+        "Corporate Bond Value = Risk-Free Bond Value - CVA",
+        "Credit Spread = Corporate Yield - Risk-Free Yield"
+      ],
+      "yourMistake": "ADDED the CVA instead of SUBTRACTING it, then reversed the spread calculation. Wrong: PV_corp = 82.1927 + 2.924 = 85.1167, Yield = (100/85.1167)^0.2 - 1 = 3.2754%, Spread = 4.00% - 3.2754% = 0.72%."
+    },
+    {
+      "id": 179,
+      "title": "Monte Carlo Drift Adjustment",
+      "topic": "Fixed Income",
+      "question": "Alice Kent, a fixed-income analyst, wants to develop a more flexible model than the binomial tree. She uses the Monte Carlo method to simulate various potential interest rate paths, with a 30-year default-free coupon-paying bond as the benchmark bond. After the initial simulation of the paths, she customizes the model by adding a constant to all interest rates on all paths to ensure that the average present value for the benchmark bond equals its current market price.\n\nThe technique used by Kent to customize the Monte Carlo model is best described as:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Making a drift adjustment"
+        },
+        {
+          "letter": "B",
+          "text": "Implementing mean reversion"
+        },
+        {
+          "letter": "C",
+          "text": "Benchmarking the term structure"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "What Kent Did: Added a constant to all interest rates on all paths. This is the definition of a drift adjustment.\n\nMonte Carlo Model Customization Techniques:\n- Drift Adjustment: Add constant to all rates on all paths \u2192 This is what Kent did\n- Mean Reversion: Set upper/lower bounds; rates move toward forward curve \u2192 Not what Kent did\n- Benchmarking: Using current spot curve as reference \u2192 This is what she's calibrating TO, not the technique she's using\n\nWhy A is Correct:\nThe drift term is a constant added to ensure model prices match market prices. When this technique is used, the model is said to be drift adjusted.\n\nWhy C is Wrong:\n\"Benchmarking the term structure\" means using the current spot curve as the reference. That's what Kent is trying to MATCH, not the technique she's using to match it.\n\nWhy B is Wrong:\nMean reversion involves setting bounds so rates trend toward implied forward rates over time. Kent isn't setting bounds \u2014 she's adding a flat constant.",
+      "yourMistake": "Confused 'benchmarking the term structure' (using the spot curve as reference) with 'drift adjustment' (adding a constant to all rates to calibrate model prices to market). Benchmarking is what Kent is calibrating TO, not the technique she is using."
+    },
+    {
+      "id": 180,
+      "title": "Equity Swap Cash Flow (Negative Return)",
+      "topic": "Derivatives",
+      "question": "Elaine Azul is evaluating longer-term solutions to reduce Green's exposure to his firm's stock. One approach is to enter into a 3-year equity swap. The proposed equity swap has:\n- Semiannual reset\n- 30/360 day count\n- 2.5% annual fixed rate\n- $2 million notional principal\n\nIf Green's stock has a -4.5% return (not annualized) over the next six months, the proposed equity swap's net cash flow to Green on its first payment date would be:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "-$65,000"
+        },
+        {
+          "letter": "B",
+          "text": "$115,000"
+        },
+        {
+          "letter": "C",
+          "text": "$140,000"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Equity Swap Structure: Green wants to REDUCE exposure to his stock \u2192 He receives fixed, pays equity return.\n\nStep 1: Calculate Fixed Leg (Green Receives)\nFixed Payment = Notional \u00d7 (Annual Rate / 2)\nFixed Payment = $2,000,000 \u00d7 (0.025 / 2)\nFixed Payment = $2,000,000 \u00d7 0.0125\nFixed Payment = +$25,000\n\nStep 2: Calculate Equity Leg (Green Pays)\nEquity Payment = Notional \u00d7 Equity Return\nEquity Payment = $2,000,000 \u00d7 (-0.045)\nEquity Payment = -$90,000\n\nBut paying a NEGATIVE amount = RECEIVING money!\n\nStep 3: Calculate Net Cash Flow\nNet = Fixed Received + (-Equity Paid)\nNet = $25,000 - (-$90,000)\nNet = $25,000 + $90,000\nNet = $115,000\n\nKey Insight: In equity swaps, \"pay equity\" with negative return = RECEIVE cash.\nNet CF = Fixed Received - (Equity Return \u00d7 Notional)\nNet CF = $25,000 - (-4.5% \u00d7 $2M) = $25,000 + $90,000 = $115,000",
+      "keyFormulas": [
+        "Net CF = Fixed Received - (Equity Return \u00d7 Notional)",
+        "Negative equity return \u2192 PAY becomes RECEIVE"
+      ],
+      "yourMistake": "Treated the negative equity return as an outflow rather than an inflow. Wrong logic: Receive Fixed +$25,000, 'Pay' Equity -$90,000 (treated as outflow), Net = $25,000 - $90,000 = -$65,000. Correct logic: When equity return is negative, the equity payer actually receives money."
+    },
+    {
+      "id": 181,
+      "title": "Interest Rate Swap Valuation",
+      "topic": "Derivatives",
+      "question": "Two years ago, White entered into a local market $7 million 5-year interest rate swap with annual resets (30/360 day count), receiving the fixed rate of 1.36% and paying the MRR. Azul determines the value of the swap today using the relevant spot rate data in Exhibit 2.\n\nExhibit 2:\n| Maturity | Spot Rate | Present Value Factor |\n| 1 year | 0.262% | 0.9974 |\n| 2 years | 0.672% | 0.9867 |\n| 3 years | 0.956% | 0.9721 |\n\nThe current value of White's interest rate swap is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "-$148,338"
+        },
+        {
+          "letter": "B",
+          "text": "$86,130"
+        },
+        {
+          "letter": "C",
+          "text": "$151,062"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Swap Valuation Formula (Receive Fixed):\nValue = NA \u00d7 (FS_0 - FS_t) \u00d7 Sum(PV Factors)\n\nWhere:\n- NA = Notional = $7,000,000\n- FS_0 = Original fixed rate = 1.36%\n- FS_t = Current market fixed rate (to be calculated)\n- Sum(PV Factors) = Sum of PV factors for remaining life\n\nStep 1: Calculate Sum of PV Factors\nSum(PV) = 0.9974 + 0.9867 + 0.9721 = 2.9562\n\nStep 2: Calculate Current Fixed Swap Rate (FS_t)\nFS_t = (1 - Last PV Factor) / Sum(PV Factors)\nFS_t = (1 - 0.9721) / 2.9562\nFS_t = 0.0279 / 2.9562\nFS_t = 0.009438 = 0.9438%\n\nStep 3: Calculate Swap Value\nValue = $7,000,000 \u00d7 (0.0136 - 0.009438) \u00d7 2.9562\nValue = $7,000,000 \u00d7 0.004162 \u00d7 2.9562\nValue = $86,130\n\nWhy A is Wrong (-$148,338): Answer A uses PV factors for years 3, 4, and 5 instead of years 1, 2, and 3.",
+      "keyFormulas": [
+        "Current Fixed Rate = (1 - PV_final) / Sum(All PV Factors)",
+        "Swap Value = Notional \u00d7 (Original Rate - Current Rate) \u00d7 Sum(PV Factors)"
+      ],
+      "yourMistake": "Calculated FS_t incorrectly as the simple average of spot rates: FS_t = (0.262% + 0.672% + 0.956%) / 3 = 0.63%. Then Value = $7M \u00d7 (1.36% - 0.63%) \u00d7 2.9562 = $151,062. Should have used the PV factor formula: FS_t = (1 - PV_final) / Sum(PV Factors)."
+    },
+    {
+      "id": 182,
+      "title": "Insurance Combined Ratio",
+      "topic": "Equity",
+      "question": "Gordon evaluates the performance of a property and casualty insurance company, Bronx Insurance Company. She calculates the company's combined ratio for the most recent year using the information (in $ millions) presented in Exhibit 2.\n\nExhibit 2:\n| Item | Amount ($ millions) |\n| Net premiums written | 3,600 |\n| Net premiums earned | 3,200 |\n| Loss and loss adjustment expenses | 2,300 |\n| Underwriting expenses | 990 |\n| Dividends paid to policyholders | 100 |\n\nThe combined ratio for Bronx Insurance is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "91%"
+        },
+        {
+          "letter": "B",
+          "text": "99%"
+        },
+        {
+          "letter": "C",
+          "text": "103%"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "Combined Ratio Formula:\nCombined Ratio = Loss Ratio + Underwriting Expense Ratio\n\nStep 1: Calculate Loss and Loss Adjustment Expense Ratio\nLoss Ratio = Loss & LAE / Net Premiums EARNED\nLoss Ratio = 2,300 / 3,200\nLoss Ratio = 71.875%\n\nStep 2: Calculate Underwriting Expense Ratio\nExpense Ratio = Underwriting Expenses / Net Premiums WRITTEN\nExpense Ratio = 990 / 3,600\nExpense Ratio = 27.5%\n\nStep 3: Calculate Combined Ratio\nCombined Ratio = 71.875% + 27.5%\nCombined Ratio = 99.375% \u2248 99%\n\nWhy C is Wrong (103%): Answer C is the Combined Ratio AFTER Dividends: Dividend Ratio = 100 / 3,200 = 3.125%, Combined After Dividends = 99.4% + 3.125% = 102.5% \u2248 103%\n\nKey Memory Aid:\n- Loss Ratio = Losses / Premiums EARNED\n- Expense Ratio = Expenses / Premiums WRITTEN\n- \"Losses are EARNED, Expenses are WRITTEN\"",
+      "keyFormulas": [
+        "Loss Ratio = Losses / Premiums EARNED",
+        "Expense Ratio = Expenses / Premiums WRITTEN",
+        "Combined Ratio = Loss Ratio + Expense Ratio"
+      ],
+      "yourMistake": "Used Net Premiums WRITTEN for BOTH ratios. Wrong: Loss Ratio = 2,300 / 3,600 = 63.9% (wrong denominator!), Expense Ratio = 990 / 3,600 = 27.5%, Combined = 63.9% + 27.5% = 91.4%. The Loss Ratio denominator should be Premiums EARNED (3,200), not WRITTEN (3,600)."
+    },
+    {
+      "id": 183,
+      "title": "Market Manipulation Standards",
+      "topic": "Ethics",
+      "question": "Susan Li, CFA, an equity research analyst with Maipo Canyon Investment Bank (MCIB), specializes in identifying companies that are likely takeover candidates.\n\nMCIB's proprietary model predicts that a takeover of Godoggo Corporation is highly likely. In a recent report, Li assigned a \"Buy\" recommendation to Godoggo's stock. Based on the report, one of MCIB's portfolio managers buys a large number of shares in Godoggo for his fund. He subsequently promotes the stock in several online chat rooms by stating, \"I have purchased Godoggo stock because our internal research indicates that it is highly likely to be taken over.\" A week later, the price of Godoggo's stock has doubled and the portfolio manager subsequently sells all the shares of the stock in his fund.\n\nAre the portfolio manager's actions with regard to Godoggo shares a violation of the Standard relating to market manipulation?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "No"
+        },
+        {
+          "letter": "B",
+          "text": "Yes, because he engaged in transaction-based market manipulation"
+        },
+        {
+          "letter": "C",
+          "text": "Yes, because he engaged in information-based market manipulation"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Standard II(B) Market Manipulation \u2014 Two Types:\n\nTransaction-based: Artificial trades to affect price/volume. Did PM do this? NO \u2014 bought based on legitimate research.\nInformation-based: Spreading FALSE rumors to induce trading. Did PM do this? NO \u2014 stated true opinion based on report.\n\nWhy There's NO Violation:\n\n1. The Purchase Was Legitimate: PM bought based on Li's research report. This is a valid investment reason. Not an attempt to artificially inflate price.\n\n2. The Online Promotion Was Not False: PM stated he bought the stock (true). PM said internal research supports it (true). PM expressed an opinion based on actual analysis.\n\n3. The Subsequent Sale Was Legitimate: Stock doubled \u2014 taking profits is normal. PM had valid reason to buy AND sell.\n\nWhy C is Wrong: Information-based manipulation requires spreading FALSE rumors. The PM stated facts (he did buy, research does exist), expressed legitimate opinion (takeover likely), and did NOT fabricate information.\n\nWhy B is Wrong: Transaction-based manipulation requires trades designed to artificially affect prices. The PM bought based on fundamental research and did not engage in wash trades or painting the tape.\n\nKey Distinction: Sharing TRUE information/opinions does not equal Manipulation. Manipulation requires FALSE statements or artificial transactions. This is a tricky question because the fact pattern LOOKS suspicious, but the Standards focus on whether information was FALSE, not whether someone profited.",
+      "yourMistake": "Assumed the PM's actions were information-based manipulation because the pattern looked suspicious (buy, promote, sell). However, manipulation requires spreading FALSE information. The PM stated true facts and legitimate opinions based on actual research. Sharing true information is not manipulation under Standard II(B)."
+    },
+    {
+      "id": 184,
+      "title": "F-Test for Joint Significance",
+      "topic": "Quant",
+      "question": "Sarah Kendall develops a model with three factors to explain weekly returns. She estimates the model for silver and platinum returns using 624 weekly observations.\n\nKendall gathers the model output for silver returns and tests whether the model explains RET with any statistical significance. She uses the partial ANOVA table results in Exhibit 1 and notes that the critical value of the F-statistic is 3.813 at the 1% significance level and 2.619 at the 5% significance level.\n\nExhibit 1:\n| Source | Degrees of Freedom | Sum of Squares | Mean Squares |\n| Regression | 3 | 0.0453 | 0.0151 |\n| Residual | 620 | 0.9512 | 0.0015 |\n| Total | 623 | 0.9965 | --- |\n\nDo the independent variables jointly contribute to the explanation of silver returns?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "No"
+        },
+        {
+          "letter": "B",
+          "text": "Yes, at the 5% significance level only"
+        },
+        {
+          "letter": "C",
+          "text": "Yes, at both the 5% and 1% significance levels"
+        }
+      ],
+      "correctAnswer": "C",
+      "explanation": "F-Test Formula:\nF = MSR / MSE\nF = Mean Square Regression / Mean Square Error\n\nCalculation:\nF = 0.0151 / 0.0015\nF = 10.07\n\nCompare to Critical Values:\n- 5% level: Critical Value = 2.619, F-stat (10.07) > 2.619 \u2192 YES, significant\n- 1% level: Critical Value = 3.813, F-stat (10.07) > 3.813 \u2192 YES, significant\n\nConclusion: Reject H0 at BOTH significance levels \u2192 Variables jointly significant at both 5% AND 1%.\n\nCommon wrong calculations:\n- SSR / MSR = 0.0453 / 0.0151 = 3.0 (between critical values \u2192 would give answer B)\n- MSE / MSR = 0.0015 / 0.0151 = 0.1 (not significant \u2192 would give answer A)",
+      "keyFormulas": [
+        "F = MSR / MSE (Mean Square Regression / Mean Square Error)"
+      ],
+      "yourMistake": "Likely calculated F incorrectly, possibly using SSR / MSR = 0.0453 / 0.0151 = 3.0, which falls between the two critical values (2.619 and 3.813), leading to the conclusion of significance at 5% only. The correct F-statistic uses MSR / MSE = 0.0151 / 0.0015 = 10.07."
+    },
+    {
+      "id": 185,
+      "title": "Model Misspecification Tests",
+      "topic": "Quant",
+      "question": "Kendall considers platinum returns. After running the model, she tests for model misspecification. The variance inflation factor for each of the independent variables is close to 1.00, and the Breusch-Godfrey test fails to reject the null hypothesis.\n\nDoes the testing of the platinum return model indicate model misspecification?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "No"
+        },
+        {
+          "letter": "B",
+          "text": "Yes, because there is evidence of multicollinearity"
+        },
+        {
+          "letter": "C",
+          "text": "Yes, because there is evidence of serial correlation"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Test Results Analysis:\n\nVIF \u2248 1.00 \u2192 Low \u2192 NO multicollinearity (VIF > 5 = problem)\nBreusch-Godfrey: Fail to reject H0 \u2192 NO serial correlation\n\nBreusch-Godfrey Test:\n- H0: No serial correlation in residuals\n- Fail to reject H0 \u2192 No evidence of serial correlation\n- This is GOOD \u2014 no misspecification\n\nVIF (Variance Inflation Factor):\n- VIF \u2248 1 \u2192 No multicollinearity\n- VIF > 5 \u2192 Investigate multicollinearity\n- VIF > 10 \u2192 Serious multicollinearity problem\n\nKey Rule:\n- Breusch-Godfrey: Fail to reject = NO serial correlation = GOOD\n- VIF close to 1 = NO multicollinearity = GOOD",
+      "keyFormulas": [
+        "Breusch-Godfrey: Fail to reject H0 = NO serial correlation",
+        "VIF close to 1 = NO multicollinearity; VIF > 5 = problem; VIF > 10 = serious"
+      ],
+      "yourMistake": "Confused 'fail to reject H0' with 'reject H0'. Fail to reject H0 means no serial correlation (no problem). Reject H0 would mean serial correlation exists (problem). The Breusch-Godfrey null hypothesis is that there is NO serial correlation."
+    },
+    {
+      "id": 186,
+      "title": "Model Selection: AIC vs BIC vs R-squared",
+      "topic": "Quant",
+      "question": "Kendall considers alternate model specifications. Her objective is to select the most parsimonious, best-fitting model. Kendall evaluates several goodness-of-fit measures.\n\nExhibit 2:\n| Model | Factors | AIC | BIC | R-squared |\n| 1 | FSI | 5.134 | 5.141 | 0.098 |\n| 2 | FSI, GPR | 5.132 | 5.153 | 0.103 |\n| 3 | FSI, GPR, EPU | 5.139 | 5.160 | 0.106 |\n\nWhich of the models for platinum returns should Kendall select based on her objective?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Model 1"
+        },
+        {
+          "letter": "B",
+          "text": "Model 2"
+        },
+        {
+          "letter": "C",
+          "text": "Model 3"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Kendall's Objective: \"Most parsimonious, best-fitting model\"\n- Parsimonious = Simplest model that fits well\n- Best-fitting = Lowest information criterion\n\nModel Selection Criteria:\n- BIC: Best fit + parsimony, Lower = Better, Penalizes complexity HEAVILY\n- AIC: Prediction, Lower = Better, Penalizes complexity moderately\n- R-squared: Explained variance, Higher = Better, Does NOT penalize complexity\n\nFor Parsimony + Best Fit \u2192 Use BIC\n\nBIC Values:\n- Model 1: 5.141 \u2190 LOWEST\n- Model 2: 5.153\n- Model 3: 5.160\n\nModel 1 has the lowest BIC \u2192 Select Model 1\n\nWhy B is Wrong: Model 2 has the lowest AIC (5.132), which is better for prediction purposes. But the question asks for parsimony + fit, which requires BIC.\n\nKey Selection Rules:\n- Best fit + Parsimony \u2192 BIC\n- Best prediction \u2192 AIC\n- Just explained variance \u2192 R-squared (but risk overfitting)",
+      "keyFormulas": [
+        "Parsimony + Fit \u2192 BIC (lower = better)",
+        "Prediction \u2192 AIC (lower = better)",
+        "R-squared always increases with more variables \u2014 does not penalize complexity"
+      ],
+      "yourMistake": "Selected Model 3 based on highest R-squared. But R-squared always increases with more variables, doesn't penalize complexity, and leads to overfitting. The question asked for 'most parsimonious, best-fitting' which requires BIC, not R-squared."
+    },
+    {
+      "id": 187,
+      "title": "Machine Learning Algorithm Selection",
+      "topic": "Quant",
+      "question": "As a result of her firm investing in new data sources and technology, Kendall gains access to a wide range of new inputs that could be used to model the commodity market. She decides to utilize this dataset in a machine-learning algorithm with the goal of predicting commodity returns from the complex non-linear data.\n\nWhich of the following machine-learning algorithms is best suited to Kendall's goal?",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Neural networks"
+        },
+        {
+          "letter": "B",
+          "text": "Support vector machine"
+        },
+        {
+          "letter": "C",
+          "text": "Principal components analysis"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Kendall's Goal:\n1. Prediction of returns\n2. Complex non-linear data\n\nML Algorithm Selection:\n- Neural Networks: Best for Prediction + Non-linear data\n- Support Vector Machine: Best for Classification + Linear data\n- PCA: Best for Dimension reduction (not prediction)\n\nWhy A (Neural Networks) is Correct:\n- Goal is prediction (numerical output)\n- Data is non-linear\n- Neural networks handle complex patterns\n\nWhy B (SVM) is Wrong:\n- SVM is for classification (categorical output), not prediction\n- SVM works best with linear data\n- Kendall wants to PREDICT returns, not CLASSIFY\n\nWhy C (PCA) is Wrong:\n- PCA reduces dimensionality\n- PCA doesn't predict \u2014 it summarizes/transforms data\n- Would be a preprocessing step, not a final model\n\nML Decision Tree:\nIs the goal prediction or classification?\n- Prediction (numerical): Linear data \u2192 Penalized regression, LASSO; Non-linear data \u2192 CART, Random Forest, NEURAL NETWORKS\n- Classification (categorical): Linear data \u2192 SVM, K-nearest neighbor; Non-linear data \u2192 Random Forest",
+      "yourMistake": "Selected Support Vector Machine, which is for classification (categorical output) with linear data. Kendall's goal is prediction (numerical output) with non-linear data, which points to neural networks."
+    },
+    {
+      "id": 188,
+      "title": "Hedging Pressure Hypothesis",
+      "topic": "Alternatives",
+      "question": "Hansen observes that Crescent's returns in the natural gas sector behaved differently from the other two sectors over the past five years. Hansen gathers prior-year price information for the natural gas market.\n\nExhibit 2:\n| Trade Date | Spot Price | June Futures | July Futures | August Futures |\n| 28 May | 1.795 | 1.957 | 2.418 | 2.793 |\n| 26 June | 1.795 | 1.795 | 2.338 | 2.546 |\n\nUnder the hedging pressure hypothesis, the prices in Exhibit 2 indicate:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "Excess demand for price protection by producers"
+        },
+        {
+          "letter": "B",
+          "text": "Excess demand for price protection by consumers"
+        },
+        {
+          "letter": "C",
+          "text": "Balanced demand for price protection"
+        }
+      ],
+      "correctAnswer": "B",
+      "explanation": "The futures curve is in CONTANGO (futures price > spot price, increasing with maturity).\n\nHedging Pressure Hypothesis:\n- Backwardation (futures < spot): Producers seeking protection (selling forward)\n- Contango (futures > spot): Consumers seeking protection (buying forward)\n- Flat: Balanced hedging demand\n\nConsumers (buyers) are worried about future availability \u2192 bid up futures prices \u2192 contango.",
+      "yourMistake": "Answered correctly \u2014 included for review practice."
+    },
+    {
+      "id": 189,
+      "title": "CDS Trade P&L Calculation",
+      "topic": "Fixed Income",
+      "question": "Three months ago, Arlandi bought $10 million of 5-year protection on Company B through a CDS contract with a duration of 3.7 years. The CDS credit spread has since narrowed from 350 bps to 220 bps currently. Arlandi closes out the trade by selling the CDS contract.\n\nThe estimated loss on the CDS trade on Company B is closest to:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "$481,000 loss"
+        },
+        {
+          "letter": "B",
+          "text": "$481,000 gain"
+        },
+        {
+          "letter": "C",
+          "text": "$130,000 loss"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "P&L = Change in Spread \u00d7 Duration \u00d7 Notional\nP&L = (220 bps - 350 bps) \u00d7 3.7 \u00d7 $10,000,000\nP&L = (-130 bps) \u00d7 3.7 \u00d7 $10,000,000\nP&L = (-0.013) \u00d7 3.7 \u00d7 $10,000,000\nP&L = -$481,000 (LOSS)\n\nWhy It's a Loss:\n- Arlandi bought protection (bet on spreads widening)\n- Spreads narrowed (credit improved)\n- Protection buyer loses when spreads narrow\n\nFormula: CDS P&L = Change in Spread \u00d7 Duration \u00d7 Notional\nBought protection + spreads narrow = LOSS",
+      "keyFormulas": [
+        "CDS P&L = Change in Spread \u00d7 Duration \u00d7 Notional",
+        "Bought protection + spreads narrow = LOSS"
+      ],
+      "yourMistake": "Answered correctly \u2014 included for review practice."
+    },
+    {
+      "id": 190,
+      "title": "Stock-Based Compensation Tax Effects",
+      "topic": "FSA",
+      "question": "Bronx Insurance has a restricted stock unit (RSU) plan for employees. On the grant date at the beginning of the first year, the share price was $6.00 per RSU. At the end of the second year, the share price was $5.00 per RSU. Settlement for the RSUs is made at the end of each year.\n\nDuring the second year of the RSU plan, Bronx Insurance incurred:",
+      "choices": [
+        {
+          "letter": "A",
+          "text": "A tax shortfall"
+        },
+        {
+          "letter": "B",
+          "text": "An excess tax benefit"
+        },
+        {
+          "letter": "C",
+          "text": "Neither"
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Tax Effect of Stock Price Movement:\n- Price UP (vest > grant): Tax deduction > Book expense \u2192 Excess tax benefit\n- Price DOWN (vest < grant): Tax deduction < Book expense \u2192 Tax shortfall\n\nGrant price: $6.00\nSettlement price: $5.00\nPrice went DOWN\nTax deduction based on $5.00 < Book expense based on $6.00\nResult: Tax shortfall (higher taxable income, higher tax expense)",
+      "yourMistake": "Answered correctly \u2014 included for review practice."
     }
   ]
 }
