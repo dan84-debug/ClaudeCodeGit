@@ -47,10 +47,14 @@
 
             <!-- Shared Topic Filter -->
             <div class="shared-filter">
-                <label for="topic-filter">Filter by topic:</label>
-                <select id="topic-filter">
-                    <option value="all">All Topics</option>
-                </select>
+                <div class="filter-header">
+                    <label>Filter by topic:</label>
+                    <button type="button" id="topic-select-all" class="topic-select-all-btn">Select all</button>
+                </div>
+                <div id="topic-chips" class="topic-chips">
+                    <!-- Populated by JS -->
+                </div>
+                <p id="topic-filter-summary" class="topic-filter-summary">All topics included</p>
             </div>
 
             <!-- Quiz Options (shown for Quiz mode) -->
