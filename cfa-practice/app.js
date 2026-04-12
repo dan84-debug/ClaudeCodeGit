@@ -146,18 +146,29 @@ class CFAPracticeTester {
     updateStartScreen() {
         document.getElementById('total-questions').textContent = this.questions.length;
 
-        const topics = [...new Set(this.questions.map(q => q.topic))];
+        const topics = [...new Set(this.questions.map(q => q.topic))].sort();
         document.getElementById('total-topics').textContent = topics.length;
 
-        const select = document.getElementById('topic-filter');
-        if (select) {
-            select.innerHTML = '<option value="all">All Topics</option>';
+        const container = document.getElementById('topic-chips');
+        if (container) {
+            container.innerHTML = '';
             topics.forEach(topic => {
-                const option = document.createElement('option');
-                option.value = topic;
-                option.textContent = topic;
-                select.appendChild(option);
+                const label = document.createElement('label');
+                label.className = 'topic-chip';
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.value = topic;
+                cb.addEventListener('change', () => this.updateTopicSummary());
+                label.appendChild(cb);
+                label.appendChild(document.createTextNode(topic));
+                container.appendChild(label);
             });
+            this.updateTopicSummary();
+        }
+
+        const selectAllBtn = document.getElementById('topic-select-all');
+        if (selectAllBtn) {
+            selectAllBtn.onclick = () => this.toggleAllTopics();
         }
 
         const numSelect = document.getElementById('num-questions');
@@ -167,6 +178,40 @@ class CFAPracticeTester {
                 option.disabled = true;
             }
         });
+    }
+
+    /** Returns array of selected topic strings, or 'all' if none selected */
+    getSelectedTopics() {
+        const checked = [...document.querySelectorAll('#topic-chips .topic-chip input:checked')];
+        return checked.length === 0 ? 'all' : checked.map(cb => cb.value);
+    }
+
+    /** Update the summary line and chip visual state */
+    updateTopicSummary() {
+        const chips = [...document.querySelectorAll('#topic-chips .topic-chip')];
+        chips.forEach(chip => {
+            chip.classList.toggle('selected', chip.querySelector('input').checked);
+        });
+
+        const selected = this.getSelectedTopics();
+        const summary = document.getElementById('topic-filter-summary');
+        const btn = document.getElementById('topic-select-all');
+        if (summary) {
+            summary.textContent = selected === 'all'
+                ? 'All topics included'
+                : `${selected.length} topic${selected.length > 1 ? 's' : ''} selected`;
+        }
+        if (btn) {
+            btn.textContent = selected === 'all' ? 'Select all' : 'Clear';
+        }
+    }
+
+    /** Toggle all chips on or off */
+    toggleAllTopics() {
+        const checkboxes = [...document.querySelectorAll('#topic-chips .topic-chip input')];
+        const anyChecked = checkboxes.some(cb => cb.checked);
+        checkboxes.forEach(cb => { cb.checked = !anyChecked; });
+        this.updateTopicSummary();
     }
 
     // ==================== UNIFIED QUESTION ENGINE ====================
@@ -375,11 +420,11 @@ class CFAPracticeTester {
 
     startQuiz() {
         const numQuestions = document.getElementById('num-questions').value;
-        const topicFilter = document.getElementById('topic-filter').value;
+        const topicFilter = this.getSelectedTopics();
 
         let availableQuestions = topicFilter === 'all'
             ? [...this.questions]
-            : this.questions.filter(q => q.topic === topicFilter);
+            : this.questions.filter(q => topicFilter.includes(q.topic));
 
         if (availableQuestions.length === 0) {
             alert('No questions available for the selected topic.');
@@ -467,11 +512,11 @@ class CFAPracticeTester {
     // ==================== LEARN MODE ====================
 
     startLearn() {
-        const topicFilter = document.getElementById('topic-filter').value;
+        const topicFilter = this.getSelectedTopics();
 
         let availableQuestions = topicFilter === 'all'
             ? [...this.questions]
-            : this.questions.filter(q => q.topic === topicFilter);
+            : this.questions.filter(q => topicFilter.includes(q.topic));
 
         if (availableQuestions.length === 0) {
             alert('No questions available for the selected topic.');
@@ -604,11 +649,11 @@ class CFAPracticeTester {
     // ==================== QBANK MODE ====================
 
     startQbank() {
-        const topicFilter = document.getElementById('topic-filter').value;
+        const topicFilter = this.getSelectedTopics();
 
         this.qbankQuestions = topicFilter === 'all'
             ? [...this.questions]
-            : this.questions.filter(q => q.topic === topicFilter);
+            : this.questions.filter(q => topicFilter.includes(q.topic));
 
         if (this.qbankQuestions.length === 0) {
             alert('No questions available for the selected topic.');
