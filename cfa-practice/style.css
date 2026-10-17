@@ -1454,11 +1454,11 @@ body {
     }
 
     .stats-preview {
-        gap: 24px;
+        gap: 12px 18px;
     }
 
     .stat-number {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .quiz-options {
@@ -1524,6 +1524,25 @@ body {
     #start-btn {
         padding: 18px;
         font-size: 18px;
+    }
+
+    .btn.btn-small {
+        padding: 8px 14px;
+        font-size: 14px;
+        min-height: 40px;
+    }
+
+    .grade-row {
+        flex-direction: column;
+    }
+
+    .essay-actions {
+        flex-direction: column;
+    }
+
+    .weak-topics,
+    .shared-filter {
+        padding: 14px 16px;
     }
 
     /* Explanation panel */

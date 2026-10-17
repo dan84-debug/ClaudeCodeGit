@@ -400,7 +400,7 @@ class CFAPracticeTester {
         const mode = this.currentMode;
         const missedN = mode === 'qbank' ? 0 : this.modeCount(mode, true);
         const box = this.$('missed-only');
-        const unit = mode === 'itemset' ? 'sets' : 'questions';
+        const unit = this.nounFor(mode, missedN, false);
         if (missedN === 0) {
             this.filters.missedOnly = false;
             box.checked = false;
@@ -411,10 +411,17 @@ class CFAPracticeTester {
             this.$('missed-only-label').textContent = `Missed only (${missedN} ${unit} available)`;
         }
         const n = this.modeCount(mode, this.filters.missedOnly);
-        const noun = { quiz: 'multiple-choice questions', learn: 'multiple-choice questions',
-            itemset: 'item sets', essay: 'essays', qbank: 'questions' }[mode];
-        this.$('availability').textContent = `${n} ${noun} match the current filters`;
+        this.$('availability').textContent =
+            `${n} ${this.nounFor(mode, n, true)} ${n === 1 ? 'matches' : 'match'} the current filters`;
         this.$('start-btn').disabled = n === 0;
+    }
+
+    nounFor(mode, n, long) {
+        const one = n === 1;
+        if (mode === 'itemset') return long ? (one ? 'item set' : 'item sets') : (one ? 'set' : 'sets');
+        if (mode === 'essay') return one ? 'essay' : 'essays';
+        const q = one ? 'question' : 'questions';
+        return long && (mode === 'quiz' || mode === 'learn') ? `multiple-choice ${q}` : q;
     }
 
     describeFilters(f = this.filters) {
