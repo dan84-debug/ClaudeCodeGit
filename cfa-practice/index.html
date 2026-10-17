@@ -5,25 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>CFA Practice Tester</title>
+    <title>CFA Level III Practice</title>
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Start Screen -->
+    <div class="container" id="app-container">
+
+        <!-- ==================== Start Screen ==================== -->
         <div id="start-screen" class="screen active">
-            <h1>CFA Practice Tester</h1>
-            <p class="subtitle">Review questions you got wrong on mock exams</p>
+            <h1>CFA Level III Practice</h1>
+            <p class="subtitle">Question banks, item sets and essays</p>
 
             <div class="stats-preview" id="stats-preview">
                 <div class="stat">
                     <span class="stat-number" id="total-questions">0</span>
-                    <span class="stat-label">Total Questions</span>
+                    <span class="stat-label">Questions</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number" id="total-topics">0</span>
-                    <span class="stat-label">Topics</span>
+                    <span class="stat-number" id="attempted-count">0</span>
+                    <span class="stat-label">Attempted</span>
                 </div>
+                <div class="stat">
+                    <span class="stat-number" id="accuracy-pct">&ndash;</span>
+                    <span class="stat-label" title="Correct counts 1, partial counts 0.5">Accuracy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="missed-count">0</span>
+                    <span class="stat-label">Missed</span>
+                </div>
+            </div>
+
+            <div id="weak-topics" class="weak-topics hidden">
+                <h3>Weakest topics</h3>
+                <ol id="weak-topics-list"></ol>
             </div>
 
             <!-- Mode Selection -->
@@ -38,26 +53,44 @@
                     <span class="mode-name">Learn</span>
                     <span class="mode-desc">Master all</span>
                 </button>
+                <button id="itemset-mode-btn" class="btn btn-mode">
+                    <span class="mode-icon">🧩</span>
+                    <span class="mode-name">Item sets</span>
+                    <span class="mode-desc">Vignettes</span>
+                </button>
+                <button id="essay-mode-btn" class="btn btn-mode">
+                    <span class="mode-icon">✍️</span>
+                    <span class="mode-name">Essays</span>
+                    <span class="mode-desc">Constructed</span>
+                </button>
                 <button id="qbank-mode-btn" class="btn btn-mode">
                     <span class="mode-icon">📚</span>
                     <span class="mode-name">Qbank</span>
-                    <span class="mode-desc">Review all</span>
+                    <span class="mode-desc">Browse all</span>
                 </button>
             </div>
 
-            <!-- Shared Topic Filter -->
+            <!-- Shared filters -->
             <div class="shared-filter">
                 <div class="filter-header">
-                    <label>Filter by topic:</label>
-                    <button type="button" id="topic-select-all" class="topic-select-all-btn">Select all</button>
+                    <label>Section:</label>
+                    <button type="button" id="section-clear-btn" class="topic-select-all-btn">Select all</button>
                 </div>
-                <div id="topic-chips" class="topic-chips">
-                    <!-- Populated by JS -->
-                </div>
-                <p id="topic-filter-summary" class="topic-filter-summary">All topics included</p>
+                <div id="section-chips" class="topic-chips"></div>
+
+                <label for="topic-select" class="filter-label">Topic:</label>
+                <select id="topic-select">
+                    <option value="all">All topics</option>
+                </select>
+
+                <label class="checkbox-label" id="missed-only-row">
+                    <input type="checkbox" id="missed-only">
+                    <span id="missed-only-label">Missed only</span>
+                </label>
+                <p id="availability" class="topic-filter-summary"></p>
             </div>
 
-            <!-- Quiz Options (shown for Quiz mode) -->
+            <!-- Quiz Options -->
             <div id="quiz-options" class="quiz-options">
                 <label for="num-questions">Questions per quiz:</label>
                 <select id="num-questions">
@@ -65,6 +98,7 @@
                     <option value="10" selected>10 questions</option>
                     <option value="15">15 questions</option>
                     <option value="20">20 questions</option>
+                    <option value="40">40 questions</option>
                     <option value="all">All questions</option>
                 </select>
 
@@ -77,13 +111,17 @@
                     <input type="checkbox" id="shuffle-choices" checked>
                     Shuffle answer choices
                 </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="weighted-sampling" checked>
+                    Weight toward weak topics and missed questions
+                </label>
             </div>
 
-            <!-- Learn Options (shown for Learn mode) -->
+            <!-- Learn Options -->
             <div id="learn-options" class="quiz-options hidden">
-                <p class="mode-info">Answer each question correctly once to master it. Wrong answers stay in the pool until you get them right.</p>
+                <p class="mode-info">Multiple-choice only. Answer each question correctly once to master it. Wrong answers stay in the pool until you get them right.</p>
 
-                <!-- Resume saved progress banner -->
                 <div id="learn-resume-banner" class="learn-resume-banner hidden">
                     <p class="resume-info"><strong>Saved progress found!</strong> <span id="learn-resume-detail"></span></p>
                     <div class="resume-actions">
@@ -92,7 +130,6 @@
                     </div>
                 </div>
 
-                <!-- Import/Export -->
                 <div class="progress-sync">
                     <button id="learn-export-btn" class="btn btn-secondary btn-small">Export Learn Session</button>
                     <button id="learn-import-btn" class="btn btn-secondary btn-small">Import Learn Session</button>
@@ -100,13 +137,40 @@
                 </div>
             </div>
 
-            <!-- Qbank Options (shown for Qbank mode) -->
-            <div id="qbank-options" class="quiz-options hidden">
-                <p class="mode-info">Browse all questions with answers and explanations.</p>
+            <!-- Item-set Options -->
+            <div id="itemset-options" class="quiz-options hidden">
+                <p class="mode-info">Exam-style vignette sets: the full vignette stays beside each question, nothing is revealed until you submit the set. Multiple-choice and essay items can be mixed. With "Missed only", sets containing at least one missed question are listed (the whole set is played).</p>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="itemset-shuffle-choices">
+                    Shuffle answer choices
+                </label>
             </div>
 
-            <!-- Long-term Stats Export -->
-            <div class="progress-sync" style="justify-content: center;">
+            <!-- Essay Options -->
+            <div id="essay-options" class="quiz-options hidden">
+                <p class="mode-info">Write your answer, reveal the model answer, then grade yourself. Your draft is not saved.</p>
+                <label for="essay-scope">Which essays:</label>
+                <select id="essay-scope">
+                    <option value="all">All essays</option>
+                    <option value="group">Essays inside item sets</option>
+                    <option value="standalone">Standalone essays</option>
+                </select>
+                <label for="essay-num">Essays per session:</label>
+                <select id="essay-num">
+                    <option value="5">5 essays</option>
+                    <option value="10" selected>10 essays</option>
+                    <option value="20">20 essays</option>
+                    <option value="all">All essays</option>
+                </select>
+            </div>
+
+            <!-- Qbank Options -->
+            <div id="qbank-options" class="quiz-options hidden">
+                <p class="mode-info">Browse every question with answers, per-choice notes and model answers. Search and filter by type inside the Qbank.</p>
+            </div>
+
+            <!-- Long-term stats -->
+            <div class="progress-sync" style="justify-content: center; margin-bottom: 16px;">
                 <button id="stats-export-btn" class="btn btn-secondary btn-small">Export Stats</button>
                 <button id="stats-import-btn" class="btn btn-secondary btn-small">Import Stats</button>
                 <input type="file" id="stats-import-file" accept=".json" class="hidden">
@@ -115,58 +179,145 @@
             <button id="start-btn" class="btn btn-primary">Start Quiz</button>
         </div>
 
-        <!-- Unified Question Screen (Quiz + Learn) -->
+        <!-- ==================== Question Screen (Quiz + Learn, MC only) ==================== -->
         <div id="question-screen" class="screen">
             <div class="quiz-header">
                 <div class="progress-info">
+                    <button id="q-home-btn" class="btn btn-secondary btn-small">&larr; Home</button>
                     <span id="q-counter">Question 1 of 10</span>
                     <span id="q-status">Score: 0/0</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="q-progress-fill"></div>
                 </div>
-                <div class="topic-badge" id="q-topic-badge">Fixed Income</div>
+                <div class="badge-row">
+                    <div class="topic-badge" id="q-topic-badge"></div>
+                </div>
             </div>
 
             <div class="question-card">
                 <h2 class="question-title" id="q-title">Question Title</h2>
-                <p class="question-text" id="q-text">Question text goes here...</p>
+                <div class="q-context md hidden" id="q-context"></div>
+                <div class="question-text md" id="q-text"></div>
 
-                <div class="choices" id="q-choices">
-                    <!-- Choices will be dynamically inserted -->
-                </div>
+                <div class="choices" id="q-choices"></div>
 
                 <button id="q-submit-btn" class="btn btn-primary" disabled>Submit Answer</button>
                 <button id="q-idk-btn" class="btn btn-idk hidden">I Don't Know</button>
             </div>
 
-            <!-- Explanation Panel (shown after answering) -->
             <div id="q-explanation" class="explanation-panel hidden">
                 <div class="result-header" id="q-result-header">
                     <span class="result-icon" id="q-result-icon"></span>
                     <span class="result-text" id="q-result-text"></span>
                 </div>
-
-                <div class="explanation-content">
-                    <h3>Explanation</h3>
-                    <div id="q-explanation-text" class="explanation-text"></div>
-
-                    <div id="q-formulas" class="key-formulas hidden">
-                        <h4>Key Formulas</h4>
-                        <ul id="q-formulas-list"></ul>
-                    </div>
-
-                    <div id="q-mistake" class="your-mistake hidden">
-                        <h4>Your Original Mistake</h4>
-                        <p id="q-mistake-text"></p>
-                    </div>
-                </div>
-
+                <p id="q-shuffle-note" class="shuffle-note hidden"></p>
+                <div id="q-principle" class="callout principle hidden"></div>
+                <div id="q-flag" class="callout flag hidden"></div>
                 <button id="q-next-btn" class="btn btn-primary">Next Question</button>
             </div>
         </div>
 
-        <!-- Learn Complete Screen -->
+        <!-- ==================== Essay Screen ==================== -->
+        <div id="essay-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-info">
+                    <button id="essay-home-btn" class="btn btn-secondary btn-small">&larr; Home</button>
+                    <span id="essay-counter">Essay 1 of 10</span>
+                    <span id="essay-status"></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="essay-progress-fill"></div>
+                </div>
+                <div class="badge-row">
+                    <div class="topic-badge" id="essay-topic-badge"></div>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <h2 class="question-title" id="essay-title"></h2>
+                <div class="q-context md hidden" id="essay-context"></div>
+                <div class="question-text md" id="essay-text"></div>
+                <textarea id="essay-draft" class="essay-draft" rows="8" placeholder="Write your answer here (not saved)"></textarea>
+                <div class="essay-actions" id="essay-actions">
+                    <button id="essay-reveal-btn" class="btn btn-primary">Reveal model answer</button>
+                    <button id="essay-skip-btn" class="btn btn-secondary">Skip</button>
+                </div>
+            </div>
+
+            <div id="essay-answer" class="explanation-panel hidden">
+                <h3 class="panel-heading">Model answer</h3>
+                <div id="essay-model" class="model-answer md"></div>
+                <div id="essay-principle" class="callout principle hidden"></div>
+                <div id="essay-flag" class="callout flag hidden"></div>
+                <div id="essay-grade-block">
+                    <p class="grade-prompt">How did you do?</p>
+                    <div class="grade-row">
+                        <button id="essay-got-btn" class="btn btn-grade grade-got" data-grade="correct">Got it</button>
+                        <button id="essay-partial-btn" class="btn btn-grade grade-partial" data-grade="partial">Partial</button>
+                        <button id="essay-missed-btn" class="btn btn-grade grade-missed" data-grade="incorrect">Missed</button>
+                    </div>
+                </div>
+                <p id="essay-graded-msg" class="graded-msg hidden"></p>
+                <button id="essay-next-btn" class="btn btn-primary hidden">Next Essay</button>
+            </div>
+        </div>
+
+        <!-- ==================== Item-set List Screen ==================== -->
+        <div id="itemset-list-screen" class="screen">
+            <div class="qbank-header">
+                <button id="isl-back-btn" class="btn btn-secondary btn-small">&larr; Back</button>
+                <span id="isl-count">0 item sets</span>
+            </div>
+            <div id="isl-list" class="isl-list"></div>
+        </div>
+
+        <!-- ==================== Item-set Screen (exam + review) ==================== -->
+        <div id="itemset-screen" class="screen">
+            <div class="is-topbar">
+                <button id="is-home-btn" class="btn btn-secondary btn-small">&larr; Sets</button>
+                <div class="is-heading">
+                    <div class="is-title" id="is-title"></div>
+                    <div class="is-counter" id="is-counter"></div>
+                </div>
+                <button id="is-submit-btn" class="btn btn-primary btn-small">Submit set</button>
+            </div>
+            <div class="is-qnav" id="is-qnav"></div>
+            <div class="is-layout">
+                <section class="is-vignette" id="is-vignette">
+                    <div class="is-vignette-head">
+                        <strong>Vignette</strong>
+                        <span class="is-vignette-title" id="is-vignette-title"></span>
+                        <button type="button" id="is-vignette-toggle" class="btn btn-secondary btn-small">Hide</button>
+                    </div>
+                    <div class="is-vignette-body md" id="is-vignette-body"></div>
+                </section>
+                <div class="is-question" id="is-question"></div>
+            </div>
+        </div>
+
+        <!-- ==================== Item-set Results Screen ==================== -->
+        <div id="itemset-results-screen" class="screen">
+            <h1 class="results-title">Set complete</h1>
+            <p class="isr-set-title" id="isr-title"></p>
+            <div class="final-score">
+                <div class="score-circle">
+                    <span class="score-percent" id="isr-percent">0%</span>
+                </div>
+                <p class="score-detail" id="isr-detail"></p>
+                <p class="score-detail small" id="isr-essay-detail"></p>
+            </div>
+            <div class="results-review">
+                <h3>Review each item</h3>
+                <div id="isr-list"></div>
+            </div>
+            <div class="results-actions">
+                <button id="isr-retake-btn" class="btn btn-secondary">Retake set</button>
+                <button id="isr-back-btn" class="btn btn-primary">Back to item sets</button>
+            </div>
+        </div>
+
+        <!-- ==================== Learn Complete ==================== -->
         <div id="learn-complete-screen" class="screen">
             <h1>All Mastered!</h1>
             <div class="final-score">
@@ -181,24 +332,25 @@
             </div>
         </div>
 
-        <!-- Qbank Screen -->
+        <!-- ==================== Qbank Screen ==================== -->
         <div id="qbank-screen" class="screen">
             <div class="qbank-header">
-                <button id="qbank-back-btn" class="btn btn-secondary btn-small">← Back</button>
-                <span id="qbank-counter">Question 1 of 32</span>
+                <button id="qbank-back-btn" class="btn btn-secondary btn-small">&larr; Back</button>
+                <span id="qbank-counter">0 Questions</span>
             </div>
-
-            <div id="qbank-content">
-                <!-- Questions will be rendered here -->
+            <div class="qbank-toolbar">
+                <input type="search" id="qbank-search" placeholder="Search title, text, choices, answers..." autocomplete="off">
+                <select id="qbank-type">
+                    <option value="all">All types</option>
+                    <option value="mc">Multiple choice</option>
+                    <option value="essay">Essays</option>
+                </select>
             </div>
-
-            <div class="qbank-nav">
-                <button id="qbank-prev-btn" class="btn btn-secondary">← Previous</button>
-                <button id="qbank-next-btn" class="btn btn-secondary">Next →</button>
-            </div>
+            <div id="qbank-content"></div>
+            <button id="qbank-more-btn" class="btn btn-secondary hidden">Show more</button>
         </div>
 
-        <!-- Results Screen -->
+        <!-- ==================== Quiz Results ==================== -->
         <div id="results-screen" class="screen">
             <h1>Quiz Complete!</h1>
 
@@ -226,6 +378,7 @@
         </div>
     </div>
 
+    <script src="marked.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
