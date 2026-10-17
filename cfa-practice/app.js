@@ -15,6 +15,7 @@ const SECTION_ORDER = ['Asset Allocation', 'Derivatives', 'Performance',
 const RESULTS = ['correct', 'incorrect', 'partial'];
 const RESULT_LABEL = { correct: 'Got it', partial: 'Partial', incorrect: 'Missed' };
 const QBANK_PAGE = 40;
+const AUTO_VIGNETTE = /same exhibit|previous question|as above|same (vignette|case)/i;
 const LETTER_REF = /\b(?:see|same as|as in|vs\.?|than|choice|option|answer)\s+\(?[A-C]\b|\b[A-C]['’]s\b|\b[A-C] (?:at|is|and)\b/;
 
 class CFAPracticeTester {
@@ -93,6 +94,8 @@ class CFAPracticeTester {
         }
         this.byId = new Map(this.questions.map(q => [q.id, q]));
         this.buildGroups();
+        const auto = this.questions.filter(q => this.vignetteFor(q) && AUTO_VIGNETTE.test(q.context)).length;
+        console.log(`Vignette auto-expand: ${auto} questions reference a shared exhibit in their context`);
     }
 
     buildGroups() {
@@ -113,6 +116,21 @@ class CFAPracticeTester {
     }
 
     // ==================== HELPERS ====================
+
+    /** Full vignette for a grouped question, or null (standalone / no entry). */
+    vignetteFor(q) {
+        return q.group && this.vignettes[q.group] ? this.vignettes[q.group] : null;
+    }
+
+    /** "Show full vignette" button + collapsible panel; expanded automatically when the context points back to a shared exhibit. */
+    vignetteBlock(q) {
+        const v = this.vignetteFor(q);
+        if (!v) return '';
+        const open = AUTO_VIGNETTE.test(q.context || '');
+        return `<div class="vig-block">
+            <button type="button" class="btn btn-secondary btn-small vig-toggle" aria-expanded="${open}">${open ? 'Hide' : 'Show'} full vignette</button>
+            <div class="vig-panel md${open ? '' : ' hidden'}">${this.md(v.text)}</div></div>`;
+    }
 
     md(text) {
         if (!text) return '';
@@ -229,6 +247,15 @@ class CFAPracticeTester {
                 this.fillQbankItem(e.target);
             }
         }, true);
+
+        // Vignette toggle (Quiz, Learn, Qbank); only flips the panel, never re-renders the question
+        document.addEventListener('click', e => {
+            const btn = e.target.closest && e.target.closest('.vig-toggle');
+            if (!btn) return;
+            const open = btn.nextElementSibling.classList.toggle('hidden') === false;
+            btn.setAttribute('aria-expanded', open);
+            btn.textContent = `${open ? 'Hide' : 'Show'} full vignette`;
+        });
 
         // Stats
         this.$('stats-export-btn').addEventListener('click', () => this.exportQuestionStats());
@@ -713,6 +740,7 @@ class CFAPracticeTester {
         const ctx = this.$('q-context');
         ctx.innerHTML = this.md(question.context);
         ctx.classList.toggle('hidden', !question.context);
+        this.$('q-vignette').innerHTML = this.vignetteBlock(question);
         this.$('q-text').innerHTML = this.md(question.stem);
 
         const shuffle = this.settings.shuffleChoices || this.currentMode === 'learn';
@@ -1468,11 +1496,8 @@ class CFAPracticeTester {
         body.dataset.filled = '1';
         const q = this.byId.get(item.dataset.id);
         let html = `<div class="qbank-meta">${this.esc(q.section)} · ${this.esc(q.topic)} · <code>${this.esc(q.source)}</code></div>`;
-        if (q.group && this.vignettes[q.group]) {
-            html += `<details class="qbank-vignette"><summary>Full vignette: ${this.esc(this.vignettes[q.group].title)}</summary>
-                <div class="md">${this.md(this.vignettes[q.group].text)}</div></details>`;
-        }
         if (q.context) html += `<div class="q-context md">${this.md(q.context)}</div>`;
+        html += this.vignetteBlock(q);
         html += `<div class="question-text md">${this.md(q.stem)}</div>`;
         if (q.type === 'mc') {
             html += '<div class="qbank-choices">';
