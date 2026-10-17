@@ -1,119 +1,109 @@
-# CFA Practice Tester
+# CFA Level III Practice
 
-Practice quiz app for reviewing CFA questions you missed.
+A static practice app for the Level III question banks: multiple-choice quizzes,
+exam-style vignette item sets, and self-graded constructed-response essays.
+No build step for the app itself.
 
-## How to Use
+## Run it
 
-1. Open `index.html` in a browser
-2. Pick number of questions and topic
-3. Click Start Quiz
-4. Tap your answer, then Submit
-5. See explanation, tap Next
+`questions.json` is loaded with `fetch`, so open the app over http (not `file://`):
 
----
+```
+cd cfa-practice
+python3 -m http.server 8000      # then open http://localhost:8000
+```
 
-## Adding Questions
+## Modes
 
-Edit `questions.json`. Each question needs:
+| Mode | What it does |
+|---|---|
+| **Quiz** | N multiple-choice questions. Weighted toward your weak topics and missed questions (checkbox, on by default). Per-choice explanations, key principle and any flag appear after you answer. |
+| **Learn** | Multiple-choice only. A question is mastered once you answer it correctly; misses return later. Progress is saved and can be resumed or exported. |
+| **Item sets** | Exam-style vignette sets (2+ questions on one vignette). The full vignette stays beside each question (collapsible panel above it on a phone). Nothing is revealed until you submit the set. Multiple-choice and essay items can be mixed. After submitting you get a score and can review every item. |
+| **Essays** | Constructed-response questions. Write a draft (kept in memory only, never saved), reveal the model answer, then grade yourself **Got it / Partial / Missed**. |
+| **Qbank** | Browse everything with answers, per-choice notes and model answers. Search box and a type filter (multiple choice / essay). |
+
+Filters on the start screen: **Section** (chips, none selected = all) then **Topic**.
+**Missed only** limits Quiz, Learn, Item sets and Essays to questions whose latest result
+was incorrect or partial (never-attempted questions are excluded; for Item sets it lists
+sets that contain at least one missed question and plays the whole set).
+
+## Stats
+
+Every answered multiple-choice question and every essay self-grade is recorded in
+`localStorage['cfa-question-stats-v2']`:
 
 ```json
-{
-  "question": "Your question text here",
-  "choices": [
-    {"letter": "A", "text": "First option"},
-    {"letter": "B", "text": "Second option"},
-    {"letter": "C", "text": "Third option"}
-  ],
-  "correctAnswer": "B"
-}
+{ "pc:EQ-12": { "attempts": 3, "correct": 1, "incorrect": 1, "partial": 1,
+                "lastSeen": "2026-10-17T16:00:00.000Z", "lastResult": "partial" } }
 ```
 
-**Optional fields** (add any you want):
-- `"title"` - Question title
-- `"topic"` - Category like "Fixed Income", "Equity", etc.
-- `"explanation"` - Why the answer is correct
-- `"keyFormulas"` - Array of formulas: `["Formula 1", "Formula 2"]`
-- `"yourMistake"` - What you got wrong originally
+The start screen shows attempted / total, accuracy (correct = 1, partial = 0.5), the
+number of missed questions, and your five weakest topics (at least 3 attempts).
+**Export Stats** downloads this map; **Import Stats** merges a file by adding counts and
+keeping the latest `lastSeen` / `lastResult`. It accepts both the old
+`{correct, incorrect}` shape and the new one, and skips ids that are not in the current
+question set. Stats live in the browser only, so export them if you switch devices.
 
-### Full Example
+Quiz weighting: `w = 1 + 3 * missRate(topic) + 2 * missRate(question)`, where
+`missRate = (incorrect + 0.5 * partial) / attempts`. Never-seen questions get `w = 1.5`.
 
-```json
-{
-  "questions": [
-    {
-      "title": "Credit Migration Return",
-      "topic": "Fixed Income",
-      "question": "A bond has YTM of 1.0% and modified duration of 4.5. Calculate the expected 1-year total return.",
-      "choices": [
-        {"letter": "A", "text": "-0.14%"},
-        {"letter": "B", "text": "0.86%"},
-        {"letter": "C", "text": "1.00%"}
-      ],
-      "correctAnswer": "B",
-      "explanation": "Total return = YTM + Price Return\n\n• Price return: -0.14%\n• YTM: +1.00%\n• Total: 0.86%",
-      "keyFormulas": ["Total Return = YTM + Price Return"],
-      "yourMistake": "Forgot to add YTM"
-    },
-    {
-      "question": "Second question here...",
-      "choices": [
-        {"letter": "A", "text": "Option A"},
-        {"letter": "B", "text": "Option B"}
-      ],
-      "correctAnswer": "A"
-    }
-  ]
-}
-```
+## Question banks and the build step
 
----
-
-## Adding Questions from Chat
-
-When you send me your list of missed questions, I'll format them into JSON you can copy straight into `questions.json`.
-
-Just paste your questions in any format like:
+The questions live in the bank files, not in the JSON:
 
 ```
-Q1 - Question Title
-
-Question: The question text...
-
-Your Answer: What you picked (why you were wrong)
-
-Correct Answer: The right answer
-
-Explanation: Why it's correct...
+aa_qbank.md   Asset Allocation          (134 questions, 24 essays)
+dv_qbank.md   Derivatives               (153, 43)
+pm_qbank.md   Performance               (166, 43)
+pc_qbank.md   Portfolio Construction    (222, 57)
+pw_qbank.md   PM Pathway                (386, 42)
+cme_qbank.md  CME                       (optional, not in the repo yet)
 ```
 
-And I'll convert it to the JSON format for you.
+**To change or add questions: edit the bank `.md`, then run**
 
----
+```
+python3 build_questions.py
+```
 
-## Best Practices for Writing Questions
+This regenerates `questions.json` (do not edit it by hand). The script validates counts,
+unique ids, that every multiple-choice answer exists among its choices, that every group
+has a vignette and every question a topic, and that no personal scoring text (tick/cross
+marks, "Your Answer", "your pick") leaked into the JSON. It exits non-zero on failure.
+If `cme_qbank.md` is present it is included automatically; if not, it is skipped with a
+printed warning.
 
-When translating questions into JSON, follow these guidelines to make them feel like real CFA exam questions:
+A question block in a bank looks like this (see any `*_qbank.md` for full examples):
 
-### 1. Use vignette-style context
-Don't write bare-bones prompts. Give the question a realistic scenario with names, firms, and specific details.
+```
+### Q12 — Short title [EQ-12]            (add " (Essay)" for an essay)
 
-**Bad:** `"Manager receives written approval for bonus from client. This is:"`
-**Good:** `"Sarah Chen, CFA, is a portfolio manager at Ridgewood Capital. One of her clients, Apex Industries, offers Sarah a performance-based bonus of $25,000..."`
+**Context (EQ3):**       short slice of the vignette (optional)
+**Question:**            stem; multiple-choice options are lines "A. text"
+**Correct Answer:** C
+**Explanation:**         - **A is wrong.** ...   - **C is correct.** ...
+**Flag:** ...            optional
+**Key Principle:**       > one-line takeaway
+```
 
-### 2. Ask for the full calculation, not just the formula
-If a question involves a formula, provide actual numbers and ask for the computed answer. Don't just ask which formula component goes where.
+Essays use `**Model Answer / Explanation:**` instead of `Correct Answer` / `Explanation`.
+Full vignettes go in the `# Appendix — Full Vignettes` section as `## GROUPID — Title`.
+The `[TAG]` in the heading becomes the stable question id (`pc:EQ-12`), so renumbering
+Q-numbers does not reset your stats.
 
-**Bad:** `"The fixed rate on a currency swap uses which PV factor in the numerator?"`
-**Good:** `"A 2-year currency swap has annual payments. PV factors: PV₁ = 0.9610, PV₂ = 0.9070. The annual fixed rate is closest to:"`
+## Files
 
-### 3. Show the model/equation when relevant (Quant)
-For regression and time-series questions, write out the model specification so the student can plug in values, just like the real exam.
+```
+index.html            screens
+app.js                the app (class CFAPracticeTester)
+style.css             styles
+marked.min.js         vendored markdown renderer (marked 12.0.2, MIT, no CDN)
+questions.json        GENERATED from the banks by build_questions.py
+build_questions.py    bank markdown -> questions.json (stdlib only)
+legacy/               the retired Level II question set, kept for reference only
+claude.md             notes for working on this code
+```
 
-**Bad:** `"AR(2) model on first-differenced sales growth. Intercept = 0.0024, b1 = -0.2021..."`
-**Good:** `"An analyst estimates an AR(2) model: Δŷ_t = b₀ + b₁Δy_(t-1) + b₂Δy_(t-2), where Δy_t = SG_t - SG_(t-1). Coefficients: b₀ = 0.0024..."`
-
-### 4. Make the student solve the problem end-to-end
-The answer choices should be final numerical answers or conclusions, not intermediate steps. If there's a multi-step calculation, the student should have to work through all of it.
-
-### 5. Include plausible distractors
-Wrong answer choices should reflect common mistakes (using wrong time period, forgetting a step, mixing up formulas). This tests real understanding.
+The `mock_*.md` files, the PDFs, `pm_content_map_v2.md` and `CFA_8_Week_Sprint.md` are
+study material and are not read by the app.
