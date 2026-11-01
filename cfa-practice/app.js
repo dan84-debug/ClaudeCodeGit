@@ -9,6 +9,7 @@
 
 const STATS_KEY = 'cfa-question-stats-v2';
 const LEARN_KEY = 'cfa-learn-progress-v2';
+const QUIZ_KEY = 'cfa-quiz-progress-v2';
 const LEGACY_LEARN_KEY = 'cfa-learn-progress'; // old numeric-id format, ignored and cleared
 const SECTION_ORDER = ['Asset Allocation', 'Derivatives', 'Performance',
     'Portfolio Construction', 'PM Pathway', 'CME'];
@@ -72,6 +73,7 @@ class CFAPracticeTester {
         this.selectMode('quiz');
         this.refreshStartScreen();
         this.checkLearnProgress();
+        this.checkQuizProgress();
     }
 
     async loadQuestions() {
@@ -196,6 +198,13 @@ class CFAPracticeTester {
         this.$('q-idk-btn').addEventListener('click', () => this.handleIDontKnow());
         this.$('q-next-btn').addEventListener('click', () => this.nextQuestion());
         this.$('q-home-btn').addEventListener('click', () => this.leaveQuestionScreen());
+
+        // Quiz progress persistence
+        this.$('quiz-resume-btn').addEventListener('click', () => this.resumeQuiz());
+        this.$('quiz-reset-btn').addEventListener('click', () => this.clearQuizProgress());
+        this.$('quiz-export-btn').addEventListener('click', () => this.exportQuizProgress());
+        this.$('quiz-import-btn').addEventListener('click', () => this.$('quiz-import-file').click());
+        this.$('quiz-import-file').addEventListener('change', e => this.importQuizProgress(e));
 
         // Quiz results
         this.$('new-quiz-btn').addEventListener('click', () => this.goHome());
@@ -777,6 +786,7 @@ class CFAPracticeTester {
         if (this.currentMode === 'quiz') {
             if (isCorrect) this.score++;
             this.results.push({ question, userAnswer: this.selectedAnswer, correct: isCorrect });
+            this.saveQuizProgress();
         } else if (this.currentMode === 'learn') {
             if (isCorrect) this.learnMastered.push(this.learnPool.shift());
             else this.moveToBackHalf();
@@ -856,6 +866,7 @@ class CFAPracticeTester {
         }
         this.goHome();
         this.checkLearnProgress();
+        this.checkQuizProgress();
     }
 
     // ==================== QUIZ MODE ====================
@@ -886,11 +897,13 @@ class CFAPracticeTester {
         this.currentIndex = 0;
         this.score = 0;
         this.results = [];
+        this.clearQuizProgress();
         this.showScreen('question-screen');
         this.renderQuestion();
     }
 
     showResults() {
+        this.clearQuizProgress();
         this.showScreen('results-screen');
         const percent = Math.round((this.score / this.currentQuiz.length) * 100);
         this.$('final-percent').textContent = `${percent}%`;
@@ -968,6 +981,100 @@ class CFAPracticeTester {
         const minPos = Math.floor(this.learnPool.length / 2);
         const insertPos = minPos + Math.floor(Math.random() * (this.learnPool.length - minPos + 1));
         this.learnPool.splice(insertPos, 0, q);
+    }
+
+    // Quiz progress: saved after each answer so a quiz can be resumed or moved to another device
+
+    saveQuizProgress() {
+        const progress = {
+            quizIds: this.currentQuiz.map(q => q.id),
+            nextIndex: this.currentIndex + 1,
+            score: this.score,
+            results: this.results.map(r => ({ id: r.question.id, userAnswer: r.userAnswer, correct: r.correct })),
+            timestamp: Date.now()
+        };
+        try { localStorage.setItem(QUIZ_KEY, JSON.stringify(progress)); } catch (e) { console.warn(e); }
+    }
+
+    clearQuizProgress() {
+        try { localStorage.removeItem(QUIZ_KEY); } catch (e) { /* ignore */ }
+        this.$('quiz-resume-banner').classList.add('hidden');
+    }
+
+    checkQuizProgress() {
+        let saved = null;
+        try { saved = localStorage.getItem(QUIZ_KEY); } catch (e) { /* ignore */ }
+        if (!saved) return;
+        try {
+            const p = JSON.parse(saved);
+            if (p.nextIndex < p.quizIds.length && p.quizIds.some(id => this.byId.has(id))) {
+                const date = new Date(p.timestamp).toLocaleDateString();
+                this.$('quiz-resume-detail').textContent =
+                    `${p.nextIndex} of ${p.quizIds.length} answered, score ${p.score} — saved ${date}`;
+                this.$('quiz-resume-banner').classList.remove('hidden');
+            } else {
+                this.clearQuizProgress();
+            }
+        } catch (e) {
+            this.clearQuizProgress();
+        }
+    }
+
+    resumeQuiz() {
+        let saved = null;
+        try { saved = localStorage.getItem(QUIZ_KEY); } catch (e) { /* ignore */ }
+        if (!saved) return;
+        try {
+            const p = JSON.parse(saved);
+            const quiz = p.quizIds.map(id => this.byId.get(id)).filter(Boolean);
+            if (quiz.length !== p.quizIds.length) throw new Error('questions changed');
+            this.currentMode = 'quiz';
+            this.currentQuiz = quiz;
+            this.currentIndex = p.nextIndex;
+            this.score = p.score;
+            this.results = p.results.map(r => ({ question: this.byId.get(r.id), userAnswer: r.userAnswer, correct: r.correct }));
+            if (this.currentIndex >= quiz.length) { this.showResults(); return; }
+            this.showScreen('question-screen');
+            this.renderQuestion();
+        } catch (e) {
+            alert('Could not restore that quiz (the question set may have changed).');
+            this.clearQuizProgress();
+        }
+    }
+
+    exportQuizProgress() {
+        let saved = null;
+        try { saved = localStorage.getItem(QUIZ_KEY); } catch (e) { /* ignore */ }
+        if (!saved) {
+            alert('No quiz in progress to export. Answer at least one question in a quiz first.');
+            return;
+        }
+        this.download(saved, `cfa-quiz-progress-v2-${new Date().toISOString().slice(0, 10)}.json`);
+    }
+
+    importQuizProgress(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+            try {
+                const p = JSON.parse(e.target.result);
+                if (!Array.isArray(p.quizIds) || !Array.isArray(p.results) || !Number.isInteger(p.nextIndex)) {
+                    throw new Error('Invalid format');
+                }
+                if (!p.quizIds.every(id => this.byId.has(id))) {
+                    alert('That quiz contains questions that are not in the current question set.');
+                    return;
+                }
+                localStorage.setItem(QUIZ_KEY, JSON.stringify(p));
+                this.checkQuizProgress();
+                alert('Quiz progress imported! Click Resume to continue.');
+            } catch (err) {
+                alert('Invalid quiz progress file.');
+            }
+        };
+        reader.readAsText(file);
+        event.target.value = '';
     }
 
     saveLearnProgress() {

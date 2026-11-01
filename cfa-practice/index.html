@@ -116,6 +116,20 @@
                     <input type="checkbox" id="weighted-sampling" checked>
                     Weight toward weak topics and missed questions
                 </label>
+
+                <div id="quiz-resume-banner" class="learn-resume-banner hidden">
+                    <p class="resume-info"><strong>Quiz in progress!</strong> <span id="quiz-resume-detail"></span></p>
+                    <div class="resume-actions">
+                        <button id="quiz-resume-btn" class="btn btn-primary btn-small">Resume</button>
+                        <button id="quiz-reset-btn" class="btn btn-secondary btn-small">Discard</button>
+                    </div>
+                </div>
+
+                <div class="progress-sync">
+                    <button id="quiz-export-btn" class="btn btn-secondary btn-small">Export Quiz Progress</button>
+                    <button id="quiz-import-btn" class="btn btn-secondary btn-small">Import Quiz Progress</button>
+                    <input type="file" id="quiz-import-file" accept=".json" class="hidden">
+                </div>
             </div>
 
             <!-- Learn Options -->
