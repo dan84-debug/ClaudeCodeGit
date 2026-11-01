@@ -10561,15 +10561,10 @@ Proposed Benchmark Portfolios
 
 | Benchmark | Index | Composition | Duration |
 |---|---|---|---|
-| 1 | Bloomberg Barclays US Bond Index | 80% US government bonds |  |
-
-| 20% US corporate bonds | 8.7 |  |  |
-|---|---|---|---|
-| 2 Index Blend | 50% Bloomberg Barclays US Corporate Bond Index | 100% US corporate bonds | 7.5 |
-| 50% Bloomberg Barclays Short-Term Treasury Index | 100% short-term US government debt | 0.5 |  |
-| 3 | Bloomberg Barclays Global Aggregate Bond Index | 60% EUR-denominated corporate bonds |  |
-
-- **40% US-denominated corporate debt:** 12.3
+| 1 | Bloomberg Barclays US Bond Index | 80% US government bonds; 20% US corporate bonds | 8.7 |
+| 2 | Index Blend: 50% Bloomberg Barclays US Corporate Bond Index | 100% US corporate bonds | 7.5 |
+| 2 | Index Blend: 50% Bloomberg Barclays Short-Term Treasury Index | 100% short-term US government debt | 0.5 |
+| 3 | Bloomberg Barclays Global Aggregate Bond Index | 60% EUR-denominated corporate bonds; 40% US-denominated corporate debt | 12.3 |
 
 ## QD3 — Radford (Zero-Coupon Matching, Duration, Non-Parallel Shifts, Indexing)
 
