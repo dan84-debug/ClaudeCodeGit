@@ -4319,12 +4319,11 @@ Exhibit 2 presents the annual gross returns for each fund and its respective ben
 **Exhibit 2**
 Fund and Benchmark Returns
 
-| Fund | 2016 |  | 2017 |  | 2018 |  |  |  |
-|---|---|---|---|---|---|---|---|---|
-| Gross Return (%) | Benchmark Return (%) | Gross Return (%) | Benchmark Return (%) | Gross Return (%) | Benchmark Return (%) |  |  |  |
-| Red Grass Fund | 8.00 | 8.00 |  | −2.00 | −10.00 |  | 5.00 | 4.50 |
-| Blue Water Fund | 10.00 | 9.00 |  | −4.00 | −1.50 |  | 14.00 | 2.00 |
-| Yellow Wood Fund | 15.00 | 14.00 |  | −5.00 | −6.50 |  | 7.00 | 9.50 |
+| Fund | 2016 Gross Return (%) | 2016 Benchmark Return (%) | 2017 Gross Return (%) | 2017 Benchmark Return (%) | 2018 Gross Return (%) | 2018 Benchmark Return (%) |
+|---|---|---|---|---|---|---|
+| Red Grass Fund | 8.00 | 8.00 | −2.00 | −10.00 | 5.00 | 4.50 |
+| Blue Water Fund | 10.00 | 9.00 | −4.00 | −1.50 | 14.00 | 2.00 |
+| Yellow Wood Fund | 15.00 | 14.00 | −5.00 | −6.50 | 7.00 | 9.50 |
 
 The board of directors of the Tree Fallers Endowment asks Summer to recalculate the fees of the Red Grass Fund assuming a high-water mark feature whereby a sharing percentage could only be charged to the extent any losses had been recouped.
 

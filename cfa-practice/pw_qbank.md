@@ -6082,12 +6082,7 @@ An analyst gathers the following information about an active portfolio and the c
 | Tenor (years) | Modified Duration | Active Portfolio Position (in $ million) | Index Portfolio Position (in $ million) |
 |---|---|---|---|
 | 2 | 1.68 | 30 | 30 |
-| 5 |  |  |  |
-
-4.52
-
-| 40 | 45 |  |  |
-|---|---|---|---|
+| 5 | 4.52 | 40 | 45 |
 | 10 | 8.32 | 30 | 55 |
 
 Which of the following statements is most accurate?
@@ -9695,23 +9690,8 @@ Another client is Ken Dashe, the new chairman of the investment committee of the
 
 **Exhibit 2 Attribution Data for MultiFAK Fund and Benchmark**
 
-|  | MultiFAK Portfolio | Benchmark Portfolio |
-|---|---|---|
-| Factor | Weight |  |
-
-Return
-
-(%)
-
-| # of stocks | Weight |  |
-|---|---|---|
-
-Return
-
-(%)
-
-# of stocks
-
+| Factor | MultiFAK Weight | MultiFAK Return (%) | MultiFAK # of stocks | Benchmark Weight | Benchmark Return (%) | Benchmark # of stocks |
+|---|---|---|---|---|---|---|
 | Yield | 0.28 | 3.5 | 25 | 0.28 | 3.5 | 25 |
 |---|---|---|---|---|---|---|
 | Momentum | 0.14 | 8.1 | 20 | 0.17 | 8.1 | 20 |
@@ -9959,9 +9939,7 @@ Reed asks Schiller to provide some feedback on AE’s approach to portfolio cons
 | Active share | 0.92 | 0.71 | --- |
 | Active risk | 15.1% | 7.2% | --- |
 | Number of positions | 42 | 124 | --- |
-
-Beta to:
-
+| **Beta to:** |  |  |  |
 | Market | 0.96 | 0.97 | 7.8% |
 |---|---|---|---|
 | Size | 0.20 | 0.20 | 9.2% |
@@ -9980,9 +9958,7 @@ Before concluding their discussion, Reed mentions to Schiller that as AE’s AUM
 | Average AUM ($ millions) | 235 | 1,770 |
 | Average number of positions | 18 | 40 |
 | Portfolio turnover (average) | 40% | 20% |
-
-Beta to:
-
+| **Beta to:** |  |  |
 | Market | 0.84 | 0.96 |
 |---|---|---|
 | Size | 0.05 | 0.20 |
@@ -10223,9 +10199,7 @@ Reed asks Schiller to provide some feedback on AE’s approach to portfolio cons
 | Active share | 0.92 | 0.71 | --- |
 | Active risk | 15.1% | 7.2% | --- |
 | Number of positions | 42 | 124 | --- |
-
-Beta to:
-
+| **Beta to:** |  |  |  |
 | Market | 0.96 | 0.97 | 7.8% |
 |---|---|---|---|
 | Size | 0.20 | 0.20 | 9.2% |
@@ -10244,9 +10218,7 @@ Before concluding their discussion, Reed mentions to Schiller that as AE’s AUM
 | Average AUM ($ millions) | 235 | 1,770 |
 | Average number of positions | 18 | 40 |
 | Portfolio turnover (average) | 40% | 20% |
-
-Beta to:
-
+| **Beta to:** |  |  |
 | Market | 0.84 | 0.96 |
 |---|---|---|
 | Size | 0.05 | 0.20 |
@@ -10383,9 +10355,7 @@ John Fraser’s performance is the first that Lazare and Warrack review. Fraser�
 |  | Russell 100 Value Index | The Fraser Fund | Factor Performance |
 |---|---|---|---|
 | Monthly performance in excess of the risk-free rate | 0.72% | 0.55% | --- |
-
-β to specified factor
-
+| **β to specified factor** |  |  |  |
 | Market | 0.90 | 0.91 | 0.61% |
 |---|---|---|---|
 | Size | –0.27 | 0.15 | 0.17% |
@@ -10453,17 +10423,11 @@ The second project for Serena is to help Trey immunize a $20 million portfolio o
 **Exhibit 2**
 Possible AAA Rated Duration-Matching Portfolios
 
-| Portfolio A | Portfolio B | Portfolio C |
-|---|---|---|
-| Bonds (term, coupon) | 4.5 years, 2.63% |  |
+|  | Portfolio A | Portfolio B | Portfolio C |
+|---|---|---|---|
+| Bonds (term, coupon) | 4.5 years, 2.63%<br>7.0 years, 3.50%<br>8.5 years, 3.88% | 3.0 years, 2.00%<br>1.5 years, 1.25% | 6.0 years, 3.25%<br>11.5 years, 4.38% |
 
-- **7.0 years, 3.50%:** 3.0 years, 2.00%
-
-6.0 years, 3.25%
-
-- **8.5 years, 3.88%:** 1.5 years, 1.25%
-
-11.5 years, 4.38%
+*(Reconstructed from a scrambled paste: bonds were grouped by their order in the source. Portfolios B and C appear to be missing one bond each; check against the original exhibit.)*
 
 | Macaulay duration | 5.35 | 5.34 | 5.36 |
 |---|---|---|---|

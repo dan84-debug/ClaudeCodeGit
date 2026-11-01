@@ -5491,27 +5491,18 @@ On page 2, Moynahan decides to outline the three total return approaches he util
 
 |  | Benchmark | Portfolio 1 | Portfolio 2 | Portfolio 3 |
 |---|---|---|---|---|
-
-Quality:
-
+| **Quality:** |  |  |  |  |
 | AAA/AA/A (% of portfolio) | 76.0 | 74.9 | 75.8 | 76.3 |
-|---|---|---|---|---|
 | BBB/BB (% of portfolio) | 24.0 | 25.1 | 24.2 | 23.7 |
 | Average | AA– | AA– | AA– | AA |
-
-Key Rate Duration:
-
+| **Key Rate Duration:** |  |  |  |  |
 | 1–5 years | 2.5 | 2.4 | 2.4 | 2.5 |
-|---|---|---|---|---|
 | 5–10 years | 1.8 | 1.9 | 1.9 | 1.8 |
 | 10–15 years | 1.5 | 1.4 | 1.5 | 1.5 |
 | Credit Spread Duration | 1.45 | 1.55 | 1.43 | 1.50 |
 | Turnover (%) |  | 8% | 5% | 6% |
-
-Country Exposure:
-
+| **Country Exposure:** |  |  |  |  |
 | Developed Markets | 90.0 | 86.4 | 91.2 | 87.0 |
-|---|---|---|---|---|
 | Emerging Markets | 10.0 | 14.0 | 9.8 | 13.0 |
 | Securities Lending | N/A | Not Allowed | Allowed | Not Allowed |
 
